@@ -4,26 +4,30 @@ import {
 	FETCH_CATEGORIES_SUCCESS,
 } from './categoryConstants';
 
-const defaultState = { categories: [], error: null, loading: false };
+const defaultState = {
+	categories: [],
+	error: undefined,
+	loading: false
+};
 
 export const categoryListReducer = (state = defaultState, action) => {
 	switch (action.type) {
 		case FETCH_CATEGORIES_REQUEST:
 			return {
-        ...state,
+				...state,
 				loading: true,
 			};
 
 		case FETCH_CATEGORIES_SUCCESS:
 			return {
-        ...state,
+				...state,
 				loading: false,
 				categories: action.payload,
 			};
 
 		case FETCH_CATEGORIES_ERROR:
 			return {
-        ...state,
+				...state,
 				loading: false,
 				error: action.payload,
 			};

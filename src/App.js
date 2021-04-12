@@ -1,27 +1,12 @@
-import { useEffect } from 'react';
-import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
-
-import { useDispatch, useSelector } from 'react-redux';
-
-import { fetchCategories } from './redux/categories/categoryActions';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import Home from './pages/Home';
 
 function App() {
-	const categoryList = useSelector((state) => state.categories);
-	const { loading, error, categories } = categoryList;
-	const dispatch = useDispatch();
-
-	useEffect(() => {
-		dispatch(fetchCategories());
-
-	}, [dispatch]);
-
 	return (
 		<Router>
-      <h1>{categories}</h1>
 			<Switch>
 				<Route path='/:lang'>
-					<h1>Home page</h1>
-					{/* <Test /> */}
+					<Home />
 				</Route>
 				<Route path='*'>
 					<h1>404</h1>
@@ -32,3 +17,26 @@ function App() {
 }
 
 export default App;
+
+// import { useDispatch, useSelector } from 'react-redux';
+
+// import { fetchCategories } from './redux/categories/categoryActions';
+// import { fetchInspirations } from './redux/inspirations/inspirationActions';
+// import { fetchExperiences } from './redux/experiences/experienceActions';
+
+// const dispatch = useDispatch();
+
+// const categoryState = useSelector((state) => state.categories);
+// const { categories } = categoryState;
+
+// const inspirationState = useSelector((state) => state.inspirations);
+// const { inspirations } = inspirationState;
+
+// const experienceState = useSelector((state) => state.experiences);
+// const { experiences } = experienceState;
+
+// useEffect(() => {
+// 	dispatch(fetchCategories());
+// 	dispatch(fetchInspirations());
+// 	dispatch(fetchExperiences());
+// }, [dispatch]);

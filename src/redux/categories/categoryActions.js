@@ -5,12 +5,6 @@ import {
 	FETCH_CATEGORIES_SUCCESS,
 } from './categoryConstants';
 
-axios.defaults.baseURL = 'https://sandbox.musement.com/api/v3/';
-axios.defaults.headers = {
-	'x-musement-version': '3.4.0',
-	'accept-language': 'en-GB',
-};
-
 export const fetchCategories = () => {
 	return async (dispatch) => {
 		dispatch({ type: FETCH_CATEGORIES_REQUEST });
