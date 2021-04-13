@@ -1,11 +1,43 @@
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import {
+	BrowserRouter as Router,
+	Switch,
+	Route,
+	Redirect,
+} from 'react-router-dom';
 import Home from './pages/Home';
 
+const langConfig = {
+	uk: 'en-GB',
+	us: 'en-US',
+	it: 'it-IT',
+	fr: 'fr-FR',
+	de: 'de-DE',
+	es: 'es-ES',
+	pt: 'pt-PT',
+	br: 'pt-BR',
+	ru: 'ru-RU',
+	nl: 'nl-NL',
+	pl: 'pl-PL',
+};
+
 function App() {
+	const lang = window.location.pathname.replace('/', '');
+	const defLang = 'uk';
+
+	const checkLang = () => {
+		if (lang === defLang) {
+			const langKeys = Object.keys(langConfig);
+			const langUrl = langKeys.find((key) => key === lang);
+			console.log(langUrl);
+			return langUrl;
+		} else return defLang;
+	};
+
 	return (
 		<Router>
 			<Switch>
 				<Route path='/:lang'>
+					<Redirect push to={`/${checkLang()}`} />
 					<Home />
 				</Route>
 				<Route path='*'>
@@ -18,25 +50,3 @@ function App() {
 
 export default App;
 
-// import { useDispatch, useSelector } from 'react-redux';
-
-// import { fetchCategories } from './redux/categories/categoryActions';
-// import { fetchInspirations } from './redux/inspirations/inspirationActions';
-// import { fetchExperiences } from './redux/experiences/experienceActions';
-
-// const dispatch = useDispatch();
-
-// const categoryState = useSelector((state) => state.categories);
-// const { categories } = categoryState;
-
-// const inspirationState = useSelector((state) => state.inspirations);
-// const { inspirations } = inspirationState;
-
-// const experienceState = useSelector((state) => state.experiences);
-// const { experiences } = experienceState;
-
-// useEffect(() => {
-// 	dispatch(fetchCategories());
-// 	dispatch(fetchInspirations());
-// 	dispatch(fetchExperiences());
-// }, [dispatch]);
