@@ -28,7 +28,6 @@ function App() {
 		if (lang === defLang) {
 			const langKeys = Object.keys(langConfig);
 			const langUrl = langKeys.find((key) => key === lang);
-			console.log(langUrl);
 			return langUrl;
 		} else return defLang;
 	};
