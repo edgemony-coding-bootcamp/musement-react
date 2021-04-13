@@ -1,0 +1,1 @@
+export const SET_LANGUAGES = 'SET_LANGUAGES'
