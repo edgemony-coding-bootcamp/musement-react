@@ -10,6 +10,8 @@ import {
   HeroWrap,
   HeroBannerImgCancellation,
   HeroBannerImgSafety,
+  HeroBannerTitle,
+  HeroBannerParagraph,
 } from '../styles/styles';
 
 function Hero() {
@@ -25,27 +27,27 @@ function Hero() {
         <HeroBanner>
           <HeroBannerContent>
             <HeroBannerImgCancellation />
-            <h3>Free cancellation</h3>
+            <HeroBannerTitle>Free cancellation</HeroBannerTitle>
           </HeroBannerContent>
           <HeroBannerContent>
-            <p>
+            <HeroBannerParagraph>
               We understand how important flexibility is right now. That's why
               we offer free cancellation on thousands of experiences. No
               waiting, no stress, just one click and it's done!
-            </p>
+            </HeroBannerParagraph>
           </HeroBannerContent>
         </HeroBanner>
         <HeroBanner>
           <HeroBannerContent>
             <HeroBannerImgSafety />
-            <h3>Health & safety measures</h3>
+            <HeroBannerTitle>Health & safety measures</HeroBannerTitle>
           </HeroBannerContent>
           <HeroBannerContent>
-            <p>
+            <HeroBannerParagraph>
               We want you to enjoy unforgettable experiences in the safest way
               possible. So we've made sure all the necessary health measures are
               in place, from sanitizing to social distancing.
-            </p>
+            </HeroBannerParagraph>
           </HeroBannerContent>
         </HeroBanner>
       </HeroWrap>

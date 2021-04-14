@@ -8,8 +8,9 @@ import { ReactComponent as SafetySvg } from '../Assets/img/safety-measures.svg';
 
 const colors = {
   white: 'rgb(255, 255, 255)',
-  orange: '#fd8067',
-  gray: 'gray',
+  orange: '#fc6c4f',
+  gray: '#9E9E9E',
+  lightGray: '#DBDBDB',
   black: 'black',
 };
 
@@ -17,7 +18,7 @@ const colors = {
 
 export const FlexRowWrap = styled.div`
   display: flex;
-  flex-direction: row;
+  flex-direction: row-reverse;
 `;
 
 // section HEADER
@@ -30,21 +31,35 @@ export const HeaderWrapper = styled.header`
   display: flex;
   justify-content: center;
   align-items: center;
-  border-bottom: solid ${colors.gray} 1px;
+  border-bottom: solid ${colors.lightGray} 1px;
 `;
 
-export const HeaderTitle = styled.h1`
-  color: ${colors.gray};
+// export const HeaderTitle = styled.h1`
+//   color: ${colors.gray};
+// `;
+
+export const HeaderLogoWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  color: ${colors.lightGray};
+  align-items: center;
 `;
 
 export const HeaderLogo = styled.img`
-  height: 50px;
+  width: 2rem;
   padding-left: 5px;
   padding-right: 5px;
+  /* flex-basis: 0; */
+`;
+
+export const HeaderLogoTitle = styled.h5`
+  margin: 0;
+  color: ${colors.gray};
+  font-size: 1.2rem;
 `;
 
 export const TitleNav = styled.h1`
-  color: ${colors.gray};
+  color: ${colors.lightGray};
 `;
 
 export const GoDown = styled.div`
@@ -56,6 +71,11 @@ export const GoDown = styled.div`
 
 export const HeroWrap = styled(FlexRowWrap)`
   overflow: scroll;
+  overflow-y: hidden;
+
+  @media (min-width: 1024px) {
+    overflow: hidden;
+  }
 `;
 
 export const HeroContainer = styled.section`
@@ -63,6 +83,8 @@ export const HeroContainer = styled.section`
   height: 400px;
   background-image: url(${colosseoImg});
   background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -86,22 +108,41 @@ export const HeroBanner = styled.div`
   background: ${colors.white};
   display: flex;
   flex-direction: column;
-  min-width: 20rem;
+  min-width: 17rem;
+  max-width: 30rem;
   margin: 1rem;
-  border-radius: 1rem;
-  -webkit-box-shadow: 0px 4px 7px 0px rgba(0, 0, 0, 0.79);
-  box-shadow: 0px 4px 7px 0px rgba(0, 0, 0, 0.79);
+  border-radius: 0.3rem;
+  box-shadow: 0 2px 6px 0 rgb(0 0 0 / 10%);
+  overflow-x: hidden;
+  @media (min-width: 760px) {
+    min-width: 30rem;
+  }
+  @media (min-width: 1024px) {
+    border: none;
+    box-shadow: none;
+    max-width: none;
+  }
 `;
 
 export const HeroBannerImgCancellation = styled(CancellationSvg)`
-  width: 5rem;
+  width: 1.5rem;
   margin: 0.2rem;
+  flex-grow: 1;
 `;
 export const HeroBannerImgSafety = styled(SafetySvg)`
-  width: 10rem;
+  min-width: 3rem;
   height: 5rem;
   margin: 0.2rem;
+  flex-grow: 1;
 `;
+
+export const HeroBannerTitle = styled.h4`
+  flex-grow: 1;
+  font-weight: bold;
+`;
+
+export const HeroBannerParagraph = styled.p``;
+
 export const HeroBannerContent = styled.div`
   padding: 0.5rem;
   display: flex;
@@ -112,24 +153,48 @@ export const HeroBannerContent = styled.div`
 
 // section CATEGORIES NAV
 
-export const CategoryWarp = styled(FlexRowWrap)`
+export const CategoryWrap = styled(FlexRowWrap)`
   justify-content: space-evenly;
   flex-wrap: wrap;
-  margin: 2rem 0 0;
   width: 100%;
-  &:last-child {
-    border-right: none;
+  height: 76px;
+`;
+
+export const CategoryLinkWrap = styled.div`
+  flex-grow: 1;
+  display: flex;
+  align-items: center;
+
+  &:hover {
+    box-shadow: inset 0 -6px 0 ${colors.orange};
+    cursor: pointer;
   }
 `;
 
 export const CategoryLink = styled.div`
-  padding: 0.5rem;
-  border-right: solid ${colors.gray} 1px;
-  border-left: solid ${colors.gray} 1px;
-  font-weight: bold;
+  padding: 0.2rem;
+  height: 36px;
 
-  &:hover {
-    box-shadow: inset 0 -5px 0 ${colors.orange};
-    cursor: pointer;
-  }
+  display: flex;
+  align-items: center;
+`;
+
+export const CategoryLinkContainer = styled(FlexRowWrap)`
+  width: 100%;
+  justify-content: space-evenly;
+  border-left: solid ${colors.lightGray} 1px;
+`;
+
+export const CategoryLinkLoader = styled.div`
+  padding: 0.5rem;
+  margin: 0.5rem;
+  border-left: solid ${colors.lightGray} 1px;
+  flex-grow: 1;
+  background-color: ${colors.lightGray};
+`;
+
+export const FakeIcon = styled.img`
+  height: 35px;
+  width: 35px;
+  margin-right: 10px;
 `;

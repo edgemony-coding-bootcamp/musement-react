@@ -37,6 +37,7 @@ function App() {
 
   return (
     <Router>
+      <Header />
       <Switch>
         <Route path='/:lang'>
           <Redirect push to={`/${checkLang()}`} />
