@@ -18,7 +18,6 @@ const colors = {
 
 export const FlexRowWrap = styled.div`
   display: flex;
-  flex-direction: row-reverse;
 `;
 
 // section HEADER
@@ -34,28 +33,36 @@ export const HeaderWrapper = styled.header`
   border-bottom: solid ${colors.lightGray} 1px;
 `;
 
-// export const HeaderTitle = styled.h1`
-//   color: ${colors.gray};
-// `;
-
 export const HeaderLogoWrapper = styled.div`
   display: flex;
   flex-direction: column;
   color: ${colors.lightGray};
   align-items: center;
+  @media (min-width: 760px) {
+    flex-direction: row;
+  }
 `;
 
 export const HeaderLogo = styled.img`
-  width: 2rem;
-  padding-left: 5px;
-  padding-right: 5px;
-  /* flex-basis: 0; */
+  /* width: 28px; */
+  height: 36px;
+  padding: 0 5px;
 `;
 
 export const HeaderLogoTitle = styled.h5`
   margin: 0;
+
   color: ${colors.gray};
   font-size: 1.2rem;
+  font-weight: bold;
+
+  @media (min-width: 760px) {
+    /* height: 28px; */
+    justify-self: center;
+    font-size: 2rem;
+    padding-bottom: 2px;
+    letter-spacing: -1px;
+  }
 `;
 
 export const TitleNav = styled.h1`
@@ -157,7 +164,10 @@ export const CategoryWrap = styled(FlexRowWrap)`
   justify-content: space-evenly;
   flex-wrap: wrap;
   width: 100%;
-  height: 76px;
+  min-height: 76px;
+  @media (max-width: 1150px) {
+    display: none;
+  }
 `;
 
 export const CategoryLinkWrap = styled.div`

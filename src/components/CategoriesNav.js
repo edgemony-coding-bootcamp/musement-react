@@ -17,6 +17,7 @@ function CategoriesNav() {
   useEffect(() => {
     dispatch(fetchCategories());
   }, [dispatch]);
+
   const categoryState = useSelector((state) => state.categories);
   const { categories, loading, error } = categoryState;
   return (

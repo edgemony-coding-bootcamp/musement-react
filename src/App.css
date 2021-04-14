@@ -352,3 +352,22 @@ template {
 [hidden] {
   display: none;
 }
+
+::-webkit-scrollbar {
+  height: 7px;
+}
+/* Track */
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 2px black;
+  border-radius: 3px;
+}
+/* Handle */
+::-webkit-scrollbar-thumb {
+  opacity: 0.2;
+  background: #aba9a9;
+  border-radius: 3px;
+}
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #fc6c4f;
+}
