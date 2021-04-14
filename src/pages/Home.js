@@ -1,7 +1,10 @@
-
-function Home() {
-
-	return <div>Home Page</div>;
+function Home({ children }) {
+	return (
+		<div>
+			Home Page
+			{children}
+		</div>
+	);
 }
 
 export default Home;
