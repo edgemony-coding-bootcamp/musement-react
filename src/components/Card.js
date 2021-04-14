@@ -28,42 +28,41 @@ const CardWrapper = styled.div`
   }
 `;
 
-const Img = styled.img`
+const CardImg = styled.img`
   width: 100%;
   height: 155px;
   border-top-right-radius: 6px;
   border-top-left-radius: 6px;
 `;
 
-const SectionColumn = styled.section`
+const CardSectionColumn = styled.section`
   margin: 10px;
   margin-top: 3px;
   display: flex;
   text-align: left;
   flex-direction: column;
-  border: 1px solid blue;
 `;
 
-const SectionRow = styled.section`
+const CardSectionRow = styled.section`
   margin: 10px;
   margin-top: 3px;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  border-top: 1px solid blue;
 `;
 
-const CategoryLabel = styled.span`
+const CardCategoryLabel = styled.span`
   width: fit-content;
   padding: 1px 7px;
+  text-transform: uppercase;
   text-align: center;
   font-size: 0.75rem;
   color: white;
   background-color: orange;
 `;
 
-const Title = styled.h3`
+const CardTitle = styled.h3`
   margin: 0;
   margin-top: 10px;
   font-size: 1rem;
@@ -73,7 +72,7 @@ const Title = styled.h3`
   }
 `;
 
-const Description = styled.p`
+const CardDescription = styled.p`
   margin-top: 5px;
   font-size: 0.75rem;
   text-align: start;
@@ -86,18 +85,23 @@ const Description = styled.p`
   text-overflow: ellipsis;
 `;
 
-const Icon = styled.div`
+const CardIcon = styled.div`
   width: 22px;
   height: 22px;
   display: inline-block;
   background-color: yellow;
 `;
 
-const Div = styled.div`
+const CardDivCancellation = styled.div`
   width: 119px;
   height: fit-content;
   font-size: 0.75rem;
-  border: 1px solid green;
+
+  ${({ cancellation }) => (cancellation ? `opacity: 1px;` : `display: none;`)}
+`;
+
+const Div = styled.div`
+  font-size: 0.75rem;
 `;
 
 const DivRow = styled.div`
@@ -107,49 +111,68 @@ const DivRow = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
-  border: 1px solid purple;
 `;
 
 const Span = styled.div`
   width: fit-content;
   display: inline-block;
-  border: 1px solid brown;
+`;
+
+const CardStar = styled.p`
+  color: yellow;
 `;
 
 const Card = () => {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(fetchExperiences());
+  }, [dispatch]);
+
+  const dataState = useSelector((state) => state.experiences);
+  const { experiences } = dataState;
+
   return (
     <>
       <CardWrapper>
-        <Img></Img>
-        <SectionColumn>
-          <CategoryLabel>{`ATTRACTION & GUIDE TOUR`}</CategoryLabel>
-          <Title>title</Title>
-          <Description>description</Description>
-        </SectionColumn>
-        <SectionColumn>
-          <DivRow>
-            <Icon></Icon>
-            Free cancellations
-          </DivRow>
-          <DivRow>
-            <Icon></Icon>
-            Flexible
-          </DivRow>
-          <DivRow>
-            <Icon></Icon>
-            Available in: en, it, de
-          </DivRow>
-        </SectionColumn>
-        <SectionRow>
-          <Div>
-            <Span>star</Span>
-            <Span>(XXX)</Span>
-          </Div>
-          <Div>
-            <Span>from:</Span>
-            <Div>€XXX</Div>
-          </Div>
-        </SectionRow>
+        {experiences &&
+          experiences.map((experience) => (
+            <>
+              <CardImg src={experience.cover_image_url} alt='image'></CardImg>
+              <CardSectionColumn>
+                <CardCategoryLabel>{`attraction & guide tour`}</CardCategoryLabel>
+                <CardTitle>{experience.title}</CardTitle>
+                <CardDescription>{experience.description}</CardDescription>
+              </CardSectionColumn>
+              <CardSectionColumn>
+                <CardDivCancellation
+                  cancellation={experience.free_cancellation}>
+                  <CardIcon></CardIcon>
+                  free cancellations
+                </CardDivCancellation>
+                <DivRow>
+                  <CardIcon></CardIcon>
+                  flexible
+                </DivRow>
+                <DivRow>
+                  <CardIcon></CardIcon>
+                  available in: en, it, de
+                  {experience.languages.code}
+                </DivRow>
+              </CardSectionColumn>
+              <CardSectionRow>
+                <Div>
+                  <CardStar>star{experience.reviews_avg}</CardStar>
+                  <Span>({experience.reviews_number})</Span>
+                </Div>
+                <Div>
+                  <Span>from:</Span>
+                  <Div>
+                    {experience.original_retail_price.formatted_iso_value}
+                  </Div>
+                </Div>
+              </CardSectionRow>
+            </>
+          ))}
       </CardWrapper>
     </>
   );
