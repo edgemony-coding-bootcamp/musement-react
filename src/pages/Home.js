@@ -8,6 +8,8 @@ import {
 } from 'react-router-dom';
 import Activities from './Activities';
 
+import { DEF_LANG } from '../config.json';
+
 const langConfig = [
   'uk',
   'us',
@@ -30,7 +32,7 @@ function Home() {
   const langUrl = langConfig.find((value) => value === lang);
   if (!langUrl) {
     const newUrl = history.location.pathname.replace(`/${lang}`, '');
-    history.push(`/uk${newUrl}`);
+    history.push(`/${DEF_LANG}${newUrl}`);
   }
   return (
     <>

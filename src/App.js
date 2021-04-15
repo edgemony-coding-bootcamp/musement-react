@@ -5,6 +5,7 @@ import {
   Redirect,
 } from 'react-router-dom';
 import Home from './pages/Home';
+import { DEF_LANG } from './config.json';
 
 function App() {
   return (
@@ -13,7 +14,7 @@ function App() {
         <Route path='/:lang'>
           <Home />
         </Route>
-        <Redirect to='/uk' />
+        <Redirect to={`/${DEF_LANG}`} />
       </Switch>
     </Router>
   );
