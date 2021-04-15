@@ -45,8 +45,7 @@ export const Card = styled.div`
   margin: 10px 7.5px;
   transition: all ease-in-out 0.25s;
 
-  ${({ current }) =>
-    current ? `transform: translateX(${current * -350}px);` : ''}
+  ${({ current }) => current && `transform: translateX(${current * -350}px);`}
 `;
 
 export const Arrow = styled(ArrowSvg)`
@@ -65,7 +64,7 @@ export const ArrowRight = styled(Arrow)`
   }
 
   ${({ current, cardlength }) =>
-    current === cardlength ? `display: none` : `display: block`}
+    current === cardlength - 4 ? `display: none` : `display: block`}
 `;
 
 export const ArrowLeft = styled(Arrow)`

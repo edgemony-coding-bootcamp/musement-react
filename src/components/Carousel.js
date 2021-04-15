@@ -30,15 +30,16 @@ let cards = [
   '20',
 ];
 
-const Carousel = ({ cardsFrom, carouselTitle }) => {
+let title = ['Esperienze in primo piano'];
+
+const Carousel = () => {
   const [current, setCurrent] = useState(0);
-  const arraycardslength = cards.length - 4;
   const prevLeft = () => setCurrent(current - 1);
   const nextRight = () => setCurrent(current + 1);
   return (
     <>
       <CarouselContainer>
-        <CarouselTitle title={'Esperienze in primo piano'} />
+        <CarouselTitle title={title} />
         <ArrowLeft current={current} onClick={prevLeft} />
         <CarouselCardWrapper>
           {cards.map((card) => (
@@ -47,7 +48,7 @@ const Carousel = ({ cardsFrom, carouselTitle }) => {
         </CarouselCardWrapper>
         <ArrowRight
           current={current}
-          cardlength={arraycardslength}
+          cardlength={cards.length}
           onClick={nextRight}
         />
       </CarouselContainer>
