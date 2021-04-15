@@ -3,7 +3,7 @@ import colosseoImg from '../Assets/img/cover_hero_home_desktop_colosseo.png';
 
 import { ReactComponent as CancellationSvg } from '../Assets/img/free_cancellation_banner.svg';
 import { ReactComponent as SafetySvg } from '../Assets/img/safety-measures.svg';
-
+import { Link } from 'react-router-dom';
 // section VARIABLES
 
 const colors = {
@@ -20,11 +20,16 @@ export const FlexRowWrap = styled.div`
   display: flex;
 `;
 
+export const LinkPage = styled(Link)`
+  text-decoration: none;
+`;
+
 // section HEADER
 
 export const HeaderWrapper = styled.header`
   width: 100%;
   height: 70px;
+
   background-color: ${colors.white};
   position: fixed;
   display: flex;
@@ -44,7 +49,6 @@ export const HeaderLogoWrapper = styled.div`
 `;
 
 export const HeaderLogo = styled.img`
-  /* width: 28px; */
   height: 36px;
   padding: 0 5px;
 `;
@@ -203,8 +207,12 @@ export const CategoryLinkLoader = styled.div`
   background-color: ${colors.lightGray};
 `;
 
-export const FakeIcon = styled.img`
+export const CategoryLinkError = styled(CategoryLink)``;
+
+export const SvgIcon = styled.svg`
   height: 35px;
   width: 35px;
   margin-right: 10px;
+  fill: ${colors.white};
+  stroke: ${colors.gray};
 `;

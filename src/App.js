@@ -6,7 +6,6 @@ import {
 } from 'react-router-dom';
 import Home from './pages/Home';
 import Header from './components/Header';
-import { GoDown } from './styles/styles';
 import './App.css';
 
 const langConfig = {

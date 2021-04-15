@@ -5,14 +5,13 @@ import {
   HeroTitleOrange,
   HeroTitleWhite,
   HeroBanner,
-  HeroBannerImg,
   HeroBannerContent,
   HeroWrap,
   HeroBannerImgCancellation,
   HeroBannerImgSafety,
   HeroBannerTitle,
   HeroBannerParagraph,
-} from '../styles/styles';
+} from '../styles';
 
 function Hero() {
   return (
