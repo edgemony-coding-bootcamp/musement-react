@@ -6,6 +6,7 @@ import {
 } from 'react-router-dom';
 import Home from './pages/Home';
 import Card from './components/Card';
+import './App.css';
 
 const langConfig = {
 	uk: 'en-GB',

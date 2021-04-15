@@ -1,179 +1,85 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
-import styled from 'styled-components';
 import { fetchExperiences } from '../redux/experiences/experienceActions';
+import Rating from './Rating'
+import { CardCancellation, CardCategoryLabel, CardDescription, CardDurationValue, CardIcon, CardImg, CardLanguage, CardSectionBody, CardSectionFooter, CardSectionHeader, CardStarWrapper, CardTitle, CardWrapper, CardPriceWrapper, DivRow, CardValueFooter, CardSpanPrice } from './StylesCard';
 
-const size = { tablet: '760px', desktop: '1024px' };
-const device = {
-  tablet: `(min-width: ${size.tablet})`,
-  desktop: `(min-width: ${size.desktop})`,
-};
 
-const CardWrapper = styled.div`
-  max-width: 290px;
-  max-height: 365px;
-  border-top-right-radius: 6px;
-  border-top-left-radius: 6px;
-  box-sizing: border-box;
-  border: 1px solid red;
+const parseISODuration = (iso8601Duration) => {
+  const iso8601DurationRegex = /(-)?PT(?:([.,\d]+)D)?(?:([.,\d]+)H)?(?:([.,\d]+)M)?/;
 
-  @media ${device.tablet} {
-    max-width: 310px;
-    max-height: 380px;
-  }
+  let matches = iso8601Duration.match(iso8601DurationRegex);
 
-  @media ${device.desktop} {
-    max-width: 335px;
-    max-height: 430px;
-  }
-`;
-
-const CardImg = styled.img`
-  width: 100%;
-  height: 155px;
-  border-top-right-radius: 6px;
-  border-top-left-radius: 6px;
-`;
-
-const CardSectionColumn = styled.section`
-  margin: 10px;
-  margin-top: 3px;
-  display: flex;
-  text-align: left;
-  flex-direction: column;
-`;
-
-const CardSectionRow = styled.section`
-  margin: 10px;
-  margin-top: 3px;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-`;
-
-const CardCategoryLabel = styled.span`
-  width: fit-content;
-  padding: 1px 7px;
-  text-transform: uppercase;
-  text-align: center;
-  font-size: 0.75rem;
-  color: white;
-  background-color: orange;
-`;
-
-const CardTitle = styled.h3`
-  margin: 0;
-  margin-top: 10px;
-  font-size: 1rem;
-  cursor: pointer;
-  &:hover {
-    border-bottom: 1px solid black;
-  }
-`;
-
-const CardDescription = styled.p`
-  margin-top: 5px;
-  font-size: 0.75rem;
-  text-align: start;
-  display: -webkit-box;
-  line-height: 1.7;
-  -webkit-line-clamp: 2;
-  min-height: 30px;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-  text-overflow: ellipsis;
-`;
-
-const CardIcon = styled.div`
-  width: 22px;
-  height: 22px;
-  display: inline-block;
-  background-color: yellow;
-`;
-
-const CardDivCancellation = styled.div`
-  width: 119px;
-  height: fit-content;
-  font-size: 0.75rem;
-
-  ${({ cancellation }) => (cancellation ? `opacity: 1px;` : `display: none;`)}
-`;
-
-const Div = styled.div`
-  font-size: 0.75rem;
-`;
-
-const DivRow = styled.div`
-  width: fit-content;
-  height: fit-content;
-  font-size: 0.75rem;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-`;
-
-const Span = styled.div`
-  width: fit-content;
-  display: inline-block;
-`;
-
-const CardStar = styled.p`
-  color: yellow;
-`;
+  return {
+    days: matches[2] === undefined ? '' : `${matches[2]} days `,
+    hours: matches[3] === undefined ? '' : `${matches[3]} hours `,
+    minutes: matches[4] === undefined ? '' : `${matches[4]} mins `,
+  };
+}
 
 const Card = () => {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(fetchExperiences());
-  }, [dispatch]);
+  }, []);
 
   const dataState = useSelector((state) => state.experiences);
   const { experiences } = dataState;
 
+  // DELETE ALL
+  const mapp = experiences.map((data) => data);
+  console.log(mapp);
+  // DELETE ALL
+
   return (
     <>
-      <CardWrapper>
-        {experiences &&
-          experiences.map((experience) => (
-            <>
-              <CardImg src={experience.cover_image_url} alt='image'></CardImg>
-              <CardSectionColumn>
-                <CardCategoryLabel>{`attraction & guide tour`}</CardCategoryLabel>
-                <CardTitle>{experience.title}</CardTitle>
-                <CardDescription>{experience.description}</CardDescription>
-              </CardSectionColumn>
-              <CardSectionColumn>
-                <CardDivCancellation
-                  cancellation={experience.free_cancellation}>
-                  <CardIcon></CardIcon>
-                  free cancellations
-                </CardDivCancellation>
-                <DivRow>
-                  <CardIcon></CardIcon>
-                  flexible
-                </DivRow>
-                <DivRow>
-                  <CardIcon></CardIcon>
-                  available in: en, it, de
-                  {experience.languages.code}
-                </DivRow>
-              </CardSectionColumn>
-              <CardSectionRow>
-                <Div>
-                  <CardStar>star{experience.reviews_avg}</CardStar>
-                  <Span>({experience.reviews_number})</Span>
-                </Div>
-                <Div>
-                  <Span>from:</Span>
-                  <Div>
-                    {experience.original_retail_price.formatted_iso_value}
-                  </Div>
-                </Div>
-              </CardSectionRow>
-            </>
-          ))}
-      </CardWrapper>
+      {experiences?.map((experience) => (
+        <>
+          <CardWrapper key={experience.city.id}>
+            <CardImg src={experience.cover_image_url} alt='image'></CardImg>
+            <CardSectionHeader>
+              <CardCategoryLabel>{`${experience.ticket
+                ? 'tickets and events'
+                : 'attraction & guide tour'
+                } `}</CardCategoryLabel>
+              <CardTitle>{experience.title}</CardTitle>
+              <CardDescription>
+                {experience.description}
+              </CardDescription>
+            </CardSectionHeader>
+            <CardSectionBody>
+              <CardCancellation cancellation={experience.free_cancellation}>
+                <CardIcon></CardIcon>
+                Free cancellation
+              </CardCancellation>
+              <CardDurationValue>
+                <CardIcon></CardIcon>
+                {Object.values(parseISODuration(experience.duration).toString().split(','))}
+              </CardDurationValue>
+              <DivRow>
+                <CardIcon></CardIcon>
+                Available in:
+                <CardLanguage>
+                  {` ${experience.languages.map((language) => language.code)} `}
+                </CardLanguage>
+              </DivRow>
+            </CardSectionBody>
+            <CardSectionFooter>
+              <DivRow>
+                <CardStarWrapper>
+                  <Rating value={experience.reviews_avg} numReviews={experience.reviews_number}></Rating>
+                </CardStarWrapper>
+              </DivRow>
+              <CardPriceWrapper>
+                <CardSpanPrice>from:</CardSpanPrice>
+                <CardValueFooter>
+                  {experience.original_retail_price.formatted_iso_value}
+                </CardValueFooter>
+              </CardPriceWrapper>
+            </CardSectionFooter>
+          </CardWrapper>
+        </>
+      ))}
     </>
   );
 };
