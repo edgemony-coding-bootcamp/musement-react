@@ -3,6 +3,7 @@ import { useEffect } from 'react';
 import { fetchExperiences } from '../redux/experiences/experienceActions';
 import Rating from './Rating'
 import { CardCancellation, CardCategoryLabel, CardDescription, CardDurationValue, CardIcon, CardImg, CardLanguage, CardSectionBody, CardSectionFooter, CardSectionHeader, CardStarWrapper, CardTitle, CardWrapper, CardPriceWrapper, DivRow, CardValueFooter, CardSpanPrice } from './StylesCard';
+import { replaceLang } from '../utilities'
 
 
 const parseISODuration = (iso8601Duration) => {
@@ -16,6 +17,10 @@ const parseISODuration = (iso8601Duration) => {
     minutes: matches[4] === undefined ? '' : `${matches[4]} mins `,
   };
 }
+
+console.log(parseISODuration('PT3H'))
+
+// START CARD
 
 const Card = () => {
   const dispatch = useDispatch();
@@ -60,7 +65,7 @@ const Card = () => {
                 <CardIcon></CardIcon>
                 Available in:
                 <CardLanguage>
-                  {` ${experience.languages.map((language) => language.code)} `}
+                  {replaceLang(experience.languages)}
                 </CardLanguage>
               </DivRow>
             </CardSectionBody>
