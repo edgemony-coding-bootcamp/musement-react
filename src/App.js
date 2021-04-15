@@ -8,6 +8,8 @@ import Home from './pages/Home';
 import Header from './components/Header';
 import './App.css';
 
+import { DEF_LANG } from './config.json';
+
 const langConfig = {
   uk: 'en-GB',
   us: 'en-US',
@@ -35,16 +37,25 @@ function App() {
   };
 
   return (
+    // <Router>
+    //   <Header />
+    //   <Switch>
+    //     <Route path='/:lang'>
+    //       <Redirect push to={`/${checkLang()}`} />
+    //       <Home />
+    //     </Route>
+    //     <Route path='*'>
+    //       <h1>404</h1>
+    //     </Route>
+    //   </Switch>
+    // </Router>
     <Router>
       <Header />
       <Switch>
         <Route path='/:lang'>
-          <Redirect push to={`/${checkLang()}`} />
           <Home />
         </Route>
-        <Route path='*'>
-          <h1>404</h1>
-        </Route>
+        <Redirect to={`/${DEF_LANG}`} />
       </Switch>
     </Router>
   );
