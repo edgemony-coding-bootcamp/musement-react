@@ -24,6 +24,12 @@ export const LinkPage = styled(Link)`
   text-decoration: none;
 `;
 
+export const Main = styled.main`
+  @media (min-width: 1024px) {
+    margin: 0 40px;
+  }
+`;
+
 // section HEADER
 
 export const HeaderWrapper = styled.header`

@@ -1,11 +1,13 @@
 import Hero from '../components/Hero';
 import CategoriesNav from '../components/CategoriesNav';
-
+import { Main } from '../styles';
 function Home() {
   return (
     <>
       <CategoriesNav />
-      <Hero />
+      <Main>
+        <Hero />
+      </Main>
     </>
   );
 }
