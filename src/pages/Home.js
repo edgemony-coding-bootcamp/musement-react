@@ -1,12 +1,10 @@
 import {
-  Link,
   Route,
   Switch,
   useParams,
   useHistory,
   useRouteMatch,
 } from 'react-router-dom';
-import Activities from './Activities';
 
 import { DEF_LANG } from '../config.json';
 
@@ -25,7 +23,7 @@ const langConfig = [
 ];
 
 function Home() {
-  let { path, url } = useRouteMatch();
+  let { path } = useRouteMatch();
   let { lang } = useParams();
   let history = useHistory();
 
@@ -38,13 +36,7 @@ function Home() {
     <>
       <div>Header</div>
 
-      <Link to={`${url}/activities`}>link ad activities</Link>
-
       <Switch>
-        <Route exact path={`${path}/activities`}>
-          <Activities />
-        </Route>
-
         <Route path={`${path}/*`}>
           <h1>404</h1>
         </Route>
