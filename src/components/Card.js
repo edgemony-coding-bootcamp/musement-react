@@ -3,24 +3,8 @@ import { useEffect } from 'react';
 import { fetchExperiences } from '../redux/experiences/experienceActions';
 import Rating from './Rating'
 import { CardCancellation, CardCategoryLabel, CardDescription, CardDurationValue, CardIcon, CardImg, CardLanguage, CardSectionBody, CardSectionFooter, CardSectionHeader, CardStarWrapper, CardTitle, CardWrapper, CardPriceWrapper, DivRow, CardValueFooter, CardSpanPrice } from './StylesCard';
-import { replaceLang } from '../utilities'
+import { replaceLang, parseISODuration } from '../utilities'
 
-
-const parseISODuration = (iso8601Duration) => {
-  const iso8601DurationRegex = /(-)?PT(?:([.,\d]+)D)?(?:([.,\d]+)H)?(?:([.,\d]+)M)?/;
-
-  let matches = iso8601Duration.match(iso8601DurationRegex);
-
-  return {
-    days: matches[2] === undefined ? '' : `${matches[2]} days `,
-    hours: matches[3] === undefined ? '' : `${matches[3]} hours `,
-    minutes: matches[4] === undefined ? '' : `${matches[4]} mins `,
-  };
-}
-
-console.log(parseISODuration('PT3H'))
-
-// START CARD
 
 const Card = () => {
   const dispatch = useDispatch();
@@ -59,7 +43,7 @@ const Card = () => {
               </CardCancellation>
               <CardDurationValue>
                 <CardIcon></CardIcon>
-                {Object.values(parseISODuration(experience.duration).toString().split(','))}
+                {parseISODuration(experience.duration)}
               </CardDurationValue>
               <DivRow>
                 <CardIcon></CardIcon>
