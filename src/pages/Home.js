@@ -5,6 +5,7 @@ import {
   useHistory,
   useRouteMatch,
 } from 'react-router-dom';
+import Carousel from '../components/Carousel';
 
 import { DEF_LANG } from '../config.json';
 
@@ -35,7 +36,7 @@ function Home() {
   return (
     <>
       <div>Header</div>
-
+      <Carousel />
       <Switch>
         <Route path={`${path}/*`}>
           <h1>404</h1>
