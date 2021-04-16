@@ -12,7 +12,14 @@ export const CardWrapper = styled.div`
   max-height: 365px;
   border-radius: 6px;
   box-sizing: border-box;
-  border: 1px solid red;
+  box-shadow: 0 3px 10px -8px;
+  cursor: grab;
+  
+  &:hover{
+    transform: translate(0px, -5px) scale(1.025);
+    transition-duration: 450ms;
+    box-shadow: 0 3px 10px -4px;
+  }
 
   @media ${device.tablet} {
     max-width: 310px;
