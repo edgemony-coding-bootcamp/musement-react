@@ -1,7 +1,7 @@
 import React from 'react';
 
 import {
-  HeroContainer,
+  HeroTitleContainer,
   HeroTitleOrange,
   HeroTitleWhite,
   HeroBanner,
@@ -11,17 +11,27 @@ import {
   HeroBannerImgSafety,
   HeroBannerTitle,
   HeroBannerParagraph,
+  HeroTitleMobile,
+  SpanOrange,
 } from '../styles';
 
 function Hero() {
   return (
     <>
-      <HeroContainer>
-        <HeroTitleOrange>
-          BOOK TICKETS TO MUSEUMS, ATTRACTIONS AND FUN ACTIVITIES
-        </HeroTitleOrange>
-        <HeroTitleWhite>ALL OVER THE WORLD</HeroTitleWhite>
-      </HeroContainer>
+      <HeroTitleMobile>
+        BOOK TICKETS TO MUSEUMS,
+        <SpanOrange> ATTRACTIONS AND FUN ACTIVITIES</SpanOrange> ALL OVER THE
+        WORLD
+      </HeroTitleMobile>
+
+      <HeroTitleContainer>
+        <HeroTitleContainer>
+          <HeroTitleOrange>
+            BOOK TICKETS TO MUSEUMS, ATTRACTIONS AND FUN ACTIVITIES
+          </HeroTitleOrange>
+          <HeroTitleWhite>ALL OVER THE WORLD</HeroTitleWhite>
+        </HeroTitleContainer>
+      </HeroTitleContainer>
       <HeroWrap>
         <HeroBanner>
           <HeroBannerContent>
@@ -50,6 +60,37 @@ function Hero() {
           </HeroBannerContent>
         </HeroBanner>
       </HeroWrap>
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
     </>
   );
 }

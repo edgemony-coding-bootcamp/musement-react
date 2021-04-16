@@ -6,15 +6,28 @@ import { ReactComponent as SafetySvg } from '../Assets/img/safety-measures.svg';
 import { Link } from 'react-router-dom';
 // section VARIABLES
 
-const colors = {
-  white: 'rgb(255, 255, 255)',
-  orange: '#fc6c4f',
-  gray: '#9E9E9E',
-  lightGray: '#DBDBDB',
-  black: 'black',
+const stylesVar = {
+  colorWhite: 'rgb(255, 255, 255)',
+  colorOrange: '#fc6c4f',
+  colorGray: '#9E9E9E',
+  colorLightGray: '#DBDBDB',
+  colorBlack: 'black',
+  boxShadowLight: '0 2px 6px 0 rgb(0 0 0 / 10%)',
+  tabletMediaQuery: 'min-width: 760px',
+  desktopMediaQuery: 'min-width: 1000px',
 };
 
 // section UTILITIES
+
+export const Main = styled.main`
+  @media (${stylesVar.desktopMediaQuery}) {
+    margin: 0 40px;
+  }
+`;
+
+export const SpanOrange = styled.span`
+  color: ${stylesVar.colorOrange};
+`;
 
 export const FlexRowWrap = styled.div`
   display: flex;
@@ -24,32 +37,36 @@ export const LinkPage = styled(Link)`
   text-decoration: none;
 `;
 
-export const Main = styled.main`
-  @media (min-width: 1024px) {
-    margin: 0 40px;
-  }
-`;
+// HEADER LOGIC
 
 // section HEADER
 
 export const HeaderWrapper = styled.header`
   width: 100%;
-  height: 70px;
-
-  background-color: ${colors.white};
+  background-color: ${stylesVar.colorWhite};
   position: fixed;
   display: flex;
   justify-content: center;
   align-items: center;
-  border-bottom: solid ${colors.lightGray} 1px;
+  z-index: 10;
+  @media (${stylesVar.desktopMediaQuery}) {
+    box-shadow: ${(p) =>
+      p.scrolling ? `${stylesVar.boxShadowLight}` : 'none'};
+  }
 `;
 
 export const HeaderLogoWrapper = styled.div`
+  transition: all 0.35s;
+  height: 65px;
   display: flex;
   flex-direction: column;
-  color: ${colors.lightGray};
+  color: ${stylesVar.colorLightGray};
   align-items: center;
-  @media (min-width: 760px) {
+  @media (${stylesVar.tabletMediaQuery}) {
+    flex-direction: row;
+  }
+  @media (${stylesVar.desktopMediaQuery}) {
+    height: ${(p) => (p.scrolling ? '65px' : '110px')};
     flex-direction: row;
   }
 `;
@@ -62,11 +79,11 @@ export const HeaderLogo = styled.img`
 export const HeaderLogoTitle = styled.h5`
   margin: 0;
 
-  color: ${colors.gray};
+  color: ${stylesVar.colorGray};
   font-size: 1.2rem;
   font-weight: bold;
 
-  @media (min-width: 760px) {
+  @media (${stylesVar.tabletMediaQuery}) {
     /* height: 28px; */
     justify-self: center;
     font-size: 2rem;
@@ -76,12 +93,73 @@ export const HeaderLogoTitle = styled.h5`
 `;
 
 export const TitleNav = styled.h1`
-  color: ${colors.lightGray};
+  color: ${stylesVar.colorLightGray};
 `;
 
 export const GoDown = styled.div`
   width: 100%;
   height: 70px;
+  height: 65px;
+  @media (${stylesVar.desktopMediaQuery}) {
+    height: ${(p) => (p.scrolling ? '65px' : '110px')};
+    flex-direction: row;
+  }
+`;
+
+// section CATEGORIES NAV
+
+export const CategoryWrap = styled(FlexRowWrap)`
+  display: none;
+  @media (${stylesVar.desktopMediaQuery}) {
+    display: flex;
+    min-height: 76px;
+    margin: 0 40px;
+    justify-content: space-evenly;
+  }
+`;
+
+export const CategoryLinkWrap = styled.div`
+  flex-grow: 1;
+  display: flex;
+  align-items: center;
+  &:first-child > div {
+    border-left: none;
+  }
+  &:hover {
+    box-shadow: inset 0 -6px 0 ${stylesVar.colorOrange};
+    cursor: pointer;
+  }
+`;
+
+export const CategoryLink = styled.div`
+  padding: 0.2rem;
+  height: 36px;
+  display: flex;
+  align-items: center;
+`;
+
+export const CategoryLinkContainer = styled(FlexRowWrap)`
+  width: 100%;
+  justify-content: space-evenly;
+  border-left: solid ${stylesVar.colorLightGray} 1px;
+`;
+
+export const CategoryLinkLoader = styled.div`
+  padding: 0.5rem;
+  margin: 0.5rem;
+  border-left: solid ${stylesVar.colorLightGray} 1px;
+  flex-grow: 1;
+  background-color: ${stylesVar.colorLightGray};
+`;
+
+export const CategoryLinkError = styled(CategoryLink)``;
+
+export const SvgIcon = styled.svg`
+  height: 35px;
+  width: 35px;
+  margin-right: 10px;
+  fill: ${stylesVar.colorWhite};
+  stroke: ${stylesVar.colorGray};
 `;
 
 // section HERO
@@ -90,51 +168,70 @@ export const HeroWrap = styled(FlexRowWrap)`
   overflow: scroll;
   overflow-y: hidden;
 
-  @media (min-width: 1024px) {
+  @media (${stylesVar.desktopMediaQuery}) {
     overflow: hidden;
   }
 `;
 
-export const HeroContainer = styled.section`
+export const HeroTitleMobile = styled.h4`
+  margin: 1rem 0.5rem;
+  text-align: center;
+  @media (${stylesVar.tabletMediaQuery}) {
+    display: none;
+  }
+`;
+
+export const HeroTitleContainer = styled.section`
+  display: flex;
   width: 100%;
-  height: 400px;
+  min-height: 200px;
+  max-height: 400px;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
   background-image: url(${colosseoImg});
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+  @media (${stylesVar.tabletMediaQuery}) {
+    min-height: 300px;
+  }
+  @media (${stylesVar.desktopMediaQuery}) {
+    min-height: 400px;
+  }
 `;
 
 export const HeroTitleOrange = styled.h2`
-  background: ${colors.orange};
-  color: ${colors.white};
-  margin: 0 2rem;
-  padding: 0.2rem;
-  display: block;
-  width: fit-content;
+  display: none;
+  @media (${stylesVar.tabletMediaQuery}) {
+    background: ${stylesVar.colorOrange};
+    color: ${stylesVar.colorWhite};
+    margin: 0 2rem;
+    padding: 0.2rem;
+    display: block;
+    width: fit-content;
+  }
 `;
 
 export const HeroTitleWhite = styled(HeroTitleOrange)`
-  background: ${colors.white};
-  color: ${colors.black};
+  background: ${stylesVar.colorWhite};
+  color: ${stylesVar.colorBlack};
 `;
 
 export const HeroBanner = styled.div`
-  background: ${colors.white};
+  background: ${stylesVar.colorWhite};
   display: flex;
   flex-direction: column;
   min-width: 17rem;
   max-width: 30rem;
   margin: 1rem;
   border-radius: 0.3rem;
-  box-shadow: 0 2px 6px 0 rgb(0 0 0 / 10%);
+  box-shadow: ${stylesVar.boxShadowLight};
   overflow-x: hidden;
-  @media (min-width: 760px) {
+  @media (${stylesVar.tabletMediaQuery}) {
     min-width: 30rem;
   }
-  @media (min-width: 1024px) {
+  @media (${stylesVar.desktopMediaQuery}) {
     border: none;
     box-shadow: none;
     max-width: none;
@@ -166,59 +263,4 @@ export const HeroBannerContent = styled.div`
   flex-direction: row;
   justify-content: space-evenly;
   align-items: center;
-`;
-
-// section CATEGORIES NAV
-
-export const CategoryWrap = styled(FlexRowWrap)`
-  justify-content: space-evenly;
-  flex-wrap: wrap;
-  width: 100%;
-  min-height: 76px;
-  @media (max-width: 1150px) {
-    display: none;
-  }
-`;
-
-export const CategoryLinkWrap = styled.div`
-  flex-grow: 1;
-  display: flex;
-  align-items: center;
-
-  &:hover {
-    box-shadow: inset 0 -6px 0 ${colors.orange};
-    cursor: pointer;
-  }
-`;
-
-export const CategoryLink = styled.div`
-  padding: 0.2rem;
-  height: 36px;
-
-  display: flex;
-  align-items: center;
-`;
-
-export const CategoryLinkContainer = styled(FlexRowWrap)`
-  width: 100%;
-  justify-content: space-evenly;
-  border-left: solid ${colors.lightGray} 1px;
-`;
-
-export const CategoryLinkLoader = styled.div`
-  padding: 0.5rem;
-  margin: 0.5rem;
-  border-left: solid ${colors.lightGray} 1px;
-  flex-grow: 1;
-  background-color: ${colors.lightGray};
-`;
-
-export const CategoryLinkError = styled(CategoryLink)``;
-
-export const SvgIcon = styled.svg`
-  height: 35px;
-  width: 35px;
-  margin-right: 10px;
-  fill: ${colors.white};
-  stroke: ${colors.gray};
 `;
