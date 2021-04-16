@@ -11,7 +11,6 @@ import { useSelector } from 'react-redux';
 
 function App() {
   const { userLang } = useSelector((state) => state.languages);
-  console.log(userLang);
   SetLangInEndpoint(userLang);
 
   return (
