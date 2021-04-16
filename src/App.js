@@ -6,8 +6,14 @@ import {
 } from 'react-router-dom';
 import Home from './pages/Home';
 import { DEF_LANG } from './config.json';
+import { SetLangInEndpoint } from './services/axiosConfig';
+import { useSelector } from 'react-redux';
 
 function App() {
+  const { userLang } = useSelector((state) => state.languages);
+  console.log(userLang);
+  SetLangInEndpoint(userLang);
+
   return (
     <Router>
       <Switch>
