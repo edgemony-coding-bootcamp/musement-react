@@ -12,22 +12,10 @@ import {
   useRouteMatch,
 } from 'react-router-dom';
 
-import { DEF_LANG } from '../config.json';
+import { DEF_LANG, SUPPORTED_LANGUAGES } from '../config.json';
 import { useEffect } from 'react';
 
-const langConfig = [
-  'uk',
-  'us',
-  'it',
-  'fr',
-  'de',
-  'es',
-  'pt',
-  'br',
-  'ru',
-  'nl',
-  'pl',
-];
+const langConfig = Object.keys(SUPPORTED_LANGUAGES);
 
 function Home() {
   const dispatch = useDispatch();
@@ -47,7 +35,7 @@ function Home() {
   axios.defaults.baseURL = 'https://sandbox.musement.com/api/v3/';
   axios.defaults.headers = {
     'x-musement-version': '3.4.0',
-    'accept-language': `${langState.userLang[lang]}`,
+    'accept-language': `${langState.userLang}`,
   };
 
   useEffect(() => {
