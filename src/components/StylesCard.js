@@ -9,7 +9,7 @@ const device = {
 
 export const CardWrapper = styled.div`
   max-width: 290px;
-  max-height: 365px;
+  min-height: 365px;
   border-radius: 6px;
   box-sizing: border-box;
   box-shadow: 0 3px 10px -8px;
@@ -90,14 +90,15 @@ export const CardSectionFooter = styled.section`
 
 export const CardCategoryLabel = styled.span`
   width: fit-content;
-  height: 15px;
-  padding: 1px 7px;
+  padding: 0px 7px;
+  padding-top: 3px;
   text-transform: uppercase;
   font-size: 0.75rem;
   display: flex;
+  border-radius: 1px;
   align-items: center;
   color: white;
-  background-color: orange;
+  background-color: #FFC34E;
 `;
 
 export const CardTitle = styled.h3`
@@ -196,15 +197,13 @@ export const CardDurationValue = styled.div`
 `;
 
 export const Span = styled.span`
-  width: fit-content;
-  display: inline-block;
 `;
 
 export const CardSpanPrice = styled(Span)`
   width: fit-content;
   font-size: 0.75rem;
-  text-align: right;
-  display: inline-block;
+  margin-left: auto;
+  display: block;
 `;
 
 export const CardSpanRating = styled(Span)`
@@ -225,7 +224,12 @@ export const CardStarWrapper = styled.div`
   color: #ffb743;
 `;
 
-export const CardValueFooter = styled.div`
-  font-size: 0.95rem;
+export const PriceFirstNum = styled.span`
+  font-size: 1rem;
+  color: #fa6c50;
+`;
+
+export const PriceSecondNum = styled(PriceFirstNum)`
+  font-size: 0.75rem;
   color: #fa6c50;
 `;

@@ -2,8 +2,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import { fetchExperiences } from '../redux/experiences/experienceActions';
 import Rating from './Rating'
-import { CardCancellation, CardCategoryLabel, CardDescription, CardDurationValue, CardIcon, CardImg, CardLanguage, CardSectionBody, CardSectionFooter, CardSectionHeader, CardStarWrapper, CardTitle, CardWrapper, CardPriceWrapper, CardValueFooter, CardSpanPrice, CardDivRowFooter, CardDivRowDescription } from './StylesCard';
-import { replaceLang, parseISODuration } from '../utilities'
+import { CardCancellation, CardCategoryLabel, CardDescription, CardDurationValue, CardIcon, CardImg, CardLanguage, CardSectionBody, CardSectionFooter, CardSectionHeader, CardStarWrapper, CardTitle, CardWrapper, CardPriceWrapper, CardSpanPrice, CardDivRowFooter, CardDivRowDescription } from './StylesCard';
+import { replaceLang, parseISODuration, setPriceFormat } from '../utilities'
 import { ReactComponent as FreeCancellation } from '../assets/images/freeCancellation.svg'
 import { ReactComponent as Language } from '../assets/images/languages.svg'
 import { ReactComponent as Duration } from '../assets/images/duration.svg'
@@ -17,11 +17,6 @@ const Card = () => {
 
   const dataState = useSelector((state) => state.experiences);
   const { experiences } = dataState;
-
-  // DELETE ALL
-  const mapp = experiences.map((data) => data);
-  console.log(mapp);
-  // DELETE ALL
 
   return (
     <>
@@ -64,9 +59,7 @@ const Card = () => {
               </CardDivRowFooter>
               <CardPriceWrapper>
                 <CardSpanPrice>from:</CardSpanPrice>
-                <CardValueFooter>
-                  {experience.original_retail_price.formatted_iso_value}
-                </CardValueFooter>
+                {setPriceFormat(experience.original_retail_price.formatted_iso_value)}
               </CardPriceWrapper>
             </CardSectionFooter>
           </CardWrapper>

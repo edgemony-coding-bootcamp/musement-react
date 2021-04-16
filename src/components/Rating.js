@@ -1,10 +1,10 @@
-import { CardSpanRating, CardStarWrapper } from './StylesCard';
+import { CardSpanRating, CardStarWrapper, Span } from './StylesCard';
 
 const Rating = ({ value, numReviews }) => {
   return (
     <>
       <CardStarWrapper>
-        <span>
+        <Span>
           <i
             className={
               value >= 1
@@ -13,8 +13,8 @@ const Rating = ({ value, numReviews }) => {
                   ? 'fas fa-star-half-alt'
                   : 'far fa-star'
             }></i>
-        </span>
-        <span>
+        </Span>
+        <Span>
           <i
             className={
               value >= 2
@@ -23,8 +23,8 @@ const Rating = ({ value, numReviews }) => {
                   ? 'fas fa-star-half-alt'
                   : 'far fa-star'
             }></i>
-        </span>
-        <span>
+        </Span>
+        <Span>
           <i
             className={
               value >= 3
@@ -33,8 +33,8 @@ const Rating = ({ value, numReviews }) => {
                   ? 'fas fa-star-half-alt'
                   : 'far fa-star'
             }></i>
-        </span>
-        <span>
+        </Span>
+        <Span>
           <i
             className={
               value >= 4
@@ -43,8 +43,8 @@ const Rating = ({ value, numReviews }) => {
                   ? 'fas fa-star-half-alt'
                   : 'far fa-star'
             }></i>
-        </span>
-        <span>
+        </Span>
+        <Span>
           <i
             className={
               value >= 5
@@ -53,7 +53,7 @@ const Rating = ({ value, numReviews }) => {
                   ? 'fas fa-star-half-alt'
                   : 'far fa-star'
             }></i>
-        </span>
+        </Span>
       </CardStarWrapper>
       <CardSpanRating>({numReviews})</CardSpanRating>
     </>

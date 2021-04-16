@@ -1,11 +1,13 @@
-// Replace the value after the fifth character
+import { PriceFirstNum, PriceSecondNum } from "../components/StylesCard";
+
+// Replace the value after the fifth value 
 
 export const replaceLang = (arr) => {
   const arrMap = arr.map((data) => data.code);
   const arrLength = arrMap.length > 5 ? arrMap.length - 5 : '';
   const arrSlice = arrMap.slice(0, 5).toString().replace(/,/g, ', ');
 
-  return arrMap.length > 5 ? arrSlice + `, +${arrLength}` : arrSlice
+  return arrMap.length > 5 ? arrSlice + `, +${arrLength}` : arrSlice;
 };
 
 // Parse ISO 8601 duration format
@@ -29,4 +31,16 @@ export const parseISODuration = (iso8601Duration) => {
   );
 };
 
+// Set price decimal numbers in different font size
+
+export const setPriceFormat = (price) => {
+  const firstChart = price.slice(0, price.indexOf("."));
+  const lastChart = price.slice(-3);
+  return (
+    <>
+      <PriceFirstNum>{firstChart}</PriceFirstNum>
+      <PriceSecondNum>{lastChart}</PriceSecondNum>
+    </>
+  );
+};
 
