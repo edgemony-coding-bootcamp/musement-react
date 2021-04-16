@@ -2,8 +2,11 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import { fetchExperiences } from '../redux/experiences/experienceActions';
 import Rating from './Rating'
-import { CardCancellation, CardCategoryLabel, CardDescription, CardDurationValue, CardIcon, CardImg, CardLanguage, CardSectionBody, CardSectionFooter, CardSectionHeader, CardStarWrapper, CardTitle, CardWrapper, CardPriceWrapper, DivRow, CardValueFooter, CardSpanPrice } from './StylesCard';
+import { CardCancellation, CardCategoryLabel, CardDescription, CardDurationValue, CardIcon, CardImg, CardLanguage, CardSectionBody, CardSectionFooter, CardSectionHeader, CardStarWrapper, CardTitle, CardWrapper, CardPriceWrapper, CardValueFooter, CardSpanPrice, CardDivRowFooter, CardDivRowDescription } from './StylesCard';
 import { replaceLang, parseISODuration } from '../utilities'
+import { ReactComponent as FreeCancellation } from '../assets/images/freeCancellation.svg'
+import { ReactComponent as Language } from '../assets/images/languages.svg'
+import { ReactComponent as Duration } from '../assets/images/duration.svg'
 
 
 const Card = () => {
@@ -38,27 +41,27 @@ const Card = () => {
             </CardSectionHeader>
             <CardSectionBody>
               <CardCancellation cancellation={experience.free_cancellation}>
-                <CardIcon></CardIcon>
+                <CardIcon><FreeCancellation /></CardIcon>
                 Free cancellation
               </CardCancellation>
               <CardDurationValue>
-                <CardIcon></CardIcon>
+                <CardIcon freeCanc={experience.free_cancellation}><Language /></CardIcon>
                 {parseISODuration(experience.duration)}
               </CardDurationValue>
-              <DivRow>
-                <CardIcon></CardIcon>
+              <CardDivRowDescription>
+                <CardIcon freeCanc={experience.free_cancellation}><Duration /></CardIcon>
                 Available in:
                 <CardLanguage>
                   {replaceLang(experience.languages)}
                 </CardLanguage>
-              </DivRow>
+              </CardDivRowDescription>
             </CardSectionBody>
             <CardSectionFooter>
-              <DivRow>
+              <CardDivRowFooter>
                 <CardStarWrapper>
                   <Rating value={experience.reviews_avg} numReviews={experience.reviews_number}></Rating>
                 </CardStarWrapper>
-              </DivRow>
+              </CardDivRowFooter>
               <CardPriceWrapper>
                 <CardSpanPrice>from:</CardSpanPrice>
                 <CardValueFooter>

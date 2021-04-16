@@ -1,9 +1,9 @@
 import styled from 'styled-components';
 
-
-const size = { tablet: '760px', desktop: '1024px' };
+const size = { tablet: '760px', laptop: '1024px', desktop: '1350px' };
 const device = {
   tablet: `(min-width: ${size.tablet})`,
+  laptop: `(min-width: ${size.laptop})`,
   desktop: `(min-width: ${size.desktop})`,
 };
 
@@ -14,8 +14,8 @@ export const CardWrapper = styled.div`
   box-sizing: border-box;
   box-shadow: 0 3px 10px -8px;
   cursor: grab;
-  
-  &:hover{
+
+  &:hover {
     transform: translate(0px, -5px) scale(1.025);
     transition-duration: 450ms;
     box-shadow: 0 3px 10px -4px;
@@ -23,7 +23,15 @@ export const CardWrapper = styled.div`
 
   @media ${device.tablet} {
     max-width: 310px;
-    max-height: 380px;
+    min-height: 380px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+  }
+
+  @media ${device.laptop} {
+    max-width: 310px;
+    min-height: 380px;
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
@@ -31,7 +39,7 @@ export const CardWrapper = styled.div`
 
   @media ${device.desktop} {
     max-width: 335px;
-    max-height: 430px;
+    min-height: 430px;
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
@@ -46,8 +54,9 @@ export const CardImg = styled.img`
 `;
 
 export const CardSectionHeader = styled.section`
+  height: fit-content;
   margin: 0 10px;
-  margin-top: 3px;
+  margin-top: 5px;
   display: flex;
   text-align: left;
   flex-direction: column;
@@ -59,6 +68,10 @@ export const CardSectionBody = styled.section`
   display: flex;
   text-align: left;
   flex-direction: column;
+
+  @media ${device.laptop} {
+    margin-top: 0px;
+  }
 `;
 
 export const CardSectionFooter = styled.section`
@@ -69,14 +82,20 @@ export const CardSectionFooter = styled.section`
   justify-content: space-between;
   align-items: center;
   border-top: 1px solid #bcd8eb;
+
+  @media ${device.laptop} {
+    margin-top: 2px;
+  }
 `;
 
 export const CardCategoryLabel = styled.span`
   width: fit-content;
+  height: 15px;
   padding: 1px 7px;
   text-transform: uppercase;
-  text-align: center;
   font-size: 0.75rem;
+  display: flex;
+  align-items: center;
   color: white;
   background-color: orange;
 `;
@@ -89,26 +108,31 @@ export const CardTitle = styled.h3`
 `;
 
 export const CardDescription = styled.p`
+  margin: 0px;
   margin-top: 5px;
   font-size: 0.75rem;
   text-align: start;
-  display: -webkit-box;
-  line-height: 1.7;
-  -webkit-line-clamp: 2;
-  min-height: 30px;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  display: none;
+  color: #aaaaaa;
 
-  ${({ desktop }) => (desktop < 1023 ? `display: initial;` : `display: none;`)}
+  @media ${device.laptop} {
+    margin-top: 2px;
+    display: -webkit-box;
+    line-height: 1.3;
+    -webkit-line-clamp: 2;
+    min-height: 30px;
+    max-height: 28px;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
 `;
 
 export const CardIcon = styled.div`
-  width: 22px;
-  height: 22px;
+  width: 20px;
+  height: 20px;
+  margin-right: 5px;
   display: inline-block;
-  border-radius: 50%;
-  background-color: yellow;
 `;
 
 export const CardCancellation = styled.div`
@@ -119,6 +143,7 @@ export const CardCancellation = styled.div`
   display: flex;
   align-items: center;
   color: #72ca74;
+  fill: #72ca74;
 
   ${({ cancellation }) => (cancellation ? `opacity: 1px;` : `display: none;`)}
 `;
@@ -127,13 +152,22 @@ export const Div = styled.div`
   font-size: 0.75rem;
 `;
 
-
 export const CardPriceWrapper = styled.div`
   font-size: 0.75rem;
   text-align: right;
 `;
 
-export const DivRow = styled.div`
+export const CardDivRowDescription = styled.div`
+  width: fit-content;
+  height: fit-content;
+  font-size: 0.75rem;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  color: #aaaaaa;
+`;
+
+export const CardDivRowFooter = styled.div`
   width: fit-content;
   height: fit-content;
   font-size: 0.75rem;
@@ -145,9 +179,10 @@ export const DivRow = styled.div`
 export const CardLanguage = styled.p`
   width: fit-content;
   height: fit-content;
-  margin: 0;
+  margin: 0 3px;
   text-transform: capitalize;
   font-size: 0.75rem;
+  font-weight: 600;
   color: black;
 `;
 
@@ -167,10 +202,10 @@ export const Span = styled.span`
 
 export const CardSpanPrice = styled(Span)`
   width: fit-content;
+  font-size: 0.75rem;
   text-align: right;
   display: inline-block;
 `;
-
 
 export const CardSpanRating = styled(Span)`
   width: fit-content;
@@ -191,6 +226,6 @@ export const CardStarWrapper = styled.div`
 `;
 
 export const CardValueFooter = styled.div`
-  color: #fb3640;
   font-size: 0.95rem;
+  color: #fa6c50;
 `;
