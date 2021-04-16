@@ -6,7 +6,9 @@ import { inspirationListReducer } from './inspirations/inspirationReducers';
 import { experienceListReducer } from './experiences/experienceReducers';
 import { languageReducer } from './languages/languageReducers';
 
-import { DEF_LANG, DEF_LANG_ISO_639_1 as DEF_LANG_ISO } from '../config.json';
+import { DEF_LANG, SUPPORTED_LANGUAGES } from '../config.json';
+
+const defaultLang = SUPPORTED_LANGUAGES[DEF_LANG];
 
 /* Combined Reducers */
 
@@ -19,12 +21,7 @@ const reducer = combineReducers({
 
 const defaultStore = {
   languages: {
-    userLang: {
-      /* this is the value that is passed inside the headers
-         by default is taking values from the config.json
-      */
-      [DEF_LANG]: DEF_LANG_ISO,
-    },
+    userLang: `${defaultLang}`,
   },
   categories: {
     categories: [],
