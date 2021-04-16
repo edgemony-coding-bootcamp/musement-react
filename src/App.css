@@ -371,3 +371,7 @@ template {
 ::-webkit-scrollbar-thumb:hover {
   background: #fc6c4f;
 }
+
+path #Fill-1 {
+  color: red;
+}

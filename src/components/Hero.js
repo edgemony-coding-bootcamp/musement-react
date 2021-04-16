@@ -36,9 +36,9 @@ function Hero() {
         <HeroBanner>
           <HeroBannerContent>
             <HeroBannerImgCancellation />
-            <HeroBannerTitle>Free cancellation</HeroBannerTitle>
           </HeroBannerContent>
           <HeroBannerContent>
+            <HeroBannerTitle>Free cancellation</HeroBannerTitle>
             <HeroBannerParagraph>
               We understand how important flexibility is right now. That's why
               we offer free cancellation on thousands of experiences. No
@@ -49,9 +49,9 @@ function Hero() {
         <HeroBanner>
           <HeroBannerContent>
             <HeroBannerImgSafety />
-            <HeroBannerTitle>Health & safety measures</HeroBannerTitle>
           </HeroBannerContent>
           <HeroBannerContent>
+            <HeroBannerTitle>Health & safety measures</HeroBannerTitle>
             <HeroBannerParagraph>
               We want you to enjoy unforgettable experiences in the safest way
               possible. So we've made sure all the necessary health measures are
@@ -60,6 +60,7 @@ function Hero() {
           </HeroBannerContent>
         </HeroBanner>
       </HeroWrap>
+      {/* just for try scroll behavior */}
       <br />
       <br />
       <br />

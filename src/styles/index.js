@@ -4,6 +4,9 @@ import colosseoImg from '../Assets/img/cover_hero_home_desktop_colosseo.png';
 import { ReactComponent as CancellationSvg } from '../Assets/img/free_cancellation_banner.svg';
 import { ReactComponent as SafetySvg } from '../Assets/img/safety-measures.svg';
 import { Link } from 'react-router-dom';
+import { ReactComponent as logoTablet } from '../Assets/img/logo-musement-tablet.svg';
+import { ReactComponent as logoMobile } from '../Assets/img/logo-musement-mobile.svg';
+
 // section VARIABLES
 
 const stylesVar = {
@@ -24,6 +27,7 @@ export const Main = styled.main`
     margin: 0 40px;
   }
 `;
+export const Span = styled.span``;
 
 export const SpanOrange = styled.span`
   color: ${stylesVar.colorOrange};
@@ -71,9 +75,18 @@ export const HeaderLogoWrapper = styled.div`
   }
 `;
 
-export const HeaderLogo = styled.img`
-  height: 36px;
-  padding: 0 5px;
+export const HeaderLogoTablet = styled(logoTablet)`
+  width: 200px;
+`;
+
+export const HeaderLogoMobile = styled(logoMobile)`
+  width: 80px;
+  & g {
+    fill: ${stylesVar.colorGray};
+  }
+  & g #Group-3 {
+    fill: ${stylesVar.colorOrange};
+  }
 `;
 
 export const HeaderLogoTitle = styled.h5`
@@ -84,7 +97,6 @@ export const HeaderLogoTitle = styled.h5`
   font-weight: bold;
 
   @media (${stylesVar.tabletMediaQuery}) {
-    /* height: 28px; */
     justify-self: center;
     font-size: 2rem;
     padding-bottom: 2px;
@@ -110,18 +122,22 @@ export const GoDown = styled.div`
 
 export const CategoryWrap = styled(FlexRowWrap)`
   display: none;
+
   @media (${stylesVar.desktopMediaQuery}) {
     display: flex;
+    flex-grow: 1;
+    /* when the carousel is ready add it here and remove the scroll */
+    overflow-x: scroll;
     min-height: 76px;
     margin: 0 40px;
-    justify-content: space-evenly;
+    justify-content: center;
   }
 `;
 
 export const CategoryLinkWrap = styled.div`
-  flex-grow: 1;
   display: flex;
   align-items: center;
+  flex-shrink: 0;
   &:first-child > div {
     border-left: none;
   }
@@ -131,17 +147,18 @@ export const CategoryLinkWrap = styled.div`
   }
 `;
 
+export const CategoryLinkContainer = styled(FlexRowWrap)`
+  flex-shrink: 0;
+  width: 100%;
+  justify-content: space-evenly;
+  border-left: solid ${stylesVar.colorLightGray} 1px;
+`;
 export const CategoryLink = styled.div`
+  margin: 0 0.7rem;
   padding: 0.2rem;
   height: 36px;
   display: flex;
   align-items: center;
-`;
-
-export const CategoryLinkContainer = styled(FlexRowWrap)`
-  width: 100%;
-  justify-content: space-evenly;
-  border-left: solid ${stylesVar.colorLightGray} 1px;
 `;
 
 export const CategoryLinkLoader = styled.div`
@@ -176,19 +193,21 @@ export const HeroWrap = styled(FlexRowWrap)`
 export const HeroTitleMobile = styled.h4`
   margin: 1rem 0.5rem;
   text-align: center;
+
   @media (${stylesVar.tabletMediaQuery}) {
     display: none;
   }
 `;
 
 export const HeroTitleContainer = styled.section`
-  display: flex;
-  width: 100%;
+  position: relative;
   min-height: 200px;
   max-height: 400px;
+  display: flex;
+  width: 100%;
   flex-direction: column;
   justify-content: center;
-  position: relative;
+  letter-spacing: -1px;
   background-image: url(${colosseoImg});
   background-position: center;
   background-repeat: no-repeat;
@@ -227,8 +246,10 @@ export const HeroBanner = styled.div`
   margin: 1rem;
   border-radius: 0.3rem;
   box-shadow: ${stylesVar.boxShadowLight};
-  overflow-x: hidden;
+  overflow: hidden;
   @media (${stylesVar.tabletMediaQuery}) {
+    padding: 1rem;
+    flex-direction: row;
     min-width: 30rem;
   }
   @media (${stylesVar.desktopMediaQuery}) {
@@ -239,20 +260,41 @@ export const HeroBanner = styled.div`
 `;
 
 export const HeroBannerImgCancellation = styled(CancellationSvg)`
-  width: 1.5rem;
+  min-width: 3rem;
   margin: 0.2rem;
   flex-grow: 1;
+  align-self: flex-start;
+  margin: 1rem 1rem -4rem;
+  /* @media (${stylesVar.tabletMediaQuery}) {
+    height: 100%;
+  } */
+  @media (${stylesVar.tabletMediaQuery}) {
+    margin: 0;
+    min-width: 5rem;
+  }
 `;
 export const HeroBannerImgSafety = styled(SafetySvg)`
-  min-width: 3rem;
+  min-width: 4rem;
   height: 5rem;
   margin: 0.2rem;
   flex-grow: 1;
+  align-self: flex-start;
+  margin: 1rem 1rem -4rem;
+  @media (${stylesVar.tabletMediaQuery}) {
+    margin: 0;
+    min-width: 5rem;
+  }
 `;
 
 export const HeroBannerTitle = styled.h4`
   flex-grow: 1;
   font-weight: bold;
+  align-self: flex-end;
+  margin: 0 1rem 2rem 7rem;
+  @media (${stylesVar.tabletMediaQuery}) {
+    align-self: flex-start;
+    margin: 0;
+  }
 `;
 
 export const HeroBannerParagraph = styled.p``;
@@ -260,7 +302,7 @@ export const HeroBannerParagraph = styled.p``;
 export const HeroBannerContent = styled.div`
   padding: 0.5rem;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: space-evenly;
   align-items: center;
 `;

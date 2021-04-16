@@ -10,6 +10,7 @@ import {
   SvgIcon,
   CategoryLinkContainer,
   CategoryLinkError,
+  Span,
 } from '../styles';
 
 import { ReactComponent as NightLifeSvg } from '../Assets/img/nightlife.svg';
@@ -45,7 +46,7 @@ function CategoriesNav() {
       <CategoryLinkContainer>
         <CategoryLink>
           <SvgIcon>{svgIcons[cat.id]}</SvgIcon>
-          {cat.name}
+          <Span>{cat.name}</Span>
         </CategoryLink>
       </CategoryLinkContainer>
     </CategoryLinkWrap>
