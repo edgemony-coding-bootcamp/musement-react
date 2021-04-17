@@ -1,5 +1,5 @@
-import { useDispatch } from 'react-redux';
-import { fetchCategories } from '../redux/categories/categoryActions';
+import { useDispatch, useSelector } from 'react-redux';
+import { useEffect } from 'react';
 import { setUserLang } from '../redux/languages/languageActions';
 
 import {
@@ -11,9 +11,11 @@ import {
 } from 'react-router-dom';
 
 import { DEF_LANG, SUPPORTED_LANGUAGES } from '../config.json';
-import { useEffect } from 'react';
+import { setLangHeader } from '../services/axiosConfig';
 
 function Home() {
+  const { userLang } = useSelector((state) => state.languages);
+
   const dispatch = useDispatch();
   let { path } = useRouteMatch();
   let { lang } = useParams();
@@ -23,20 +25,19 @@ function Home() {
   const langConfig = Object.keys(SUPPORTED_LANGUAGES);
 
   // url check with keys from config.json
-  const langUrl = langConfig.find((value) => value === lang);
-  if (!langUrl) {
+  const isValidLanguage = langConfig.includes(lang);
+  if (!isValidLanguage) {
     const newUrl = history.location.pathname.replace(`/${lang}`, '');
     history.push(`/${DEF_LANG}${newUrl}`);
   }
 
   useEffect(() => {
     dispatch(setUserLang(lang));
-    /* this dispatch is here for test purposes, atm it is working with a 1ms timeout */
-    setTimeout(() => {
-      dispatch(fetchCategories());
-    }, 1);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [lang]);
+
+  // setting the language for the header
+  setLangHeader(userLang);
 
   return (
     <>
