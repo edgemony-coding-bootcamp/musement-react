@@ -1,62 +1,95 @@
-// import React from 'react';
-import React, { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import React, { useEffect, useState } from 'react';
+import { fetchCategories } from '../redux/categories/categoryActions';
 
 import {
   HeaderWrapper,
-  HeaderLogoWrapper,
-  HeaderLogoTablet,
+  HeaderLogoDesktop,
   HeaderLogoMobile,
-  GoDown,
-  LinkPage,
+  HeaderGoDown,
+  LinkPages,
+  HeaderHamburger,
+  HeaderHamburgerWrapper,
+  useMediaQuery,
+  useScrolling,
+  ModalHeaderOverlay,
+  stylesVar,
+  ModalHeaderBody,
+  H3,
+  FlexRowWrap,
+  FlexColumnWrap,
+  P,
 } from '../styles';
 
-// import { ReactComponent as logoTablet } from '../Assets/img/logo-musement-tablet.svg';
-// import { ReactComponent as logoMobile } from '../Assets/img/logo-musement-mobile.svg';
-
 function Header() {
-  const [scrolling, setScrolling] = useState(false);
-  const [scrollTop, setScrollTop] = useState(0);
+  const dispatch = useDispatch();
   useEffect(() => {
-    const onScroll = (e) => {
-      setScrollTop(e.target.documentElement.scrollTop);
-      setScrolling(e.target.documentElement.scrollTop > 133);
-    };
-    window.addEventListener('scroll', onScroll);
+    dispatch(fetchCategories());
+  }, []);
+  const categoryState = useSelector((state) => state.categories);
+  const { categories, loading, error } = categoryState;
 
-    return () => window.removeEventListener('scroll', onScroll);
-  }, [scrollTop]);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [modalSrc, setModalSrc] = useState([{ name: 'Explore' }]);
+  const [modalTitle, setModalTitle] = useState('Menu');
 
-  function useMediaQuery(query) {
-    const [matches, setMatches] = useState(false);
-
-    useEffect(() => {
-      const media = window.matchMedia(query);
-      if (media.matches !== matches) {
-        setMatches(media.matches);
-      }
-      const listener = () => {
-        setMatches(media.matches);
-      };
-      media.addListener(listener);
-      return () => media.removeListener(listener);
-    }, [matches, query]);
-    console.log(matches);
-
-    return matches;
+  function ModalHeaderF(e) {
+    const a = e.target;
+    const b = a.textContent;
+    if (b === 'Back') {
+      setModalTitle('Menu');
+      setModalSrc([{ name: 'Explore' }]);
+    } else if (b === 'Explore') {
+      console.log(b);
+      setModalSrc(categories);
+      setModalTitle('Back');
+      return <P>{categories.map((cat) => cat.name)}</P>;
+    }
   }
-  let isTablet = useMediaQuery('(min-width: 760px)');
+
+  let scrolling = useScrolling(133);
+  let scrollInitial = useScrolling(1);
+
+  let isDesktop = useMediaQuery(`(${stylesVar.desktopMediaQuery})`);
 
   return (
     <>
-      <HeaderWrapper scrolling={scrolling}>
-        <LinkPage to='/'>
-          <HeaderLogoWrapper scrolling={scrolling}>
-            {isTablet ? <HeaderLogoTablet /> : <HeaderLogoMobile />}
-            {/* <HeaderLogoTitle>musement</HeaderLogoTitle> */}
-          </HeaderLogoWrapper>
-        </LinkPage>
+      <HeaderWrapper scrollInitial={scrollInitial} scrolling={scrolling}>
+        {/* in this div we will put the search button */}
+        <div style={{ width: '3rem' }}></div>
+        {isDesktop ? (
+          <LinkPages to='/'>
+            <HeaderLogoDesktop />
+          </LinkPages>
+        ) : (
+          <>
+            <LinkPages to='/'>
+              <HeaderLogoMobile />
+            </LinkPages>
+            <HeaderHamburgerWrapper>
+              <HeaderHamburger onClick={() => setIsModalOpen(!isModalOpen)} />
+            </HeaderHamburgerWrapper>
+          </>
+        )}
       </HeaderWrapper>
-      <GoDown />
+      <HeaderGoDown />
+      {isModalOpen && (
+        // why this overlay don't work?
+        // <ModalHeaderOverlay onClick={() => setIsModalOpen(false)}>
+        <ModalHeaderBody scrolling={scrolling}>
+          <FlexColumnWrap>
+            <FlexRowWrap>
+              <H3 onClick={(e) => ModalHeaderF(e)}>{modalTitle}</H3>
+            </FlexRowWrap>{' '}
+            <FlexColumnWrap>
+              {modalSrc.map((i) => (
+                <P onClick={(e) => ModalHeaderF(e)}>{i.name}</P>
+              ))}
+            </FlexColumnWrap>
+          </FlexColumnWrap>
+        </ModalHeaderBody>
+        // </ModalHeaderOverlay>
+      )}
     </>
   );
 }
