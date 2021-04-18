@@ -8,5 +8,4 @@ export const setUrlandVersionHeader = () => {
 
 export const setLangHeader = (userLang) => {
   axios.defaults.headers['accept-language'] = `${userLang}`;
-  console.log(axios.defaults.headers['accept-language']);
 };
