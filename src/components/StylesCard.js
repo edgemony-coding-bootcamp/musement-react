@@ -98,7 +98,7 @@ export const CardCategoryLabel = styled.span`
   border-radius: 1px;
   align-items: center;
   color: white;
-  background-color: #FFC34E;
+  background-color: #ffc34e;
 `;
 
 export const CardTitle = styled.h3`
@@ -196,8 +196,7 @@ export const CardDurationValue = styled.div`
   align-items: center;
 `;
 
-export const Span = styled.span`
-`;
+export const Span = styled.span``;
 
 export const CardSpanPrice = styled(Span)`
   width: fit-content;
