@@ -17,11 +17,11 @@ import {
   CardSpanPrice,
   CardDivRowFooter,
   CardDivRowDescription,
-} from './StylesCard';
+} from '../styles';
 import { replaceLang, parseISODuration, setPriceFormat } from '../utilities';
-import { ReactComponent as FreeCancellationIcon } from '../assets/images/freeCancellation.svg';
-import { ReactComponent as LanguageIcon } from '../assets/images/languages.svg';
-import { ReactComponent as DurationIcon } from '../assets/images/duration.svg';
+import { ReactComponent as FreeCancellationIcon } from '../assets/img/freeCancellation.svg';
+import { ReactComponent as LanguageIcon } from '../assets/img/languages.svg';
+import { ReactComponent as DurationIcon } from '../assets/img/duration.svg';
 
 const Card = ({ items }) => {
   return (
