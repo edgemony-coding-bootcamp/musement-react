@@ -1,5 +1,4 @@
 import { applyMiddleware, combineReducers, createStore } from 'redux';
-import axios from 'axios';
 import thunk from 'redux-thunk';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import { categoryListReducer } from './categories/categoryReducers';
@@ -7,13 +6,11 @@ import { inspirationListReducer } from './inspirations/inspirationReducers';
 import { experienceListReducer } from './experiences/experienceReducers';
 import { languageReducer } from './languages/languageReducers';
 
-/* Combined Reducers */
+import { DEF_LANG, SUPPORTED_LANGUAGES } from '../config.json';
 
-axios.defaults.baseURL = 'https://sandbox.musement.com/api/v3/';
-axios.defaults.headers = {
-  'x-musement-version': '3.4.0',
-  'accept-language': 'en-GB',
-};
+const defaultLang = SUPPORTED_LANGUAGES[DEF_LANG];
+
+/* Combined Reducers */
 
 const reducer = combineReducers({
   languages: languageReducer,
@@ -24,7 +21,7 @@ const reducer = combineReducers({
 
 const defaultStore = {
   languages: {
-    uk: 'en-GB',
+    userLang: `${defaultLang}`,
   },
   categories: {
     categories: [],

@@ -1,3 +1,18 @@
 {
-  "DEF_LANG": "uk"
+  "BASE_URL": "https://sandbox.musement.com/api/v3/",
+  "API_VERSION": "3.4.0",
+  "DEF_LANG": "uk",
+  "SUPPORTED_LANGUAGES": {
+    "uk": "en-GB",
+    "us": "en-US",
+    "it": "it-IT",
+    "fr": "fr-FR",
+    "de": "de-DE",
+    "es": "es-ES",
+    "pt": "pt-PT",
+    "br": "pt-BR",
+    "ru": "ru-RU",
+    "nl": "nl-NL",
+    "pl": "pl-PL"
+  }
 }
