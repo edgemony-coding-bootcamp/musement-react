@@ -1,7 +1,7 @@
-import { SET_LANGUAGES } from './languageConstants';
+import { SET_USER_LANGUAGE } from './languageConstants';
 
-export const setLanguage = () => {
-	return (dispatch) => {
-		dispatch({ type: SET_LANGUAGES });
-	};
+export const setUserLang = (lang) => {
+  return (dispatch) => {
+    dispatch({ type: SET_USER_LANGUAGE, payload: lang });
+  };
 };

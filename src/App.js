@@ -1,52 +1,29 @@
 import {
-	BrowserRouter as Router,
-	Switch,
-	Route,
-	Redirect,
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Redirect,
 } from 'react-router-dom';
 import Home from './pages/Home';
-import Card from './components/Card';
+import './App.css';
+import { DEF_LANG } from './config.json';
+
+import Header from './components/Header';
 import './App.css';
 
-const langConfig = {
-	uk: 'en-GB',
-	us: 'en-US',
-	it: 'it-IT',
-	fr: 'fr-FR',
-	de: 'de-DE',
-	es: 'es-ES',
-	pt: 'pt-PT',
-	br: 'pt-BR',
-	ru: 'ru-RU',
-	nl: 'nl-NL',
-	pl: 'pl-PL',
-};
 
 function App() {
-	const lang = window.location.pathname.replace('/', '');
-	const defLang = 'uk';
-
-	const checkLang = () => {
-		if (lang === defLang) {
-			const langKeys = Object.keys(langConfig);
-			const langUrl = langKeys.find((key) => key === lang);
-			return langUrl;
-		} else return defLang;
-	};
-
-	return (
-		<Router>
-			<Switch>
-				<Route path='/:lang'>
-					<Redirect push to={`/${checkLang()}`} />
-					<Home />
-				</Route>
-				<Route path='*'>
-					<h1>404</h1>
-				</Route>
-			</Switch>
-		</Router>
-	);
+  return (
+    <Router>
+      <Header />
+      <Switch>
+        <Route path='/:lang'>
+          <Home />
+        </Route>
+        <Redirect to={`/${DEF_LANG}`} />
+      </Switch>
+    </Router>
+  );
 }
 
 export default App;

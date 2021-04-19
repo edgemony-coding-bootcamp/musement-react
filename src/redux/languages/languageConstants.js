@@ -1,1 +1,1 @@
-export const SET_LANGUAGES = 'SET_LANGUAGES'
+export const SET_USER_LANGUAGE = 'SET_USER_LANGUAGE';
