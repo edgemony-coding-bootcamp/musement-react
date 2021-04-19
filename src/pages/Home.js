@@ -1,3 +1,6 @@
+import Hero from '../components/Hero';
+import CategoriesNav from '../components/CategoriesNav';
+import { Main } from '../styles';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import { setUserLang } from '../redux/languages/languageActions';
@@ -41,14 +44,17 @@ function Home() {
 
   return (
     <>
-      <div>Header</div>
-
       <Switch>
+        <Route path={`/${lang}`}>
+          <CategoriesNav />
+          <Main>
+            <Hero />
+          </Main>
+        </Route>
         <Route path={`${path}/*`}>
           <h1>404</h1>
         </Route>
       </Switch>
-      <div>Footer</div>
     </>
   );
 }
