@@ -1,14 +1,16 @@
-import { SET_LANGUAGES } from './languageConstants';
+import { SET_USER_LANGUAGE } from './languageConstants';
+import { SUPPORTED_LANGUAGES } from '../../config.json';
 
-const defaultState = {
-  languages: 'en-GB',
-};
+export const languageReducer = (state = {}, action) => {
+  const lang = action.payload;
 
-export const languageReducer = (state = defaultState, action) => {
+  // finding the match between the landing url and the supported languages
+  const matched = SUPPORTED_LANGUAGES[lang];
+
   switch (action.type) {
-    case SET_LANGUAGES:
+    case SET_USER_LANGUAGE:
       return {
-        languages: action.payload,
+        userLang: matched,
       };
 
     default:
