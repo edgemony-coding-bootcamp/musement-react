@@ -12,7 +12,6 @@ import {
   useHistory,
   useRouteMatch,
 } from 'react-router-dom';
-import Carousel from '../components/Carousel';
 
 import { DEF_LANG, SUPPORTED_LANGUAGES } from '../config.json';
 import { setLangHeader } from '../services/axiosConfig';

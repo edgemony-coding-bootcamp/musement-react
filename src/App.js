@@ -5,6 +5,7 @@ import {
   Redirect,
 } from 'react-router-dom';
 import Home from './pages/Home';
+import './App.css';
 import { DEF_LANG } from './config.json';
 
 import Header from './components/Header';
