@@ -1,6 +1,5 @@
-import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { fetchCategories } from '../redux/categories/categoryActions';
+import React from 'react';
+import { useSelector } from 'react-redux';
 
 import {
   CategoryLinkLoader,
@@ -15,11 +14,6 @@ import {
 } from '../styles';
 
 function CategoriesNav() {
-  const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(fetchCategories());
-  }, []);
-
   const categoryState = useSelector((state) => state.categories);
   const { categories, loading, error } = categoryState;
 

@@ -1,5 +1,5 @@
 import Hero from '../components/Hero';
-import CategoriesNav from '../components/CategoriesNav';
+import Header from '../components/Header';
 import { Main } from '../styles';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
@@ -23,6 +23,11 @@ function Home() {
   let { path } = useRouteMatch();
   let { lang } = useParams();
   let history = useHistory();
+  useEffect(() => {
+    dispatch(setUserLang(lang));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [lang]);
+  setLangHeader(userLang);
 
   // getting the keys of supported values from config,json in order to check if the url is valid
   const langConfig = Object.keys(SUPPORTED_LANGUAGES);
@@ -34,19 +39,13 @@ function Home() {
     history.push(`/${DEF_LANG}${newUrl}`);
   }
 
-  useEffect(() => {
-    dispatch(setUserLang(lang));
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [lang]);
-
   // setting the language for the header
-  setLangHeader(userLang);
 
   return (
     <>
+      <Header />
       <Switch>
         <Route path={`/${lang}`}>
-          <CategoriesNav />
           <Main>
             <Hero />
           </Main>

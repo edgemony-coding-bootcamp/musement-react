@@ -166,15 +166,13 @@ export const HeaderLogoMobile = styled(LogoMobile)`
 
 // section MODAL HEADER
 
-// why this overlay don't work?
+export const ModalHeaderOverlay = styled(Div)`
+  position: fixed;
 
-// export const ModalHeaderOverlay = styled(Div)`
-//   position: fixed;
-
-//   height: 100vh;
-//   width: 100vw;
-//   z-index: 40;
-// `;
+  height: 100vh;
+  width: 100vw;
+  z-index: 40;
+`;
 
 export const ModalHeaderBody = styled(Div)`
   top: 0;
