@@ -1,18 +1,19 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
-import { fetchExperiences } from '../redux/experiences/experienceActions';
+// import { fetchExperiences } from '../redux/experiences/experienceActions';
 import Rating from './Rating'
-import { CardCancellation, CardCategoryLabel, CardDescription, CardDurationValue, CardIcon, CardImg, CardLanguage, CardSectionBody, CardSectionFooter, CardSectionHeader, CardStarWrapper, CardTitle, CardWrapper, CardPriceWrapper, CardSpanPrice, CardDivRowFooter, CardDivRowDescription } from './StylesCard';
+import { CardCancellation, CardCategoryLabel, CardDescription, CardDurationValue, IconBodyCard, CardImg, CardLanguage, CardSectionBody, CardSectionFooter, CardSectionHeader, CardStarWrapper, CardTitle, CardWrapper, CardPriceWrapper, CardSpanPrice, CardDivRowFooter, CardDivRowDescription } from './StylesCard';
 import { replaceLang, parseISODuration, setPriceFormat } from '../utilities'
-import { ReactComponent as FreeCancellation } from '../assets/images/freeCancellation.svg'
-import { ReactComponent as Language } from '../assets/images/languages.svg'
-import { ReactComponent as Duration } from '../assets/images/duration.svg'
+import { ReactComponent as FreeCancellationIcon } from '../assets/images/freeCancellation.svg'
+import { ReactComponent as LanguageIcon } from '../assets/images/languages.svg'
+import { ReactComponent as DurationIcon } from '../assets/images/duration.svg'
 
 
-const Card = () => {
+const Card = ({ fetch }) => {
   const dispatch = useDispatch();
+
   useEffect(() => {
-    dispatch(fetchExperiences());
+    dispatch(fetch());
   }, []);
 
   const dataState = useSelector((state) => state.experiences);
@@ -36,15 +37,15 @@ const Card = () => {
             </CardSectionHeader>
             <CardSectionBody>
               <CardCancellation cancellation={experience.free_cancellation}>
-                <CardIcon><FreeCancellation /></CardIcon>
+                <IconBodyCard><FreeCancellationIcon /></IconBodyCard>
                 Free cancellation
               </CardCancellation>
               <CardDurationValue>
-                <CardIcon freeCanc={experience.free_cancellation}><Language /></CardIcon>
-                {parseISODuration(experience.duration)}
+                <IconBodyCard><DurationIcon /></IconBodyCard>
+                {parseISODuration(experience.duration)}      {/* experience.duration */}
               </CardDurationValue>
               <CardDivRowDescription>
-                <CardIcon freeCanc={experience.free_cancellation}><Duration /></CardIcon>
+                <IconBodyCard><LanguageIcon /></IconBodyCard>
                 Available in:
                 <CardLanguage>
                   {replaceLang(experience.languages)}

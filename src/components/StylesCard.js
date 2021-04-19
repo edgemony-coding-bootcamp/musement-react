@@ -129,7 +129,7 @@ export const CardDescription = styled.p`
   }
 `;
 
-export const CardIcon = styled.div`
+export const IconBodyCard = styled.div`
   width: 20px;
   height: 20px;
   margin-right: 5px;
@@ -146,7 +146,7 @@ export const CardCancellation = styled.div`
   color: #72ca74;
   fill: #72ca74;
 
-  ${({ cancellation }) => (cancellation ? `opacity: 1px;` : `display: none;`)}
+  ${({ cancellation }) => (cancellation ? '' : `display: none;`)}
 `;
 
 export const Div = styled.div`

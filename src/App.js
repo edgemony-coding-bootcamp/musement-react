@@ -39,9 +39,7 @@ function App() {
 			<Switch>
 				<Route path='/:lang'>
 					<Redirect push to={`/${checkLang()}`} />
-					<Home>
-						<Card></Card>
-					</Home>
+					<Home />
 				</Route>
 				<Route path='*'>
 					<h1>404</h1>
