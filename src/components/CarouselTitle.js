@@ -1,4 +1,4 @@
-import { CarouselTitleContainer, H2 } from '../styles/stylesCarousel';
+import { CarouselTitleContainer, H2 } from '../styles';
 
 const CarouselTitle = ({ title }) => (
   <CarouselTitleContainer>

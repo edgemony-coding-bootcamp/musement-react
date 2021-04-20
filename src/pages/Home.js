@@ -1,6 +1,6 @@
 import Hero from '../components/Hero';
 import Header from '../components/Header';
-import { Main } from '../styles';
+import { CarouselSection, Main } from '../styles';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import { setUserLang } from '../redux/languages/languageActions';
@@ -15,9 +15,9 @@ import {
 
 import { DEF_LANG, SUPPORTED_LANGUAGES } from '../config.json';
 import { setLangHeader } from '../services/axiosConfig';
-import Card from '../components/Card';
 import Carousel from '../components/Carousel';
 import FeaturedExperiences from '../components/FeaturedExperiences';
+import CarouselTitle from '../components/CarouselTitle';
 
 function Home() {
   const { userLang } = useSelector((state) => state.languages);
@@ -51,10 +51,12 @@ function Home() {
         <Route path={`/${lang}`}>
           <Main>
             <Hero />
-            <Carousel>
-              <FeaturedExperiences />
-            </Carousel>
-            <Card />
+            <CarouselSection>
+              <CarouselTitle title={'Featured Experiences'} />
+              <Carousel>
+                <FeaturedExperiences />
+              </Carousel>
+            </CarouselSection>
           </Main>
         </Route>
         <Route path={`${path}/*`}>
