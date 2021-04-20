@@ -1,4 +1,4 @@
-import { CardSpanRating, CardStarWrapper, Span } from './StylesCard';
+import { CardSpanRating, CardStarWrapper, Span } from '../styles';
 
 const Rating = ({ value, numReviews }) => {
   return (
