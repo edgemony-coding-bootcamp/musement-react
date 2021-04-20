@@ -17,7 +17,6 @@ import {
 } from '../styles';
 
 function Hero() {
-  console.log(device.desktop);
   let isTablet = useMediaQuery(`${device.tablet}`);
 
   return (
@@ -85,37 +84,6 @@ function Hero() {
           )}
         </InfoBanner>
       </BannerContainer>
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
     </>
   );
 }

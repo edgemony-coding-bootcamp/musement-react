@@ -13,7 +13,6 @@ import {
   useMediaQuery,
   useScrolling,
   ModalHeaderOverlay,
-  stylesVar,
   device,
   ModalHeaderBody,
   H3,

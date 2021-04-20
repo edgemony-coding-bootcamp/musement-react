@@ -89,6 +89,11 @@ export const Main = styled.main`
   }
 `;
 
+export const CarouselSection = styled.section`
+  background-color: #f2f5f6;
+  padding: 0 40px;
+`;
+
 export const FlexRowWrap = styled(Div)`
   display: flex;
 `;
@@ -104,7 +109,6 @@ export const LinkPages = styled(Link)`
 // CUSTOM HOOKS
 
 export function useMediaQuery(query) {
-  console.log(query);
   const [matches, setMatches] = useState(false);
 
   useEffect(() => {
@@ -214,7 +218,7 @@ export const ModalHeaderOverlay = styled(Div)`
 
   height: 100vh;
   width: 100vw;
-  z-index: 40;
+  z-index: 0;
 `;
 
 export const ModalHeaderBody = styled(Div)`
@@ -434,8 +438,8 @@ export const SafetySvgIcon = styled(SafetySvg)`
   width: 56px;
   height: 63px;
   margin: 0.1rem 0.7rem;
-
   flex-shrink: 0;
+
   @media ${device.tablet} {
     width: 80px;
     height: 100%;
@@ -444,43 +448,26 @@ export const SafetySvgIcon = styled(SafetySvg)`
 
 // section CAROUSEL
 
-export const CarouselContainer = styled.div`
-  min-height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  background-color: rgba(80, 80, 80, 0.2);
-`;
-
 export const CarouselTitleContainer = styled.div`
   color: black;
   display: flex;
-  min-width: 1400px;
   min-height: 62px;
 `;
 
 export const CarouselCardWrapper = styled.div`
   display: flex;
   flex-direction: row;
-  max-width: 1400px;
+  flex-wrap: nowrap;
+  min-width: 350px;
+  max-width: 350px;
   scroll-snap-type: x mandatory;
-  overflow-x: hidden;
-  overflow: hidden;
-  overflow-y: hidden;
-  position: relative;
-`;
+  overflow-x: scroll;
+  scroll-behavior: smooth;
 
-export const Card = styled.div`
-  box-sizing: content-box;
-  min-width: 335px;
-  min-height: 430px;
-  background-color: ${bgColor.primary};
-  border-radius: 6px;
-  margin: 10px 7.5px;
-  transition: all ease-in-out 0.25s;
-
-  ${({ current }) => current && `transform: translateX(${current * -350}px);`}
+  @media ${device.tablet} {
+    min-width: 760px;
+    max-width: 760px;
+  }
 `;
 
 export const Arrow = styled(ArrowSvg)`
@@ -516,12 +503,15 @@ export const ArrowLeft = styled(Arrow)`
 // section CARD
 
 export const CardWrapper = styled.div`
+  background-color: ${bgColor.primary};
+  min-width: 290px;
   max-width: 290px;
   min-height: 365px;
   border-radius: 6px;
   box-sizing: border-box;
   box-shadow: 0 3px 10px -8px;
-  cursor: grab;
+  margin: 0 10px;
+  scroll-snap-align: start;
 
   &:hover {
     transform: translate(0px, -5px) scale(1.025);
