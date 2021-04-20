@@ -21,14 +21,20 @@ import {
   FlexColumnWrap,
   P,
 } from '../styles';
+import CategoriesNav from './CategoriesNav';
 
 function Header() {
   const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(fetchCategories());
-  }, []);
   const categoryState = useSelector((state) => state.categories);
-  const { categories, loading, error } = categoryState;
+
+  const { categories } = categoryState;
+
+  useEffect(() => {
+    setTimeout(() => {
+      dispatch(fetchCategories());
+    }, 1);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [modalSrc, setModalSrc] = useState([{ name: 'Explore' }]);
@@ -41,7 +47,6 @@ function Header() {
       setModalTitle('Menu');
       setModalSrc([{ name: 'Explore' }]);
     } else if (b === 'Explore') {
-      console.log(b);
       setModalSrc(categories);
       setModalTitle('Back');
       return <P>{categories.map((cat) => cat.name)}</P>;
@@ -74,10 +79,10 @@ function Header() {
         )}
       </HeaderWrapper>
       <HeaderGoDown />
+      <CategoriesNav />
       {isModalOpen && (
-        // why this overlay don't work?
-        // <ModalHeaderOverlay onClick={() => setIsModalOpen(false)}>
         <ModalHeaderBody scrolling={scrolling}>
+          <ModalHeaderOverlay onClick={() => setIsModalOpen(false)} />
           <FlexColumnWrap>
             <FlexRowWrap>
               <H3 onClick={(e) => ModalHeaderF(e)}>{modalTitle}</H3>
@@ -89,7 +94,6 @@ function Header() {
             </FlexColumnWrap>
           </FlexColumnWrap>
         </ModalHeaderBody>
-        // </ModalHeaderOverlay>
       )}
     </>
   );
