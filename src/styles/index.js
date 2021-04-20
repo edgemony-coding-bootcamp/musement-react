@@ -17,15 +17,34 @@ import { ReactComponent as ActiveAdventureSvg } from '../assets/img/active-adven
 import { ReactComponent as ArrowSvg } from '../assets/img/arrow.svg';
 import colosseoImg from '../assets/img/cover_hero_home_desktop_colosseo.png';
 
-// mediaQuery
-const size = { sm: '760px', md: '1024px', lg: '1350px' };
-export const device = {
-  tablet: `(min-width: ${size.sm})`,
-  laptop: `(min-width: ${size.md})`,
-  desktop: `(min-width: ${size.lg})`,
+// THEME
+
+export const color = {
+  primary: '#fff',
+  primaryb: '#333333',
+  secondary: '#fc6c4f',
+  alternative: '#9E9E9E',
+  alternativeb: '#bac5c3',
+  alternativec: '#edf1f2',
+  success: '#bac5c3',
+  error: '#edf1f2',
 };
 
-// section VARIABLES
+export const bgColor = {
+  primary: '#fff',
+  primaryb: '#f2f5f6',
+  secondary: '#9E9E9E',
+  alternative: '#9E9E9E',
+  success: '#00B74A',
+  error: '#F93154',
+  info: '#39C0ED',
+};
+
+export const svgColor = {
+  primary: '#9E9E9E',
+  secondary: '#fc6c4f',
+  alternative: '#fff',
+};
 
 export const stylesVar = {
   colorWhite: '#fff',
@@ -34,7 +53,17 @@ export const stylesVar = {
   colorLightGray: '#bac5c3',
   colorSuperLightGray: '#edf1f2',
   colorBlack: '#333333',
+  // TODO
   boxShadowLight: '0 2px 6px 0 rgb(0 0 0 / 10%)',
+  // TODO
+};
+
+// mediaQuery
+const size = { sm: '760px', md: '1024px', lg: '1350px' };
+export const device = {
+  tablet: `(min-width: ${size.sm})`,
+  laptop: `(min-width: ${size.md})`,
+  desktop: `(min-width: ${size.lg})`,
 };
 
 // section UTILITIES
@@ -124,6 +153,7 @@ export const categoriesSvgIcons = {
 // section HEADER
 
 export const HeaderWrapper = styled.header`
+  background-color: ${bgColor.primary};
   width: 100%;
   height: 70px;
   position: fixed;
@@ -132,14 +162,13 @@ export const HeaderWrapper = styled.header`
   justify-content: space-between;
   align-items: center;
   transition: all 0.35s;
-  background-color: ${stylesVar.colorWhite};
   @media ${device.desktop} {
     height: ${({ scrolling }) => (scrolling ? '70px' : '110px')};
     justify-content: center;
     box-shadow: ${({ scrolling }) =>
       scrolling && `${stylesVar.boxShadowLight}`};
     border-bottom: ${({ scrollInitial }) =>
-      scrollInitial || `solid ${stylesVar.colorSuperLightGray} 1px`};
+      scrollInitial || `solid ${color.alternativeb} 1px`};
   }
 `;
 
@@ -158,7 +187,7 @@ export const HeaderHamburger = styled(Hamburger)`
   width: 30px;
   height: 30px;
   justify-items: flex-end;
-  color: ${stylesVar.colorGray};
+  color: ${color.alternative};
 `;
 
 export const HeaderLogoDesktop = styled(LogoTablet)`
@@ -171,10 +200,10 @@ export const HeaderLogoMobile = styled(LogoMobile)`
   height: 80px;
 
   & g {
-    fill: ${stylesVar.colorLightGray};
+    fill: ${color.alternative};
   }
   & g #Group-3 {
-    fill: ${stylesVar.colorOrange};
+    fill: ${color.secondary};
   }
 `;
 
@@ -191,6 +220,8 @@ export const HeaderLogoMobile = styled(LogoMobile)`
 // `;
 
 export const ModalHeaderBody = styled(Div)`
+  color: ${color.primaryb};
+  background-color: ${bgColor.primaryb};
   top: 0;
   width: 100%;
   margin-top: 70px;
@@ -198,8 +229,6 @@ export const ModalHeaderBody = styled(Div)`
   user-select: none;
   z-index: 90;
   letter-spacing: -1px;
-  color: ${stylesVar.colorBlack};
-  background-color: #f2f5f6;
   box-shadow: 0 10px 20px 0 rgb(51 51 51 / 50%);
   ${FlexRowWrap} {
     justify-content: space-between;
@@ -216,7 +245,7 @@ export const ModalHeaderBody = styled(Div)`
   ${P} {
     padding: 10px 20px;
     cursor: pointer;
-    border-bottom: 1px solid #dce4e6;
+    border-bottom: 1px solid ${color.alternativec};
   }
   @media ${device.desktop} {
     margin-top: ${({ scrolling }) => (scrolling ? '70px' : '110px')};
@@ -246,7 +275,7 @@ export const CategoryLinkWrap = styled(Div)`
   }
   &:hover {
     cursor: pointer;
-    box-shadow: inset 0 -6px 0 ${stylesVar.colorOrange};
+    box-shadow: inset 0 -6px 0 ${color.secondary};
   }
 `;
 
@@ -254,7 +283,7 @@ export const CategoryLinkContainer = styled(FlexRowWrap)`
   width: 100%;
   flex-shrink: 0;
   justify-content: space-evenly;
-  border-left: solid ${stylesVar.colorSuperLightGray} 1px;
+  border-left: solid ${color.alternativec} 1px;
 `;
 export const CategoryLink = styled.div`
   height: 36px;
@@ -268,8 +297,8 @@ export const CategoryLinkLoader = styled(Div)`
   padding: 0.5rem;
   margin: 0.5rem;
   flex-grow: 1;
-  border-left: solid ${stylesVar.colorLightGray} 1px;
-  background-color: ${stylesVar.colorLightGray};
+  border-left: solid ${color.alternativeb} 1px;
+  background-color: ${color.alternativeb};
 `;
 
 export const CategoryLinkError = styled(CategoryLink)``;
@@ -278,13 +307,14 @@ export const CategoriesSvgIcon = styled.svg`
   width: 35px;
   height: 35px;
   margin-right: 10px;
-  fill: ${stylesVar.colorWhite};
-  stroke: ${stylesVar.colorGray};
+  fill: ${color.primary};
+  stroke: ${color.alternative};
 `;
 
 // section HERO
 
 export const HeroContainer = styled(Div)`
+  background-image: url(${colosseoImg});
   position: relative;
   width: 100%;
   min-height: 274px;
@@ -292,7 +322,6 @@ export const HeroContainer = styled(Div)`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  background-image: url(${colosseoImg});
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -305,6 +334,7 @@ export const HeroContainer = styled(Div)`
 `;
 
 export const HeroTitle = styled(Div)`
+  background-color: ${color.primary};
   position: absolute;
   top: 0;
   width: 100%;
@@ -313,15 +343,14 @@ export const HeroTitle = styled(Div)`
   letter-spacing: -1px;
   font-size: 1rem;
   font-weight: bold;
-  background-color: ${stylesVar.colorWhite};
 
   @media ${device.tablet} {
+    background: ${color.primary};
     top: 30%;
     width: fit-content;
     font-size: 1.5rem;
     margin: 0 3rem;
     text-align: left;
-    background: ${stylesVar.colorWhite};
 
     background-color: transparent;
   }
@@ -334,24 +363,24 @@ export const HeroSpan = styled.span((p) =>
   p.foo
     ? {
         '@media (max-width: 759px)': {
-          color: `${stylesVar.colorOrange}`,
+          color: `${color.secondary}`,
         },
         '@media (min-width: 760px)': {
-          color: `${stylesVar.colorWhite}`,
-          background: `${stylesVar.colorOrange}`,
+          color: `${color.primary}`,
+          background: `${color.secondary}`,
         },
       }
     : p.bar
     ? {
         '@media (min-width: 760px)': {
-          color: `${stylesVar.colorBlack}`,
-          background: `${stylesVar.colorWhite}`,
+          color: `${color.primaryb}`,
+          background: `${color.primary}`,
         },
       }
     : {
         '@media (min-width: 760px)': {
-          color: `${stylesVar.colorWhite}`,
-          background: `${stylesVar.colorOrange}`,
+          color: `${color.primary}`,
+          background: `${color.secondary}`,
         },
       }
 );
@@ -372,7 +401,7 @@ export const InfoBanner = styled(Div)`
   flex-direction: column;
   flex-shrink: 1;
 
-  background: ${stylesVar.colorWhite};
+  background: ${bgColor.primary};
   border-radius: 0.3rem;
   box-shadow: ${stylesVar.boxShadowLight};
   & > ${FlexRowWrap} {
@@ -448,7 +477,7 @@ export const Card = styled.div`
   box-sizing: content-box;
   min-width: 335px;
   min-height: 430px;
-  background-color: white;
+  background-color: ${bgColor.primary};
   border-radius: 6px;
   margin: 10px 7.5px;
   transition: all ease-in-out 0.25s;
@@ -578,7 +607,7 @@ export const CardCategoryLabel = styled.span`
   display: flex;
   border-radius: 1px;
   align-items: center;
-  color: white;
+  color: ${color.primary};
   background-color: #ffc34e;
 `;
 
