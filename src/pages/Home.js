@@ -16,6 +16,8 @@ import {
 import { DEF_LANG, SUPPORTED_LANGUAGES } from '../config.json';
 import { setLangHeader } from '../services/axiosConfig';
 import Card from '../components/Card';
+import Carousel from '../components/Carousel';
+import FeaturedExperiences from '../components/FeaturedExperiences';
 
 function Home() {
   const { userLang } = useSelector((state) => state.languages);
@@ -49,6 +51,9 @@ function Home() {
         <Route path={`/${lang}`}>
           <Main>
             <Hero />
+            <Carousel>
+              <FeaturedExperiences />
+            </Carousel>
             <Card />
           </Main>
         </Route>
