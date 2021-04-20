@@ -1,4 +1,4 @@
-import { PriceFirstNum, PriceSecondNum } from '../components/StylesCard';
+import { PriceFirstNum, PriceSecondNum } from '../styles';
 
 // Replace the value after the fifth value
 

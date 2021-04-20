@@ -195,7 +195,7 @@ export const ModalHeaderBody = styled(Div)`
   width: 100%;
   margin-top: 70px;
   position: fixed;
-
+  user-select: none;
   z-index: 90;
   letter-spacing: -1px;
   color: ${stylesVar.colorBlack};
