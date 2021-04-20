@@ -27,7 +27,7 @@ const Card = ({ content }) => {
   return (
     <>
       {content ? (
-        <CardWrapper key={content.city.id}>
+        <CardWrapper>
           <CardImg src={content.cover_image_url} alt='image'></CardImg>
           <CardSectionHeader>
             <CardCategoryLabel>{`${

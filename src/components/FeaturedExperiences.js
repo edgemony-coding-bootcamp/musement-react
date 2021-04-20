@@ -19,7 +19,9 @@ function FeaturedExperiences() {
   return (
     <>
       {experiences.length > 0
-        ? experiences.map((experience) => <Card content={experience} />)
+        ? experiences.map((experience, key) => (
+            <Card key={key} content={experience} />
+          ))
         : null}
     </>
   );
