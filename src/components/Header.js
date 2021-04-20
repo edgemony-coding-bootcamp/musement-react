@@ -14,6 +14,7 @@ import {
   useScrolling,
   ModalHeaderOverlay,
   stylesVar,
+  device,
   ModalHeaderBody,
   H3,
   FlexRowWrap,
@@ -55,7 +56,7 @@ function Header() {
   let scrolling = useScrolling(133);
   let scrollInitial = useScrolling(1);
 
-  let isDesktop = useMediaQuery(`(${stylesVar.desktopMediaQuery})`);
+  let isDesktop = useMediaQuery(`${device.desktop}`);
 
   return (
     <>
