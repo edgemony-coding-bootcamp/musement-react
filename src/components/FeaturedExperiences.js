@@ -6,9 +6,7 @@ import Card from './Card';
 function FeaturedExperiences() {
   const dispatch = useDispatch();
   const experiencesState = useSelector((state) => state.experiences);
-  console.log(experiencesState);
   const { experiences } = experiencesState;
-  console.log(experiences);
 
   useEffect(() => {
     setTimeout(() => {

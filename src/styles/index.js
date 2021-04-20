@@ -104,7 +104,6 @@ export const LinkPages = styled(Link)`
 // CUSTOM HOOKS
 
 export function useMediaQuery(query) {
-  console.log(query);
   const [matches, setMatches] = useState(false);
 
   useEffect(() => {

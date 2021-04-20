@@ -17,7 +17,6 @@ import {
 } from '../styles';
 
 function Hero() {
-  console.log(device.desktop);
   let isTablet = useMediaQuery(`${device.tablet}`);
 
   return (
