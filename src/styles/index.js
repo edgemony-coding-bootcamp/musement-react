@@ -214,7 +214,7 @@ export const ModalHeaderOverlay = styled(Div)`
 
   height: 100vh;
   width: 100vw;
-  z-index: 40;
+  z-index: 0;
 `;
 
 export const ModalHeaderBody = styled(Div)`
