@@ -5,7 +5,7 @@ import {
   FETCH_EXPERIENCES_SUCCESS,
 } from './experienceConstants';
 
-export const expIds = [88080/* , 87218, 35703 */];
+export const expIds = [88080 /* , 87218, 35703 */];
 
 export const fetchExperiences = () => {
   return async (dispatch) => {

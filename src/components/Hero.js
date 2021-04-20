@@ -10,19 +10,20 @@ import {
   P,
   CancellationSvgIcon,
   useMediaQuery,
-  stylesVar,
+  device,
   Div,
   SafetySvgIcon,
   BannerContainer,
 } from '../styles';
 
 function Hero() {
-  let isTablet = useMediaQuery(`(${stylesVar.tabletMediaQuery})`);
+  console.log(device.desktop);
+  let isTablet = useMediaQuery(`${device.tablet}`);
 
   return (
     <>
       <HeroContainer>
-        <HeroTitle mobile>
+        <HeroTitle>
           <HeroSpan>BOOK TICKETS TO MUSEUMS,</HeroSpan>
           <HeroSpan foo> ATTRACTIONS AND FUN ACTIVITIES</HeroSpan>
           <HeroSpan bar>

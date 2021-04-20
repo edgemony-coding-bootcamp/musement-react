@@ -1,10 +1,27 @@
-import Rating from './Rating'
-import { CardCancellation, CardCategoryLabel, CardDescription, CardDurationValue, IconBodyCard, CardImg, CardLanguage, CardSectionBody, CardSectionFooter, CardSectionHeader, CardStarWrapper, CardTitle, CardWrapper, CardPriceWrapper, CardSpanPrice, CardDivRowFooter, CardDivRowDescription } from './StylesCard';
-import { replaceLang, parseISODuration, setPriceFormat } from '../utilities'
-import { ReactComponent as FreeCancellationIcon } from '../assets/images/freeCancellation.svg'
-import { ReactComponent as LanguageIcon } from '../assets/images/languages.svg'
-import { ReactComponent as DurationIcon } from '../assets/images/duration.svg'
-
+import Rating from './Rating';
+import {
+  CardCancellation,
+  CardCategoryLabel,
+  CardDescription,
+  CardDurationValue,
+  IconBodyCard,
+  CardImg,
+  CardLanguage,
+  CardSectionBody,
+  CardSectionFooter,
+  CardSectionHeader,
+  CardStarWrapper,
+  CardTitle,
+  CardWrapper,
+  CardPriceWrapper,
+  CardSpanPrice,
+  CardDivRowFooter,
+  CardDivRowDescription,
+} from '../styles';
+import { replaceLang, parseISODuration, setPriceFormat } from '../utilities';
+import { ReactComponent as FreeCancellationIcon } from '../assets/img/freeCancellation.svg';
+import { ReactComponent as LanguageIcon } from '../assets/img/languages.svg';
+import { ReactComponent as DurationIcon } from '../assets/img/duration.svg';
 
 const Card = ({ items }) => {
   return (
@@ -14,36 +31,40 @@ const Card = ({ items }) => {
           <CardWrapper key={item.city.id}>
             <CardImg src={item.cover_image_url} alt='image'></CardImg>
             <CardSectionHeader>
-              <CardCategoryLabel>{`${item.ticket
-                ? 'tickets and events'
-                : 'attraction & guide tour'
-                } `}</CardCategoryLabel>
+              <CardCategoryLabel>{`${
+                item.ticket ? 'tickets and events' : 'attraction & guide tour'
+              } `}</CardCategoryLabel>
               <CardTitle>{item.title}</CardTitle>
-              <CardDescription>
-                {item.description}
-              </CardDescription>
+              <CardDescription>{item.description}</CardDescription>
             </CardSectionHeader>
             <CardSectionBody>
               <CardCancellation cancellation={item.free_cancellation}>
-                <IconBodyCard><FreeCancellationIcon /></IconBodyCard>
+                <IconBodyCard>
+                  <FreeCancellationIcon />
+                </IconBodyCard>
                 Free cancellation
               </CardCancellation>
               <CardDurationValue>
-                <IconBodyCard><DurationIcon /></IconBodyCard>
+                <IconBodyCard>
+                  <DurationIcon />
+                </IconBodyCard>
                 {parseISODuration(item.duration)}
               </CardDurationValue>
               <CardDivRowDescription>
-                <IconBodyCard><LanguageIcon /></IconBodyCard>
+                <IconBodyCard>
+                  <LanguageIcon />
+                </IconBodyCard>
                 Available in:
-                <CardLanguage>
-                  {replaceLang(item.languages)}
-                </CardLanguage>
+                <CardLanguage>{replaceLang(item.languages)}</CardLanguage>
               </CardDivRowDescription>
             </CardSectionBody>
             <CardSectionFooter>
               <CardDivRowFooter>
                 <CardStarWrapper>
-                  <Rating value={item.reviews_avg} numReviews={item.reviews_number}></Rating>
+                  <Rating
+                    value={item.reviews_avg}
+                    numReviews={item.reviews_number}
+                  ></Rating>
                 </CardStarWrapper>
               </CardDivRowFooter>
               <CardPriceWrapper>
