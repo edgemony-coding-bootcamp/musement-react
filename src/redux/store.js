@@ -6,9 +6,9 @@ import { inspirationListReducer } from './inspirations/inspirationReducers';
 import { experienceListReducer } from './experiences/experienceReducers';
 import { languageReducer } from './languages/languageReducers';
 
-import { DEF_LANG, SUPPORTED_LANGUAGES } from '../config.json';
+import { DEF_LANG, LANGUAGES } from '../config.json';
 
-const defaultLang = SUPPORTED_LANGUAGES[DEF_LANG];
+const defaultLang = LANGUAGES.find((item) => item.id === DEF_LANG);
 
 /* Combined Reducers */
 
@@ -21,7 +21,7 @@ const reducer = combineReducers({
 
 const defaultStore = {
   languages: {
-    userLang: `${defaultLang}`,
+    userLang: `${defaultLang.iso86}`,
   },
   categories: {
     categories: [],

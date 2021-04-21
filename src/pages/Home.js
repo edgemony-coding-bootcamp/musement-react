@@ -13,11 +13,12 @@ import {
   useRouteMatch,
 } from 'react-router-dom';
 
-import { DEF_LANG, SUPPORTED_LANGUAGES } from '../config.json';
+import { DEF_LANG, LANGUAGES } from '../config.json';
 import { setLangHeader } from '../services/axiosConfig';
 import Carousel from '../components/Carousel';
 import FeaturedExperiences from '../components/FeaturedExperiences';
 import CarouselTitle from '../components/CarouselTitle';
+import Footer from '../components/Footer';
 
 function Home() {
   const { userLang } = useSelector((state) => state.languages);
@@ -33,7 +34,7 @@ function Home() {
   setLangHeader(userLang);
 
   // getting the keys of supported values from config,json in order to check if the url is valid
-  const langConfig = Object.keys(SUPPORTED_LANGUAGES);
+  const langConfig = LANGUAGES.map((item) => item.id);
 
   // url check with keys from config.json
   const isValidLanguage = langConfig.includes(lang);
@@ -57,9 +58,10 @@ function Home() {
                 <FeaturedExperiences />
               </Carousel>
             </CarouselSection>
+            <Footer />
           </Main>
         </Route>
-        <Route path={`${path}/*`}>
+        <Route path={`${path}/:category`}>
           <h1>404</h1>
         </Route>
       </Switch>

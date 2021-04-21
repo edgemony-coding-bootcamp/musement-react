@@ -2,17 +2,28 @@
   "BASE_URL": "https://sandbox.musement.com/api/v3/",
   "API_VERSION": "3.4.0",
   "DEF_LANG": "uk",
-  "SUPPORTED_LANGUAGES": {
-    "uk": "en-GB",
-    "us": "en-US",
-    "it": "it-IT",
-    "fr": "fr-FR",
-    "de": "de-DE",
-    "es": "es-ES",
-    "pt": "pt-PT",
-    "br": "pt-BR",
-    "ru": "ru-RU",
-    "nl": "nl-NL",
-    "pl": "pl-PL"
-  }
+
+  "LANGUAGES": [
+    { "id": "uk", "iso86": "en-GB", "label": "English UK" },
+
+    { "id": "us", "iso86": "en-US", "label": "English US" },
+
+    { "id": "it", "iso86": "it-IT", "label": "Italian" },
+
+    { "id": "fr", "iso86": "fr-FR", "label": "French" },
+
+    { "id": "de", "iso86": "de-DE", "label": "German" },
+
+    { "id": "es", "iso86": "es-ES", "label": "Spanish" },
+
+    { "id": "pt", "iso86": "pt-PT", "label": "Portugues Pt" },
+
+    { "id": "br", "iso86": "pt-BR", "label": "Portugues Br" },
+
+    { "id": "ru", "iso86": "ru-RU", "label": "Russian" },
+
+    { "id": "nl", "iso86": "nl-NL", "label": "Dutch" },
+
+    { "id": "pl", "iso86": "pl-PL", "label": "Polish" }
+  ]
 }
