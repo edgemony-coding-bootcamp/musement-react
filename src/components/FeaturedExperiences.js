@@ -7,13 +7,14 @@ function FeaturedExperiences() {
   const dispatch = useDispatch();
   const experiencesState = useSelector((state) => state.experiences);
   const { experiences } = experiencesState;
+  const { userLang } = useSelector((state) => state.languages);
 
   useEffect(() => {
     setTimeout(() => {
       dispatch(fetchExperiences());
     }, 1);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [userLang]);
   return (
     <>
       {experiences.length > 0

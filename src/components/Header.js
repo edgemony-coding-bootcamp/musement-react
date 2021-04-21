@@ -25,15 +25,15 @@ import CategoriesNav from './CategoriesNav';
 function Header() {
   const dispatch = useDispatch();
   const categoryState = useSelector((state) => state.categories);
-
   const { categories } = categoryState;
+  const { userLang } = useSelector((state) => state.languages);
 
   useEffect(() => {
     setTimeout(() => {
       dispatch(fetchCategories());
     }, 1);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [userLang]);
 
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [modalSrc, setModalSrc] = useState([{ name: 'Explore' }]);
