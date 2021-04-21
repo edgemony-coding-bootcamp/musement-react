@@ -459,14 +459,14 @@ export const CarouselCardWrapper = styled.div`
   flex-direction: row;
   flex-wrap: nowrap;
   min-width: 350px;
-  max-width: 350px;
+  max-width: 100%;
   scroll-snap-type: x mandatory;
   overflow-x: scroll;
   scroll-behavior: smooth;
 
   @media ${device.tablet} {
     min-width: 760px;
-    max-width: 760px;
+    max-width: 100vw;
   }
 `;
 
@@ -723,4 +723,56 @@ export const PriceFirstNum = styled.span`
 export const PriceSecondNum = styled(PriceFirstNum)`
   font-size: 0.75rem;
   color: #fa6c50;
+`;
+
+// Section FOOTER
+
+export const FooterWrapper = styled.footer`
+  padding: 25px 0;
+  font-size: 16px;
+  width: 100%;
+  overflow: hidden;
+  background-color: ${color.primary};
+  display: flex;
+  justify-content: flex-end;
+`;
+
+export const FooterDropdownWrapper = styled.div`
+  width: 25vw;
+`;
+
+export const FooterDropdown = styled.div`
+  width: 200px;
+`;
+
+export const LabelDropdown = styled.label`
+  display: block;
+  margin-bottom: 5px;
+  margin-top: 15px;
+`;
+
+export const DropdownSelect = styled.select`
+  font-size: 18px;
+  background-color: ${color.primary};
+  color: ${color.primaryb};
+  border: 1px solid ${color.alternativeb};
+  font-style: italic;
+  width: 100%;
+  height: 40px;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  &:hover {
+    cursor: pointer;
+  }
+`;
+
+export const DropdownOptionWrapper = styled.div`
+  border-bottom: 1px solid red;
+`;
+
+export const DropdownOption = styled.option`
+  display: inline-flex;
+  justify-content: space-between;
+  margin: 2px;
+  border: red;
 `;
