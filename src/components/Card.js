@@ -68,9 +68,7 @@ const Card = ({ content }) => {
             </CardDivRowFooter>
             <CardPriceWrapper>
               <CardSpanPrice>from:</CardSpanPrice>
-              {setPriceFormat(
-                content.original_retail_price.formatted_iso_value
-              )}
+              {setPriceFormat(content.original_retail_price.formatted_value)}
             </CardPriceWrapper>
           </CardSectionFooter>
         </CardWrapper>
