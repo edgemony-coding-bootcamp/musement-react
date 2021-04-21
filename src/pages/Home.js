@@ -22,6 +22,7 @@ import Footer from '../components/Footer';
 
 function Home() {
   const { userLang } = useSelector((state) => state.languages);
+
   const dispatch = useDispatch();
   let { path } = useRouteMatch();
   let { lang } = useParams();

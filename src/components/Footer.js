@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import React from 'react';
 import {
   DropdownOption,
@@ -7,10 +8,12 @@ import {
   FooterWrapper,
   LabelDropdown,
 } from '../styles';
-import { LANGUAGES } from '../config.json';
+import { LANGUAGES, CURRENCY, DEF_CURR, DEF_LANG } from '../config.json';
 import { setUserLang } from '../redux/languages/languageActions';
 import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router';
+import { setUserCurrency } from '../redux/currencies/currencyActions';
+import { setCurrencyHeader } from '../services/axiosConfig';
 
 function Footer() {
   let history = useHistory();
@@ -18,6 +21,10 @@ function Footer() {
   const setLang = (value) => {
     dispatch(setUserLang(value));
     history.push(`/${value}`);
+  };
+  const setCurrency = (value) => {
+    dispatch(setUserCurrency(value));
+    setCurrencyHeader(value);
   };
 
   return (
@@ -27,7 +34,7 @@ function Footer() {
         <FooterDropdown>
           <LabelDropdown htmlFor='language'></LabelDropdown>
           <DropdownSelect
-            // eslint-disable-next-line prettier/prettier
+            defaultValue={DEF_LANG}
             onChange={(e) => setLang(e.target.value)}>
             {LANGUAGES.map((item) => (
               <DropdownOption key={item.id} value={item.id}>
@@ -38,8 +45,15 @@ function Footer() {
         </FooterDropdown>
         <FooterDropdown>
           <LabelDropdown htmlFor='currency'></LabelDropdown>
-          <DropdownSelect id='currency'>
-            <DropdownOption value='EUR'>Euro</DropdownOption>
+          <DropdownSelect
+            defaultValue={DEF_CURR}
+            id='currency'
+            onChange={(e) => setCurrency(e.target.value)}>
+            {CURRENCY.map((item) => (
+              <DropdownOption key={item.code} value={item.code}>
+                {item.symbol} {item.name}
+              </DropdownOption>
+            ))}
           </DropdownSelect>
         </FooterDropdown>
       </FooterDropdownWrapper>

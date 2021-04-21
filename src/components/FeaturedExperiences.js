@@ -8,13 +8,14 @@ function FeaturedExperiences() {
   const experiencesState = useSelector((state) => state.experiences);
   const { experiences } = experiencesState;
   const { userLang } = useSelector((state) => state.languages);
+  const { userCurrency } = useSelector((state) => state.currencies);
 
   useEffect(() => {
     setTimeout(() => {
       dispatch(fetchExperiences());
     }, 1);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [userLang]);
+  }, [userLang, userCurrency]);
   return (
     <>
       {experiences.length > 0
