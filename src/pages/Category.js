@@ -31,6 +31,7 @@ const CategoryImgHover = styled.div`
 `;
 
 const CategoryImg = styled.img`
+  object-fit: cover;
   width: 100%;
   height: 100%;
 `;
@@ -45,17 +46,24 @@ const CategoryName = styled.span`
 `;
 
 export const Category = ({ categories }) => {
-  console.log(categories);
   let { idCateg } = useParams();
+  console.log(categories);
+  const selectedCategory = categories.find((categ) => categ.slug === idCateg);
 
   return (
     <>
       <CategoryImgWrapper>
         <CategoryImgBackground>
-          <CategoryImg src='https://assets-global.website-files.com/6005fac27a49a9cd477afb63/60576840e7d265198541a372_bavassano_homepage_gp.jpg' />
+          <CategoryImg
+            src={selectedCategory.cover_image_url}
+            alt={selectedCategory.name}
+          />
         </CategoryImgBackground>
         <CategoryImgHover>
-          <CategoryImg src='https://assets-global.website-files.com/6005fac27a49a9cd477afb63/60576840e7d265198541a372_bavassano_homepage_gp.jpg' />
+          <CategoryImg
+            src={selectedCategory.cover_image_url}
+            alt={selectedCategory.name}
+          />
         </CategoryImgHover>
       </CategoryImgWrapper>
       <CategoryGoHome to=''>Home</CategoryGoHome>
