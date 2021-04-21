@@ -287,12 +287,14 @@ export const CategoryLinkContainer = styled(FlexRowWrap)`
   justify-content: space-evenly;
   border-left: solid ${color.alternativec} 1px;
 `;
-export const CategoryLink = styled.div`
+export const CategoryLink = styled(Link)`
   height: 36px;
   padding: 0.2rem;
   margin: 0 0.7rem;
   display: flex;
   align-items: center;
+  color: ${stylesVar.colorBlack};
+  text-decoration: none;
 `;
 
 export const CategoryLinkLoader = styled(Div)`

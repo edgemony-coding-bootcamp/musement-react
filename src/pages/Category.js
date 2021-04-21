@@ -1,5 +1,7 @@
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import styled from 'styled-components';
+
+// STYLED COMPONENT FOR PAGE'S CATEGORY
 
 const CategoryImgWrapper = styled.div`
   max-width: 1350px;
@@ -15,6 +17,7 @@ const CategoryImgBackground = styled.div`
   height: 380px;
   position: absolute;
   z-index: 1;
+  opacity: 0.7;
 `;
 
 const CategoryImgHover = styled.div`
@@ -41,7 +44,10 @@ const CategoryName = styled.span`
   margin-left: 8px;
 `;
 
-export const Category = () => {
+export const Category = ({ categories }) => {
+  console.log(categories);
+  let { idCateg } = useParams();
+
   return (
     <>
       <CategoryImgWrapper>
@@ -53,7 +59,7 @@ export const Category = () => {
         </CategoryImgHover>
       </CategoryImgWrapper>
       <CategoryGoHome to=''>Home</CategoryGoHome>
-      <CategoryName>{'> Category Name'}</CategoryName>
+      <CategoryName>{`› ${idCateg}`}</CategoryName>
     </>
   );
 };

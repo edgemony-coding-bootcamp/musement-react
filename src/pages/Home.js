@@ -22,6 +22,8 @@ import { Category } from './Category';
 
 function Home() {
   const { userLang } = useSelector((state) => state.languages);
+  const categoryState = useSelector((state) => state.categories);
+  const { categories } = categoryState;
 
   const dispatch = useDispatch();
   let { path } = useRouteMatch();
@@ -49,9 +51,9 @@ function Home() {
     <>
       <Header />
       <Switch>
-        <Route path={`/${lang}/category`}>
+        <Route path={`/${lang}/:idCateg`}>
           <Main>
-            <Category />
+            <Category categories={categories} />
           </Main>
         </Route>
         <Route path={`/${lang}`}>

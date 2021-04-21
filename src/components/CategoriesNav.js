@@ -1,6 +1,6 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-
+import { useParams } from 'react-router';
 import {
   CategoryLinkLoader,
   CategoryLinkWrap,
@@ -14,13 +14,14 @@ import {
 } from '../styles';
 
 function CategoriesNav() {
+  let { lang } = useParams();
   const categoryState = useSelector((state) => state.categories);
   const { categories, loading, error } = categoryState;
 
   const ShowCategories = categories.map((cat) => (
     <CategoryLinkWrap key={cat.id}>
       <CategoryLinkContainer>
-        <CategoryLink>
+        <CategoryLink to={`/${lang}/${cat.slug}`}>
           <CategoriesSvgIcon>{categoriesSvgIcons[cat.id]}</CategoriesSvgIcon>
           <Span>{cat.name}</Span>
         </CategoryLink>
