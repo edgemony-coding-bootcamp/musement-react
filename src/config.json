@@ -2,6 +2,7 @@
   "BASE_URL": "https://sandbox.musement.com/api/v3/",
   "API_VERSION": "3.4.0",
   "DEF_LANG": "uk",
+  "DEF_CURR": "GBP",
 
   "LANGUAGES": [
     { "id": "uk", "iso86": "en-GB", "label": "English UK" },
@@ -25,5 +26,69 @@
     { "id": "nl", "iso86": "nl-NL", "label": "Dutch" },
 
     { "id": "pl", "iso86": "pl-PL", "label": "Polish" }
+  ],
+  "CURRENCY": [
+    { "code": "EUR", "name": "Euro", "symbol": "\u20ac" },
+    { "code": "USD", "name": "US Dollar", "symbol": "$" },
+    { "code": "GBP", "name": "British Pound", "symbol": "\u00a3" },
+    { "code": "CHF", "name": "Swiss Franc", "symbol": "CHF" },
+    { "code": "CAD", "name": "Canadian Dollar", "symbol": "C$" },
+    { "code": "AUD", "name": "Australian Dollar", "symbol": "AU$" },
+    {
+      "code": "AED",
+      "name": "United Arab Emirates Dirham",
+      "symbol": "\u062f.\u0625"
+    },
+    { "code": "ARS", "name": "Argentine Peso", "symbol": "ARS" },
+    {
+      "code": "AZN",
+      "name": "Azerbaijani Manat",
+      "symbol": "\u043c\u0430\u043d"
+    },
+    { "code": "BGN", "name": "Bulgarian Lev", "symbol": "\u043b\u0432" },
+    { "code": "BHD", "name": "Bahraini Dinar", "symbol": ".\u062f.\u0628" },
+    { "code": "CLP", "name": "Chilean Peso", "symbol": "CLP$" },
+    { "code": "CNY", "name": "Chinese Yuan", "symbol": "\u00a5" },
+    { "code": "COP", "name": "Colombian Peso", "symbol": "COL$" },
+    { "code": "CZK", "name": "Czech Koruna", "symbol": "K\u010d" },
+    { "code": "DKK", "name": "Danish Krone", "symbol": "DKK" },
+    { "code": "EGP", "name": "Egyptian Pound", "symbol": "\u062c.\u0645" },
+    { "code": "FJD", "name": "Fijian Dollar", "symbol": "FJ$" },
+    { "code": "GEL", "name": "Georgian Lari", "symbol": "\u10da" },
+    { "code": "HKD", "name": "Hong Kong Dollar", "symbol": "HK$" },
+    { "code": "HUF", "name": "Hungarian Forint", "symbol": "Ft" },
+    { "code": "IDR", "name": "Indonesian Rupiah", "symbol": "Rp" },
+    { "code": "ILS", "name": "Israeli New Shekel", "symbol": "\u20aa" },
+    { "code": "INR", "name": "Indian Rupee", "symbol": "\u20b9" },
+    { "code": "ISK", "name": "Icelandic Kr\u00f3na", "symbol": "\u00cdkr" },
+    { "code": "JOD", "name": "Jordanian Dinar", "symbol": "JD" },
+    { "code": "JPY", "name": "Japanese Yen", "symbol": "\u00a5" },
+    { "code": "KRW", "name": "South Korean Won", "symbol": "\u20a9" },
+    { "code": "KWD", "name": "Kuwaiti Dinar", "symbol": "\u062f.\u0643" },
+    { "code": "KZT", "name": "Kazakhstani Tenge", "symbol": "\u20b8" },
+    { "code": "MDL", "name": "Moldovan Leu", "symbol": "L" },
+    { "code": "MXN", "name": "Mexican Peso", "symbol": "Mex$" },
+    { "code": "MYR", "name": "Malaysian Ringgit", "symbol": "RM" },
+    { "code": "NAD", "name": "Namibian Dollar", "symbol": "N$" },
+    { "code": "NOK", "name": "Norwegian Krone", "symbol": "NOK" },
+    { "code": "NZD", "name": "New Zealand Dollar", "symbol": "NZ$" },
+    { "code": "OMR", "name": "Omani Rial", "symbol": "\u0631.\u0639." },
+    { "code": "PLN", "name": "Polish Zloty", "symbol": "z\u0142" },
+    { "code": "QAR", "name": "Qatari Rial", "symbol": "\u0631.\u0642" },
+    { "code": "RON", "name": "Romanian Leu", "symbol": "lei" },
+    {
+      "code": "RUB",
+      "name": "Russian Ruble",
+      "symbol": "\u0440\u0443\u0431"
+    },
+    { "code": "SAR", "name": "Saudi Riyal", "symbol": "\ufdfc" },
+    { "code": "SEK", "name": "Swedish Krona", "symbol": "kr" },
+    { "code": "SGD", "name": "Singapore Dollar", "symbol": "S$" },
+    { "code": "THB", "name": "Thai Baht", "symbol": "\u0e3f" },
+    { "code": "TRY", "name": "Turkish Lira", "symbol": "\u20ba" },
+    { "code": "TWD", "name": "New Taiwan Dollar", "symbol": "NT$" },
+    { "code": "UAH", "name": "Ukrainian Hryvnia", "symbol": "\u20b4" },
+    { "code": "XOF", "name": "West African CFA Franc", "symbol": "CFA" },
+    { "code": "ZAR", "name": "South African Rand", "symbol": "R" }
   ]
 }
