@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import {
   DropdownOption,
   DropdownSelect,
@@ -8,21 +8,17 @@ import {
   LabelDropdown,
 } from '../styles';
 import { LANGUAGES } from '../config.json';
-import { useDispatch } from 'react-redux';
 import { setUserLang } from '../redux/languages/languageActions';
+import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router';
 
 function Footer() {
-  const dispatch = useDispatch();
   let history = useHistory();
-  const [selectedValue, setSelectedValue] = useState('uk');
-  console.log(selectedValue);
-
-  useEffect(() => {
-    dispatch(setUserLang(selectedValue));
-    history.push(`/${selectedValue}`);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [selectedValue]);
+  const dispatch = useDispatch();
+  const setLang = (value) => {
+    dispatch(setUserLang(value));
+    history.push(`/${value}`);
+  };
 
   return (
     <FooterWrapper>
@@ -31,9 +27,8 @@ function Footer() {
         <FooterDropdown>
           <LabelDropdown htmlFor='language'></LabelDropdown>
           <DropdownSelect
-            value={selectedValue}
             // eslint-disable-next-line prettier/prettier
-            onChange={(e) => setSelectedValue(e.target.value)}>
+            onChange={(e) => setLang(e.target.value)}>
             {LANGUAGES.map((item) => (
               <DropdownOption key={item.id} value={item.id}>
                 {item.label}
