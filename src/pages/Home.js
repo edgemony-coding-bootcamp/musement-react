@@ -22,28 +22,23 @@ import Footer from '../components/Footer';
 
 function Home() {
   const { userLang } = useSelector((state) => state.languages);
-
   const dispatch = useDispatch();
   let { path } = useRouteMatch();
   let { lang } = useParams();
   let history = useHistory();
+
   useEffect(() => {
+    const langConfig = LANGUAGES.map((item) => item.id);
+    const isValidLanguage = langConfig.includes(lang);
+    if (!isValidLanguage) {
+      const newUrl = history.location.pathname.replace(`/${lang}`, '');
+      history.push(`/${DEF_LANG}${newUrl}`);
+    }
     dispatch(setUserLang(lang));
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [lang]);
+  }, [lang, userLang]);
+
   setLangHeader(userLang);
-
-  // getting the keys of supported values from config,json in order to check if the url is valid
-  const langConfig = LANGUAGES.map((item) => item.id);
-
-  // url check with keys from config.json
-  const isValidLanguage = langConfig.includes(lang);
-  if (!isValidLanguage) {
-    const newUrl = history.location.pathname.replace(`/${lang}`, '');
-    history.push(`/${DEF_LANG}${newUrl}`);
-  }
-
-  // setting the language for the header
 
   return (
     <>
