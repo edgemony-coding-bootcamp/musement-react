@@ -1,4 +1,5 @@
 import { PriceFirstNum, PriceSecondNum } from '../styles';
+import { DEF_LANG, LANGUAGES } from '../config.json';
 
 // Replace the value after the fifth value
 
@@ -47,4 +48,16 @@ export const setPriceFormat = (price) => {
       <PriceSecondNum>{lastChart}</PriceSecondNum>
     </>
   );
+};
+
+export const matchDefaultLang = (lang, defLang) => {
+  return lang.find((item) => item.id === defLang).iso86;
+};
+
+export const translate = (language, key) => {
+  let translatedValue = language[key];
+  if (!translatedValue) {
+    return language[matchDefaultLang(LANGUAGES, DEF_LANG)];
+  }
+  return translatedValue;
 };
