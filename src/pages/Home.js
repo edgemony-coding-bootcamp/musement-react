@@ -54,7 +54,7 @@ function Home() {
             <CarouselSection>
               <CarouselTitle title={'Featured Experiences'} />
               <Carousel>
-                <FeaturedExperiences />
+                <FeaturedExperiences translatedText={translatedText} />
               </Carousel>
             </CarouselSection>
             <Footer translatedText={translatedText} />

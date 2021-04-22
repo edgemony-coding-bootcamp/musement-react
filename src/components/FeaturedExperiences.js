@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { fetchExperiences } from '../redux/experiences/experienceActions';
 import Card from './Card';
 
-function FeaturedExperiences() {
+function FeaturedExperiences({ translatedText }) {
   const dispatch = useDispatch();
   const experiencesState = useSelector((state) => state.experiences);
   const { experiences } = experiencesState;
@@ -20,7 +20,11 @@ function FeaturedExperiences() {
     <>
       {experiences.length > 0
         ? experiences.map((experience, key) => (
-            <Card key={key} content={experience} />
+            <Card
+              key={key}
+              translatedText={translatedText}
+              content={experience}
+            />
           ))
         : null}
     </>

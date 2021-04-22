@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { CarouselCardWrapper, ArrowRight, ArrowLeft } from '../styles';
 
-const Carousel = ({ children }) => {
+const Carousel = ({ translatedText, children }) => {
   const [current, setCurrent] = useState(0);
   const prevLeft = () => setCurrent(current - 1);
   const nextRight = () => setCurrent(current + 1);
