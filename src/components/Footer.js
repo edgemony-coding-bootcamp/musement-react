@@ -8,14 +8,14 @@ import {
   FooterWrapper,
   LabelDropdown,
 } from '../styles';
-import { LANGUAGES, CURRENCY, DEF_CURR, DEF_LANG } from '../config.json';
+import { LANGUAGES, CURRENCY, DEF_CURR } from '../config.json';
 import { setUserLang } from '../redux/languages/languageActions';
 import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router';
 import { setUserCurrency } from '../redux/currencies/currencyActions';
 import { setCurrencyHeader } from '../services/axiosConfig';
 
-function Footer() {
+function Footer({ translatedText }) {
   let history = useHistory();
   const dispatch = useDispatch();
   const setLang = (value) => {
@@ -30,12 +30,10 @@ function Footer() {
   return (
     <FooterWrapper>
       <FooterDropdownWrapper>
-        Preferences:
+        {translatedText.preferences}
         <FooterDropdown>
           <LabelDropdown htmlFor='language'></LabelDropdown>
-          <DropdownSelect
-            defaultValue={DEF_LANG}
-            onChange={(e) => setLang(e.target.value)}>
+          <DropdownSelect onChange={(e) => setLang(e.target.value)}>
             {LANGUAGES.map((item) => (
               <DropdownOption key={item.id} value={item.id}>
                 {item.label}

@@ -13,12 +13,13 @@ import {
   useRouteMatch,
 } from 'react-router-dom';
 
-import { DEF_LANG, LANGUAGES } from '../config.json';
+import { DEF_LANG, LANGUAGES, TRANSLATIONS } from '../config.json';
 import { setLangHeader } from '../services/axiosConfig';
 import Carousel from '../components/Carousel';
 import FeaturedExperiences from '../components/FeaturedExperiences';
 import CarouselTitle from '../components/CarouselTitle';
 import Footer from '../components/Footer';
+import { translate } from '../utilities';
 
 function Home() {
   const { userLang } = useSelector((state) => state.languages);
@@ -36,25 +37,27 @@ function Home() {
       history.push(`/${DEF_LANG}${newUrl}`);
     }
     dispatch(setUserLang(lang));
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [lang, userLang]);
 
+  let translatedText = translate(TRANSLATIONS, userLang);
   setLangHeader(userLang);
 
   return (
     <>
-      <Header />
+      <Header translatedText={translatedText} />
       <Switch>
         <Route path={`/${lang}`}>
           <Main>
-            <Hero />
+            <Hero translatedText={translatedText} />
             <CarouselSection>
               <CarouselTitle title={'Featured Experiences'} />
               <Carousel>
                 <FeaturedExperiences />
               </Carousel>
             </CarouselSection>
-            <Footer />
+            <Footer translatedText={translatedText} />
           </Main>
         </Route>
         <Route path={`${path}/:category`}>

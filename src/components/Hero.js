@@ -16,17 +16,17 @@ import {
   BannerContainer,
 } from '../styles';
 
-function Hero() {
+function Hero({ translatedText }) {
   let isTablet = useMediaQuery(`${device.tablet}`);
 
   return (
     <>
       <HeroContainer>
         <HeroTitle>
-          <HeroSpan>BOOK TICKETS TO MUSEUMS,</HeroSpan>
-          <HeroSpan foo> ATTRACTIONS AND FUN ACTIVITIES</HeroSpan>
+          <HeroSpan>{translatedText.hero1}</HeroSpan>
+          <HeroSpan foo> {translatedText.hero2}</HeroSpan>
           <HeroSpan bar>
-            <br /> ALL OVER THE WORLD
+            <br /> {translatedText.hero3}
           </HeroSpan>
         </HeroTitle>
       </HeroContainer>
@@ -36,24 +36,17 @@ function Hero() {
             <>
               <CancellationSvgIcon />
               <Div>
-                <H3>Free cancellation</H3>
-                <P>
-                  We understand how important flexibility is right now. That's
-                  why we offer free cancellation on thousands of experiences. No
-                  waiting, no stress, just one click and it's done!
-                </P>
+                <H3>{translatedText.freecancellation}</H3>
+                <P>{translatedText.freecancellationmessage}</P>
               </Div>
             </>
           ) : (
             <>
               <FlexRowWrap>
-                <CancellationSvgIcon /> <H3>Free cancellation</H3>
+                <CancellationSvgIcon />{' '}
+                <H3>{translatedText.freecancellation}</H3>
               </FlexRowWrap>
-              <P>
-                We understand how important flexibility is right now. That's why
-                we offer free cancellation on thousands of experiences. No
-                waiting, no stress, just one click and it's done!
-              </P>
+              <P>{translatedText.freecancellationmessage}</P>
             </>
           )}
         </InfoBanner>
@@ -62,24 +55,16 @@ function Hero() {
             <>
               <SafetySvgIcon />
               <Div>
-                <H3>Health & safety measures</H3>
-                <P>
-                  We want you to enjoy unforgettable experiences in the safest
-                  way possible. So we've made sure all the necessary health
-                  measures are in place, from sanitizing to social distancing.
-                </P>
+                <H3>{translatedText.healthsafetymeasures}</H3>
+                <P>{translatedText.healthsafetymessage}</P>
               </Div>
             </>
           ) : (
             <>
               <FlexRowWrap>
-                <SafetySvgIcon /> <H3>Health & safety measures</H3>
+                <SafetySvgIcon /> <H3>{translatedText.healthsafetymeasures}</H3>
               </FlexRowWrap>
-              <P>
-                We want you to enjoy unforgettable experiences in the safest way
-                possible. So we've made sure all the necessary health measures
-                are in place, from sanitizing to social distancing.
-              </P>
+              <P>{translatedText.healthsafetymessage}</P>
             </>
           )}
         </InfoBanner>
