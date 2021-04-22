@@ -7,10 +7,10 @@ import { experienceListReducer } from './experiences/experienceReducers';
 import { languageReducer } from './languages/languageReducers';
 import { currencyReducer } from './currencies/currencyReducers';
 
-import { DEF_LANG, LANGUAGES, DEF_CURR, CURRENCY } from '../config.json';
+import { DEF_LANG, LANGUAGES, DEF_CURR, CURRENCIES } from '../config.json';
 import { matchDefaultLang } from '../utilities';
 
-const defaultCurrency = CURRENCY.find((item) => item.code === DEF_CURR);
+const defaultCurrency = CURRENCIES.find((item) => item.code === DEF_CURR);
 
 /* Combined Reducers */
 

@@ -27,7 +27,7 @@
 
     { "id": "pl", "iso86": "pl-PL", "label": "Polish" }
   ],
-  "CURRENCY": [
+  "CURRENCIES": [
     { "code": "EUR", "name": "Euro", "symbol": "\u20ac" },
     { "code": "USD", "name": "US Dollar", "symbol": "$" },
     { "code": "GBP", "name": "British Pound", "symbol": "\u00a3" },

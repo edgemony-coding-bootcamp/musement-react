@@ -8,7 +8,7 @@ import {
   FooterWrapper,
   LabelDropdown,
 } from '../styles';
-import { LANGUAGES, CURRENCY, DEF_CURR } from '../config.json';
+import { LANGUAGES, CURRENCIES, DEF_CURR } from '../config.json';
 import { setUserLang } from '../redux/languages/languageActions';
 import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router';
@@ -47,7 +47,7 @@ function Footer({ translatedText }) {
             defaultValue={DEF_CURR}
             id='currency'
             onChange={(e) => setCurrency(e.target.value)}>
-            {CURRENCY.map((item) => (
+            {CURRENCIES.map((item) => (
               <DropdownOption key={item.code} value={item.code}>
                 {item.symbol} {item.name}
               </DropdownOption>
