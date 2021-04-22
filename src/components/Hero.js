@@ -25,9 +25,8 @@ function Hero({ translatedText }) {
         <HeroTitle>
           <HeroSpan>{translatedText.hero1}</HeroSpan>
           <HeroSpan foo> {translatedText.hero2}</HeroSpan>
-          <HeroSpan bar>
-            <br /> {translatedText.hero3}
-          </HeroSpan>
+          <br />
+          <HeroSpan bar>{translatedText.hero3}</HeroSpan>
         </HeroTitle>
       </HeroContainer>
       <BannerContainer>
