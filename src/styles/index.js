@@ -733,13 +733,17 @@ export const FooterWrapper = styled.footer`
   width: 100%;
   overflow: hidden;
   background-color: ${color.primary};
+  border: 1px solid red;
   display: flex;
-  justify-content: flex-end;
+  justify-content: center;
+  align-items: center;
+
+  @media ${device.laptop} {
+    justify-content: flex-end;
+  }
 `;
 
-export const FooterDropdownWrapper = styled.div`
-  width: 25vw;
-`;
+export const FooterDropdownWrapper = styled.div``;
 
 export const FooterDropdown = styled.div`
   width: 200px;
