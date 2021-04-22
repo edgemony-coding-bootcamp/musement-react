@@ -90,5 +90,27 @@
     { "code": "UAH", "name": "Ukrainian Hryvnia", "symbol": "\u20b4" },
     { "code": "XOF", "name": "West African CFA Franc", "symbol": "CFA" },
     { "code": "ZAR", "name": "South African Rand", "symbol": "R" }
-  ]
+  ],
+  "TRANSLATIONS": {
+    "en-GB": {
+      "hero1": "BOOK TICKETS TO MUSEUMS,",
+      "hero2": "ATTRACTIONS AND FUN ACTIVITIES",
+      "hero3": "ALL OVER THE WORLD",
+      "freecancellation": "Free cancellation",
+      "freecancellationmessage": "We understand how important flexibility is right now. That's why we offer free cancellation on thousands of experiences. No waiting, no stress, just one click and it's done!",
+      "healthsafetymeasures": "Health & safety measures",
+      "healthsafetymessage": "We want you to enjoy unforgettable experiences in the safest way possible. So we've made sure all the necessary health measures are in place, from sanitizing to social distancing.",
+      "preferences": "Preferences:"
+    },
+    "it-IT": {
+      "hero1": "BIGLIETTI PER ",
+      "hero2": "MUSEI E TANTO ALTRO",
+      "hero3": "IN VIAGGIO E NELLA TUA CITTÀ",
+      "freecancellation": "Cancellazione gratuita",
+      "freecancellationmessage": "Capiamo quanto sia importante la flessibilità in questo momento. Ecco perché offriamo la cancellazione gratuita su migliaia di esperienze. Nessuna attesa, niente stress, solo un click ed è fatta!",
+      "healthsafetymeasures": "Misure sanitarie e di sicurezza",
+      "healthsafetymessage": "Vogliamo che tu viva esperienze indimenticabili nel modo più sicuro possibile. Per questo adottiamo tutte le misure sanitarie necessarie, dall'igienizzazione al distanziamento sociale",
+      "preferences": "Preferenze:"
+    }
+  }
 }
