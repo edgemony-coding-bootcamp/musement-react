@@ -733,7 +733,6 @@ export const FooterWrapper = styled.footer`
   width: 100%;
   overflow: hidden;
   background-color: ${color.primary};
-  border: 1px solid red;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -770,13 +769,8 @@ export const DropdownSelect = styled.select`
   }
 `;
 
-export const DropdownOptionWrapper = styled.div`
-  border-bottom: 1px solid red;
-`;
-
 export const DropdownOption = styled.option`
   display: inline-flex;
   justify-content: space-between;
   margin: 2px;
-  border: red;
 `;
