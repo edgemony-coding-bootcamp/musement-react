@@ -23,7 +23,7 @@ export const parseISODuration = (iso8601Duration) => {
     iso8601Duration.match(iso8601DurationRegex) || [];
 
   if (days === '0' || undefined) {
-    return 'Flessible';
+    return 'Flexible';
   } else {
     return [
       'Duration up to ',
