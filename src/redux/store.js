@@ -5,6 +5,7 @@ import { categoryListReducer } from './categories/categoryReducers';
 import { inspirationListReducer } from './inspirations/inspirationReducers';
 import { experienceListReducer } from './experiences/experienceReducers';
 import { languageReducer } from './languages/languageReducers';
+import { autocompleteListReducer } from './autocomplete/autocompleteReducer';
 
 import { DEF_LANG, SUPPORTED_LANGUAGES } from '../config.json';
 
@@ -17,6 +18,7 @@ const reducer = combineReducers({
   categories: categoryListReducer,
   inspirations: inspirationListReducer,
   experiences: experienceListReducer,
+  searchResults: autocompleteListReducer,
 });
 
 const defaultStore = {
@@ -37,6 +39,10 @@ const defaultStore = {
     experiences: [],
     error: null,
     loading: false,
+  },
+  searchResults: {
+    searchResults: [],
+    inputToSearch: '',
   },
 };
 

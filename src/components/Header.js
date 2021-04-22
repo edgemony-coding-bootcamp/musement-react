@@ -1,6 +1,7 @@
 import { useDispatch, useSelector } from 'react-redux';
 import React, { useEffect, useState } from 'react';
 import { fetchCategories } from '../redux/categories/categoryActions';
+import SearchBar from '../components/SearchBar';
 
 import {
   HeaderWrapper,
@@ -61,11 +62,15 @@ function Header() {
     <>
       <HeaderWrapper scrollInitial={scrollInitial} scrolling={scrolling}>
         {/* in this div we will put the search button */}
-        <div style={{ width: '3rem' }}></div>
+        {/* <div style={{ width: '3rem' }}></div> */}
         {isDesktop ? (
-          <LinkPages to='/'>
-            <HeaderLogoDesktop />
-          </LinkPages>
+          <>
+            <SearchBar />
+            <LinkPages to='/'>
+              <HeaderLogoDesktop />
+            </LinkPages>
+            <div></div>
+          </>
         ) : (
           <>
             <LinkPages to='/'>

@@ -15,6 +15,7 @@ import { ReactComponent as FoodWineSvg } from '../assets/img/food-wine.svg';
 import { ReactComponent as SportSvg } from '../assets/img/sport.svg';
 import { ReactComponent as ActiveAdventureSvg } from '../assets/img/active-adventure.svg';
 import { ReactComponent as ArrowSvg } from '../assets/img/arrow.svg';
+
 import colosseoImg from '../assets/img/cover_hero_home_desktop_colosseo.png';
 
 // THEME
@@ -168,7 +169,7 @@ export const HeaderWrapper = styled.header`
   transition: all 0.35s;
   @media ${device.desktop} {
     height: ${({ scrolling }) => (scrolling ? '70px' : '110px')};
-    justify-content: center;
+    justify-content: space-between;
     box-shadow: ${({ scrolling }) =>
       scrolling && `${stylesVar.boxShadowLight}`};
     border-bottom: ${({ scrollInitial }) =>
@@ -252,6 +253,23 @@ export const ModalHeaderBody = styled(Div)`
   @media ${device.desktop} {
     margin-top: ${({ scrolling }) => (scrolling ? '70px' : '110px')};
   }
+`;
+
+// section SEARCHBAR
+
+export const SearchBarContainer = styled(FlexRowWrap)`
+  width: 330px;
+  height: 35px;
+  align-self: flex-start;
+  border: solid red 1px;
+  & > svg {
+    width: 2rem;
+  }
+`;
+
+export const SearchInput = styled.input`
+  border: none;
+  width: 100%;
 `;
 
 // section CATEGORIES NAV
