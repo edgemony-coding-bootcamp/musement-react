@@ -8,8 +8,8 @@ import { languageReducer } from './languages/languageReducers';
 import { currencyReducer } from './currencies/currencyReducers';
 
 import { DEF_LANG, LANGUAGES, DEF_CURR, CURRENCY } from '../config.json';
+import { matchDefaultLang } from '../utilities';
 
-const defaultLang = LANGUAGES.find((item) => item.id === DEF_LANG);
 const defaultCurrency = CURRENCY.find((item) => item.code === DEF_CURR);
 
 /* Combined Reducers */
@@ -24,7 +24,7 @@ const reducer = combineReducers({
 
 const defaultStore = {
   languages: {
-    userLang: `${defaultLang.iso86}`,
+    userLang: matchDefaultLang(LANGUAGES, DEF_LANG),
   },
   currencies: {
     userCurrency: `${defaultCurrency.code}`,
