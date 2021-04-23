@@ -342,8 +342,7 @@ export const HeroTitle = styled(Div)`
   width: 100%;
   padding: 0.5rem 0;
   text-align: center;
-  letter-spacing: -1px;
-  font-size: 1rem;
+  font-size: 0.875rem;
   font-weight: bold;
 
   @media ${device.tablet} {
@@ -353,10 +352,11 @@ export const HeroTitle = styled(Div)`
     font-size: 1.5rem;
     margin: 0 3rem;
     text-align: left;
-
     background-color: transparent;
+    line-height: 1.2em;
   }
   @media ${device.desktop} {
+    line-height: 1.2em;
     font-size: 2.2rem;
   }
 `;
@@ -370,6 +370,8 @@ export const HeroSpan = styled.span((p) =>
         '@media (min-width: 760px)': {
           color: `${color.primary}`,
           background: `${color.secondary}`,
+          paddingRight: '5px',
+          boxShadow: ' 0 8px 20px 0 rgb(51 51 51 / 20%)',
         },
       }
     : p.bar
@@ -377,12 +379,16 @@ export const HeroSpan = styled.span((p) =>
         '@media (min-width: 760px)': {
           color: `${color.primaryb}`,
           background: `${color.primary}`,
+          padding: '0 5px',
+          marginTop: '10px',
+          boxShadow: ' 0 8px 20px 0 rgb(51 51 51 / 20%)',
         },
       }
     : {
         '@media (min-width: 760px)': {
           color: `${color.primary}`,
           background: `${color.secondary}`,
+          paddingLeft: '5px',
         },
       }
 );
@@ -391,6 +397,12 @@ export const HeroSpan = styled.span((p) =>
 
 export const BannerContainer = styled(FlexRowWrap)`
   overflow-x: scroll;
+
+  &::-webkit-scrollbar {
+    display: none;
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+  }
 `;
 
 export const InfoBanner = styled(Div)`
@@ -459,14 +471,20 @@ export const CarouselCardWrapper = styled.div`
   flex-direction: row;
   flex-wrap: nowrap;
   min-width: 350px;
-  max-width: 350px;
+  max-width: 100%;
   scroll-snap-type: x mandatory;
   overflow-x: scroll;
   scroll-behavior: smooth;
+  padding: 10px 0;
+  &::-webkit-scrollbar {
+    display: none;
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+  }
 
   @media ${device.tablet} {
     min-width: 760px;
-    max-width: 760px;
+    max-width: 100vw;
   }
 `;
 
@@ -508,15 +526,16 @@ export const CardWrapper = styled.div`
   max-width: 290px;
   min-height: 365px;
   border-radius: 6px;
-  box-sizing: border-box;
+  box-sizing: content-box;
   box-shadow: 0 3px 10px -8px;
   margin: 0 10px;
   scroll-snap-align: start;
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
 
   &:hover {
-    transform: translate(0px, -5px) scale(1.025);
-    transition-duration: 450ms;
-    box-shadow: 0 3px 10px -4px;
+    transform: translateY(-7px);
+    box-shadow: 0 10px 25px -7px rgb(0 0 0 / 25%);
+    cursor: pointer;
   }
 
   @media ${device.tablet} {
@@ -524,7 +543,6 @@ export const CardWrapper = styled.div`
     min-height: 380px;
     display: flex;
     flex-direction: column;
-    justify-content: space-evenly;
   }
 
   @media ${device.laptop} {
@@ -532,15 +550,14 @@ export const CardWrapper = styled.div`
     min-height: 380px;
     display: flex;
     flex-direction: column;
-    justify-content: space-evenly;
   }
 
   @media ${device.desktop} {
     max-width: 335px;
     min-height: 430px;
+    height: 100%;
     display: flex;
     flex-direction: column;
-    justify-content: space-evenly;
   }
 `;
 
@@ -549,6 +566,26 @@ export const CardImg = styled.img`
   height: 155px;
   border-top-right-radius: 6px;
   border-top-left-radius: 6px;
+  object-fit: fill;
+
+  @media ${device.desktop} {
+    object-fit: cover;
+  }
+`;
+
+export const CardContentWrapper = styled.div`
+  min-height: calc(365px - 155px);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  @media ${device.tablet} {
+    min-height: calc(380px - 155px);
+  }
+
+  @media ${device.desktop} {
+    min-height: calc(430px - 155px);
+  }
 `;
 
 export const CardSectionHeader = styled.section`
@@ -558,11 +595,11 @@ export const CardSectionHeader = styled.section`
   display: flex;
   text-align: left;
   flex-direction: column;
+  min-height: 157px;
 `;
 
 export const CardSectionBody = styled.section`
-  margin: 0 10px;
-  margin-top: 3px;
+  margin: 3px 10px 0 10px;
   display: flex;
   text-align: left;
   flex-direction: column;
@@ -573,57 +610,71 @@ export const CardSectionBody = styled.section`
 `;
 
 export const CardSectionFooter = styled.section`
-  margin: 0 10px;
-  margin-top: 10px;
+  margin: 10px 10px 0 10px;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
   border-top: 1px solid #bcd8eb;
-
-  @media ${device.laptop} {
-    margin-top: 2px;
-  }
 `;
 
 export const CardCategoryLabel = styled.span`
   width: fit-content;
-  padding: 0px 7px;
-  padding-top: 3px;
+  padding: 3px 7px;
   text-transform: uppercase;
   font-size: 0.75rem;
+  font-weight: 500;
   display: flex;
   border-radius: 1px;
   align-items: center;
   color: ${color.primary};
-  background-color: #ffc34e;
+  background-color: #ffb743;
 `;
 
 export const CardTitle = styled.h3`
-  margin: 0;
-  margin-top: 10px;
-  font-size: 1rem;
+  color: ${color.primaryb};
+  font-size: 16px;
+  line-height: 1.22;
+  text-decoration: none;
+  font-weight: 500;
   cursor: pointer;
+
+  &:hover {
+    text-decoration: underline;
+  }
 `;
 
 export const CardDescription = styled.p`
-  margin: 0px;
-  margin-top: 5px;
-  font-size: 0.75rem;
-  text-align: start;
+  position: relative;
+  margin-top: -10px;
   display: none;
-  color: #aaaaaa;
+  font-family: 300;
+  font-size: 12px;
+  color: ${color.alternative};
+  line-height: 20px;
+  padding-top: 7px;
+  max-height: 42px;
+  overflow: hidden;
+  -webkit-line-clamp: 2;
 
   @media ${device.laptop} {
-    margin-top: 2px;
     display: -webkit-box;
-    line-height: 1.3;
-    -webkit-line-clamp: 2;
-    min-height: 30px;
-    max-height: 28px;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-    text-overflow: ellipsis;
+    padding-top: 5px;
+  }
+  &:after {
+    content: '';
+    position: absolute;
+    top: 30px;
+    right: 0;
+    height: 1em;
+    width: 5em;
+    background: #fff;
+    background: linear-gradient(
+      90deg,
+      hsla(0, 0%, 100%, 0),
+      hsla(0, 0%, 100%, 0.75) 75%,
+      #fff
+    );
   }
 `;
 
@@ -638,7 +689,7 @@ export const CardCancellation = styled.div`
   width: fit-content;
   height: fit-content;
   font-size: 0.75rem;
-  font-weight: 600;
+  font-weight: bold;
   display: flex;
   align-items: center;
   color: #72ca74;
@@ -677,11 +728,12 @@ export const CardLanguage = styled.p`
   margin: 0 3px;
   text-transform: capitalize;
   font-size: 0.75rem;
-  font-weight: 600;
+  font-weight: 400;
   color: black;
 `;
 
 export const CardDurationValue = styled.div`
+  font-weight: 300;
   width: fit-content;
   height: fit-content;
   font-size: 0.75rem;
@@ -698,10 +750,12 @@ export const CardSpanPrice = styled(Span)`
 `;
 
 export const CardSpanRating = styled(Span)`
+  font-weight: 400;
+  font-size: 14px;
   width: fit-content;
   margin-left: 4px;
   display: inline-block;
-  color: black;
+  color: ${color.alternative};
 `;
 
 export const CardStarWrapper = styled.div`
@@ -723,4 +777,54 @@ export const PriceFirstNum = styled.span`
 export const PriceSecondNum = styled(PriceFirstNum)`
   font-size: 0.75rem;
   color: #fa6c50;
+`;
+
+// Section FOOTER
+
+export const FooterWrapper = styled.footer`
+  padding: 25px 0;
+  font-size: 16px;
+  width: 100%;
+  overflow: hidden;
+  background-color: ${color.primary};
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  @media ${device.laptop} {
+    justify-content: flex-end;
+  }
+`;
+
+export const FooterDropdownWrapper = styled.div``;
+
+export const FooterDropdown = styled.div`
+  width: 200px;
+`;
+
+export const LabelDropdown = styled.label`
+  display: block;
+  margin-bottom: 5px;
+  margin-top: 15px;
+`;
+
+export const DropdownSelect = styled.select`
+  font-size: 18px;
+  background-color: ${color.primary};
+  color: ${color.primaryb};
+  border: 1px solid ${color.alternativeb};
+  font-style: italic;
+  width: 100%;
+  height: 40px;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  &:hover {
+    cursor: pointer;
+  }
+`;
+
+export const DropdownOption = styled.option`
+  display: inline-flex;
+  justify-content: space-between;
+  margin: 2px;
 `;

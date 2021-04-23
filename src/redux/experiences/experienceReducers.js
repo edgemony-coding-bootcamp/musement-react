@@ -16,7 +16,7 @@ export const experienceListReducer = (state = {}, action) => {
       return {
         ...state,
         loading: false,
-        experiences: [...state.experiences, action.payload],
+        experiences: action.payload,
       };
 
     case FETCH_EXPERIENCES_ERROR:
