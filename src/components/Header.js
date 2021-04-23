@@ -20,7 +20,6 @@ import {
   FlexColumnWrap,
   P,
 } from '../styles';
-import CategoriesNav from './CategoriesNav';
 
 function Header() {
   const dispatch = useDispatch();
@@ -60,8 +59,6 @@ function Header() {
   return (
     <>
       <HeaderWrapper scrollInitial={scrollInitial} scrolling={scrolling}>
-        {/* in this div we will put the search button */}
-        <div style={{ width: '3rem' }}></div>
         {isDesktop ? (
           <LinkPages to='/'>
             <HeaderLogoDesktop />
@@ -78,7 +75,6 @@ function Header() {
         )}
       </HeaderWrapper>
       <HeaderGoDown />
-      <CategoriesNav />
       {isModalOpen && (
         <ModalHeaderBody scrolling={scrolling}>
           <ModalHeaderOverlay onClick={() => setIsModalOpen(false)} />

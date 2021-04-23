@@ -20,6 +20,8 @@ import Carousel from '../components/Carousel';
 import FeaturedExperiences from '../components/FeaturedExperiences';
 import CarouselTitle from '../components/CarouselTitle';
 import Footer from '../components/Footer';
+import Activities from './Activities';
+import CategoriesNav from '../components/CategoriesNav';
 
 function Home() {
   const { userLang } = useSelector((state) => state.languages);
@@ -47,8 +49,14 @@ function Home() {
     <>
       <Header />
       <Switch>
-        <Route path={`/${lang}`}>
+        <Route path={`/${lang}/activities/:id`}>
           <Main>
+            <Activities />
+          </Main>
+        </Route>
+        <Route exact path={`/${lang}`}>
+          <Main>
+            <CategoriesNav />
             <Hero />
             <CarouselSection>
               <CarouselTitle title={'Featured Experiences'} />
@@ -59,7 +67,7 @@ function Home() {
             <Footer lang={lang} />
           </Main>
         </Route>
-        <Route path={`${path}/:category`}>
+        <Route path={`${path}/*`}>
           <h1>404</h1>
         </Route>
       </Switch>
