@@ -2,7 +2,7 @@
   "BASE_URL": "https://sandbox.musement.com/api/v3/",
   "API_VERSION": "3.4.0",
   "DEF_LANG": "uk",
-  "DEF_CURR": "GBP",
+  "DEFAULT_CURRENCY": "GBP",
 
   "LANGUAGES": [
     { "id": "uk", "iso86": "en-GB", "label": "English UK" },

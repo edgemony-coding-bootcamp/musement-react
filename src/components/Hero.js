@@ -1,4 +1,5 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 
 import {
   HeroTitle,
@@ -16,17 +17,18 @@ import {
   BannerContainer,
 } from '../styles';
 
-function Hero({ translatedText }) {
+function Hero() {
   let isTablet = useMediaQuery(`${device.tablet}`);
+  const { translatedTexts } = useSelector((state) => state.translations);
 
   return (
     <>
       <HeroContainer>
         <HeroTitle>
-          <HeroSpan>{translatedText.hero1}</HeroSpan>
-          <HeroSpan foo> {translatedText.hero2}</HeroSpan>
+          <HeroSpan>{translatedTexts.hero1}</HeroSpan>
+          <HeroSpan foo> {translatedTexts.hero2}</HeroSpan>
           <br />
-          <HeroSpan bar>{translatedText.hero3}</HeroSpan>
+          <HeroSpan bar>{translatedTexts.hero3}</HeroSpan>
         </HeroTitle>
       </HeroContainer>
       <BannerContainer>
@@ -35,17 +37,17 @@ function Hero({ translatedText }) {
             <>
               <CancellationSvgIcon />
               <Div>
-                <H3>{translatedText.freecancellation}</H3>
-                <P>{translatedText.freecancellationmessage}</P>
+                <H3>{translatedTexts.freecancellation}</H3>
+                <P>{translatedTexts.freecancellationmessage}</P>
               </Div>
             </>
           ) : (
             <>
               <FlexRowWrap>
                 <CancellationSvgIcon />{' '}
-                <H3>{translatedText.freecancellation}</H3>
+                <H3>{translatedTexts.freecancellation}</H3>
               </FlexRowWrap>
-              <P>{translatedText.freecancellationmessage}</P>
+              <P>{translatedTexts.freecancellationmessage}</P>
             </>
           )}
         </InfoBanner>
@@ -54,16 +56,17 @@ function Hero({ translatedText }) {
             <>
               <SafetySvgIcon />
               <Div>
-                <H3>{translatedText.healthsafetymeasures}</H3>
-                <P>{translatedText.healthsafetymessage}</P>
+                <H3>{translatedTexts.healthsafetymeasures}</H3>
+                <P>{translatedTexts.healthsafetymessage}</P>
               </Div>
             </>
           ) : (
             <>
               <FlexRowWrap>
-                <SafetySvgIcon /> <H3>{translatedText.healthsafetymeasures}</H3>
+                <SafetySvgIcon />{' '}
+                <H3>{translatedTexts.healthsafetymeasures}</H3>
               </FlexRowWrap>
-              <P>{translatedText.healthsafetymessage}</P>
+              <P>{translatedTexts.healthsafetymessage}</P>
             </>
           )}
         </InfoBanner>

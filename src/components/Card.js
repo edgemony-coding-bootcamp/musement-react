@@ -23,8 +23,10 @@ import { replaceLang, parseISODuration, setPriceFormat } from '../utilities';
 import { ReactComponent as FreeCancellationIcon } from '../assets/img/freeCancellation.svg';
 import { ReactComponent as LanguageIcon } from '../assets/img/languages.svg';
 import { ReactComponent as DurationIcon } from '../assets/img/duration.svg';
+import { useSelector } from 'react-redux';
 
-const Card = ({ translatedText, content }) => {
+const Card = ({ content }) => {
+  const { translatedTexts } = useSelector((state) => state.translations);
   return (
     <>
       {content ? (
@@ -34,8 +36,8 @@ const Card = ({ translatedText, content }) => {
             <CardSectionHeader>
               <CardCategoryLabel>{`${
                 content.ticket
-                  ? `${translatedText.ticketandevents}`
-                  : `${translatedText.attractionandguidetour}`
+                  ? `${translatedTexts.ticketandevents}`
+                  : `${translatedTexts.attractionandguidetour}`
               } `}</CardCategoryLabel>
               <CardTitle>{content.title}</CardTitle>
               <CardDescription>{content.description}</CardDescription>
@@ -45,7 +47,7 @@ const Card = ({ translatedText, content }) => {
                 <IconBodyCard>
                   <FreeCancellationIcon />
                 </IconBodyCard>
-                {translatedText.freecancellation}
+                {translatedTexts.freecancellation}
               </CardCancellation>
               <CardDurationValue>
                 <IconBodyCard>
@@ -58,7 +60,7 @@ const Card = ({ translatedText, content }) => {
                   <IconBodyCard>
                     <LanguageIcon />
                   </IconBodyCard>
-                  {translatedText.availablein}
+                  {translatedTexts.availablein}
                   <CardLanguage>{replaceLang(content.languages)}</CardLanguage>
                 </CardDivRowDescription>
               )}
@@ -73,7 +75,7 @@ const Card = ({ translatedText, content }) => {
                 </CardStarWrapper>
               </CardDivRowFooter>
               <CardPriceWrapper>
-                <CardSpanPrice>{translatedText.from}</CardSpanPrice>
+                <CardSpanPrice>{translatedTexts.from}</CardSpanPrice>
                 {setPriceFormat(content.original_retail_price.formatted_value)}
               </CardPriceWrapper>
             </CardSectionFooter>

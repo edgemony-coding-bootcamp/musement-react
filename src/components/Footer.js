@@ -8,14 +8,15 @@ import {
   FooterWrapper,
   LabelDropdown,
 } from '../styles';
-import { LANGUAGES, CURRENCIES, DEF_CURR } from '../config.json';
+import { LANGUAGES, CURRENCIES, DEFAULT_CURRENCY } from '../config.json';
 import { setUserLang } from '../redux/languages/languageActions';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router';
 import { setUserCurrency } from '../redux/currencies/currencyActions';
 import { setCurrencyHeader } from '../services/axiosConfig';
 
-function Footer({ translatedText }) {
+function Footer({ lang }) {
+  const { translatedTexts } = useSelector((state) => state.translations);
   let history = useHistory();
   const dispatch = useDispatch();
   const setLang = (value) => {
@@ -30,10 +31,12 @@ function Footer({ translatedText }) {
   return (
     <FooterWrapper>
       <FooterDropdownWrapper>
-        {translatedText.preferences}
+        {translatedTexts.preferences}
         <FooterDropdown>
           <LabelDropdown htmlFor='language'></LabelDropdown>
-          <DropdownSelect onChange={(e) => setLang(e.target.value)}>
+          <DropdownSelect
+            defaultValue={lang}
+            onChange={(e) => setLang(e.target.value)}>
             {LANGUAGES.map((item) => (
               <DropdownOption key={item.id} value={item.id}>
                 {item.label}
@@ -44,7 +47,7 @@ function Footer({ translatedText }) {
         <FooterDropdown>
           <LabelDropdown htmlFor='currency'></LabelDropdown>
           <DropdownSelect
-            defaultValue={DEF_CURR}
+            defaultValue={DEFAULT_CURRENCY}
             id='currency'
             onChange={(e) => setCurrency(e.target.value)}>
             {CURRENCIES.map((item) => (

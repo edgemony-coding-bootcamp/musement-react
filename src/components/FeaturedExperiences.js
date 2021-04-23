@@ -3,12 +3,12 @@ import { useDispatch, useSelector } from 'react-redux';
 import { fetchExperiences } from '../redux/experiences/experienceActions';
 import Card from './Card';
 
-function FeaturedExperiences({ translatedText }) {
+function FeaturedExperiences() {
   const dispatch = useDispatch();
   const experiencesState = useSelector((state) => state.experiences);
-  const { experiences } = experiencesState;
   const { userLang } = useSelector((state) => state.languages);
   const { userCurrency } = useSelector((state) => state.currencies);
+  const { experiences } = experiencesState;
 
   useEffect(() => {
     setTimeout(() => {
@@ -20,11 +20,7 @@ function FeaturedExperiences({ translatedText }) {
     <>
       {experiences.length > 0
         ? experiences.map((experience, key) => (
-            <Card
-              key={key}
-              translatedText={translatedText}
-              content={experience}
-            />
+            <Card key={key} content={experience} />
           ))
         : null}
     </>
