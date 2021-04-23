@@ -84,6 +84,7 @@ export const Span = styled.span``;
 export const Svg = styled.svg``;
 
 export const Main = styled.main`
+  max-width: 100vw;
   @media ${device.desktop} {
     margin: 0 40px;
   }
@@ -779,6 +780,131 @@ export const PriceSecondNum = styled(PriceFirstNum)`
   color: #fa6c50;
 `;
 
+// Section ACTIVITY PAGE
+
+export const SectionWrapper = styled.section`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 0;
+
+  @media ${device.desktop} {
+    padding: 0 20px;
+  }
+`;
+
+export const Jumbotron = styled.div`
+  position: relative;
+  width: 100%;
+`;
+
+export const BackdropImage = styled.img`
+  width: 100%;
+  height: 400px;
+  object-fit: cover;
+`;
+
+export const OpenMediaButton = styled.button`
+  position: absolute;
+  bottom: 35px;
+  left: 60px;
+  width: 190px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  background: ${color.primary};
+  height: 50px;
+  border: 1px solid ${color.success};
+  border-radius: 5px;
+  padding: 0 1rem;
+  color: #232323;
+  text-indent: 0;
+  font-size: 0.9375rem;
+`;
+
+export const ContentSection = styled.div`
+  width: 100%;
+  position: relative;
+`;
+
+export const ContentSectionContainer = styled.div`
+  max-width: 1400px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 0 60px;
+`;
+
+export const ContentSectionHeader = styled.div`
+  width: 100%;
+  padding: 15px 20px;
+`;
+export const ContentSectionBody = styled.div`
+  display: flex;
+  flex-direction: column;
+  margin-top: 40px;
+  width: 100%;
+  @media ${device.laptop} {
+    margin-top: 20px;
+    padding-right: 40px;
+  }
+  @media ${device.desktop} {
+    padding: 60px;
+  }
+`;
+
+export const ContentTitle = styled.h2`
+  font-size: 2rem;
+`;
+
+export const ContentUrl = styled.span``;
+
+export const ContentFeaturesSection = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 25px;
+  @media ${device.laptop} {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+`;
+
+export const FeaturesDiv = styled.div`
+  border: none;
+  min-width: 50%;
+  max-width: 50%;
+  height: 60px;
+  display: inline-flex;
+  align-items: center;
+  border-bottom: 1px solid ${color.alternativeb};
+  @media ${device.laptop} {
+    :first-child {
+      border-top: 1px solid ${color.alternativeb};
+    }
+    &:nth-child(2) {
+      border-top: 1px solid ${color.alternativeb};
+    }
+    &:last-child {
+      background-color: ${bgColor.primaryb};
+      min-width: 100%;
+      max-width: 100%;
+      justify-content: space-between;
+    }
+  }
+`;
+
+export const ContentDescription = styled.h3``;
+
+export const ContentAbout = styled.p``;
+
 // Section FOOTER
 
 export const FooterWrapper = styled.footer`
@@ -796,7 +922,9 @@ export const FooterWrapper = styled.footer`
   }
 `;
 
-export const FooterDropdownWrapper = styled.div``;
+export const FooterDropdownWrapper = styled.div`
+  margin-right: 150px;
+`;
 
 export const FooterDropdown = styled.div`
   width: 200px;
