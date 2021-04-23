@@ -1,6 +1,6 @@
 import { SET_USER_LANGUAGE } from './languageConstants';
 import { LANGUAGES, DEF_LANG } from '../../config.json';
-import { matchDefaultLang } from '../../utilities';
+import { getLanguageConfiguration } from '../../utilities';
 
 export const languageReducer = (state = {}, action) => {
   const lang = action.payload;
@@ -10,7 +10,7 @@ export const languageReducer = (state = {}, action) => {
   switch (action.type) {
     case SET_USER_LANGUAGE:
       return {
-        userLang: matched?.iso86 || matchDefaultLang(LANGUAGES, DEF_LANG),
+        userLang: matched?.iso86 || getLanguageConfiguration(DEF_LANG),
       };
 
     default:

@@ -7,8 +7,8 @@ import { experienceListReducer } from './experiences/experienceReducers';
 import { languageReducer } from './languages/languageReducers';
 import { currencyReducer } from './currencies/currencyReducers';
 
-import { DEF_LANG, LANGUAGES, DEF_CURR, CURRENCIES } from '../config.json';
-import { matchDefaultLang } from '../utilities';
+import { DEF_LANG, DEF_CURR, CURRENCIES } from '../config.json';
+import { getLanguageConfiguration } from '../utilities';
 
 const defaultCurrency = CURRENCIES.find((item) => item.code === DEF_CURR);
 
@@ -24,7 +24,7 @@ const reducer = combineReducers({
 
 const defaultStore = {
   languages: {
-    userLang: matchDefaultLang(LANGUAGES, DEF_LANG),
+    userLang: getLanguageConfiguration(DEF_LANG),
   },
   currencies: {
     userCurrency: `${defaultCurrency.code}`,

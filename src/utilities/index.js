@@ -50,14 +50,14 @@ export const setPriceFormat = (price) => {
   );
 };
 
-export const matchDefaultLang = (lang, defLang) => {
-  return lang.find((item) => item.id === defLang).iso86;
+export const getLanguageConfiguration = (language) => {
+  return LANGUAGES.find((item) => item.id === language).iso86;
 };
 
-export const translate = (language, key) => {
-  let translatedValue = language[key];
-  if (!translatedValue) {
-    return language[matchDefaultLang(LANGUAGES, DEF_LANG)];
+export const translate = (translations, language) => {
+  let translatedTexts = translations[language];
+  if (!translatedTexts) {
+    return translations[getLanguageConfiguration(DEF_LANG)];
   }
-  return translatedValue;
+  return translatedTexts;
 };
