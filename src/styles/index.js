@@ -268,10 +268,14 @@ export const CategoryWrap = styled(FlexRowWrap)`
   }
 `;
 
-export const CategoryLinkWrap = styled(Div)`
+export const CategoryLinkWrap = styled(Link)`
   display: flex;
   align-items: center;
   flex-shrink: 0;
+  color: ${stylesVar.colorBlack};
+  text-decoration: none;
+  ${({ pathIncludes }) =>
+    pathIncludes ? `box-shadow: inset 0 -6px 0 ${color.secondary};` : ''};
   &:first-child > div {
     border-left: none;
   }
@@ -287,14 +291,13 @@ export const CategoryLinkContainer = styled(FlexRowWrap)`
   justify-content: space-evenly;
   border-left: solid ${color.alternativec} 1px;
 `;
-export const CategoryLink = styled(Link)`
+
+export const CategoryLink = styled.div`
   height: 36px;
   padding: 0.2rem;
   margin: 0 0.7rem;
   display: flex;
   align-items: center;
-  color: ${stylesVar.colorBlack};
-  text-decoration: none;
 `;
 
 export const CategoryLinkLoader = styled(Div)`

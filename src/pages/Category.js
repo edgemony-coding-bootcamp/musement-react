@@ -1,3 +1,4 @@
+import { useSelector } from 'react-redux';
 import { Link, useParams } from 'react-router-dom';
 import styled from 'styled-components';
 
@@ -36,6 +37,12 @@ const CategoryImg = styled.img`
   height: 100%;
 `;
 
+const CategoryImgTop = styled(CategoryImg)`
+  object-fit: none;
+  width: 100%;
+  height: 100%;
+`;
+
 const CategoryGoHome = styled(Link)`
   margin-left: 30px;
   color: black;
@@ -43,11 +50,13 @@ const CategoryGoHome = styled(Link)`
 
 const CategoryName = styled.span`
   margin-left: 8px;
+  text-transform: capitalize;
 `;
 
-export const Category = ({ categories }) => {
+export const Category = () => {
   let { idCateg } = useParams();
-  console.log(categories);
+  const categoryState = useSelector((state) => state.categories);
+  const { categories } = categoryState;
   const selectedCategory = categories.find((categ) => categ.slug === idCateg);
 
   return (
@@ -60,14 +69,14 @@ export const Category = ({ categories }) => {
           />
         </CategoryImgBackground>
         <CategoryImgHover>
-          <CategoryImg
+          <CategoryImgTop
             src={selectedCategory.cover_image_url}
             alt={selectedCategory.name}
           />
         </CategoryImgHover>
       </CategoryImgWrapper>
       <CategoryGoHome to=''>Home</CategoryGoHome>
-      <CategoryName>{`› ${idCateg}`}</CategoryName>
+      <CategoryName>{`› ${selectedCategory.name}`}</CategoryName>
     </>
   );
 };

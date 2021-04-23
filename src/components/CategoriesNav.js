@@ -1,6 +1,6 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { useParams } from 'react-router';
+import { useLocation, useParams, useRouteMatch } from 'react-router';
 import {
   CategoryLinkLoader,
   CategoryLinkWrap,
@@ -18,10 +18,26 @@ function CategoriesNav() {
   const categoryState = useSelector((state) => state.categories);
   const { categories, loading, error } = categoryState;
 
+  let location = useLocation();
+  let match = useRouteMatch();
+
+  const pathIncludes = (location, category) => {
+    const path = match.url + category;
+    if (location.pathname === path) {
+      return true;
+    } else {
+      return false;
+    }
+  };
+
   const ShowCategories = categories.map((cat) => (
-    <CategoryLinkWrap key={cat.id}>
+    <CategoryLinkWrap
+      to={`/${lang}/${cat.slug}`}
+      key={cat.id}
+      pathIncludes={pathIncludes(location, `/${cat.slug}`)}
+    >
       <CategoryLinkContainer>
-        <CategoryLink to={`/${lang}/${cat.slug}`}>
+        <CategoryLink>
           <CategoriesSvgIcon>{categoriesSvgIcons[cat.id]}</CategoriesSvgIcon>
           <Span>{cat.name}</Span>
         </CategoryLink>
