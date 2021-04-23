@@ -277,7 +277,9 @@ export const SearchInput = styled.input`
   font-size: 1rem;
 
   border: none;
-  border-radius: 5px;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+
   &::placeholder {
     font-style: italic;
   }
@@ -288,19 +290,21 @@ export const SearchInput = styled.input`
 
 export const SearchBarContainer = styled(FlexRowWrap)`
   position: relative;
-  min-width: ${(p) => (p.onHero ? '730px' : '290px')};
-  max-width: 400px;
+  min-width: ${(p) => (p.mobile ? '91%' : p.onHero ? '700px' : '290px')};
+  max-width: ${(p) => (p.mobile ? '91%' : '800px')};
   height: ${(p) => (p.onHero ? '72px' : '35px')};
   border: 1px solid ${color.alternativec};
-  margin: ${(p) => (p.onHero ? ' 20px 0 0' : '0 10px')};
+  margin: ${(p) => (p.mobile ? '20px ' : p.onHero ? '20px 0 0' : '0 10px')};
   border-radius: 5px;
-
   background: ${(p) =>
-    p.onHero
-      ? bgColor.primary
+    p.mobile
+      ? color.secondary
       : p.changeBackground
       ? bgColor.primary
+      : p.onHero
+      ? bgColor.primary
       : color.alternativec};
+  box-shadow: 0 2px 8px 0 rgb(0 0 0 / 10%);
   & > svg {
     width: ${(p) => (p.onHero ? '20px' : '17px')};
     height: ${(p) => (p.onHero ? '20px' : '17px')};
@@ -323,9 +327,7 @@ export const ModalSearchBody = styled(Div)`
   font-size: 15px;
   top: 100%;
   z-index: 90;
-
   letter-spacing: -1px;
-
   position: absolute;
   user-select: none;
   box-shadow: 0 2px 8px 0 rgb(0 0 0 / 10%);

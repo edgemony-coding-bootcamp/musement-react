@@ -32,6 +32,7 @@ function Hero() {
           {isTablet && <SearchBar onHero={true} />}
         </HeroTitle>
       </HeroContainer>
+      {isTablet || <SearchBar onHero={true} mobile={true} />}
       <BannerContainer>
         <InfoBanner>
           {isTablet ? (

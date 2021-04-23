@@ -50,7 +50,7 @@ function Header() {
     } else if (b === 'Explore') {
       setModalSrc(categories);
       setModalTitle('Back');
-      return <P>{categories.map((cat) => cat.name)}</P>;
+      return <P>{categories.map((cat) => cat.slug)}</P>;
     }
   }
 
