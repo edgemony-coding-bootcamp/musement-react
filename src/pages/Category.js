@@ -64,19 +64,19 @@ export const Category = () => {
       <CategoryImgWrapper>
         <CategoryImgBackground>
           <CategoryImg
-            src={selectedCategory.cover_image_url}
-            alt={selectedCategory.name}
+            src={selectedCategory?.cover_image_url}
+            alt={selectedCategory?.name}
           />
         </CategoryImgBackground>
         <CategoryImgHover>
           <CategoryImgTop
-            src={selectedCategory.cover_image_url}
-            alt={selectedCategory.name}
+            src={selectedCategory?.cover_image_url}
+            alt={selectedCategory?.name}
           />
         </CategoryImgHover>
       </CategoryImgWrapper>
       <CategoryGoHome to=''>Home</CategoryGoHome>
-      <CategoryName>{`› ${selectedCategory.name}`}</CategoryName>
+      <CategoryName>{`› ${selectedCategory?.name}`}</CategoryName>
     </>
   );
 };
