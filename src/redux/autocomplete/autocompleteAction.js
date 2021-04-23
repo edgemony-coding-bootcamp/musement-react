@@ -10,7 +10,7 @@ export const fetchSearchResults = (text) => {
     dispatch({ type: FETCH_AUTOCOMPLETE_REQUEST });
     try {
       const { data: searchResults } = await axios.get(
-        `/autocomplete?sort_by=-relevance&activity_limit=3&city_limit=2&venue_limit=2&list_limit=2&text=${text}`
+        `/autocomplete?sort_by=-relevance&activity_limit=3&text=${text}`
       );
       dispatch({ type: FETCH_AUTOCOMPLETE_SUCCESS, payload: searchResults });
     } catch (e) {

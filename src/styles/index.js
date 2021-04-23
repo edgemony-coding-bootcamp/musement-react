@@ -15,6 +15,7 @@ import { ReactComponent as FoodWineSvg } from '../assets/img/food-wine.svg';
 import { ReactComponent as SportSvg } from '../assets/img/sport.svg';
 import { ReactComponent as ActiveAdventureSvg } from '../assets/img/active-adventure.svg';
 import { ReactComponent as ArrowSvg } from '../assets/img/arrow.svg';
+import { ReactComponent as SearchIcon } from '../assets/img/search-icon.svg';
 
 import colosseoImg from '../assets/img/cover_hero_home_desktop_colosseo.png';
 
@@ -158,15 +159,28 @@ export const categoriesSvgIcons = {
 // section HEADER
 
 export const HeaderWrapper = styled.header`
-  background-color: ${bgColor.primary};
-  width: 100%;
-  height: 70px;
   position: fixed;
+  top: 0;
+  width: 100vw !important;
+  height: 70px;
   z-index: 10;
   display: flex;
   justify-content: space-between;
   align-items: center;
   transition: all 0.35s;
+  background-color: ${bgColor.primary};
+  & > p {
+    min-width: 290px;
+    max-width: 330px;
+    margin: 0 10px;
+    align-self: center;
+  }
+  & > svg {
+    width: 25px;
+    height: 25px;
+    margin-left: 10px;
+  }
+
   @media ${device.desktop} {
     height: ${({ scrolling }) => (scrolling ? '70px' : '110px')};
     justify-content: space-between;
@@ -257,21 +271,92 @@ export const ModalHeaderBody = styled(Div)`
 
 // section SEARCHBAR
 
-export const SearchBarContainer = styled(FlexRowWrap)`
-  width: 330px;
-  height: 35px;
-  align-self: flex-start;
-  border: solid red 1px;
-  & > svg {
-    width: 2rem;
+export const SearchInput = styled.input`
+  width: 100%;
+
+  font-size: 1rem;
+
+  border: none;
+  border-radius: 5px;
+  &::placeholder {
+    font-style: italic;
+  }
+  &:focus {
+    outline: none;
   }
 `;
 
-export const SearchInput = styled.input`
-  border: none;
-  width: 100%;
+export const SearchBarContainer = styled(FlexRowWrap)`
+  position: relative;
+  min-width: ${(p) => (p.onHero ? '730px' : '290px')};
+  max-width: 400px;
+  height: ${(p) => (p.onHero ? '72px' : '35px')};
+  border: 1px solid ${color.alternativec};
+  margin: ${(p) => (p.onHero ? ' 20px 0 0' : '0 10px')};
+  border-radius: 5px;
+
+  background: ${(p) =>
+    p.onHero
+      ? bgColor.primary
+      : p.changeBackground
+      ? bgColor.primary
+      : color.alternativec};
+  & > svg {
+    width: ${(p) => (p.onHero ? '20px' : '17px')};
+    height: ${(p) => (p.onHero ? '20px' : '17px')};
+    /* margin: auto 2px; */
+    margin: ${(p) => (p.onHero ? 'auto 20px' : 'auto 8px')};
+  }
+  ${SearchInput} {
+    background: ${(p) =>
+      p.onHero
+        ? bgColor.primary
+        : p.changeBackground
+        ? bgColor.primary
+        : color.alternativec};
+  }
 `;
 
+export const ModalSearchBody = styled(Div)`
+  position: absolute;
+  width: 100%;
+  font-size: 15px;
+  top: 100%;
+  z-index: 90;
+
+  letter-spacing: -1px;
+
+  position: absolute;
+  user-select: none;
+  box-shadow: 0 2px 8px 0 rgb(0 0 0 / 10%);
+  color: ${color.primaryb};
+  background-color: ${bgColor.primary};
+  overflow-y: scroll;
+  ${FlexRowWrap} {
+    justify-content: space-between;
+  }
+  ${FlexColumnWrap} {
+    height: 100%;
+    transform: translateX(0);
+    transition: transform 0.2s ease-in-out;
+  }
+  ${H3} {
+    color: ${color.secondary};
+    margin: 24px 10px;
+    font-size: 1rem;
+  }
+  ${P} {
+    padding: 10px 20px;
+    cursor: pointer;
+    border-bottom: 1px solid ${color.alternativec};
+  }
+  ${Span} {
+    color: ${color.primaryb};
+  }
+  /* @media ${device.desktop} {
+    margin-top: ${({ scrolling }) => (scrolling ? '70px' : '110px')};
+  } */
+`;
 // section CATEGORIES NAV
 
 export const CategoryWrap = styled(FlexRowWrap)`

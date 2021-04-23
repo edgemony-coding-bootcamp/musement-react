@@ -15,6 +15,7 @@ import {
   SafetySvgIcon,
   BannerContainer,
 } from '../styles';
+import SearchBar from './SearchBar';
 
 function Hero() {
   let isTablet = useMediaQuery(`${device.tablet}`);
@@ -28,6 +29,7 @@ function Hero() {
           <HeroSpan bar>
             <br /> ALL OVER THE WORLD
           </HeroSpan>
+          {isTablet && <SearchBar onHero={true} />}
         </HeroTitle>
       </HeroContainer>
       <BannerContainer>
