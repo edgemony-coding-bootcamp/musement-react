@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router';
 import Loader from '../components/Loader';
@@ -33,6 +32,8 @@ import {
   IstantActivityIcon,
   SkipActivityIcon,
   IconDiv,
+  GrayFeaturesDiv,
+  AllPicturesIcon,
 } from '../styles';
 import { parseISODuration } from '../utilities';
 
@@ -65,7 +66,8 @@ function Activities() {
             <Jumbotron>
               <BackdropImage src={activity?.city['cover_image_url']} />
               <OpenMediaButton onClick={() => setModalIsOpen(true)}>
-                Open Media
+                <AllPicturesIcon />
+                <P>OpenMedia</P>
               </OpenMediaButton>
             </Jumbotron>
             <ContentSectionContainer>
@@ -89,7 +91,6 @@ function Activities() {
                 </FeaturesDiv>
                 <FeaturesDiv>
                   <IconDiv md>
-                    {' '}
                     <LanguageActivityIcon />
                   </IconDiv>
                   <P bold={true}>Languages:</P>
@@ -97,7 +98,6 @@ function Activities() {
                 </FeaturesDiv>
                 <FeaturesDiv>
                   <IconDiv md>
-                    {' '}
                     <CalendarIcon />
                   </IconDiv>
                   <P bold={true}>Availability:</P>
@@ -105,14 +105,12 @@ function Activities() {
                 </FeaturesDiv>
                 <FeaturesDiv>
                   <IconDiv md>
-                    {' '}
                     <DurationActivityIcon />
                   </IconDiv>
                   {parseISODuration(activity?.validity)}
                 </FeaturesDiv>
                 <FeaturesDiv>
                   <IconDiv md>
-                    {' '}
                     <MobileVoucherIcon />
                   </IconDiv>
                   {activity?.voucher_access_usage === 'MOBILE'
@@ -121,12 +119,11 @@ function Activities() {
                 </FeaturesDiv>
                 <FeaturesDiv>
                   <IconDiv md>
-                    {' '}
                     <SafetyActivityIcon />
                   </IconDiv>
                   {'Safety measures applied'}
                 </FeaturesDiv>
-                <FeaturesDiv>
+                <GrayFeaturesDiv>
                   <IconDiv lg>
                     <IstantActivityIcon />
                   </IconDiv>
@@ -135,7 +132,7 @@ function Activities() {
                     <SkipActivityIcon />
                   </IconDiv>
                   <span>{activity?.features[1]?.name}</span>
-                </FeaturesDiv>
+                </GrayFeaturesDiv>
               </ContentFeaturesSection>
               <ContentSectionBody>
                 <ContentDescription>{activity?.description}</ContentDescription>

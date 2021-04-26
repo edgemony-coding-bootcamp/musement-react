@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import styled, { keyframes } from 'styled-components';
+import styled from 'styled-components';
 
 import { ReactComponent as CancellationSvg } from '../assets/img/free_cancellation_banner.svg';
 import { ReactComponent as SafetySvg } from '../assets/img/safety-measures.svg';
@@ -24,7 +24,7 @@ import { ReactComponent as DurationActivitySvg } from '../assets/img/duration-ac
 import { ReactComponent as SafetyActivitySvg } from '../assets/img/safety.svg';
 import { ReactComponent as IstantActivitySvg } from '../assets/img/istant.svg';
 import { ReactComponent as SkipActivitySvg } from '../assets/img/skip.svg';
-
+import { ReactComponent as AllMediaSvg } from '../assets/img/all_pictures.svg';
 import colosseoImg from '../assets/img/cover_hero_home_desktop_colosseo.png';
 
 // THEME
@@ -478,6 +478,11 @@ export const SafetySvgIcon = styled(SafetySvg)`
   }
 `;
 
+export const AllPicturesIcon = styled(AllMediaSvg)`
+  width: 13px;
+  height: 13px;
+  margin-right: 10px;
+`;
 export const FreeCancellationIcon = styled(FreeCancellationSvg)`
   width: 25px;
   height: 25px;
@@ -904,10 +909,13 @@ export const OpenMediaButton = styled.button`
   height: 50px;
   border: 1px solid ${color.alternativeb};
   border-radius: 5px;
-  padding: 0 1rem;
   color: #232323;
   text-indent: 0;
   font-size: 0.9375rem;
+  & .cls-1 {
+    fill: #333;
+    stroke-width: 0.2;
+  }
 `;
 
 export const ContentSection = styled.div`
@@ -921,7 +929,9 @@ export const ContentSectionContainer = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 0 60px;
+  @media ${device.laptop} {
+    padding: 0 60px;
+  }
 `;
 
 export const ContentSectionHeader = styled.div`
@@ -963,39 +973,49 @@ export const ContentFeaturesSection = styled.div`
 
 export const FeaturesDiv = styled.div`
   border: none;
-  min-width: 50%;
-  max-width: 50%;
+  min-width: 90%;
+  max-width: 90%;
   height: 60px;
   display: inline-flex;
+  flex-wrap: wrap;
   align-items: center;
   border-bottom: 1px solid ${color.alternativeb};
+  &:nth-last-child(-n + 2) {
+    border-bottom: none;
+  }
   @media ${device.laptop} {
+    min-width: 50%;
+    max-width: 50%;
     :first-child {
       border-top: 1px solid ${color.alternativeb};
     }
     &:nth-child(2) {
       border-top: 1px solid ${color.alternativeb};
     }
-    &:nth-child(5) {
+    &:nth-last-child(-n + 3) {
       border-bottom: none;
-    }
-    &:nth-child(6) {
-      border-bottom: none;
-    }
-    &:last-child {
-      border: none;
-      background-color: ${bgColor.primaryb};
-      min-width: 100%;
-      max-width: 100%;
-      justify-content: flex-start;
-      > span {
-        margin-right: 25px;
-      }
     }
   }
   ${({ freeCancellation }) =>
     freeCancellation &&
     `color: ${color.success}; fill: ${color.success}; font-weight:700;`}
+`;
+
+export const GrayFeaturesDiv = styled.div`
+  min-width: 80%;
+  height: 60px;
+  display: inline-flex;
+  align-items: center;
+  border: none;
+  background-color: ${bgColor.primaryb};
+  justify-content: flex-start;
+  @media ${device.laptop} {
+    min-width: 100%;
+    max-width: 100%;
+  }
+  > span {
+    margin-right: 25px;
+  }
 `;
 
 export const ContentDescription = styled.h3``;
