@@ -1,8 +1,12 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router';
-import { getActivityById } from '../redux/activities/activityActions';
+import MediaSlideshow from '../components/MediaSlideshow';
+import {
+  getActivityById,
+  getMediaById,
+} from '../redux/activities/activityActions';
 import {
   SectionWrapper,
   Jumbotron,
@@ -22,14 +26,21 @@ import {
 import { parseISODuration } from '../utilities';
 
 function Activities() {
+  const [modalIsOpen, setModalIsOpen] = useState(false);
   let { id } = useParams();
   const dispatch = useDispatch();
   const { activity, loading, error } = useSelector((state) => state.activity);
 
   useEffect(() => {
     dispatch(getActivityById(id));
+
+    dispatch(getMediaById(id));
   }, []);
   let activityKeys = Object.keys(activity);
+
+  const closeModal = () => {
+    setModalIsOpen(false);
+  };
   return (
     <div>
       {loading ? (
@@ -39,9 +50,12 @@ function Activities() {
       ) : (
         activityKeys.length > 0 && (
           <SectionWrapper>
+            {modalIsOpen && <MediaSlideshow onClose={closeModal} id={id} />}
             <Jumbotron>
               <BackdropImage src={activity?.city['cover_image_url']} />
-              <OpenMediaButton>Open Media</OpenMediaButton>
+              <OpenMediaButton onClick={() => setModalIsOpen(true)}>
+                Open Media
+              </OpenMediaButton>
             </Jumbotron>
             <ContentSectionContainer>
               <ContentSectionHeader>

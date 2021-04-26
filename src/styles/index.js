@@ -15,6 +15,7 @@ import { ReactComponent as FoodWineSvg } from '../assets/img/food-wine.svg';
 import { ReactComponent as SportSvg } from '../assets/img/sport.svg';
 import { ReactComponent as ActiveAdventureSvg } from '../assets/img/active-adventure.svg';
 import { ReactComponent as ArrowSvg } from '../assets/img/arrow.svg';
+import { ReactComponent as CloseSvg } from '../assets/img/close-x.svg';
 import colosseoImg from '../assets/img/cover_hero_home_desktop_colosseo.png';
 
 // THEME
@@ -526,6 +527,35 @@ export const ArrowLeft = styled(Arrow)`
   ${({ current }) => !current && `display: none`}
 `;
 
+export const MediaArrow = styled(ArrowSvg)`
+  width: 25px;
+  height: 25px;
+  position: absolute;
+  top: 50%;
+  fill: white;
+  z-index: 205;
+  cursor: pointer;
+`;
+
+export const MediaArrowRight = styled(MediaArrow)`
+  right: 40px;
+
+  :hover {
+    transform: translateX(3px);
+  }
+  ${({ current, mediaLength }) =>
+    current === mediaLength - 1 ? `display: none` : `display: block`}
+`;
+
+export const MediaArrowLeft = styled(MediaArrow)`
+  transform: rotate(-180deg);
+  left: 40px;
+  :hover {
+    transform: rotate(-180deg) translateX(3px);
+  }
+  ${({ current }) => !current && `display: none`}
+`;
+
 // section CARD
 
 export const CardWrapper = styled.div`
@@ -912,6 +942,93 @@ export const ContentDescription = styled.h3``;
 
 export const ContentAbout = styled.p``;
 
+// Section MEDIASLIDESHOW
+
+export const JumbotronGallery = styled.div`
+  position: fixed;
+  top: 0;
+  min-height: 100vh;
+  min-width: 100vw;
+  z-index: 205;
+`;
+
+export const SectionGallery = styled.section`
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 205;
+`;
+
+export const GalleryCarousel = styled.div`
+  display: flex;
+  flex-direction: row;
+  min-width: 100vw;
+  flex-wrap: nowrap;
+  overflow-x: scroll;
+  overflow-y: hidden;
+  -webkit-overflow-scrolling: touch;
+  scroll-behavior: smooth;
+  -ms-scroll-snap-type: x mandatory;
+  scroll-snap-type: x mandatory;
+`;
+
+export const SlideContainer = styled.div`
+  background-color: rgba(0, 0, 0, 0.75);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-width: 100vw;
+  height: 100vh;
+  scroll-snap-align: start;
+  transition: transform 0.7s ease-in-out;
+
+  ${({ isMoving }) =>
+    isMoving ? `transform: translateX(-${isMoving}vw);` : ''}
+`;
+
+export const SlideImageContainer = styled.div`
+  height: 70%;
+  width: 70%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  z-index: 2;
+`;
+
+export const SlideImage = styled.img`
+  display: block;
+  max-width: 100%;
+  max-height: 100%;
+`;
+
+export const SlideText = styled.span`
+  font-size: 18px;
+  color: #fff;
+  margin-top: 10px;
+  align-self: flex-end;
+`;
+export const GalleryCloseBtn = styled.button`
+  font-size: 2rem;
+  position: absolute;
+  border: none;
+  background: none;
+  right: 20px;
+  width: 20px;
+  top: 20px;
+  z-index: 205;
+  cursor: pointer;
+  color: white;
+`;
+
+export const CloseXSvg = styled(CloseSvg)`
+  fill: white;
+  height: 20px;
+  width: 20px;
+`;
 // Section FOOTER
 
 export const FooterWrapper = styled.footer`
