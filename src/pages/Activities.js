@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router';
+import Loader from '../components/Loader';
 import MediaSlideshow from '../components/MediaSlideshow';
 import {
   getActivityById,
@@ -52,9 +53,9 @@ function Activities() {
     setModalIsOpen(false);
   };
   return (
-    <div>
+    <>
       {loading ? (
-        <div>Loading</div>
+        <Loader />
       ) : error ? (
         <div>error</div>
       ) : (
@@ -144,7 +145,7 @@ function Activities() {
           </SectionWrapper>
         )
       )}
-    </div>
+    </>
   );
 }
 

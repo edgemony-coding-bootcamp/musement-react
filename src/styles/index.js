@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 
 import { ReactComponent as CancellationSvg } from '../assets/img/free_cancellation_banner.svg';
 import { ReactComponent as SafetySvg } from '../assets/img/safety-measures.svg';
@@ -1139,4 +1139,42 @@ export const DropdownOption = styled.option`
   display: inline-flex;
   justify-content: space-between;
   margin: 2px;
+`;
+
+// Section LOADER
+
+export const LoaderBar = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: 4px;
+  background: linear-gradient(
+    90deg,
+    ${color.secondary},
+    ${color.secondary} 50%,
+    #fff 0,
+    #fff
+  );
+  background-size: 200% 100%;
+  z-index: 100000;
+  -webkit-animation-name: loading-data-v-21fdaed0;
+  animation-name: loading-data-v-21fdaed0;
+  -webkit-animation-iteration-count: infinite;
+  animation-iteration-count: infinite;
+  -webkit-animation-timing-function: linear;
+  animation-timing-function: linear;
+  -webkit-animation-duration: 2s;
+  animation-duration: 2s;
+
+  @keyframes loading-data-v-21fdaed0 {
+    0% {
+      background-position: 100%;
+    }
+
+    100% {
+      background-position: -100%;
+    }
+  }
 `;
