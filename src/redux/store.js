@@ -4,6 +4,7 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 import { categoryListReducer } from './categories/categoryReducers';
 import { inspirationListReducer } from './inspirations/inspirationReducers';
 import { experienceListReducer } from './experiences/experienceReducers';
+import { popularExperienceListReducer } from './popular-experiences/popularExperienceReducers';
 import { languageReducer } from './languages/languageReducers';
 
 import { DEF_LANG, SUPPORTED_LANGUAGES } from '../config.json';
@@ -17,6 +18,7 @@ const reducer = combineReducers({
   categories: categoryListReducer,
   inspirations: inspirationListReducer,
   experiences: experienceListReducer,
+  popularExperiences: popularExperienceListReducer,
 });
 
 const defaultStore = {
@@ -35,6 +37,11 @@ const defaultStore = {
   },
   experiences: {
     experiences: [],
+    error: null,
+    loading: false,
+  },
+  popularExperiences: {
+    popularExperiences: [],
     error: null,
     loading: false,
   },
