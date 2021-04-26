@@ -4,7 +4,7 @@ import {
   CardCategoryLabel,
   CardDescription,
   CardDurationValue,
-  IconBodyCard,
+  IconDiv,
   CardImg,
   CardLanguage,
   CardSectionBody,
@@ -49,22 +49,22 @@ const Card = ({ content }) => {
               </CardSectionHeader>
               <CardSectionBody>
                 <CardCancellation cancellation={content.free_cancellation}>
-                  <IconBodyCard>
+                  <IconDiv>
                     <FreeCancellationIcon />
-                  </IconBodyCard>
+                  </IconDiv>
                   {translatedTexts.freecancellation}
                 </CardCancellation>
                 <CardDurationValue>
-                  <IconBodyCard>
+                  <IconDiv>
                     <DurationIcon />
-                  </IconBodyCard>
+                  </IconDiv>
                   {parseISODuration(content.duration)}
                 </CardDurationValue>
                 {content.languages.length > 0 && (
                   <CardDivRowDescription>
-                    <IconBodyCard>
+                    <IconDiv>
                       <LanguageIcon />
-                    </IconBodyCard>
+                    </IconDiv>
                     {translatedTexts.availablein}
                     <CardLanguage>
                       {replaceLang(content.languages)}

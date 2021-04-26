@@ -16,6 +16,15 @@ import { ReactComponent as SportSvg } from '../assets/img/sport.svg';
 import { ReactComponent as ActiveAdventureSvg } from '../assets/img/active-adventure.svg';
 import { ReactComponent as ArrowSvg } from '../assets/img/arrow.svg';
 import { ReactComponent as CloseSvg } from '../assets/img/close-x.svg';
+import { ReactComponent as FreeCancellationSvg } from '../assets/img/freeCancellation.svg';
+import { ReactComponent as LanguageActivitySvg } from '../assets/img/language-activity.svg';
+import { ReactComponent as CalendarSvg } from '../assets/img/calendar.svg';
+import { ReactComponent as MobileVoucherSvg } from '../assets/img/mobile_voucher.svg';
+import { ReactComponent as DurationActivitySvg } from '../assets/img/duration-activity.svg';
+import { ReactComponent as SafetyActivitySvg } from '../assets/img/safety.svg';
+import { ReactComponent as IstantActivitySvg } from '../assets/img/istant.svg';
+import { ReactComponent as SkipActivitySvg } from '../assets/img/skip.svg';
+
 import colosseoImg from '../assets/img/cover_hero_home_desktop_colosseo.png';
 
 // THEME
@@ -27,7 +36,7 @@ export const color = {
   alternative: '#9E9E9E',
   alternativeb: '#bac5c3',
   alternativec: '#edf1f2',
-  success: '#bac5c3',
+  success: '#69bc6b;',
   error: '#edf1f2',
 };
 
@@ -71,7 +80,9 @@ export const device = {
 
 export const Div = styled.div``;
 
-export const P = styled.p``;
+export const P = styled.p`
+  ${({ bold }) => bold && `font-weight: 700; margin:0 5px;`}
+`;
 
 export const H2 = styled.h2`
   font-size: 1.75rem;
@@ -467,6 +478,40 @@ export const SafetySvgIcon = styled(SafetySvg)`
   }
 `;
 
+export const FreeCancellationIcon = styled(FreeCancellationSvg)`
+  width: 25px;
+  height: 25px;
+`;
+export const LanguageActivityIcon = styled(LanguageActivitySvg)`
+  width: 25px;
+  height: 25px;
+`;
+
+export const CalendarIcon = styled(CalendarSvg)`
+  width: 25px;
+  height: 25px;
+`;
+export const MobileVoucherIcon = styled(MobileVoucherSvg)`
+  height: 25px;
+  width: 25px;
+`;
+export const DurationActivityIcon = styled(DurationActivitySvg)`
+  height: 25px;
+  width: 25px;
+`;
+export const SafetyActivityIcon = styled(SafetyActivitySvg)`
+  height: 25px;
+  width: 25px;
+`;
+export const IstantActivityIcon = styled(IstantActivitySvg)`
+  height: 33px;
+  width: 33px;
+`;
+export const SkipActivityIcon = styled(SkipActivitySvg)`
+  height: 33px;
+  width: 33px;
+`;
+
 // section CAROUSEL
 
 export const CarouselTitleContainer = styled.div`
@@ -716,11 +761,13 @@ export const CardDescription = styled.p`
   }
 `;
 
-export const IconBodyCard = styled.div`
+export const IconDiv = styled.div`
   width: 20px;
   height: 20px;
   margin-right: 5px;
   display: inline-block;
+  ${({ md }) => md && 'width: 25px; height: 25px;'}
+  ${({ lg }) => lg && 'width: 33px; height: 33px;'}
 `;
 
 export const CardCancellation = styled.div`
@@ -730,8 +777,8 @@ export const CardCancellation = styled.div`
   font-weight: bold;
   display: flex;
   align-items: center;
-  color: #72ca74;
-  fill: #72ca74;
+  color: ${color.success};
+  fill: ${color.success};
 
   ${({ cancellation }) => (cancellation ? '' : `display: none;`)}
 `;
@@ -855,7 +902,7 @@ export const OpenMediaButton = styled.button`
   cursor: pointer;
   background: ${color.primary};
   height: 50px;
-  border: 1px solid ${color.success};
+  border: 1px solid ${color.alternativeb};
   border-radius: 5px;
   padding: 0 1rem;
   color: #232323;
@@ -929,13 +976,26 @@ export const FeaturesDiv = styled.div`
     &:nth-child(2) {
       border-top: 1px solid ${color.alternativeb};
     }
+    &:nth-child(5) {
+      border-bottom: none;
+    }
+    &:nth-child(6) {
+      border-bottom: none;
+    }
     &:last-child {
+      border: none;
       background-color: ${bgColor.primaryb};
       min-width: 100%;
       max-width: 100%;
-      justify-content: space-between;
+      justify-content: flex-start;
+      > span {
+        margin-right: 25px;
+      }
     }
   }
+  ${({ freeCancellation }) =>
+    freeCancellation &&
+    `color: ${color.success}; fill: ${color.success}; font-weight:700;`}
 `;
 
 export const ContentDescription = styled.h3``;

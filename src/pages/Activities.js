@@ -22,6 +22,16 @@ import {
   ContentFeaturesSection,
   ContentDescription,
   ContentAbout,
+  LanguageActivityIcon,
+  FreeCancellationIcon,
+  P,
+  CalendarIcon,
+  MobileVoucherIcon,
+  DurationActivityIcon,
+  SafetyActivityIcon,
+  IstantActivityIcon,
+  SkipActivityIcon,
+  IconDiv,
 } from '../styles';
 import { parseISODuration } from '../utilities';
 
@@ -68,26 +78,61 @@ function Activities() {
                 <ContentUrl>{` Home > ${activity?.city['name']} > ${activity?.title}`}</ContentUrl>
               </ContentSectionHeader>
               <ContentFeaturesSection>
-                <FeaturesDiv>
+                <FeaturesDiv freeCancellation={true}>
+                  <IconDiv md>
+                    <FreeCancellationIcon />
+                  </IconDiv>
                   {activity?.free_cancellation
-                    ? 'Cancellazione Gratuita'
+                    ? 'Cancellazione gratuita'
                     : null}
                 </FeaturesDiv>
                 <FeaturesDiv>
-                  Languages: {activity?.languages.map((item) => item.name)}
+                  <IconDiv md>
+                    {' '}
+                    <LanguageActivityIcon />
+                  </IconDiv>
+                  <P bold={true}>Languages:</P>
+                  {activity?.languages.map((item) => item.name).join(', ')}
                 </FeaturesDiv>
-                <FeaturesDiv>{activity?.operational_days}</FeaturesDiv>
                 <FeaturesDiv>
+                  <IconDiv md>
+                    {' '}
+                    <CalendarIcon />
+                  </IconDiv>
+                  <P bold={true}>Availability:</P>
+                  {activity?.operational_days}
+                </FeaturesDiv>
+                <FeaturesDiv>
+                  <IconDiv md>
+                    {' '}
+                    <DurationActivityIcon />
+                  </IconDiv>
                   {parseISODuration(activity?.validity)}
                 </FeaturesDiv>
                 <FeaturesDiv>
+                  <IconDiv md>
+                    {' '}
+                    <MobileVoucherIcon />
+                  </IconDiv>
                   {activity?.voucher_access_usage === 'MOBILE'
                     ? 'Mobile voucher accepted'
                     : null}
                 </FeaturesDiv>
-                <FeaturesDiv>{'Safety measures applied'}</FeaturesDiv>
                 <FeaturesDiv>
+                  <IconDiv md>
+                    {' '}
+                    <SafetyActivityIcon />
+                  </IconDiv>
+                  {'Safety measures applied'}
+                </FeaturesDiv>
+                <FeaturesDiv>
+                  <IconDiv lg>
+                    <IstantActivityIcon />
+                  </IconDiv>
                   <span>{activity?.features[0]?.name}</span>
+                  <IconDiv lg>
+                    <SkipActivityIcon />
+                  </IconDiv>
                   <span>{activity?.features[1]?.name}</span>
                 </FeaturesDiv>
               </ContentFeaturesSection>
