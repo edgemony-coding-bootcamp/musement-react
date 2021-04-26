@@ -22,10 +22,18 @@ function Footer({ lang }) {
   const setLang = (value) => {
     dispatch(setUserLang(value));
     history.push(`/${value}`);
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth',
+    });
   };
   const setCurrency = (value) => {
     dispatch(setUserCurrency(value));
     setCurrencyHeader(value);
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth',
+    });
   };
 
   return (
