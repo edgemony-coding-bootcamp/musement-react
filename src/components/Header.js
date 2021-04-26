@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { fetchCategories } from '../redux/categories/categoryActions';
 import SearchBar from '../components/SearchBar';
 import { ReactComponent as SearchIcon } from '../assets/img/search-icon.svg';
+import { ReactComponent as CloseIcon } from '../assets/img/close-x.svg';
 
 import {
   HeaderWrapper,
@@ -14,13 +15,15 @@ import {
   HeaderHamburgerWrapper,
   useMediaQuery,
   useScrolling,
-  ModalHeaderOverlay,
+  ModalOverlay,
   device,
   ModalHeaderBody,
   H3,
   FlexRowWrap,
   FlexColumnWrap,
   P,
+  ModalOverlayMobile,
+  Div,
 } from '../styles';
 import CategoriesNav from './CategoriesNav';
 
@@ -40,6 +43,7 @@ function Header() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [modalSrc, setModalSrc] = useState([{ name: 'Explore' }]);
   const [modalTitle, setModalTitle] = useState('Menu');
+  const [isModalSearchOpen, setIsModalSearchOpen] = useState(false);
 
   function ModalHeaderF(e) {
     const a = e.target;
@@ -64,7 +68,7 @@ function Header() {
       <HeaderWrapper scrollInitial={scrollInitial} scrolling={scrolling}>
         {isDesktop ? (
           <>
-            <SearchBar />
+            <SearchBar placeholder={'Search in experiences and places'} />
             <LinkPages to='/'>
               <HeaderLogoDesktop />
             </LinkPages>
@@ -72,7 +76,16 @@ function Header() {
           </>
         ) : (
           <>
-            <SearchIcon />
+            <SearchIcon onClick={() => setIsModalSearchOpen(true)} />
+            {isModalSearchOpen && (
+              <ModalOverlayMobile>
+                <FlexRowWrap>
+                  <Div>Search for experiences and places</Div>
+                  <CloseIcon onClick={() => setIsModalSearchOpen(false)} />
+                </FlexRowWrap>
+                <SearchBar />
+              </ModalOverlayMobile>
+            )}
             <LinkPages to='/'>
               <HeaderLogoMobile />
             </LinkPages>
@@ -86,7 +99,7 @@ function Header() {
       <CategoriesNav />
       {isModalOpen && (
         <ModalHeaderBody scrolling={scrolling}>
-          <ModalHeaderOverlay onClick={() => setIsModalOpen(false)} />
+          <ModalOverlay onClick={() => setIsModalOpen(false)} />
           <FlexColumnWrap>
             <FlexRowWrap>
               <H3 onClick={(e) => ModalHeaderF(e)}>{modalTitle}</H3>

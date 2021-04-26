@@ -29,10 +29,20 @@ function Hero() {
           <HeroSpan bar>
             <br /> ALL OVER THE WORLD
           </HeroSpan>
-          {isTablet && <SearchBar onHero={true} />}
+          {isTablet && (
+            <SearchBar
+              placeholder={'Enter a destination, attraction or experience'}
+              onHero={true}
+            />
+          )}
         </HeroTitle>
       </HeroContainer>
-      {isTablet || <SearchBar onHero={true} mobile={true} />}
+      {isTablet || (
+        <SearchBar
+          placeholder={'Enter a destination, attraction or experience'}
+          mobile={true}
+        />
+      )}
       <BannerContainer>
         <InfoBanner>
           {isTablet ? (

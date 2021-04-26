@@ -15,9 +15,9 @@ import { ReactComponent as FoodWineSvg } from '../assets/img/food-wine.svg';
 import { ReactComponent as SportSvg } from '../assets/img/sport.svg';
 import { ReactComponent as ActiveAdventureSvg } from '../assets/img/active-adventure.svg';
 import { ReactComponent as ArrowSvg } from '../assets/img/arrow.svg';
-import { ReactComponent as SearchIcon } from '../assets/img/search-icon.svg';
 
 import colosseoImg from '../assets/img/cover_hero_home_desktop_colosseo.png';
+import { keyframes } from 'styled-components';
 
 // THEME
 
@@ -75,11 +75,13 @@ export const Div = styled.div``;
 export const P = styled.p``;
 
 export const H2 = styled.h2`
-  font-size: 1.75rem;
-  margin-left: 7.5px;
+  /* font-size: 1.75rem;
+  margin-left: 7.5px; */
 `;
 
 export const H3 = styled.h3``;
+
+export const H4 = styled.h4``;
 
 export const Span = styled.span``;
 
@@ -106,6 +108,29 @@ export const FlexColumnWrap = styled(Div)`
 
 export const LinkPages = styled(Link)`
   text-decoration: none;
+`;
+
+const rotate360 = keyframes`
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+`;
+
+export const Spinner = styled.div`
+  animation: ${rotate360} 1s linear infinite;
+  transform: translateZ(0);
+  margin: 10px auto;
+  border-top: 2px solid ${color.alternativeb};
+  border-right: 2px solid ${color.alternativeb};
+  border-bottom: 2px solid ${color.alternativeb};
+  border-left: 4px solid ${color.secondary};
+  background: transparent;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
 `;
 
 // CUSTOM HOOKS
@@ -187,7 +212,7 @@ export const HeaderWrapper = styled.header`
     box-shadow: ${({ scrolling }) =>
       scrolling && `${stylesVar.boxShadowLight}`};
     border-bottom: ${({ scrollInitial }) =>
-      scrollInitial || `solid ${color.alternativeb} 1px`};
+      scrollInitial || `solid ${bgColor.primaryb} 1px`};
   }
 `;
 
@@ -228,9 +253,12 @@ export const HeaderLogoMobile = styled(LogoMobile)`
 
 // section MODAL HEADER
 
-export const ModalHeaderOverlay = styled(Div)`
+export const ModalOverlay = styled(Div)`
   position: fixed;
-
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
   height: 100vh;
   width: 100vw;
   z-index: 0;
@@ -247,6 +275,7 @@ export const ModalHeaderBody = styled(Div)`
   z-index: 90;
   letter-spacing: -1px;
   box-shadow: 0 10px 20px 0 rgb(51 51 51 / 50%);
+
   ${FlexRowWrap} {
     justify-content: space-between;
   }
@@ -273,7 +302,8 @@ export const ModalHeaderBody = styled(Div)`
 
 export const SearchInput = styled.input`
   width: 100%;
-
+  height: 100%;
+  padding-left: ${({ mobile }) => mobile && '1rem'};
   font-size: 1rem;
 
   border: none;
@@ -290,40 +320,88 @@ export const SearchInput = styled.input`
 
 export const SearchBarContainer = styled(FlexRowWrap)`
   position: relative;
-  min-width: ${(p) => (p.mobile ? '91%' : p.onHero ? '700px' : '290px')};
-  max-width: ${(p) => (p.mobile ? '91%' : '800px')};
-  height: ${(p) => (p.onHero ? '72px' : '35px')};
+  min-width: ${({ mobile, onHero }) =>
+    mobile ? '91%' : onHero ? '700px' : '290px'};
+  max-width: ${({ onHero, mobile }) => (mobile || onHero ? '91%' : '800px')};
+  height: ${({ onHero, mobile }) =>
+    onHero ? '72px' : mobile ? '50px' : '35px'};
   border: 1px solid ${color.alternativec};
-  margin: ${(p) => (p.mobile ? '20px ' : p.onHero ? '20px 0 0' : '0 10px')};
+  margin: ${({ mobile, onHero }) =>
+    mobile ? '20px ' : onHero ? '20px 0 0' : '0 10px'};
   border-radius: 5px;
-  background: ${(p) =>
-    p.mobile
+  background: ${({ mobile, changeBackground, onHero }) =>
+    mobile
       ? color.secondary
-      : p.changeBackground
+      : changeBackground
       ? bgColor.primary
-      : p.onHero
+      : onHero
       ? bgColor.primary
       : color.alternativec};
-  box-shadow: 0 2px 8px 0 rgb(0 0 0 / 10%);
+  box-shadow: ${({ onHero }) => onHero && '0 2px 8px 0 rgb(0 0 0 / 10%)'};
   & > svg {
-    width: ${(p) => (p.onHero ? '20px' : '17px')};
-    height: ${(p) => (p.onHero ? '20px' : '17px')};
+    fill: ${({ mobile }) => mobile && color.primary};
+    min-width: ${({ onHero, mobile }) => (onHero || mobile ? '20px' : '17px')};
+    height: ${({ onHero, mobile }) => (onHero || mobile ? '20px' : '17px')};
     /* margin: auto 2px; */
-    margin: ${(p) => (p.onHero ? 'auto 20px' : 'auto 8px')};
+    margin: ${({ onHero, mobile }) =>
+      onHero || mobile ? 'auto 13px' : 'auto 8px'};
   }
   ${SearchInput} {
-    background: ${(p) =>
-      p.onHero
+    background: ${({ onHero, mobile, changeBackground }) =>
+      onHero || mobile
         ? bgColor.primary
-        : p.changeBackground
+        : changeBackground
         ? bgColor.primary
         : color.alternativec};
   }
 `;
+export const ModalOverlayMobile = styled(Div)`
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 100vh;
+  width: 100%;
+  z-index: 0;
+  background: ${bgColor.primaryb};
+
+  ${FlexRowWrap} {
+    margin: 20px;
+    justify-content: space-between;
+  }
+  ${Div} {
+    font-size: 14px;
+  }
+  & svg {
+    width: 16px;
+    height: 16px;
+  }
+  ${SearchBarContainer} {
+    padding: 8px;
+    background-color: ${bgColor.primary};
+    border: 1px solid ${color.alternativec};
+    ${SearchInput} {
+      background-color: ${bgColor.primary};
+    }
+    & svg {
+      display: none;
+    }
+  }
+`;
 
 export const ModalSearchBody = styled(Div)`
+  @keyframes opacityAnimation {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
   position: absolute;
   width: 100%;
+  max-height: 300px;
   font-size: 15px;
   top: 100%;
   z-index: 90;
@@ -333,9 +411,23 @@ export const ModalSearchBody = styled(Div)`
   box-shadow: 0 2px 8px 0 rgb(0 0 0 / 10%);
   color: ${color.primaryb};
   background-color: ${bgColor.primary};
+  border-radius: 5px;
   overflow-y: scroll;
+  animation: opacityAnimation 0.2s ease-in;
   ${FlexRowWrap} {
     justify-content: space-between;
+    ${H2} {
+      margin: 15px 5px 15px 25px;
+      font-size: 1rem;
+      font-weight: normal;
+    }
+    ${H4} {
+      margin: 15px;
+      font-size: 0.9rem;
+      font-weight: normal;
+      text-decoration: underline;
+      cursor: pointer;
+    }
   }
   ${FlexColumnWrap} {
     height: 100%;
@@ -351,13 +443,11 @@ export const ModalSearchBody = styled(Div)`
     padding: 10px 20px;
     cursor: pointer;
     border-bottom: 1px solid ${color.alternativec};
+    font-weight: normal;
   }
   ${Span} {
-    color: ${color.primaryb};
+    color: ${color.alternative};
   }
-  /* @media ${device.desktop} {
-    margin-top: ${({ scrolling }) => (scrolling ? '70px' : '110px')};
-  } */
 `;
 // section CATEGORIES NAV
 
@@ -433,10 +523,10 @@ export const HeroContainer = styled(Div)`
   background-repeat: no-repeat;
   background-size: cover;
   @media ${device.tablet} {
-    min-height: 360px;
+    min-height: 400px;
   }
   @media ${device.desktop} {
-    min-height: 420px;
+    min-height: 600px;
   }
 `;
 
@@ -557,6 +647,10 @@ export const CarouselTitleContainer = styled.div`
   color: black;
   display: flex;
   min-height: 62px;
+  ${H2} {
+    font-size: 1.75rem;
+    margin-left: 7.5px;
+  }
 `;
 
 export const CarouselCardWrapper = styled.div`

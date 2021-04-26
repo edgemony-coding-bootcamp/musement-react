@@ -7,13 +7,16 @@ import { ReactComponent as SearchIcon } from '../assets/img/search-icon.svg';
 import {
   SearchInput,
   SearchBarContainer,
-  ModalHeaderOverlay,
+  ModalOverlay,
   FlexColumnWrap,
   FlexRowWrap,
   H3,
   P,
   ModalSearchBody,
   Span,
+  Spinner,
+  H4,
+  H2,
 } from '../styles';
 
 const useDebouncedCallback = (func, wait) => {
@@ -33,8 +36,9 @@ const useDebouncedCallback = (func, wait) => {
   );
 };
 
-function SearchBar({ onHero, mobile }) {
+function SearchBar({ onHero, mobile, placeholder }) {
   const searchState = useSelector((state) => state.searchResults);
+  const { loading, error } = searchState;
   const dispatch = useDispatch();
 
   const [searchQuery, setSearchQuery] = useState('');
@@ -53,8 +57,6 @@ function SearchBar({ onHero, mobile }) {
   useEffect(() => {
     if (searchResults.length >= 3) {
       dispatch(fetchSearchResults(searchResults));
-      console.log(searchState);
-
       setIsModalOpen(true);
     }
     if (searchResults.length < 3) {
@@ -66,11 +68,10 @@ function SearchBar({ onHero, mobile }) {
 
   function capitalizeFirstLetter(str) {
     const capitalized = str.charAt(0).toUpperCase() + str.slice(1);
-
     return capitalized;
   }
 
-  const result = searchResults ? searchState.searchResults[0] : null;
+  const titleResult = searchResults ? searchState.searchResults[0] : null;
 
   return (
     <SearchBarContainer
@@ -82,28 +83,69 @@ function SearchBar({ onHero, mobile }) {
       <SearchInput
         onHero={onHero}
         mobile={mobile}
-        placeholder='Search in experiences and places'
+        placeholder={placeholder}
         type='text'
         value={searchQuery}
         onChange={(e) => setSearchQuery(e.target.value)}
-      />{' '}
+        onClick={() => {
+          onHero && setIsModalOpen(true);
+        }}
+      />
       {isModalOpen && (
         <ModalSearchBody>
-          <ModalHeaderOverlay onClick={() => setIsModalOpen(false)} />
-          <FlexColumnWrap>
+          {searchQuery.length < 3 ? (
+            <>
+              <ModalOverlay onClick={() => setIsModalOpen(false)} />
+
+              <FlexColumnWrap>
+                <FlexRowWrap>
+                  <H2>Popular searches</H2>
+                </FlexRowWrap>
+                <FlexRowWrap popular>
+                  <H4 onClick={() => setSearchQuery('Milan')}>Milan</H4>
+                  <H4 onClick={() => setSearchQuery('Rome')}>Rome</H4>
+                  <H4 onClick={() => setSearchQuery('Barcelona')}>Barcelona</H4>
+                  <H4 onClick={() => setSearchQuery('Paris')}>Paris</H4>
+                  <H4 onClick={() => setSearchQuery('Florence')}>Florence</H4>
+                  <H4 onClick={() => setSearchQuery('Sagrada Familia')}>
+                    Sagrada Familia
+                  </H4>
+                  <H4 onClick={() => setSearchQuery('Colosseum')}>Colosseum</H4>
+                  <H4 onClick={() => setSearchQuery('Eiffel Tower')}>
+                    Eiffel Tower
+                  </H4>
+                </FlexRowWrap>
+              </FlexColumnWrap>
+            </>
+          ) : loading ? (
+            <Spinner />
+          ) : titleResult ? (
+            <>
+              <ModalOverlay onClick={() => setIsModalOpen(false)} />
+              <FlexColumnWrap>
+                <FlexRowWrap>
+                  <H3>
+                    {titleResult && capitalizeFirstLetter(titleResult?.type)}
+                  </H3>
+                </FlexRowWrap>
+                <FlexColumnWrap>
+                  {titleResult?.items.map((i) => (
+                    <P key={i.id} onClick={() => setIsModalOpen(false)}>
+                      {i.title}
+                      <br />
+                      <Span>{i.hint}</Span>
+                    </P>
+                  ))}
+                </FlexColumnWrap>
+              </FlexColumnWrap>
+            </>
+          ) : error ? (
             <FlexRowWrap>
-              <H3>{result && capitalizeFirstLetter(result?.type)}</H3>
+              <H4 onClick={() => setIsModalOpen(false)}>
+                Search Failed, please try again in a moment.
+              </H4>
             </FlexRowWrap>
-            <FlexColumnWrap>
-              {result?.items.map((i) => (
-                <P key={i.id} onClick={(e) => setIsModalOpen(false)}>
-                  {i.title}
-                  <br />
-                  <Span>{i?.hint}</Span>
-                </P>
-              ))}
-            </FlexColumnWrap>
-          </FlexColumnWrap>
+          ) : null}
         </ModalSearchBody>
       )}
     </SearchBarContainer>
