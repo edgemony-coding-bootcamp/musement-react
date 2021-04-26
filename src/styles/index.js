@@ -105,6 +105,13 @@ export const FlexColumnWrap = styled(Div)`
 
 export const LinkPages = styled(Link)`
   text-decoration: none;
+  &:link,
+  :visited,
+  :hover,
+  :active {
+    color: black;
+    text-decoration: none;
+  }
 `;
 
 // CUSTOM HOOKS
