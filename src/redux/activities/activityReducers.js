@@ -2,6 +2,9 @@ import {
   FETCH_ACTIVITY_REQUEST,
   FETCH_ACTIVITY_ERROR,
   FETCH_ACTIVITY_SUCCESS,
+  FETCH_ACTIVITY_MEDIA_REQUEST,
+  FETCH_ACTIVITY_MEDIA_SUCCESS,
+  FETCH_ACTIVITY_MEDIA_ERROR,
 } from './activityConstants';
 
 export const activityReducer = (state = {}, action) => {
@@ -20,6 +23,25 @@ export const activityReducer = (state = {}, action) => {
       };
 
     case FETCH_ACTIVITY_ERROR:
+      return {
+        ...state,
+        loading: false,
+        error: action.payload,
+      };
+    case FETCH_ACTIVITY_MEDIA_REQUEST:
+      return {
+        ...state,
+        loading: true,
+      };
+
+    case FETCH_ACTIVITY_MEDIA_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        media: action.payload,
+      };
+
+    case FETCH_ACTIVITY_MEDIA_ERROR:
       return {
         ...state,
         loading: false,

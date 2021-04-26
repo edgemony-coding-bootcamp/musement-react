@@ -50,6 +50,7 @@ const defaultStore = {
   },
   activity: {
     activity: [],
+    media: [],
     error: null,
     loading: false,
   },
