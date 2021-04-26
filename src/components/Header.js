@@ -74,7 +74,7 @@ function Header({ path }) {
           <FlexColumnWrap>
             <FlexRowWrap>
               <H3>{modalTitle}</H3>
-            </FlexRowWrap>{' '}
+            </FlexRowWrap>
             <FlexColumnWrap>
               <P onClick={() => setShowCategories(!showCategories)}>
                 {showCategories ? 'Back' : 'Explore'}

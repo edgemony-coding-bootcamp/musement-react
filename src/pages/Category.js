@@ -5,30 +5,61 @@ import styled from 'styled-components';
 // STYLED COMPONENT FOR PAGE'S CATEGORY
 
 const CategoryImgWrapper = styled.div`
-  max-width: 1350px;
-  margin: auto;
+  height: fit-content;
+  margin: 20px auto;
   display: flex;
   justify-content: center;
   align-items: center;
   position: relative;
+  @media (max-width: 479px) {
+    height: 420px;
+    margin: auto;
+  }
 `;
 
 const CategoryImgBackground = styled.div`
   width: 100%;
-  height: 380px;
+  height: 260px;
   position: absolute;
   z-index: 1;
   opacity: 0.7;
+  @media (max-width: 479px) {
+    opacity: 1;
+  }
+  @media (min-width: 759px) {
+    height: 300px;
+  }
+  @media (min-width: 1024px) {
+    height: 400px;
+  }
+  @media (min-width: 1350px) {
+    height: 500px;
+  }
 `;
 
 const CategoryImgHover = styled.div`
-  width: 350px;
-  height: 390px;
+  width: 188px;
+  height: 250px;
   padding: 25px;
   position: relative;
   z-index: 3;
   box-shadow: 0 0 25px -2px;
   background-color: white;
+  @media (max-width: 479px) {
+    display: none;
+  }
+  @media (min-width: 759px) {
+    width: 230px;
+    height: 290px;
+  }
+  @media (min-width: 1024px) {
+    width: 300px;
+    height: 390px;
+  }
+  @media (min-width: 1350px) {
+    width: 380px;
+    height: 510px;
+  }
 `;
 
 const CategoryImg = styled.img`
@@ -38,9 +69,11 @@ const CategoryImg = styled.img`
 `;
 
 const CategoryImgTop = styled(CategoryImg)`
-  object-fit: none;
   width: 100%;
   height: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 `;
 
 const CategoryGoHome = styled(Link)`

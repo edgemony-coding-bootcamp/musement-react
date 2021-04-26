@@ -104,6 +104,13 @@ export const FlexColumnWrap = styled(Div)`
 
 export const LinkPages = styled(Link)`
   text-decoration: none;
+  color: ${color.primaryb};
+  &:active {
+    color: ${color.secondary};
+  }
+  &:hover {
+    text-decoration: underline;
+  }
 `;
 
 // CUSTOM HOOKS
@@ -272,7 +279,7 @@ export const CategoryLinkWrap = styled(Link)`
   display: flex;
   align-items: center;
   flex-shrink: 0;
-  color: ${stylesVar.colorBlack};
+  color: ${color.primaryb};
   text-decoration: none;
   ${({ pathIncludes }) =>
     pathIncludes ? `box-shadow: inset 0 -6px 0 ${color.secondary};` : ''};
