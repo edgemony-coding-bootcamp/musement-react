@@ -749,6 +749,7 @@ export const CategoryImgWrapper = styled.div`
   @media (max-width: 479px) {
     height: 420px;
     margin: auto;
+    margin-bottom: 50px;
   }
 `;
 
@@ -759,15 +760,16 @@ export const CategoryImgBackground = styled.div`
   z-index: 1;
   opacity: 0.7;
   @media (max-width: 479px) {
+    height: 450px;
     opacity: 1;
   }
-  @media (min-width: 759px) {
+  @media ${device.tablet} {
     height: 300px;
   }
-  @media (min-width: 1024px) {
+  @media ${device.laptop} {
     height: 400px;
   }
-  @media (min-width: 1350px) {
+  @media ${device.desktop} {
     height: 500px;
   }
 `;
@@ -783,15 +785,15 @@ export const CategoryImgHover = styled.div`
   @media (max-width: 479px) {
     display: none;
   }
-  @media (min-width: 759px) {
+  @media ${device.tablet} {
     width: 230px;
     height: 290px;
   }
-  @media (min-width: 1024px) {
+  @media ${device.laptop} {
     width: 300px;
     height: 390px;
   }
-  @media (min-width: 1350px) {
+  @media ${device.desktop} {
     width: 380px;
     height: 510px;
   }
