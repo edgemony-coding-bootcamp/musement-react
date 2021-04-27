@@ -1,6 +1,6 @@
 import Hero from '../components/Hero';
 import Header from '../components/Header';
-import { CarouselSection, Main, SearchInput } from '../styles';
+import { CarouselSection, Main } from '../styles';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import { setUserLang } from '../redux/languages/languageActions';

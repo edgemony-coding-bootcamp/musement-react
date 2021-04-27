@@ -74,10 +74,7 @@ export const Div = styled.div``;
 
 export const P = styled.p``;
 
-export const H2 = styled.h2`
-  /* font-size: 1.75rem;
-  margin-left: 7.5px; */
-`;
+export const H2 = styled.h2``;
 
 export const H3 = styled.h3``;
 
@@ -146,8 +143,8 @@ export function useMediaQuery(query) {
     const listener = () => {
       setMatches(media.matches);
     };
-    media.addListener(listener);
-    return () => media.removeListener(listener);
+    media.addEventListener('change', listener);
+    return () => media.removeEventListener('change', listener);
   }, [matches, query]);
 
   return matches;
@@ -302,7 +299,7 @@ export const ModalHeaderBody = styled(Div)`
 
 export const SearchInput = styled.input`
   width: 100%;
-  height: 100%;
+  height: 99%;
   padding-left: ${({ mobile }) => mobile && '1rem'};
   font-size: 1rem;
 
