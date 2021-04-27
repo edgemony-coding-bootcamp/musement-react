@@ -34,6 +34,9 @@ import {
   IconDiv,
   GrayFeaturesDiv,
   AllPicturesIcon,
+  ContentHighlights,
+  ContentHighlightsList,
+  ContentHighlightsElements,
 } from '../styles';
 import { parseISODuration } from '../utilities';
 
@@ -135,6 +138,15 @@ function Activities() {
                 </GrayFeaturesDiv>
               </ContentFeaturesSection>
               <ContentSectionBody>
+                <ContentHighlights>{'Do this because'}</ContentHighlights>
+                <ContentHighlightsList>
+                  {activity?.highlights.map((item) => (
+                    <ContentHighlightsElements>
+                      {item}
+                    </ContentHighlightsElements>
+                  ))}
+                </ContentHighlightsList>
+
                 <ContentDescription>{activity?.description}</ContentDescription>
                 <ContentAbout>{activity?.about}</ContentAbout>
               </ContentSectionBody>

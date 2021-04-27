@@ -25,6 +25,8 @@ import { ReactComponent as SafetyActivitySvg } from '../assets/img/safety.svg';
 import { ReactComponent as IstantActivitySvg } from '../assets/img/istant.svg';
 import { ReactComponent as SkipActivitySvg } from '../assets/img/skip.svg';
 import { ReactComponent as AllMediaSvg } from '../assets/img/all_pictures.svg';
+import { ReactComponent as LoaderSpinnerSvg } from '../assets/img/loader.svg';
+
 import colosseoImg from '../assets/img/cover_hero_home_desktop_colosseo.png';
 
 // THEME
@@ -516,7 +518,15 @@ export const SkipActivityIcon = styled(SkipActivitySvg)`
   height: 33px;
   width: 33px;
 `;
-
+export const LoaderSpinner = styled(LoaderSpinnerSvg)`
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 36px;
+  height: 36px;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+`;
 // section CAROUSEL
 
 export const CarouselTitleContainer = styled.div`
@@ -773,6 +783,7 @@ export const IconDiv = styled.div`
   display: inline-block;
   ${({ md }) => md && 'width: 25px; height: 25px;'}
   ${({ lg }) => lg && 'width: 33px; height: 33px;'}
+  ${({ xl }) => xl && 'width: 46px; height: 46px;'}
 `;
 
 export const CardCancellation = styled.div`
@@ -1017,8 +1028,39 @@ export const GrayFeaturesDiv = styled.div`
     margin-right: 25px;
   }
 `;
+export const ContentHighlights = styled.h3`
+  font-size: 1.75rem;
+`;
 
-export const ContentDescription = styled.h3``;
+export const ContentHighlightsList = styled.ul`
+  list-style: none;
+  position: relative;
+  display: block;
+  margin-block-end: 1em;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+  padding-inline-start: 40px;
+  font-size: 1.125rem;
+  line-height: 1.5625rem;
+`;
+
+export const ContentHighlightsElements = styled.li`
+  line-height: 1.6875rem;
+  margin-top: 20px;
+  position: relative;
+
+  &:before {
+    content: '\u2219';
+    color: ${color.secondary};
+    position: absolute;
+    left: -30px;
+    font-size: 3rem;
+  }
+`;
+
+export const ContentDescription = styled.h3`
+  font-size: 1.75rem;
+`;
 
 export const ContentAbout = styled.p``;
 
