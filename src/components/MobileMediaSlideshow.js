@@ -12,20 +12,12 @@ function MobileMediaSlideshow() {
   const { media } = useSelector((state) => state.activity);
   const ref = useRef(null);
   const [current, setCurrent] = useState(0);
-  const [maxWidth, setMaxWidth] = useState(0);
-  const [medianumber, setMedianumber] = useState(0);
-
-  useEffect(() => {
-    media?.length > 0 && setMedianumber(media.length);
-    setMaxWidth(ref.current.offsetWidth * medianumber);
-  }, [media, medianumber]);
 
   const handleActiveSlide = () => {
     const scrollPosition = ref.current.scrollLeft;
-    setCurrent(scrollPosition);
-    let mediasize = maxWidth / medianumber;
-    let active = scrollPosition / mediasize;
-    setCurrent(active);
+    let active = scrollPosition / ref.current.offsetWidth;
+    // Here i'm parsing the value cause i noticed that is faster than waiting for the integer value
+    setCurrent(parseInt(active));
   };
 
   return (

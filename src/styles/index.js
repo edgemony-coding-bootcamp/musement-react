@@ -1114,7 +1114,8 @@ export const IndexSliderCounter = styled.span`
   display: inline-block;
   opacity: 1;
   cursor: pointer;
-  ${({ active }) => active && `background-color: ${color.secondary};`}
+  transition: background-color 0.1s cubic-bezier(0.55, 0.06, 0.68, 0.19);
+  ${({ active }) => active && `background-color: ${color.secondary};`};
 `;
 export const JumbotronGallery = styled.div`
   position: fixed;
