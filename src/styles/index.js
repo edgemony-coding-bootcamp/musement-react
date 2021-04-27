@@ -59,6 +59,7 @@ export const stylesVar = {
 };
 
 // mediaQuery
+export const cardSize = { sm: 290, md: 310, lg: 335 };
 const size = { sm: '760px', md: '1024px', lg: '1350px' };
 export const device = {
   tablet: `(min-width: ${size.sm})`,
@@ -90,8 +91,10 @@ export const Main = styled.main`
 `;
 
 export const CarouselSection = styled.section`
-  background-color: #f2f5f6;
-  padding: 0 40px;
+  background-color: #fff;
+  @media ${device.desktop} {
+    padding: 0 40px;
+  }
 `;
 
 export const FlexRowWrap = styled(Div)`
@@ -448,59 +451,26 @@ export const SafetySvgIcon = styled(SafetySvg)`
 
 // section CAROUSEL
 
+export const CarouselWrapperArrow = styled.div`
+  height: 100%;
+  min-width: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+`;
+
 export const CarouselTitleContainer = styled.div`
   color: black;
   display: flex;
-  min-height: 62px;
+  justify-content: space-around;
 `;
 
-export const CarouselCardWrapper = styled.div`
+export const CarouselContainer = styled.div`
+  padding: 0 80px 0 0;
   display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
-  min-width: 350px;
-  max-width: 350px;
-  scroll-snap-type: x mandatory;
-  overflow-x: scroll;
-  scroll-behavior: smooth;
-
-  @media ${device.tablet} {
-    min-width: 760px;
-    max-width: 760px;
-  }
+  align-items: center;
 `;
-
-export const Arrow = styled(ArrowSvg)`
-  width: 25px;
-  height: 25px;
-  position: absolute;
-  bottom: calc(50% - 62px);
-  cursor: pointer;
-`;
-
-export const ArrowRight = styled(Arrow)`
-  right: calc(50% - 750px);
-
-  :hover {
-    transform: translateX(3px);
-  }
-
-  ${({ current, cardlength }) =>
-    current === cardlength - 4 ? `display: none` : `display: block`}
-`;
-
-export const ArrowLeft = styled(Arrow)`
-  transform: rotate(-180deg);
-  left: calc(50% - 750px);
-
-  :hover {
-    transform: rotate(-180deg) translateX(3px);
-  }
-
-  ${({ current }) => !current && `display: none`}
-`;
-
-// section CARD
 
 export const CardWrapper = styled.div`
   background-color: ${bgColor.primary};
@@ -541,6 +511,90 @@ export const CardWrapper = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
+  }
+`;
+
+export const CarouselCardWrapper = styled.div`
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  scroll-snap-type: x mandatory;
+  overflow-x: scroll;
+  overflow-y: hidden;
+  scroll-behavior: smooth;
+
+  @media ${device.tablet} {
+    overflow-x: hidden;
+    min-width: 100%;
+    ${CardWrapper} {
+      ${({ current }) =>
+        current
+          ? `transform: translatex(-${current}px); 
+  transition-duration: 300ms;`
+          : ''}
+    }
+  }
+
+  @media ${device.laptop} {
+    overflow-x: hidden;
+    min-width: 100%;
+    /* max-width: ${cardSize.md * 2}px; */
+    ${CardWrapper} {
+      ${({ current }) =>
+        current
+          ? `transform: translatex(-${current}px); 
+  transition-duration: 300ms;`
+          : ''}
+    }
+  }
+
+  @media ${device.desktop} {
+    min-width: 100%;
+    /* max-width: ${cardSize.lg * 3}px; */
+    ${CardWrapper} {
+      ${({ current }) =>
+        current
+          ? `transform: translatex(-${current}px); 
+  transition-duration: 300ms;`
+          : ''}
+    }
+  }
+`;
+
+export const Arrow = styled(ArrowSvg)`
+  width: 24px;
+  height: 24px;
+  color: black;
+  cursor: pointer;
+`;
+
+export const ArrowRight = styled(Arrow)`
+  margin-left: auto;
+  display: none;
+  @media ${device.tablet} {
+    display: block;
+    ${({ current, cardsnumber, maxWidth }) =>
+      (cardsnumber < 4 && `display: none`) ||
+      (current >= maxWidth && `display: none`)}
+  }
+  :hover {
+    transform: translateX(3px);
+  }
+`;
+
+export const ArrowLeft = styled(Arrow)`
+  margin-right: auto;
+  transform: rotate(-180deg);
+  display: none;
+  @media ${device.tablet} {
+    display: block;
+
+    ${({ current, cardsnumber }) =>
+      (cardsnumber < 4 && `display: none`) || (current <= 0 && `display: none`)}
+  }
+
+  :hover {
+    transform: rotate(-180deg) translateX(3px);
   }
 `;
 
