@@ -48,10 +48,12 @@ function Activities() {
   let { id } = useParams();
   const dispatch = useDispatch();
   const { activity, loading, error } = useSelector((state) => state.activity);
+  const { media } = useSelector((state) => state.activity);
 
   useEffect(() => {
     dispatch(getActivityById(id));
     dispatch(getMediaById(id));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [dispatch]);
   let activityKeys = Object.keys(activity);
 
@@ -73,13 +75,15 @@ function Activities() {
               {isTablet ? (
                 <>
                   <BackdropImage src={activity?.city['cover_image_url']} />
-                  <OpenMediaButton onClick={() => setModalIsOpen(true)}>
-                    <AllPicturesIcon />
-                    <P>OpenMedia</P>
-                  </OpenMediaButton>
+                  {media.length > 0 && (
+                    <OpenMediaButton onClick={() => setModalIsOpen(true)}>
+                      <AllPicturesIcon />
+                      <P>OpenMedia</P>
+                    </OpenMediaButton>
+                  )}
                 </>
               ) : (
-                <MobileMediaSlideshow />
+                media.length > 0 && <MobileMediaSlideshow />
               )}
             </Jumbotron>
             <ContentSectionContainer>
@@ -93,42 +97,50 @@ function Activities() {
                 <ContentUrl>{` Home > ${activity?.city['name']} > ${activity?.title}`}</ContentUrl>
               </ContentSectionHeader>
               <ContentFeaturesSection>
-                <FeaturesDiv freeCancellation={true}>
-                  <IconDiv md>
-                    <FreeCancellationIcon />
-                  </IconDiv>
-                  {activity?.free_cancellation
-                    ? 'Cancellazione gratuita'
-                    : null}
-                </FeaturesDiv>
-                <FeaturesDiv>
-                  <IconDiv md>
-                    <LanguageActivityIcon />
-                  </IconDiv>
-                  <P bold={true}>Languages:</P>
-                  {activity?.languages.map((item) => item.name).join(', ')}
-                </FeaturesDiv>
-                <FeaturesDiv>
-                  <IconDiv md>
-                    <CalendarIcon />
-                  </IconDiv>
-                  <P bold={true}>Availability:</P>
-                  {activity?.operational_days}
-                </FeaturesDiv>
-                <FeaturesDiv>
-                  <IconDiv md>
-                    <DurationActivityIcon />
-                  </IconDiv>
-                  {parseISODuration(activity?.validity)}
-                </FeaturesDiv>
-                <FeaturesDiv>
-                  <IconDiv md>
-                    <MobileVoucherIcon />
-                  </IconDiv>
-                  {activity?.voucher_access_usage === 'MOBILE'
-                    ? 'Mobile voucher accepted'
-                    : null}
-                </FeaturesDiv>
+                {activity?.free_cancellation && (
+                  <FeaturesDiv freeCancellation={true}>
+                    <IconDiv md>
+                      <FreeCancellationIcon />
+                    </IconDiv>
+                    {activity?.free_cancellation
+                      ? 'Cancellazione gratuita'
+                      : null}
+                  </FeaturesDiv>
+                )}
+                {activity?.languages.length > 0 && (
+                  <FeaturesDiv>
+                    <IconDiv md>
+                      <LanguageActivityIcon />
+                    </IconDiv>
+                    <P bold={true}>Languages:</P>
+                    {activity?.languages.map((item) => item.name).join(', ')}
+                  </FeaturesDiv>
+                )}
+                {activity?.operational_days && (
+                  <FeaturesDiv>
+                    <IconDiv md>
+                      <CalendarIcon />
+                    </IconDiv>
+                    <P bold={true}>Availability:</P>
+                    {activity?.operational_days}
+                  </FeaturesDiv>
+                )}
+                {activity?.validity && (
+                  <FeaturesDiv>
+                    <IconDiv md>
+                      <DurationActivityIcon />
+                    </IconDiv>
+                    {parseISODuration(activity?.validity)}
+                  </FeaturesDiv>
+                )}
+                {activity?.voucher_access_usage === 'MOBILE' && (
+                  <FeaturesDiv>
+                    <IconDiv md>
+                      <MobileVoucherIcon />
+                    </IconDiv>
+                    {'Mobile voucher accepted'}
+                  </FeaturesDiv>
+                )}
                 <FeaturesDiv>
                   <IconDiv md>
                     <SafetyActivityIcon />
@@ -149,8 +161,8 @@ function Activities() {
               <ContentSectionBody>
                 <ContentHighlights>{'Do this because'}</ContentHighlights>
                 <ContentHighlightsList>
-                  {activity?.highlights.map((item) => (
-                    <ContentHighlightsElements>
+                  {activity?.highlights.map((item, index) => (
+                    <ContentHighlightsElements key={index}>
                       {item}
                     </ContentHighlightsElements>
                   ))}

@@ -974,7 +974,7 @@ export const ContentFeaturesSection = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   margin-top: 25px;
   @media ${device.laptop} {
     flex-direction: row;
@@ -987,7 +987,7 @@ export const FeaturesDiv = styled.div`
   min-width: 90%;
   max-width: 90%;
   height: 60px;
-  display: inline-flex;
+  display: flex;
   flex-wrap: wrap;
   align-items: center;
   border-bottom: 1px solid ${color.alternativeb};
@@ -996,7 +996,7 @@ export const FeaturesDiv = styled.div`
   }
   @media ${device.laptop} {
     min-width: 50%;
-    max-width: 50%;
+    max-width: 100%;
     :first-child {
       border-top: 1px solid ${color.alternativeb};
     }

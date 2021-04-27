@@ -33,13 +33,14 @@ function MobileMediaSlideshow() {
       <JumbotronGalleryMobile ref={ref} onScroll={() => handleActiveSlide()}>
         {media.map((item, index) => (
           <JumbotronMobileSlides
-            id={index}
+            key={index}
             src={item.url}></JumbotronMobileSlides>
         ))}
       </JumbotronGalleryMobile>
       <IndexSlider>
         {media.map((item, index) => (
           <IndexSliderCounter
+            key={index}
             id={index}
             active={current === index}></IndexSliderCounter>
         ))}
