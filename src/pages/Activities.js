@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router';
 import Loader from '../components/Loader';
 import MediaSlideshow from '../components/MediaSlideshow';
+import MobileMediaSlideshow from '../components/MobileMediaSlideshow';
 import {
   getActivityById,
   getMediaById,
@@ -37,6 +38,8 @@ import {
   ContentHighlights,
   ContentHighlightsList,
   ContentHighlightsElements,
+  device,
+  useMediaQuery,
 } from '../styles';
 import { parseISODuration } from '../utilities';
 
@@ -48,14 +51,14 @@ function Activities() {
 
   useEffect(() => {
     dispatch(getActivityById(id));
-
     dispatch(getMediaById(id));
-  }, []);
+  }, [dispatch]);
   let activityKeys = Object.keys(activity);
 
   const closeModal = () => {
     setModalIsOpen(false);
   };
+  let isTablet = useMediaQuery(`${device.tablet}`);
   return (
     <>
       {loading ? (
@@ -67,11 +70,17 @@ function Activities() {
           <SectionWrapper>
             {modalIsOpen && <MediaSlideshow onClose={closeModal} id={id} />}
             <Jumbotron>
-              <BackdropImage src={activity?.city['cover_image_url']} />
-              <OpenMediaButton onClick={() => setModalIsOpen(true)}>
-                <AllPicturesIcon />
-                <P>OpenMedia</P>
-              </OpenMediaButton>
+              {isTablet ? (
+                <>
+                  <BackdropImage src={activity?.city['cover_image_url']} />
+                  <OpenMediaButton onClick={() => setModalIsOpen(true)}>
+                    <AllPicturesIcon />
+                    <P>OpenMedia</P>
+                  </OpenMediaButton>
+                </>
+              ) : (
+                <MobileMediaSlideshow />
+              )}
             </Jumbotron>
             <ContentSectionContainer>
               <ContentSectionHeader>

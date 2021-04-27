@@ -141,8 +141,8 @@ export function useMediaQuery(query) {
     const listener = () => {
       setMatches(media.matches);
     };
-    media.addListener(listener);
-    return () => media.removeListener(listener);
+    media.addEventListener('change', listener);
+    return () => media.removeEventListener('change', listener);
   }, [matches, query]);
 
   return matches;
@@ -1066,6 +1066,53 @@ export const ContentAbout = styled.p``;
 
 // Section MEDIASLIDESHOW
 
+export const JumbotronGalleryMobile = styled.div`
+  height: 200px;
+  width: 100vw;
+  display: flex;
+  flex-wrap: nowrap;
+  position: relative;
+  z-index: 1;
+  box-sizing: border-box;
+  overflow-x: scroll;
+  scroll-snap-type: x mandatory;
+  &::-webkit-scrollbar {
+    display: none;
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+  }
+`;
+export const JumbotronMobileSlides = styled.img`
+  width: 100vw;
+  object-fit: cover;
+  scroll-snap-align: start;
+`;
+
+export const IndexSlider = styled.div`
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  position: absolute;
+  text-align: center;
+  -webkit-transition: opacity 0.3s;
+  -o-transition: 0.3s opacity;
+  transition: opacity 0.3s;
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+  z-index: 10;
+`;
+export const IndexSliderCounter = styled.span`
+  margin: 0 4px;
+  width: 8px;
+  height: 8px;
+  background-color: #dce4e6;
+  border-radius: 50%;
+  margin-right: 5px;
+  display: inline-block;
+  opacity: 1;
+  cursor: pointer;
+  ${({ active }) => active && `background-color: ${color.secondary};`}
+`;
 export const JumbotronGallery = styled.div`
   position: fixed;
   top: 0;

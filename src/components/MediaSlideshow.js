@@ -28,7 +28,6 @@ function MediaSlideshow({ onClose }) {
     setCurrent(current + 1);
     setIsMoving(isMoving + 100);
   };
-  console.log(media.length);
 
   return (
     <>
