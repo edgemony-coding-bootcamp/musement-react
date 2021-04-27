@@ -6,15 +6,27 @@ import { inspirationListReducer } from './inspirations/inspirationReducers';
 import { experienceListReducer } from './experiences/experienceReducers';
 import { languageReducer } from './languages/languageReducers';
 import { autocompleteListReducer } from './autocomplete/autocompleteReducer';
+import { currencyReducer } from './currencies/currencyReducers';
+import { translationReducer } from './translations/translationReducers';
 
-import { DEF_LANG, SUPPORTED_LANGUAGES } from '../config.json';
+import {
+  DEF_LANG,
+  DEFAULT_CURRENCY,
+  CURRENCIES,
+  TRANSLATIONS,
+} from '../config.json';
+import { getLanguageConfiguration } from '../utilities';
 
-const defaultLang = SUPPORTED_LANGUAGES[DEF_LANG];
+const defaultCurrency = CURRENCIES.find(
+  (item) => item.code === DEFAULT_CURRENCY
+);
 
 /* Combined Reducers */
 
 const reducer = combineReducers({
   languages: languageReducer,
+  currencies: currencyReducer,
+  translations: translationReducer,
   categories: categoryListReducer,
   inspirations: inspirationListReducer,
   experiences: experienceListReducer,
@@ -23,7 +35,13 @@ const reducer = combineReducers({
 
 const defaultStore = {
   languages: {
-    userLang: `${defaultLang}`,
+    userLang: getLanguageConfiguration(DEF_LANG),
+  },
+  currencies: {
+    userCurrency: `${defaultCurrency.code}`,
+  },
+  translations: {
+    translatedTexts: TRANSLATIONS[getLanguageConfiguration(DEF_LANG)],
   },
   categories: {
     categories: [],

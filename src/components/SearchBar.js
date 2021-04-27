@@ -1,10 +1,10 @@
-import { useSelector, useDispatch } from "react-redux";
-import React, { useState, useEffect } from "react";
+import { useSelector, useDispatch } from 'react-redux';
+import React, { useState, useEffect } from 'react';
 
-import { fetchSearchResults } from "../redux/autocomplete/autocompleteAction";
-import { useDebouncedCallback } from "../utilities";
+import { fetchSearchResults } from '../redux/autocomplete/autocompleteAction';
+import { useDebouncedCallback } from '../utilities';
 
-import { ReactComponent as SearchIcon } from "../assets/img/search-icon.svg";
+import { ReactComponent as SearchIcon } from '../assets/img/search-icon.svg';
 import {
   SearchInput,
   SearchBarContainer,
@@ -17,14 +17,14 @@ import {
   Spinner,
   H4,
   H2,
-} from "../styles";
+} from '../styles';
 
 function SearchBar({ onHero, mobile, placeholder }) {
   const searchState = useSelector((state) => state.searchResults);
   const { loading, error } = searchState;
   const dispatch = useDispatch();
 
-  const [searchQuery, setSearchQuery] = useState("");
+  const [searchQuery, setSearchQuery] = useState('');
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const onSearch = useDebouncedCallback(() => {
@@ -38,7 +38,7 @@ function SearchBar({ onHero, mobile, placeholder }) {
     } else {
       setIsModalOpen(false);
     }
-  }, [searchQuery, onSearch]);
+  }, [searchQuery]);
 
   const results = searchState.searchResults[0];
 
@@ -71,16 +71,16 @@ function SearchBar({ onHero, mobile, placeholder }) {
                   <H2>Popular searches</H2>
                 </FlexRowWrap>
                 <FlexRowWrap popular>
-                  <H4 onClick={() => setSearchQuery("Milan")}>Milan</H4>
-                  <H4 onClick={() => setSearchQuery("Rome")}>Rome</H4>
-                  <H4 onClick={() => setSearchQuery("Barcelona")}>Barcelona</H4>
-                  <H4 onClick={() => setSearchQuery("Paris")}>Paris</H4>
-                  <H4 onClick={() => setSearchQuery("Florence")}>Florence</H4>
-                  <H4 onClick={() => setSearchQuery("Sagrada Familia")}>
+                  <H4 onClick={() => setSearchQuery('Milan')}>Milan</H4>
+                  <H4 onClick={() => setSearchQuery('Rome')}>Rome</H4>
+                  <H4 onClick={() => setSearchQuery('Barcelona')}>Barcelona</H4>
+                  <H4 onClick={() => setSearchQuery('Paris')}>Paris</H4>
+                  <H4 onClick={() => setSearchQuery('Florence')}>Florence</H4>
+                  <H4 onClick={() => setSearchQuery('Sagrada Familia')}>
                     Sagrada Familia
                   </H4>
-                  <H4 onClick={() => setSearchQuery("Colosseum")}>Colosseum</H4>
-                  <H4 onClick={() => setSearchQuery("Eiffel Tower")}>
+                  <H4 onClick={() => setSearchQuery('Colosseum')}>Colosseum</H4>
+                  <H4 onClick={() => setSearchQuery('Eiffel Tower')}>
                     Eiffel Tower
                   </H4>
                 </FlexRowWrap>

@@ -1,4 +1,5 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 
 import {
   HeroTitle,
@@ -19,19 +20,19 @@ import SearchBar from './SearchBar';
 
 function Hero() {
   let isTablet = useMediaQuery(`${device.tablet}`);
+  const { translatedTexts } = useSelector((state) => state.translations);
 
   return (
     <>
       <HeroContainer>
         <HeroTitle>
-          <HeroSpan>BOOK TICKETS TO MUSEUMS,</HeroSpan>
-          <HeroSpan foo> ATTRACTIONS AND FUN ACTIVITIES</HeroSpan>
-          <HeroSpan bar>
-            <br /> ALL OVER THE WORLD
-          </HeroSpan>
+          <HeroSpan>{translatedTexts.hero1}</HeroSpan>
+          <HeroSpan foo> {translatedTexts.hero2}</HeroSpan>
+          <br />
+          <HeroSpan bar>{translatedTexts.hero3}</HeroSpan>
           {isTablet && (
             <SearchBar
-              placeholder={'Enter a destination, attraction or experience'}
+              placeholder={`${translatedTexts.searchplaceholderhero}`}
               onHero={true}
             />
           )}
@@ -39,7 +40,7 @@ function Hero() {
       </HeroContainer>
       {isTablet || (
         <SearchBar
-          placeholder={'Enter a destination, attraction or experience'}
+          placeholder={`${translatedTexts.searchplaceholderhero}`}
           mobile={true}
         />
       )}
@@ -49,24 +50,17 @@ function Hero() {
             <>
               <CancellationSvgIcon />
               <Div>
-                <H3>Free cancellation</H3>
-                <P>
-                  We understand how important flexibility is right now. That's
-                  why we offer free cancellation on thousands of experiences. No
-                  waiting, no stress, just one click and it's done!
-                </P>
+                <H3>{translatedTexts.freecancellation}</H3>
+                <P>{translatedTexts.freecancellationmessage}</P>
               </Div>
             </>
           ) : (
             <>
               <FlexRowWrap>
-                <CancellationSvgIcon /> <H3>Free cancellation</H3>
+                <CancellationSvgIcon />{' '}
+                <H3>{translatedTexts.freecancellation}</H3>
               </FlexRowWrap>
-              <P>
-                We understand how important flexibility is right now. That's why
-                we offer free cancellation on thousands of experiences. No
-                waiting, no stress, just one click and it's done!
-              </P>
+              <P>{translatedTexts.freecancellationmessage}</P>
             </>
           )}
         </InfoBanner>
@@ -75,24 +69,17 @@ function Hero() {
             <>
               <SafetySvgIcon />
               <Div>
-                <H3>Health & safety measures</H3>
-                <P>
-                  We want you to enjoy unforgettable experiences in the safest
-                  way possible. So we've made sure all the necessary health
-                  measures are in place, from sanitizing to social distancing.
-                </P>
+                <H3>{translatedTexts.healthsafetymeasures}</H3>
+                <P>{translatedTexts.healthsafetymessage}</P>
               </Div>
             </>
           ) : (
             <>
               <FlexRowWrap>
-                <SafetySvgIcon /> <H3>Health & safety measures</H3>
+                <SafetySvgIcon />{' '}
+                <H3>{translatedTexts.healthsafetymeasures}</H3>
               </FlexRowWrap>
-              <P>
-                We want you to enjoy unforgettable experiences in the safest way
-                possible. So we've made sure all the necessary health measures
-                are in place, from sanitizing to social distancing.
-              </P>
+              <P>{translatedTexts.healthsafetymessage}</P>
             </>
           )}
         </InfoBanner>
