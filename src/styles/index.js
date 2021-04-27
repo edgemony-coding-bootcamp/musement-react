@@ -168,7 +168,6 @@ export function useScrolling(scrollPx) {
     window.addEventListener('scroll', onScroll);
 
     return () => window.removeEventListener('scroll', onScroll);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [scrollTop]);
 
   return scrolling;
@@ -306,10 +305,11 @@ export const ModalHeaderBody = styled(Div)`
 
 export const SearchInput = styled.input`
   width: 100%;
-  height: 99%;
+  height: 100%;
+  box-sizing: border-box;
   padding-left: ${({ mobile }) => mobile && '1rem'};
   font-size: 1rem;
-
+  margin: auto;
   border: none;
   border-top-right-radius: 5px;
   border-bottom-right-radius: 5px;
@@ -332,7 +332,7 @@ export const SearchBarContainer = styled(FlexRowWrap)`
   border: 1px solid ${color.alternativec};
   margin: ${({ mobile, onHero }) =>
     mobile ? '20px ' : onHero ? '20px 0 0' : '0 10px'};
-  border-radius: 5px;
+  border-radius: 6px;
   background: ${({ mobile, changeBackground, onHero }) =>
     mobile
       ? color.secondary

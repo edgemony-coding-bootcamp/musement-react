@@ -121,8 +121,8 @@
       "from": "Da:",
       "availablein": "Disponibile in:",
       "preferences": "Preferenze",
-      "searchplaceholderheader": "Search in experiences and places",
-      "searchplaceholderhero": "Enter a destination, attraction or experience"
+      "searchplaceholderheader": "Cerca esperienze o destinazioni",
+      "searchplaceholderhero": "Cerca una destinazione, un'attrazione o un'esperienza"
     },
     "fr-FR": {
       "hero1": "RÉSERVEZ",
@@ -137,8 +137,8 @@
       "from": "à partir de:",
       "availablein": "Disponible en:",
       "preferences": "Préférences",
-      "searchplaceholderheader": "Search in experiences and places",
-      "searchplaceholderhero": "Enter a destination, attraction or experience"
+      "searchplaceholderheader": "Trouvez votre prochaine expérience",
+      "searchplaceholderhero": "Saisir une destination ou une attraction"
     },
     "es-ES": {
       "hero1": "ENTRADAS PARA",
@@ -153,8 +153,8 @@
       "from": "Desde:",
       "availablein": "Disponible en:",
       "preferences": "Preferencias",
-      "searchplaceholderheader": "Search in experiences and places",
-      "searchplaceholderhero": "Enter a destination, attraction or experience"
+      "searchplaceholderheader": "Busca experiencias y lugares",
+      "searchplaceholderhero": "Busca destinos, atracciones o experiencias"
     },
     "de-DE": {
       "hero1": "TICKETS FÜR",
@@ -169,8 +169,8 @@
       "from": "ab:",
       "availablein": "Verfügbar in:",
       "preferences": "Favoriten",
-      "searchplaceholderheader": "Search in experiences and places",
-      "searchplaceholderhero": "Enter a destination, attraction or experience"
+      "searchplaceholderheader": "Nach Reisezielen und Erlebnissen suchen",
+      "searchplaceholderhero": "Nach Reisezielen, Attraktionen oder Erlebnissen suchen"
     },
     "pt-PT": {
       "hero1": "ENTRADAS PARA",
@@ -185,8 +185,8 @@
       "from": "de:",
       "availablein": "Disponível em:",
       "preferences": "Preferências",
-      "searchplaceholderheader": "Search in experiences and places",
-      "searchplaceholderhero": "Enter a destination, attraction or experience"
+      "searchplaceholderheader": "Procurar experiências e lugares",
+      "searchplaceholderhero": "Busque um destino, atração ou experiência"
     },
     "pt-BR": {
       "hero1": "INGRESSOS PARA",
@@ -201,8 +201,8 @@
       "from": "de:",
       "availablein": "Disponível em:",
       "preferences": "Preferências",
-      "searchplaceholderheader": "Search in experiences and places",
-      "searchplaceholderhero": "Enter a destination, attraction or experience"
+      "searchplaceholderheader": "Procurar experiências e lugares",
+      "searchplaceholderhero": "Busque um destino, atração ou experiência"
     },
     "ru-RU": {
       "hero1": "БРОНИРОВАТЬ",
@@ -217,8 +217,8 @@
       "from": "с:",
       "availablein": "доступно в:",
       "preferences": "Мне нравится",
-      "searchplaceholderheader": "Search in experiences and places",
-      "searchplaceholderhero": "Enter a destination, attraction or experience"
+      "searchplaceholderheader": "Искать места, экскурсии и билеты",
+      "searchplaceholderhero": "Укажите название города или места"
     },
     "nl-NL": {
       "hero1": "BOEK TICKETS VOOR MUSEA, ",
@@ -233,8 +233,8 @@
       "from": "van",
       "availablein": "Beschikbaar in:",
       "preferences": "Voorkeuren",
-      "searchplaceholderheader": "Search in experiences and places",
-      "searchplaceholderhero": "Enter a destination, attraction or experience"
+      "searchplaceholderheader": "Zoek naar activiteiten en plaatsen",
+      "searchplaceholderhero": "Zoek naar bestemmingen, attracties of activiteiten"
     },
     "pl-PL": {
       "hero1": "ZAREZERWUJ BILETY DO",
@@ -249,8 +249,8 @@
       "from": "od:",
       "availablein": "Dostępne w:",
       "preferences": "Preferencje",
-      "searchplaceholderheader": "Search in experiences and places",
-      "searchplaceholderhero": "Enter a destination, attraction or experience"
+      "searchplaceholderheader": "Szukaj atrakcji i miejsc",
+      "searchplaceholderhero": "Znajdź cel podróży lub atrakcję"
     }
   }
 }
