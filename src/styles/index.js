@@ -1062,7 +1062,10 @@ export const ContentDescription = styled.h3`
   font-size: 1.75rem;
 `;
 
-export const ContentAbout = styled.p``;
+export const ContentAbout = styled.p`
+  line-height: 1.6875rem;
+  font-size: 1.125rem;
+`;
 
 // Section MEDIASLIDESHOW
 
