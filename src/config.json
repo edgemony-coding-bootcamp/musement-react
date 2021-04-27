@@ -104,7 +104,13 @@
       "attractionandguidetour": "attraction & guide tour",
       "from": "from:",
       "availablein": "Available in:",
-      "preferences": "Preferences"
+      "preferences": "Preferences",
+      "openMediaBtn": "View all photos",
+      "languages": "Languages:",
+      "availability": "Availability:",
+      "mobilevoucher": "Mobile voucher accepted",
+      "safetymeasuresapplied": "Safety measures applied",
+      "highlitsheader": "Do this because"
     },
     "it-IT": {
       "hero1": "BIGLIETTI PER ",
@@ -118,7 +124,13 @@
       "attractionandguidetour": "attrazioni e tour guidati",
       "from": "Da:",
       "availablein": "Disponibile in:",
-      "preferences": "Preferenze"
+      "preferences": "Preferenze",
+      "openMediaBtn": "Guarda tutte le foto",
+      "languages": "Lingue:",
+      "availability": "Disponibilità:",
+      "mobilevoucher": "Voucher sul cellulare accettato",
+      "safetymeasuresapplied": "Applicazione di misure sanitarie",
+      "highlitsheader": "Cosa farai"
     },
     "fr-FR": {
       "hero1": "RÉSERVEZ",
@@ -132,7 +144,13 @@
       "attractionandguidetour": "Attractions et visites guidées",
       "from": "à partir de:",
       "availablein": "Disponible en:",
-      "preferences": "Préférences"
+      "preferences": "Préférences",
+      "openMediaBtn": "View all photos",
+      "languages": "Languages:",
+      "availability": "Availability:",
+      "mobilevoucher": "Mobile voucher accepted",
+      "safetymeasuresapplied": "Safety measures applied",
+      "highlitsheader": "Do this because"
     },
     "es-ES": {
       "hero1": "ENTRADAS PARA",
@@ -146,7 +164,13 @@
       "attractionandguidetour": "Atracciones y visitas guiadas",
       "from": "Desde:",
       "availablein": "Disponible en:",
-      "preferences": "Preferencias"
+      "preferences": "Preferencias",
+      "openMediaBtn": "View all photos",
+      "languages": "Languages:",
+      "availability": "Availability:",
+      "mobilevoucher": "Mobile voucher accepted",
+      "safetymeasuresapplied": "Safety measures applied",
+      "highlitsheader": "Do this because"
     },
     "de-DE": {
       "hero1": "TICKETS FÜR",
@@ -160,7 +184,13 @@
       "attractionandguidetour": "Attraktionen und Führungen",
       "from": "ab:",
       "availablein": "Verfügbar in:",
-      "preferences": "Favoriten"
+      "preferences": "Favoriten",
+      "openMediaBtn": "View all photos",
+      "languages": "Languages:",
+      "availability": "Availability:",
+      "mobilevoucher": "Mobile voucher accepted",
+      "safetymeasuresapplied": "Safety measures applied",
+      "highlitsheader": "Do this because"
     },
     "pt-PT": {
       "hero1": "ENTRADAS PARA",
@@ -174,7 +204,13 @@
       "attractionandguidetour": "Atrações e visitas guiadas",
       "from": "de:",
       "availablein": "Disponível em:",
-      "preferences": "Preferências"
+      "preferences": "Preferências",
+      "openMediaBtn": "View all photos",
+      "languages": "Languages:",
+      "availability": "Availability:",
+      "mobilevoucher": "Mobile voucher accepted",
+      "safetymeasuresapplied": "Safety measures applied",
+      "highlitsheader": "Do this because"
     },
     "pt-BR": {
       "hero1": "INGRESSOS PARA",
@@ -188,7 +224,13 @@
       "attractionandguidetour": "Atrações e visitas guiadas",
       "from": "de:",
       "availablein": "Disponível em:",
-      "preferences": "Preferências"
+      "preferences": "Preferências",
+      "openMediaBtn": "View all photos",
+      "languages": "Languages:",
+      "availability": "Availability:",
+      "mobilevoucher": "Mobile voucher accepted",
+      "safetymeasuresapplied": "Safety measures applied",
+      "highlitsheader": "Do this because"
     },
     "ru-RU": {
       "hero1": "БРОНИРОВАТЬ",
@@ -202,7 +244,13 @@
       "attractionandguidetour": "Dostoprimechatelnosti i ekskursi",
       "from": "с:",
       "availablein": "доступно в:",
-      "preferences": "Мне нравится"
+      "preferences": "Мне нравится",
+      "openMediaBtn": "View all photos",
+      "languages": "Languages:",
+      "availability": "Availability:",
+      "mobilevoucher": "Mobile voucher accepted",
+      "safetymeasuresapplied": "Safety measures applied",
+      "highlitsheader": "Do this because"
     },
     "nl-NL": {
       "hero1": "BOEK TICKETS VOOR MUSEA, ",
@@ -216,7 +264,13 @@
       "attractionandguidetour": "Tickets en evenementen",
       "from": "van",
       "availablein": "Beschikbaar in:",
-      "preferences": "Voorkeuren"
+      "preferences": "Voorkeuren",
+      "openMediaBtn": "View all photos",
+      "languages": "Languages:",
+      "availability": "Availability:",
+      "mobilevoucher": "Mobile voucher accepted",
+      "safetymeasuresapplied": "Safety measures applied",
+      "highlitsheader": "Do this because"
     },
     "pl-PL": {
       "hero1": "ZAREZERWUJ BILETY DO",
@@ -230,7 +284,13 @@
       "attractionandguidetour": "Atrakcje i usługi przewodnika",
       "from": "od:",
       "availablein": "Dostępne w:",
-      "preferences": "Preferencje"
+      "preferences": "Preferencje",
+      "openMediaBtn": "View all photos",
+      "languages": "Languages:",
+      "availability": "Availability:",
+      "mobilevoucher": "Mobile voucher accepted",
+      "safetymeasuresapplied": "Safety measures applied",
+      "highlitsheader": "Do this because"
     }
   }
 }

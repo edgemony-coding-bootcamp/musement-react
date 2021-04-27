@@ -49,6 +49,7 @@ function Activities() {
   const dispatch = useDispatch();
   const { activity, loading, error } = useSelector((state) => state.activity);
   const { media } = useSelector((state) => state.activity);
+  const { translatedTexts } = useSelector((state) => state.translations);
 
   useEffect(() => {
     dispatch(getActivityById(id));
@@ -78,7 +79,7 @@ function Activities() {
                   {media.length > 0 && (
                     <OpenMediaButton onClick={() => setModalIsOpen(true)}>
                       <AllPicturesIcon />
-                      <P>OpenMedia</P>
+                      <P>{`${translatedTexts.openMediaBtn}`}</P>
                     </OpenMediaButton>
                   )}
                 </>
@@ -90,8 +91,8 @@ function Activities() {
               <ContentSectionHeader>
                 <CardCategoryLabel>
                   {activity?.ticket
-                    ? 'Biglietti ed Eventi'
-                    : 'Attrazioni e tour guidati'}
+                    ? `${translatedTexts.ticketandevents}`
+                    : `${translatedTexts.attractionandguidetour}`}
                 </CardCategoryLabel>
                 <ContentTitle>{activity?.title}</ContentTitle>
                 <ContentUrl>{` Home > ${activity?.city['name']} > ${activity?.title}`}</ContentUrl>
@@ -103,7 +104,7 @@ function Activities() {
                       <FreeCancellationIcon />
                     </IconDiv>
                     {activity?.free_cancellation
-                      ? 'Cancellazione gratuita'
+                      ? `${translatedTexts.freecancellation}`
                       : null}
                   </FeaturesDiv>
                 )}
@@ -112,7 +113,7 @@ function Activities() {
                     <IconDiv md>
                       <LanguageActivityIcon />
                     </IconDiv>
-                    <P bold={true}>Languages:</P>
+                    <P bold={true}>{`${translatedTexts.languages}`}</P>
                     {activity?.languages.map((item) => item.name).join(', ')}
                   </FeaturesDiv>
                 )}
@@ -121,7 +122,7 @@ function Activities() {
                     <IconDiv md>
                       <CalendarIcon />
                     </IconDiv>
-                    <P bold={true}>Availability:</P>
+                    <P bold={true}>{`${translatedTexts.availability}`}</P>
                     {activity?.operational_days}
                   </FeaturesDiv>
                 )}
@@ -138,14 +139,14 @@ function Activities() {
                     <IconDiv md>
                       <MobileVoucherIcon />
                     </IconDiv>
-                    {'Mobile voucher accepted'}
+                    {`${translatedTexts.mobilevoucher}`}
                   </FeaturesDiv>
                 )}
                 <FeaturesDiv>
                   <IconDiv md>
                     <SafetyActivityIcon />
                   </IconDiv>
-                  {'Safety measures applied'}
+                  {`${translatedTexts.safetymeasuresapplied}`}
                 </FeaturesDiv>
                 <GrayFeaturesDiv>
                   <IconDiv lg>
@@ -159,7 +160,7 @@ function Activities() {
                 </GrayFeaturesDiv>
               </ContentFeaturesSection>
               <ContentSectionBody>
-                <ContentHighlights>{'Do this because'}</ContentHighlights>
+                <ContentHighlights>{`${translatedTexts.highlitsheader}`}</ContentHighlights>
                 <ContentHighlightsList>
                   {activity?.highlights.map((item, index) => (
                     <ContentHighlightsElements key={index}>
