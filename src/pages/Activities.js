@@ -95,6 +95,7 @@ function Activities() {
                     : `${translatedTexts.attractionandguidetour}`}
                 </CardCategoryLabel>
                 <ContentTitle>{activity?.title}</ContentTitle>
+                {/* To change after merge with the one from category page */}
                 <ContentUrl>{` Home > ${activity?.city['name']} > ${activity?.title}`}</ContentUrl>
               </ContentSectionHeader>
               <ContentFeaturesSection>
