@@ -50,12 +50,12 @@ function Activities() {
   const { activity, loading, error } = useSelector((state) => state.activity);
   const { media } = useSelector((state) => state.activity);
   const { translatedTexts } = useSelector((state) => state.translations);
+  const { userLang } = useSelector((state) => state.languages);
 
   useEffect(() => {
     dispatch(getActivityById(id));
     dispatch(getMediaById(id));
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [dispatch]);
+  }, [dispatch, id, userLang]);
   let activityKeys = Object.keys(activity);
 
   const closeModal = () => {
