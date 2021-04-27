@@ -21,36 +21,25 @@ import {
   P,
 } from '../styles';
 import CategoriesNav from './CategoriesNav';
+import { useParams } from 'react-router';
 
-function Header() {
+function Header({ path }) {
+  let { lang } = useParams();
   const dispatch = useDispatch();
   const categoryState = useSelector((state) => state.categories);
-
   const { categories } = categoryState;
+  const { userLang } = useSelector((state) => state.languages);
 
   useEffect(() => {
     setTimeout(() => {
       dispatch(fetchCategories());
     }, 1);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [userLang]);
 
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [modalSrc, setModalSrc] = useState([{ name: 'Explore' }]);
+  const [showCategories, setShowCategories] = useState(false);
   const [modalTitle, setModalTitle] = useState('Menu');
-
-  function ModalHeaderF(e) {
-    const a = e.target;
-    const b = a.textContent;
-    if (b === 'Back') {
-      setModalTitle('Menu');
-      setModalSrc([{ name: 'Explore' }]);
-    } else if (b === 'Explore') {
-      setModalSrc(categories);
-      setModalTitle('Back');
-      return <P>{categories.map((cat) => cat.name)}</P>;
-    }
-  }
 
   let scrolling = useScrolling(133);
   let scrollInitial = useScrolling(1);
@@ -84,12 +73,20 @@ function Header() {
           <ModalHeaderOverlay onClick={() => setIsModalOpen(false)} />
           <FlexColumnWrap>
             <FlexRowWrap>
-              <H3 onClick={(e) => ModalHeaderF(e)}>{modalTitle}</H3>
-            </FlexRowWrap>{' '}
+              <H3>{modalTitle}</H3>
+            </FlexRowWrap>
             <FlexColumnWrap>
-              {modalSrc.map((i) => (
-                <P onClick={(e) => ModalHeaderF(e)}>{i.name}</P>
-              ))}
+              <P onClick={() => setShowCategories(!showCategories)}>
+                {showCategories ? 'Back' : 'Explore'}
+              </P>
+              {showCategories &&
+                categories.map((cat) => (
+                  <LinkPages to={`/${lang}/${cat.slug}`}>
+                    <P onClick={() => setIsModalOpen(!isModalOpen)}>
+                      {cat.name}
+                    </P>
+                  </LinkPages>
+                ))}
             </FlexColumnWrap>
           </FlexColumnWrap>
         </ModalHeaderBody>
