@@ -20,6 +20,7 @@ import Carousel from '../components/Carousel';
 import FeaturedExperiences from '../components/FeaturedExperiences';
 import CarouselTitle from '../components/CarouselTitle';
 import Footer from '../components/Footer';
+import { Category } from './Category';
 
 function Home() {
   const { userLang } = useSelector((state) => state.languages);
@@ -47,6 +48,11 @@ function Home() {
     <>
       <Header />
       <Switch>
+        <Route path={`/${lang}/:idCateg`}>
+          <Main>
+            <Category />
+          </Main>
+        </Route>
         <Route path={`/${lang}`}>
           <Main>
             <Hero />
