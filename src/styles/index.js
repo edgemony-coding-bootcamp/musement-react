@@ -940,14 +940,14 @@ export const ContentSectionContainer = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  padding: 10px 20px;
   @media ${device.laptop} {
-    padding: 0 60px;
+    padding: 10px 60px;
   }
 `;
 
 export const ContentSectionHeader = styled.div`
   width: 100%;
-  padding: 15px 20px;
 `;
 export const ContentSectionBody = styled.div`
   display: flex;
@@ -991,6 +991,7 @@ export const FeaturesDiv = styled.div`
   flex-wrap: wrap;
   align-items: center;
   border-bottom: 1px solid ${color.alternativeb};
+  padding: 10px 0;
   &:nth-last-child(-n + 2) {
     border-bottom: none;
   }
