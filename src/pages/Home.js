@@ -64,13 +64,13 @@ function Home() {
                 <FeaturedExperiences />
               </Carousel>
             </CarouselSection>
-            <Footer lang={lang} />
           </Main>
         </Route>
         <Route path={`${path}/*`}>
           <h1>404</h1>
         </Route>
       </Switch>
+      <Footer lang={lang} />
     </>
   );
 }
