@@ -71,9 +71,7 @@ function Home() {
               <Carousel>
                 <FeaturedExperiences />
               </Carousel>
-            </CarouselSection>
-            <CarouselTitle title={'Find your inspiration'} />
-            <CarouselSection>
+              <CarouselTitle title={'Find your inspiration'} />
               <Carousel>
                 {inspirations.length > 0
                   ? inspirations.map((inspiration, key) => (

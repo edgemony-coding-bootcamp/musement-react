@@ -764,19 +764,11 @@ export const CarouselTitleContainer = styled.div`
 `;
 
 export const Arrow = styled(ArrowSvg)`
-  width: 25px;
-  height: 25px;
-  position: absolute;
-  bottom: calc(50% - 62px);
+  width: 24px;
+  height: 24px;
+  color: black;
   cursor: pointer;
 `;
-
-// export const Arrow = styled(ArrowSvg)`
-//   width: 24px;
-//   height: 24px;
-//   color: black;
-//   cursor: pointer;
-// `;
 
 export const CarouselContainer = styled.div`
   padding: 0 80px 0 0;
@@ -853,53 +845,6 @@ export const CardWrapper = styled.div`
     height: 100%;
     display: flex;
     flex-direction: column;
-  }
-`;
-
-export const CarouselCardWrapper = styled.div`
-  display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
-  scroll-snap-type: x mandatory;
-  overflow-x: scroll;
-  overflow-y: hidden;
-  scroll-behavior: smooth;
-
-  @media ${device.tablet} {
-    overflow-x: hidden;
-    min-width: 100%;
-    ${CardWrapper} {
-      ${({ current }) =>
-        current
-          ? `transform: translatex(-${current}px); 
-  transition-duration: 300ms;`
-          : ''}
-    }
-  }
-
-  @media ${device.laptop} {
-    overflow-x: hidden;
-    min-width: 100%;
-    /* max-width: ${cardSize.md * 2}px; */
-    ${CardWrapper} {
-      ${({ current }) =>
-        current
-          ? `transform: translatex(-${current}px); 
-  transition-duration: 300ms;`
-          : ''}
-    }
-  }
-
-  @media ${device.desktop} {
-    min-width: 100%;
-    /* max-width: ${cardSize.lg * 3}px; */
-    ${CardWrapper} {
-      ${({ current }) =>
-        current
-          ? `transform: translatex(-${current}px); 
-  transition-duration: 300ms;`
-          : ''}
-    }
   }
 `;
 
@@ -1158,12 +1103,26 @@ export const PriceSecondNum = styled(PriceFirstNum)`
 
 export const SimpleCardWrapper = styled.div`
   min-width: 290px;
-  height: 245px;
+  min-height: 245px;
+  margin-right: 20px;
   position: relative;
-  box-sizing: content-box;
 
-  @media (min-width: 1350px) {
+  @media ${device.tablet} {
+    min-width: 290px;
+    max-width: 290px;
+    min-height: 245px;
+  }
+
+  @media ${device.laptop} {
+    min-width: 290px;
+    max-width: 290px;
+    min-height: 245px;
+  }
+
+  @media ${device.desktop} {
     min-width: 335px;
+    max-width: 335px;
+    min-height: 245px;
   }
 `;
 
@@ -1181,7 +1140,7 @@ export const SimpleCardDescript = styled.div`
   display: flex;
   flex-direction: column;
 
-  @media (min-width: 1350px) {
+  @media ${device.desktop} {
     width: 250px;
   }
 `;
@@ -1204,6 +1163,7 @@ export const SimpleCardTitleTop = styled.span`
 export const SimpleCardTitleBottom = styled.span`
   position: relative;
   left: -6px;
+  font-weight: bold;
 `;
 
 export const SimpleCardExperiences = styled.div`
@@ -1212,6 +1172,53 @@ export const SimpleCardExperiences = styled.div`
   font-size: 0.85rem;
   vertical-align: middle;
   background-color: ${color.primary};
+`;
+
+export const CarouselCardWrapper = styled.div`
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  scroll-snap-type: x mandatory;
+  overflow-x: scroll;
+  overflow-y: hidden;
+  scroll-behavior: smooth;
+
+  @media ${device.tablet} {
+    overflow-x: hidden;
+    min-width: 100%;
+    ${(CardWrapper, SimpleCardWrapper)} {
+      ${({ current }) =>
+        current
+          ? `transform: translatex(-${current}px); 
+  transition-duration: 300ms;`
+          : ''}
+    }
+  }
+
+  @media ${device.laptop} {
+    overflow-x: hidden;
+    min-width: 100%;
+    /* max-width: ${cardSize.md * 2}px; */
+    ${(CardWrapper, SimpleCardWrapper)} {
+      ${({ current }) =>
+        current
+          ? `transform: translatex(-${current}px); 
+  transition-duration: 300ms;`
+          : ''}
+    }
+  }
+
+  @media ${device.desktop} {
+    min-width: 100%;
+    /* max-width: ${cardSize.lg * 3}px; */
+    ${(CardWrapper, SimpleCardWrapper)} {
+      ${({ current }) =>
+        current
+          ? `transform: translatex(-${current}px); 
+  transition-duration: 300ms;`
+          : ''}
+    }
+  }
 `;
 
 // Section ACTIVITY PAGE

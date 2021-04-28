@@ -9,13 +9,14 @@ import {
 } from '../styles';
 
 export const SimpleCard = ({ item }) => {
+  console.log(item);
   return (
     <SimpleCardWrapper>
       <SimpleCardImg src={item.cover_image_url}></SimpleCardImg>
       <SimpleCardDescript>
         <SimpleCardTitleWrapper>
           <SimpleCardTitleTop>
-            <SimpleCardTitleBottom>{item.title}</SimpleCardTitleBottom>
+            <SimpleCardTitleBottom>{item.subtitle}</SimpleCardTitleBottom>
           </SimpleCardTitleTop>
         </SimpleCardTitleWrapper>
         <SimpleCardExperiences>
