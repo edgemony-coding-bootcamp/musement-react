@@ -20,6 +20,7 @@ import Carousel from '../components/Carousel';
 import FeaturedExperiences from '../components/FeaturedExperiences';
 import CarouselTitle from '../components/CarouselTitle';
 import Footer from '../components/Footer';
+import Activities from './Activities';
 import { Category } from './Category';
 
 function Home() {
@@ -53,23 +54,27 @@ function Home() {
             <Category />
           </Main>
         </Route>
-        <Route path={`/${lang}`}>
+        <Route path={`/${lang}/activities/:id`}>
+          <Main>
+            <Activities />
+          </Main>
+        </Route>
+        <Route exact path={`/${lang}`}>
           <Main>
             <Hero />
-
             <CarouselSection>
               <CarouselTitle title={'Featured Experiences'} />
               <Carousel>
                 <FeaturedExperiences />
               </Carousel>
             </CarouselSection>
-            <Footer lang={lang} />
           </Main>
         </Route>
-        <Route path={`${path}/:category`}>
+        <Route path={`${path}/*`}>
           <h1>404</h1>
         </Route>
       </Switch>
+      <Footer lang={lang} />
     </>
   );
 }

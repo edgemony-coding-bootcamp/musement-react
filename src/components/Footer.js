@@ -21,11 +21,21 @@ function Footer({ lang }) {
   const dispatch = useDispatch();
   const setLang = (value) => {
     dispatch(setUserLang(value));
-    history.push(`/${value}`);
+    history.push(
+      `/${value}${window.location.pathname.replace(`/${lang}`, '')}`
+    );
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth',
+    });
   };
   const setCurrency = (value) => {
     dispatch(setUserCurrency(value));
     setCurrencyHeader(value);
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth',
+    });
   };
 
   return (

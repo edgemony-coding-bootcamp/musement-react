@@ -16,6 +16,7 @@ import {
   TRANSLATIONS,
 } from '../config.json';
 import { getLanguageConfiguration } from '../utilities';
+import { activityReducer } from './activities/activityReducers';
 
 const defaultCurrency = CURRENCIES.find(
   (item) => item.code === DEFAULT_CURRENCY
@@ -28,6 +29,7 @@ const reducer = combineReducers({
   currencies: currencyReducer,
   translations: translationReducer,
   categories: categoryListReducer,
+  activity: activityReducer,
   inspirations: inspirationListReducer,
   experiences: experienceListReducer,
   searchResults: autocompleteListReducer,
@@ -45,6 +47,12 @@ const defaultStore = {
   },
   categories: {
     categories: [],
+    error: null,
+    loading: false,
+  },
+  activity: {
+    activity: [],
+    media: [],
     error: null,
     loading: false,
   },

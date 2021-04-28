@@ -15,7 +15,17 @@ import { ReactComponent as FoodWineSvg } from '../assets/img/food-wine.svg';
 import { ReactComponent as SportSvg } from '../assets/img/sport.svg';
 import { ReactComponent as ActiveAdventureSvg } from '../assets/img/active-adventure.svg';
 import { ReactComponent as ArrowSvg } from '../assets/img/arrow.svg';
-
+import { ReactComponent as CloseSvg } from '../assets/img/close-x.svg';
+import { ReactComponent as FreeCancellationSvg } from '../assets/img/freeCancellation.svg';
+import { ReactComponent as LanguageActivitySvg } from '../assets/img/language-activity.svg';
+import { ReactComponent as CalendarSvg } from '../assets/img/calendar.svg';
+import { ReactComponent as MobileVoucherSvg } from '../assets/img/mobile_voucher.svg';
+import { ReactComponent as DurationActivitySvg } from '../assets/img/duration-activity.svg';
+import { ReactComponent as SafetyActivitySvg } from '../assets/img/safety.svg';
+import { ReactComponent as IstantActivitySvg } from '../assets/img/istant.svg';
+import { ReactComponent as SkipActivitySvg } from '../assets/img/skip.svg';
+import { ReactComponent as AllMediaSvg } from '../assets/img/all_pictures.svg';
+import { ReactComponent as LoaderSpinnerSvg } from '../assets/img/loader.svg';
 import colosseoImg from '../assets/img/cover_hero_home_desktop_colosseo.png';
 import { keyframes } from 'styled-components';
 
@@ -28,7 +38,7 @@ export const color = {
   alternative: '#9E9E9E',
   alternativeb: '#bac5c3',
   alternativec: '#edf1f2',
-  success: '#bac5c3',
+  success: '#69bc6b;',
   error: '#edf1f2',
 };
 
@@ -73,7 +83,9 @@ export const device = {
 
 export const Div = styled.div``;
 
-export const P = styled.p``;
+export const P = styled.p`
+  ${({ bold }) => bold && `font-weight: 700; margin:0 5px;`}
+`;
 
 export const H2 = styled.h2``;
 
@@ -86,6 +98,7 @@ export const Span = styled.span``;
 export const Svg = styled.svg``;
 
 export const Main = styled.main`
+  max-width: 100vw;
   @media ${device.desktop} {
     margin: 0 40px;
   }
@@ -109,11 +122,15 @@ export const FlexColumnWrap = styled(Div)`
 export const LinkPages = styled(Link)`
   text-decoration: none;
   color: ${color.primaryb};
-  &:active {
+  &:link,
+  :visited,
+  :active {
     color: ${color.secondary};
+    text-decoration: none;
   }
   &:hover {
     text-decoration: underline;
+    color: ${color.secondary};
   }
 `;
 
@@ -665,6 +682,53 @@ export const SafetySvgIcon = styled(SafetySvg)`
   }
 `;
 
+export const AllPicturesIcon = styled(AllMediaSvg)`
+  width: 13px;
+  height: 13px;
+  margin-right: 10px;
+`;
+export const FreeCancellationIcon = styled(FreeCancellationSvg)`
+  width: 25px;
+  height: 25px;
+`;
+export const LanguageActivityIcon = styled(LanguageActivitySvg)`
+  width: 25px;
+  height: 25px;
+`;
+
+export const CalendarIcon = styled(CalendarSvg)`
+  width: 25px;
+  height: 25px;
+`;
+export const MobileVoucherIcon = styled(MobileVoucherSvg)`
+  height: 25px;
+  width: 25px;
+`;
+export const DurationActivityIcon = styled(DurationActivitySvg)`
+  height: 25px;
+  width: 25px;
+`;
+export const SafetyActivityIcon = styled(SafetyActivitySvg)`
+  height: 25px;
+  width: 25px;
+`;
+export const IstantActivityIcon = styled(IstantActivitySvg)`
+  height: 33px;
+  width: 33px;
+`;
+export const SkipActivityIcon = styled(SkipActivitySvg)`
+  height: 33px;
+  width: 33px;
+`;
+export const LoaderSpinner = styled(LoaderSpinnerSvg)`
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 36px;
+  height: 36px;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+`;
 // section CAROUSEL
 
 export const CarouselWrapperArrow = styled.div`
@@ -719,6 +783,37 @@ export const CarouselContainer = styled.div`
   display: flex;
   align-items: center;
 `;
+
+export const MediaArrow = styled(ArrowSvg)`
+  width: 25px;
+  height: 25px;
+  position: absolute;
+  top: 50%;
+  fill: white;
+  z-index: 205;
+  cursor: pointer;
+`;
+
+export const MediaArrowRight = styled(MediaArrow)`
+  right: 40px;
+
+  :hover {
+    transform: translateX(3px);
+  }
+  ${({ current, mediaLength }) =>
+    current === mediaLength - 1 ? `display: none` : `display: block`}
+`;
+
+export const MediaArrowLeft = styled(MediaArrow)`
+  transform: rotate(-180deg);
+  left: 40px;
+  :hover {
+    transform: rotate(-180deg) translateX(3px);
+  }
+  ${({ current }) => !current && `display: none`}
+`;
+
+// section CARD
 
 export const CardWrapper = styled.div`
   background-color: ${bgColor.primary};
@@ -955,11 +1050,14 @@ export const CardDescription = styled.p`
   }
 `;
 
-export const IconBodyCard = styled.div`
+export const IconDiv = styled.div`
   width: 20px;
   height: 20px;
   margin-right: 5px;
   display: inline-block;
+  ${({ md }) => md && 'width: 25px; height: 25px;'}
+  ${({ lg }) => lg && 'width: 33px; height: 33px;'}
+  ${({ xl }) => xl && 'width: 46px; height: 46px;'}
 `;
 
 export const CardCancellation = styled.div`
@@ -969,8 +1067,8 @@ export const CardCancellation = styled.div`
   font-weight: bold;
   display: flex;
   align-items: center;
-  color: #72ca74;
-  fill: #72ca74;
+  color: ${color.success};
+  fill: ${color.success};
 
   ${({ cancellation }) => (cancellation ? '' : `display: none;`)}
 `;
@@ -1056,6 +1154,329 @@ export const PriceSecondNum = styled(PriceFirstNum)`
   color: #fa6c50;
 `;
 
+// Section ACTIVITY PAGE
+
+export const SectionWrapper = styled.section`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 0;
+
+  @media ${device.desktop} {
+    padding: 0 20px;
+  }
+`;
+
+export const Jumbotron = styled.div`
+  position: relative;
+  width: 100%;
+`;
+
+export const BackdropImage = styled.img`
+  width: 100%;
+  height: 400px;
+  object-fit: cover;
+`;
+
+export const OpenMediaButton = styled.button`
+  position: absolute;
+  bottom: 35px;
+  left: 60px;
+  width: 190px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  background: ${color.primary};
+  height: 50px;
+  border: 1px solid ${color.alternativeb};
+  border-radius: 5px;
+  color: #232323;
+  text-indent: 0;
+  font-size: 0.9375rem;
+  & .cls-1 {
+    fill: #333;
+    stroke-width: 0.2;
+  }
+`;
+
+export const ContentSection = styled.div`
+  width: 100%;
+  position: relative;
+`;
+
+export const ContentSectionContainer = styled.div`
+  max-width: 1400px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 10px 20px;
+  @media ${device.laptop} {
+    padding: 10px 60px;
+  }
+`;
+
+export const ContentSectionHeader = styled.div`
+  width: 100%;
+`;
+export const ContentSectionBody = styled.div`
+  display: flex;
+  flex-direction: column;
+  margin-top: 40px;
+  width: 100%;
+  @media ${device.laptop} {
+    margin-top: 20px;
+    padding-right: 40px;
+  }
+  @media ${device.desktop} {
+    padding: 60px;
+  }
+`;
+
+export const ContentTitle = styled.h2`
+  font-size: 2rem;
+`;
+
+export const ContentUrl = styled.span``;
+
+export const ContentFeaturesSection = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  margin-top: 25px;
+  @media ${device.laptop} {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+`;
+
+export const FeaturesDiv = styled.div`
+  border: none;
+  min-width: 90%;
+  max-width: 90%;
+  height: 60px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  border-bottom: 1px solid ${color.alternativeb};
+  padding: 10px 0;
+  &:nth-last-child(-n + 2) {
+    border-bottom: none;
+  }
+  @media ${device.laptop} {
+    min-width: 50%;
+    max-width: 100%;
+    :first-child {
+      border-top: 1px solid ${color.alternativeb};
+    }
+    &:nth-child(2) {
+      border-top: 1px solid ${color.alternativeb};
+    }
+    &:nth-last-child(-n + 3) {
+      border-bottom: none;
+    }
+  }
+  ${({ freeCancellation }) =>
+    freeCancellation &&
+    `color: ${color.success}; fill: ${color.success}; font-weight:700;`}
+`;
+
+export const GrayFeaturesDiv = styled.div`
+  min-width: 80%;
+  height: 60px;
+  display: inline-flex;
+  align-items: center;
+  border: none;
+  background-color: ${bgColor.primaryb};
+  justify-content: flex-start;
+  @media ${device.laptop} {
+    min-width: 100%;
+    max-width: 100%;
+  }
+  > span {
+    margin-right: 25px;
+  }
+`;
+export const ContentHighlights = styled.h3`
+  font-size: 1.75rem;
+`;
+
+export const ContentHighlightsList = styled.ul`
+  list-style: none;
+  position: relative;
+  display: block;
+  margin-block-end: 1em;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+  padding-inline-start: 40px;
+  font-size: 1.125rem;
+  line-height: 1.5625rem;
+`;
+
+export const ContentHighlightsElements = styled.li`
+  line-height: 1.6875rem;
+  margin-top: 20px;
+  position: relative;
+
+  &:before {
+    content: '\u2219';
+    color: ${color.secondary};
+    position: absolute;
+    left: -30px;
+    font-size: 3rem;
+  }
+`;
+
+export const ContentDescription = styled.h3`
+  font-size: 1.75rem;
+`;
+
+export const ContentAbout = styled.p`
+  line-height: 1.6875rem;
+  font-size: 1.125rem;
+`;
+
+// Section MEDIASLIDESHOW
+
+export const JumbotronGalleryMobile = styled.div`
+  height: 200px;
+  width: 100vw;
+  display: flex;
+  flex-wrap: nowrap;
+  position: relative;
+  z-index: 1;
+  box-sizing: border-box;
+  overflow-x: scroll;
+  scroll-snap-type: x mandatory;
+  &::-webkit-scrollbar {
+    display: none;
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+  }
+`;
+export const JumbotronMobileSlides = styled.img`
+  width: 100vw;
+  object-fit: cover;
+  scroll-snap-align: start;
+`;
+
+export const IndexSlider = styled.div`
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  position: absolute;
+  text-align: center;
+  -webkit-transition: opacity 0.3s;
+  -o-transition: 0.3s opacity;
+  transition: opacity 0.3s;
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+  z-index: 10;
+`;
+export const IndexSliderCounter = styled.span`
+  margin: 0 4px;
+  width: 8px;
+  height: 8px;
+  background-color: #dce4e6;
+  border-radius: 50%;
+  margin-right: 5px;
+  display: inline-block;
+  opacity: 1;
+  cursor: pointer;
+  transition: background-color 0.1s cubic-bezier(0.55, 0.06, 0.68, 0.19);
+  ${({ active }) => active && `background-color: ${color.secondary};`};
+`;
+export const JumbotronGallery = styled.div`
+  position: fixed;
+  top: 0;
+  min-height: 100vh;
+  min-width: 100vw;
+  z-index: 205;
+`;
+
+export const SectionGallery = styled.section`
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 205;
+`;
+
+export const GalleryCarousel = styled.div`
+  display: flex;
+  flex-direction: row;
+  min-width: 100vw;
+  flex-wrap: nowrap;
+  overflow-x: scroll;
+  overflow-y: hidden;
+  -webkit-overflow-scrolling: touch;
+  scroll-behavior: smooth;
+  -ms-scroll-snap-type: x mandatory;
+  scroll-snap-type: x mandatory;
+`;
+
+export const SlideContainer = styled.div`
+  background-color: rgba(0, 0, 0, 0.75);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-width: 100vw;
+  height: 100vh;
+  scroll-snap-align: start;
+  transition: transform 0.7s ease-in-out;
+
+  ${({ isMoving }) =>
+    isMoving ? `transform: translateX(-${isMoving}vw);` : ''}
+`;
+
+export const SlideImageContainer = styled.div`
+  height: 70%;
+  width: 70%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  z-index: 2;
+`;
+
+export const SlideImage = styled.img`
+  display: block;
+  max-width: 100%;
+  max-height: 100%;
+`;
+
+export const SlideText = styled.span`
+  font-size: 18px;
+  color: #fff;
+  margin-top: 10px;
+  align-self: flex-end;
+`;
+export const GalleryCloseBtn = styled.button`
+  font-size: 2rem;
+  position: absolute;
+  border: none;
+  background: none;
+  right: 20px;
+  width: 20px;
+  top: 20px;
+  z-index: 205;
+  cursor: pointer;
+  color: white;
+`;
+
+export const CloseXSvg = styled(CloseSvg)`
+  fill: white;
+  height: 20px;
+  width: 20px;
+`;
 // section PAGE'S CATEGORY
 
 export const CategoryImgWrapper = styled.div`
@@ -1159,7 +1580,9 @@ export const FooterWrapper = styled.footer`
   }
 `;
 
-export const FooterDropdownWrapper = styled.div``;
+export const FooterDropdownWrapper = styled.div`
+  margin-right: 150px;
+`;
 
 export const FooterDropdown = styled.div`
   width: 200px;
@@ -1190,4 +1613,42 @@ export const DropdownOption = styled.option`
   display: inline-flex;
   justify-content: space-between;
   margin: 2px;
+`;
+
+// Section LOADER
+
+export const LoaderBar = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: 4px;
+  background: linear-gradient(
+    90deg,
+    ${color.secondary},
+    ${color.secondary} 50%,
+    #fff 0,
+    #fff
+  );
+  background-size: 200% 100%;
+  z-index: 100000;
+  -webkit-animation-name: loading-data-v-21fdaed0;
+  animation-name: loading-data-v-21fdaed0;
+  -webkit-animation-iteration-count: infinite;
+  animation-iteration-count: infinite;
+  -webkit-animation-timing-function: linear;
+  animation-timing-function: linear;
+  -webkit-animation-duration: 2s;
+  animation-duration: 2s;
+
+  @keyframes loading-data-v-21fdaed0 {
+    0% {
+      background-position: 100%;
+    }
+
+    100% {
+      background-position: -100%;
+    }
+  }
 `;
