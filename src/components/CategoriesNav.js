@@ -21,7 +21,7 @@ function CategoriesNav() {
   let location = useLocation();
   let match = useRouteMatch();
 
-  const pathIncludes = (location, category) => {
+  const pathincludes = (location, category) => {
     const path = match.url + category;
     if (location.pathname === path) {
       return true;
@@ -34,7 +34,7 @@ function CategoriesNav() {
     <CategoryLinkWrap
       to={`/${lang}/${cat.slug}`}
       key={cat.id}
-      pathIncludes={pathIncludes(location, `/${cat.slug}`)}
+      pathincludes={pathincludes(location, `/${cat.slug}`)}
     >
       <CategoryLinkContainer>
         <CategoryLink>

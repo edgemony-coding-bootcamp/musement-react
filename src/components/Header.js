@@ -45,7 +45,6 @@ function Header({ path }) {
 
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [showCategories, setShowCategories] = useState(false);
-  const [modalTitle, setModalTitle] = useState('Menu');
   const [isModalSearchOpen, setIsModalSearchOpen] = useState(false);
 
   let scrolling = useScrolling(133);
@@ -75,7 +74,7 @@ function Header({ path }) {
                   <Div>Search for experiences and places</Div>
                   <CloseIcon onClick={() => setIsModalSearchOpen(false)} />
                 </FlexRowWrap>
-                <SearchBar />
+                <SearchBar setIsModalSearchOpen={setIsModalSearchOpen} />
               </ModalOverlayMobile>
             )}
             <LinkPages to='/'>
@@ -94,7 +93,7 @@ function Header({ path }) {
           <ModalOverlay onClick={() => setIsModalOpen(false)} />
           <FlexColumnWrap>
             <FlexRowWrap>
-              <H3>{modalTitle}</H3>
+              <H3>Menu</H3>
             </FlexRowWrap>
             <FlexColumnWrap>
               <P onClick={() => setShowCategories(!showCategories)}>

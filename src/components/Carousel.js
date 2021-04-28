@@ -11,14 +11,14 @@ import {
 const Carousel = ({ children }) => {
   const ref = useRef(null);
   const [current, setCurrent] = useState(0);
-  const [maxWidth, setMaxWidth] = useState(0);
+  const [maxwidth, setMaxwidth] = useState(0);
   const [cardsnumber, setCardsnumber] = useState(0);
   const prevLeft = () => setCurrent(current - cardSize.md);
   const nextRight = () => setCurrent(current + cardSize.md);
 
   useEffect(() => {
     children?.length > 0 && setCardsnumber(children.length);
-    setMaxWidth(
+    setMaxwidth(
       ref.current.scrollWidth + ref.current.scrollLeft - ref.current.clientWidth
     );
   }, [children]);
@@ -28,7 +28,7 @@ const Carousel = ({ children }) => {
       <CarouselWrapperArrow>
         <ArrowLeft
           cardsnumber={cardsnumber}
-          maxWidth={maxWidth}
+          maxwidth={maxwidth}
           current={current}
           onClick={prevLeft}
         />
@@ -39,7 +39,7 @@ const Carousel = ({ children }) => {
       <CarouselWrapperArrow>
         <ArrowRight
           cardsnumber={cardsnumber}
-          maxWidth={maxWidth}
+          maxwidth={maxwidth}
           current={current}
           onClick={nextRight}
         />

@@ -21,7 +21,7 @@ import {
 } from '../styles';
 import { useRouteMatch } from 'react-router';
 
-function SearchBar({ onHero, mobile, placeholder }) {
+function SearchBar({ onHero, mobile, placeholder, setIsModalSearchOpen }) {
   let { path } = useRouteMatch();
   const searchState = useSelector((state) => state.searchResults);
   const { loading, error } = searchState;
@@ -41,6 +41,7 @@ function SearchBar({ onHero, mobile, placeholder }) {
     } else {
       setIsModalOpen(false);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [searchQuery]);
 
   const results = searchState.searchResults[0];
@@ -99,7 +100,10 @@ function SearchBar({ onHero, mobile, placeholder }) {
                   {results?.items.map((i) => (
                     <LinkPages
                       to={`${path}/activities/${i.id}`}
-                      onClick={() => setIsModalOpen(false)}
+                      onClick={() => {
+                        setIsModalOpen(false);
+                        setIsModalSearchOpen(false);
+                      }}
                     >
                       <P key={i.id}>
                         {i.title}
