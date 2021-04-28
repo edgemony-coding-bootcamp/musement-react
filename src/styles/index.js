@@ -29,6 +29,8 @@ import { ReactComponent as LoaderSpinnerSvg } from '../assets/img/loader.svg';
 import colosseoImg from '../assets/img/cover_hero_home_desktop_colosseo.png';
 import { keyframes } from 'styled-components';
 
+Link.defaultProps = { to: '/' };
+
 // THEME
 
 export const color = {
@@ -197,6 +199,7 @@ export function useScrolling(scrollPx) {
     window.addEventListener('scroll', onScroll);
 
     return () => window.removeEventListener('scroll', onScroll);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [scrollTop]);
 
   return scrolling;
@@ -502,8 +505,8 @@ export const CategoryLinkWrap = styled(Link)`
   flex-shrink: 0;
   color: ${color.primaryb};
   text-decoration: none;
-  ${({ pathIncludes }) =>
-    pathIncludes ? `box-shadow: inset 0 -6px 0 ${color.secondary};` : ''};
+  ${({ pathincludes }) =>
+    pathincludes ? `box-shadow: inset 0 -6px 0 ${color.secondary};` : ''};
   &:first-child > div {
     border-left: none;
   }
@@ -949,9 +952,9 @@ export const ArrowRight = styled(Arrow)`
   display: none;
   @media ${device.tablet} {
     display: block;
-    ${({ current, cardsnumber, maxWidth }) =>
+    ${({ current, cardsnumber, maxwidth }) =>
       (cardsnumber < 4 && `display: none`) ||
-      (current >= maxWidth && `display: none`)}
+      (current >= maxwidth && `display: none`)}
   }
   :hover {
     transform: translateX(3px);

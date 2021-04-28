@@ -1,5 +1,5 @@
 /* eslint-disable prettier/prettier */
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useRef, useState } from 'react';
 import { useSelector } from 'react-redux';
 import {
   IndexSlider,
@@ -26,7 +26,8 @@ function MobileMediaSlideshow() {
         {media.map((item, index) => (
           <JumbotronMobileSlides
             key={index}
-            src={item.url}></JumbotronMobileSlides>
+            src={item.url}
+          ></JumbotronMobileSlides>
         ))}
       </JumbotronGalleryMobile>
       <IndexSlider>
@@ -34,7 +35,8 @@ function MobileMediaSlideshow() {
           <IndexSliderCounter
             key={index}
             id={index}
-            active={current === index}></IndexSliderCounter>
+            active={current === index}
+          ></IndexSliderCounter>
         ))}
       </IndexSlider>
     </>
