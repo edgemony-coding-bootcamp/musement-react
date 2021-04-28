@@ -48,19 +48,15 @@ function Home() {
   return (
     <>
       <Header />
-      <Switch>
-        <Route path={`/${lang}/:idCateg`}>
-          <Main>
-            <Category />
-          </Main>
-        </Route>
-        <Route path={`/${lang}/activities/:id`}>
-          <Main>
+      <Main>
+        <Switch>
+          <Route path={`/${lang}/activities/:id`}>
             <Activities />
-          </Main>
-        </Route>
-        <Route exact path={`/${lang}`}>
-          <Main>
+          </Route>
+          <Route exact path={`/${lang}/:idCateg`}>
+            <Category />
+          </Route>
+          <Route exact path={`/${lang}`}>
             <Hero />
             <CarouselSection>
               <CarouselTitle title={'Featured Experiences'} />
@@ -68,12 +64,12 @@ function Home() {
                 <FeaturedExperiences />
               </Carousel>
             </CarouselSection>
-          </Main>
-        </Route>
-        <Route path={`${path}/*`}>
-          <h1>404</h1>
-        </Route>
-      </Switch>
+          </Route>
+          <Route path={`${path}/*`}>
+            <h1>404</h1>
+          </Route>
+        </Switch>
+      </Main>
       <Footer lang={lang} />
     </>
   );
