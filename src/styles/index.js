@@ -517,11 +517,21 @@ export const CategoryLink = styled.div`
 `;
 
 export const CategoryLinkLoader = styled(Div)`
-  padding: 0.5rem;
-  margin: 0.5rem;
-  flex-grow: 1;
+  margin: 0 0.7rem;
+  width: 140px;
+  height: 42px;
   border-left: solid ${color.alternativeb} 1px;
-  background-color: ${color.alternativeb};
+  background-color: ${color.alternativec};
+  animation: pulse 1s infinite;
+
+  @keyframes pulse {
+    0% {
+      background-color: ${color.alternativec};
+    }
+    100% {
+      background-color: ${color.alternativeb};
+    }
+  }
 `;
 
 export const CategoryLinkError = styled(CategoryLink)``;
