@@ -99,13 +99,14 @@ export const Svg = styled.svg``;
 
 export const Main = styled.main`
   max-width: 100vw;
+  min-height: 100vh;
   @media ${device.desktop} {
     margin: 0 40px;
   }
 `;
 
 export const CarouselSection = styled.section`
-  background-color: #fff;
+  background-color: ${color.alternativec};
   @media ${device.desktop} {
     padding: 0 40px;
   }
@@ -124,13 +125,9 @@ export const LinkPages = styled(Link)`
   color: ${color.primaryb};
   &:link,
   :visited,
+  :hover,
   :active {
-    color: ${color.secondary};
     text-decoration: none;
-  }
-  &:hover {
-    text-decoration: underline;
-    color: ${color.secondary};
   }
 `;
 
@@ -857,6 +854,7 @@ export const CardWrapper = styled.div`
 `;
 
 export const CarouselCardWrapper = styled.div`
+  padding: 10px 0;
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
