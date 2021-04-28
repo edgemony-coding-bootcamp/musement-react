@@ -99,13 +99,14 @@ export const Svg = styled.svg``;
 
 export const Main = styled.main`
   max-width: 100vw;
+  min-height: 100vh;
   @media ${device.desktop} {
     margin: 0 40px;
   }
 `;
 
 export const CarouselSection = styled.section`
-  background-color: #fff;
+  background-color: ${color.alternativec};
   @media ${device.desktop} {
     padding: 0 40px;
   }
@@ -124,13 +125,9 @@ export const LinkPages = styled(Link)`
   color: ${color.primaryb};
   &:link,
   :visited,
+  :hover,
   :active {
-    color: ${color.secondary};
     text-decoration: none;
-  }
-  &:hover {
-    text-decoration: underline;
-    color: ${color.secondary};
   }
 `;
 
@@ -155,6 +152,18 @@ export const Spinner = styled.div`
   width: 24px;
   height: 24px;
   border-radius: 50%;
+`;
+
+const pulse = keyframes`
+    0% {
+      background-color: ${color.alternativec};
+    }
+    50% {
+      background-color: ${color.alternativeb};
+    }
+    100% {
+      background-color: ${color.alternativec};
+    }
 `;
 
 // CUSTOM HOOKS
@@ -520,11 +529,12 @@ export const CategoryLink = styled.div`
 `;
 
 export const CategoryLinkLoader = styled(Div)`
-  padding: 0.5rem;
-  margin: 0.5rem;
-  flex-grow: 1;
+  margin: 0 0.7rem;
+  width: 140px;
+  height: 42px;
   border-left: solid ${color.alternativeb} 1px;
-  background-color: ${color.alternativeb};
+  background-color: ${color.alternativec};
+  animation: ${pulse} 1s infinite;
 `;
 
 export const CategoryLinkError = styled(CategoryLink)``;
@@ -595,7 +605,6 @@ export const HeroSpan = styled.span((p) =>
           color: `${color.primary}`,
           background: `${color.secondary}`,
           paddingRight: '5px',
-          boxShadow: ' 0 8px 20px 0 rgb(51 51 51 / 20%)',
         },
       }
     : p.bar
@@ -779,9 +788,13 @@ export const Arrow = styled(ArrowSvg)`
 // `;
 
 export const CarouselContainer = styled.div`
-  padding: 0 80px 0 0;
   display: flex;
   align-items: center;
+  justify-content: flex-start;
+  @media ${device.tablet} {
+    padding: 0 80px 0 0;
+    justify-content: center;
+  }
 `;
 
 export const MediaArrow = styled(ArrowSvg)`
@@ -814,6 +827,32 @@ export const MediaArrowLeft = styled(MediaArrow)`
 `;
 
 // section CARD
+
+export const DummyCardWrapper = styled.div`
+  background-color: ${bgColor.primary};
+  height: 365px;
+  width: 290px;
+  display: flex;
+  flex-direction: column;
+  border-radius: 6px;
+  box-shadow: 0 3px 10px -8px;
+`;
+
+export const DummyCardImg = styled.div`
+  height: 135px;
+  width: 100%;
+  background-color: ${color.alternativeb};
+  margin-bottom: 10px;
+  animation: ${pulse} 2s ease-in-out infinite;
+`;
+
+export const DummyCardContent = styled.div`
+  height: 40px;
+  width: 80%;
+  margin: 10px;
+  background-color: ${color.alternativeb};
+  animation: ${pulse} 2s ease-in-out infinite;
+`;
 
 export const CardWrapper = styled.div`
   background-color: ${bgColor.primary};
@@ -857,6 +896,8 @@ export const CardWrapper = styled.div`
 `;
 
 export const CarouselCardWrapper = styled.div`
+  padding: 10px 0;
+  margin-right: -40px;
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
@@ -1377,7 +1418,7 @@ export const IndexSlider = styled.div`
   transition: opacity 0.3s;
   -webkit-transform: translateZ(0);
   transform: translateZ(0);
-  z-index: 10;
+  z-index: 1;
 `;
 export const IndexSliderCounter = styled.span`
   margin: 0 4px;
