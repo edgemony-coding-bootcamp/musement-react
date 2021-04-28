@@ -1,4 +1,5 @@
 import { PriceFirstNum, PriceSecondNum } from '../styles';
+import React, { useRef, useCallback } from 'react';
 import { DEF_LANG, LANGUAGES } from '../config.json';
 
 // Replace the value after the fifth value
@@ -47,6 +48,23 @@ export const setPriceFormat = (price) => {
       <PriceFirstNum>{firstChart}</PriceFirstNum>
       <PriceSecondNum>{lastChart}</PriceSecondNum>
     </>
+  );
+};
+
+export const useDebouncedCallback = (func, wait) => {
+  const timeout = useRef();
+
+  return useCallback(
+    (...args) => {
+      const later = () => {
+        clearTimeout(timeout.current);
+        func(...args);
+      };
+
+      clearTimeout(timeout.current);
+      timeout.current = setTimeout(later, wait);
+    },
+    [func, wait]
   );
 };
 

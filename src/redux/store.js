@@ -5,6 +5,7 @@ import { categoryListReducer } from './categories/categoryReducers';
 import { inspirationListReducer } from './inspirations/inspirationReducers';
 import { experienceListReducer } from './experiences/experienceReducers';
 import { languageReducer } from './languages/languageReducers';
+import { autocompleteListReducer } from './autocomplete/autocompleteReducer';
 import { currencyReducer } from './currencies/currencyReducers';
 import { translationReducer } from './translations/translationReducers';
 
@@ -31,6 +32,7 @@ const reducer = combineReducers({
   activity: activityReducer,
   inspirations: inspirationListReducer,
   experiences: experienceListReducer,
+  searchResults: autocompleteListReducer,
 });
 
 const defaultStore = {
@@ -63,6 +65,10 @@ const defaultStore = {
     experiences: [],
     error: null,
     loading: false,
+  },
+  searchResults: {
+    searchResults: [],
+    inputToSearch: '',
   },
 };
 

@@ -26,8 +26,8 @@ import { ReactComponent as IstantActivitySvg } from '../assets/img/istant.svg';
 import { ReactComponent as SkipActivitySvg } from '../assets/img/skip.svg';
 import { ReactComponent as AllMediaSvg } from '../assets/img/all_pictures.svg';
 import { ReactComponent as LoaderSpinnerSvg } from '../assets/img/loader.svg';
-
 import colosseoImg from '../assets/img/cover_hero_home_desktop_colosseo.png';
+import { keyframes } from 'styled-components';
 
 // THEME
 
@@ -71,6 +71,7 @@ export const stylesVar = {
 };
 
 // mediaQuery
+export const cardSize = { sm: 290, md: 310, lg: 335 };
 const size = { sm: '760px', md: '1024px', lg: '1350px' };
 export const device = {
   tablet: `(min-width: ${size.sm})`,
@@ -86,12 +87,11 @@ export const P = styled.p`
   ${({ bold }) => bold && `font-weight: 700; margin:0 5px;`}
 `;
 
-export const H2 = styled.h2`
-  font-size: 1.75rem;
-  margin-left: 7.5px;
-`;
+export const H2 = styled.h2``;
 
 export const H3 = styled.h3``;
+
+export const H4 = styled.h4``;
 
 export const Span = styled.span``;
 
@@ -105,8 +105,10 @@ export const Main = styled.main`
 `;
 
 export const CarouselSection = styled.section`
-  background-color: #f2f5f6;
-  padding: 0 40px;
+  background-color: #fff;
+  @media ${device.desktop} {
+    padding: 0 40px;
+  }
 `;
 
 export const FlexRowWrap = styled(Div)`
@@ -119,13 +121,40 @@ export const FlexColumnWrap = styled(Div)`
 
 export const LinkPages = styled(Link)`
   text-decoration: none;
+  color: ${color.primaryb};
   &:link,
   :visited,
-  :hover,
   :active {
-    color: black;
+    color: ${color.secondary};
     text-decoration: none;
   }
+  &:hover {
+    text-decoration: underline;
+    color: ${color.secondary};
+  }
+`;
+
+const rotate360 = keyframes`
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+`;
+
+export const Spinner = styled.div`
+  animation: ${rotate360} 1s linear infinite;
+  transform: translateZ(0);
+  margin: 10px auto;
+  border-top: 2px solid ${color.alternativeb};
+  border-right: 2px solid ${color.alternativeb};
+  border-bottom: 2px solid ${color.alternativeb};
+  border-left: 4px solid ${color.secondary};
+  background: transparent;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
 `;
 
 // CUSTOM HOOKS
@@ -159,7 +188,6 @@ export function useScrolling(scrollPx) {
     window.addEventListener('scroll', onScroll);
 
     return () => window.removeEventListener('scroll', onScroll);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [scrollTop]);
 
   return scrolling;
@@ -179,22 +207,35 @@ export const categoriesSvgIcons = {
 // section HEADER
 
 export const HeaderWrapper = styled.header`
-  background-color: ${bgColor.primary};
-  width: 100%;
-  height: 70px;
   position: fixed;
+  top: 0;
+  width: 100vw !important;
+  height: 70px;
   z-index: 10;
   display: flex;
   justify-content: space-between;
   align-items: center;
   transition: all 0.35s;
+  background-color: ${bgColor.primary};
+  & > p {
+    min-width: 290px;
+    max-width: 330px;
+    margin: 0 10px;
+    align-self: center;
+  }
+  & > svg {
+    width: 25px;
+    height: 25px;
+    margin-left: 10px;
+  }
+
   @media ${device.desktop} {
     height: ${({ scrolling }) => (scrolling ? '70px' : '110px')};
-    justify-content: center;
+    justify-content: space-between;
     box-shadow: ${({ scrolling }) =>
       scrolling && `${stylesVar.boxShadowLight}`};
     border-bottom: ${({ scrollInitial }) =>
-      scrollInitial || `solid ${color.alternativeb} 1px`};
+      scrollInitial || `solid ${bgColor.primaryb} 1px`};
   }
 `;
 
@@ -235,9 +276,12 @@ export const HeaderLogoMobile = styled(LogoMobile)`
 
 // section MODAL HEADER
 
-export const ModalHeaderOverlay = styled(Div)`
+export const ModalOverlay = styled(Div)`
   position: fixed;
-
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
   height: 100vh;
   width: 100vw;
   z-index: 0;
@@ -254,6 +298,7 @@ export const ModalHeaderBody = styled(Div)`
   z-index: 90;
   letter-spacing: -1px;
   box-shadow: 0 10px 20px 0 rgb(51 51 51 / 50%);
+
   ${FlexRowWrap} {
     justify-content: space-between;
   }
@@ -276,6 +321,158 @@ export const ModalHeaderBody = styled(Div)`
   }
 `;
 
+// section SEARCHBAR
+
+export const SearchInput = styled.input`
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+  padding-left: ${({ mobile }) => mobile && '1rem'};
+  font-size: 1rem;
+  margin: auto;
+  border: none;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+
+  &::placeholder {
+    font-style: italic;
+  }
+  &:focus {
+    outline: none;
+  }
+`;
+
+export const SearchBarContainer = styled(FlexRowWrap)`
+  position: relative;
+  min-width: ${({ mobile, onHero }) =>
+    mobile ? '91%' : onHero ? '700px' : '290px'};
+  max-width: ${({ onHero, mobile }) => (mobile || onHero ? '91%' : '800px')};
+  height: ${({ onHero, mobile }) =>
+    onHero ? '72px' : mobile ? '50px' : '35px'};
+  border: 1px solid ${color.alternativec};
+  margin: ${({ mobile, onHero }) =>
+    mobile ? '20px ' : onHero ? '20px 0 0' : '0 10px'};
+  border-radius: 6px;
+  background: ${({ mobile, changeBackground, onHero }) =>
+    mobile
+      ? color.secondary
+      : changeBackground
+      ? bgColor.primary
+      : onHero
+      ? bgColor.primary
+      : color.alternativec};
+  box-shadow: ${({ onHero }) => onHero && '0 2px 8px 0 rgb(0 0 0 / 10%)'};
+  & > svg {
+    fill: ${({ mobile }) => mobile && color.primary};
+    min-width: ${({ onHero, mobile }) => (onHero || mobile ? '20px' : '17px')};
+    height: ${({ onHero, mobile }) => (onHero || mobile ? '20px' : '17px')};
+    /* margin: auto 2px; */
+    margin: ${({ onHero, mobile }) =>
+      onHero || mobile ? 'auto 13px' : 'auto 8px'};
+  }
+  ${SearchInput} {
+    background: ${({ onHero, mobile, changeBackground }) =>
+      onHero || mobile
+        ? bgColor.primary
+        : changeBackground
+        ? bgColor.primary
+        : color.alternativec};
+  }
+`;
+export const ModalOverlayMobile = styled(Div)`
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 100vh;
+  width: 100%;
+  z-index: 0;
+  background: ${bgColor.primaryb};
+
+  ${FlexRowWrap} {
+    margin: 20px;
+    justify-content: space-between;
+  }
+  ${Div} {
+    font-size: 14px;
+  }
+  & svg {
+    width: 16px;
+    height: 16px;
+  }
+  ${SearchBarContainer} {
+    padding: 8px;
+    background-color: ${bgColor.primary};
+    border: 1px solid ${color.alternativec};
+    ${SearchInput} {
+      background-color: ${bgColor.primary};
+    }
+    & svg {
+      display: none;
+    }
+  }
+`;
+
+export const ModalSearchBody = styled(Div)`
+  @keyframes opacityAnimation {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+  position: absolute;
+  width: 100%;
+  max-height: 300px;
+  font-size: 15px;
+  top: 100%;
+  z-index: 90;
+  letter-spacing: -1px;
+  position: absolute;
+  user-select: none;
+  box-shadow: 0 2px 8px 0 rgb(0 0 0 / 10%);
+  color: ${color.primaryb};
+  background-color: ${bgColor.primary};
+  border-radius: 5px;
+  overflow-y: scroll;
+  animation: opacityAnimation 0.2s ease-in;
+  ${FlexRowWrap} {
+    justify-content: space-between;
+    ${H2} {
+      margin: 15px 5px 15px 25px;
+      font-size: 1rem;
+      font-weight: normal;
+    }
+    ${H4} {
+      margin: 15px;
+      font-size: 0.9rem;
+      font-weight: normal;
+      text-decoration: underline;
+      cursor: pointer;
+    }
+  }
+  ${FlexColumnWrap} {
+    height: 100%;
+    transform: translateX(0);
+    transition: transform 0.2s ease-in-out;
+  }
+  ${H3} {
+    color: ${color.secondary};
+    margin: 24px 10px;
+    font-size: 1rem;
+  }
+  ${P} {
+    padding: 10px 20px;
+    cursor: pointer;
+    border-bottom: 1px solid ${color.alternativec};
+    font-weight: normal;
+  }
+  ${Span} {
+    color: ${color.alternative};
+  }
+`;
 // section CATEGORIES NAV
 
 export const CategoryWrap = styled(FlexRowWrap)`
@@ -290,10 +487,14 @@ export const CategoryWrap = styled(FlexRowWrap)`
   }
 `;
 
-export const CategoryLinkWrap = styled(Div)`
+export const CategoryLinkWrap = styled(Link)`
   display: flex;
   align-items: center;
   flex-shrink: 0;
+  color: ${color.primaryb};
+  text-decoration: none;
+  ${({ pathIncludes }) =>
+    pathIncludes ? `box-shadow: inset 0 -6px 0 ${color.secondary};` : ''};
   &:first-child > div {
     border-left: none;
   }
@@ -309,6 +510,7 @@ export const CategoryLinkContainer = styled(FlexRowWrap)`
   justify-content: space-evenly;
   border-left: solid ${color.alternativec} 1px;
 `;
+
 export const CategoryLink = styled.div`
   height: 36px;
   padding: 0.2rem;
@@ -350,10 +552,10 @@ export const HeroContainer = styled(Div)`
   background-repeat: no-repeat;
   background-size: cover;
   @media ${device.tablet} {
-    min-height: 360px;
+    min-height: 400px;
   }
   @media ${device.desktop} {
-    min-height: 420px;
+    min-height: 600px;
   }
 `;
 
@@ -529,13 +731,17 @@ export const LoaderSpinner = styled(LoaderSpinnerSvg)`
 `;
 // section CAROUSEL
 
-export const CarouselTitleContainer = styled.div`
-  color: black;
+export const CarouselWrapperArrow = styled.div`
+  height: 100%;
+  min-width: 40px;
   display: flex;
-  min-height: 62px;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
 `;
 
-export const CarouselCardWrapper = styled.div`
+export const CarouselTitleContainer = styled.div`
+  color: black;
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
@@ -565,26 +771,17 @@ export const Arrow = styled(ArrowSvg)`
   cursor: pointer;
 `;
 
-export const ArrowRight = styled(Arrow)`
-  right: calc(50% - 750px);
+// export const Arrow = styled(ArrowSvg)`
+//   width: 24px;
+//   height: 24px;
+//   color: black;
+//   cursor: pointer;
+// `;
 
-  :hover {
-    transform: translateX(3px);
-  }
-
-  ${({ current, cardlength }) =>
-    current === cardlength - 4 ? `display: none` : `display: block`}
-`;
-
-export const ArrowLeft = styled(Arrow)`
-  transform: rotate(-180deg);
-  left: calc(50% - 750px);
-
-  :hover {
-    transform: rotate(-180deg) translateX(3px);
-  }
-
-  ${({ current }) => !current && `display: none`}
+export const CarouselContainer = styled.div`
+  padding: 0 80px 0 0;
+  display: flex;
+  align-items: center;
 `;
 
 export const MediaArrow = styled(ArrowSvg)`
@@ -656,6 +853,83 @@ export const CardWrapper = styled.div`
     height: 100%;
     display: flex;
     flex-direction: column;
+  }
+`;
+
+export const CarouselCardWrapper = styled.div`
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  scroll-snap-type: x mandatory;
+  overflow-x: scroll;
+  overflow-y: hidden;
+  scroll-behavior: smooth;
+
+  @media ${device.tablet} {
+    overflow-x: hidden;
+    min-width: 100%;
+    ${CardWrapper} {
+      ${({ current }) =>
+        current
+          ? `transform: translatex(-${current}px); 
+  transition-duration: 300ms;`
+          : ''}
+    }
+  }
+
+  @media ${device.laptop} {
+    overflow-x: hidden;
+    min-width: 100%;
+    /* max-width: ${cardSize.md * 2}px; */
+    ${CardWrapper} {
+      ${({ current }) =>
+        current
+          ? `transform: translatex(-${current}px); 
+  transition-duration: 300ms;`
+          : ''}
+    }
+  }
+
+  @media ${device.desktop} {
+    min-width: 100%;
+    /* max-width: ${cardSize.lg * 3}px; */
+    ${CardWrapper} {
+      ${({ current }) =>
+        current
+          ? `transform: translatex(-${current}px); 
+  transition-duration: 300ms;`
+          : ''}
+    }
+  }
+`;
+
+export const ArrowRight = styled(Arrow)`
+  margin-left: auto;
+  display: none;
+  @media ${device.tablet} {
+    display: block;
+    ${({ current, cardsnumber, maxWidth }) =>
+      (cardsnumber < 4 && `display: none`) ||
+      (current >= maxWidth && `display: none`)}
+  }
+  :hover {
+    transform: translateX(3px);
+  }
+`;
+
+export const ArrowLeft = styled(Arrow)`
+  margin-right: auto;
+  transform: rotate(-180deg);
+  display: none;
+  @media ${device.tablet} {
+    display: block;
+
+    ${({ current, cardsnumber }) =>
+      (cardsnumber < 4 && `display: none`) || (current <= 0 && `display: none`)}
+  }
+
+  :hover {
+    transform: rotate(-180deg) translateX(3px);
   }
 `;
 
@@ -1203,6 +1477,92 @@ export const CloseXSvg = styled(CloseSvg)`
   height: 20px;
   width: 20px;
 `;
+// section PAGE'S CATEGORY
+
+export const CategoryImgWrapper = styled.div`
+  height: fit-content;
+  margin: 20px auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  @media (max-width: 479px) {
+    height: 420px;
+    margin: auto;
+    margin-bottom: 50px;
+  }
+`;
+
+export const CategoryImgBackground = styled.div`
+  width: 100%;
+  height: 260px;
+  position: absolute;
+  z-index: 1;
+  opacity: 0.7;
+  @media (max-width: 479px) {
+    height: 450px;
+    opacity: 1;
+  }
+  @media ${device.tablet} {
+    height: 300px;
+  }
+  @media ${device.laptop} {
+    height: 400px;
+  }
+  @media ${device.desktop} {
+    height: 500px;
+  }
+`;
+
+export const CategoryImgHover = styled.div`
+  width: 188px;
+  height: 250px;
+  padding: 25px;
+  position: relative;
+  z-index: 3;
+  box-shadow: 0 0 25px -2px;
+  background-color: white;
+  @media (max-width: 479px) {
+    display: none;
+  }
+  @media ${device.tablet} {
+    width: 230px;
+    height: 290px;
+  }
+  @media ${device.laptop} {
+    width: 300px;
+    height: 390px;
+  }
+  @media ${device.desktop} {
+    width: 380px;
+    height: 510px;
+  }
+`;
+
+export const CategoryImg = styled.img`
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+`;
+
+export const CategoryImgTop = styled(CategoryImg)`
+  width: 100%;
+  height: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+`;
+
+export const CategoryGoHome = styled(Link)`
+  margin-left: 30px;
+  color: black;
+`;
+
+export const CategoryName = styled.span`
+  margin-left: 8px;
+  text-transform: capitalize;
+`;
+
 // Section FOOTER
 
 export const FooterWrapper = styled.footer`
