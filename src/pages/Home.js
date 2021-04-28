@@ -19,7 +19,6 @@ import { setLangHeader } from '../services/axiosConfig';
 import Carousel from '../components/Carousel';
 import FeaturedExperiences from '../components/FeaturedExperiences';
 import CarouselTitle from '../components/CarouselTitle';
-import { PopularExperiences } from '../components/PopularExperiences';
 import Footer from '../components/Footer';
 import { Category } from './Category';
 
@@ -63,17 +62,13 @@ function Home() {
                 <FeaturedExperiences />
               </Carousel>
             </CarouselSection>
-<<<<<<< HEAD
-          <PopularExperiences />
-=======
             <Footer lang={lang} />
->>>>>>> main
           </Main>
         </Route>
-      <Route path={`${path}/:category`}>
-        <h1>404</h1>
-      </Route>
-    </Switch>
+        <Route path={`${path}/:category`}>
+          <h1>404</h1>
+        </Route>
+      </Switch>
     </>
   );
 }

@@ -877,6 +877,20 @@ export const CategoryName = styled.span`
   text-transform: capitalize;
 `;
 
+export const CategoryPopularExperiences = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  @media (min-width: 760px) {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    align-items: stretch;
+  }
+`;
+
 // Section FOOTER
 
 export const FooterWrapper = styled.footer`

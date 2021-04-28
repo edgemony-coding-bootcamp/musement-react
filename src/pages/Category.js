@@ -1,5 +1,6 @@
 import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
+import { PopularExperiences } from '../components/PopularExperiences';
 import {
   CategoryGoHome,
   CategoryImg,
@@ -34,6 +35,7 @@ export const Category = () => {
       </CategoryImgWrapper>
       <CategoryGoHome to=''>Home</CategoryGoHome>
       <CategoryName>{`› ${selectedCategory?.name}`}</CategoryName>
+      <PopularExperiences params={idCateg} />
     </>
   );
 };
