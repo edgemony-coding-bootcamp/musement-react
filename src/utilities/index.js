@@ -1,4 +1,6 @@
 import { PriceFirstNum, PriceSecondNum } from '../styles';
+import React, { useRef, useCallback } from 'react';
+import { DEF_LANG, LANGUAGES } from '../config.json';
 
 // Replace the value after the fifth value
 
@@ -22,7 +24,7 @@ export const parseISODuration = (iso8601Duration) => {
     iso8601Duration.match(iso8601DurationRegex) || [];
 
   if (days === '0' || undefined) {
-    return 'Flessible';
+    return 'Flexible';
   } else {
     return [
       'Duration up to ',
@@ -47,4 +49,33 @@ export const setPriceFormat = (price) => {
       <PriceSecondNum>{lastChart}</PriceSecondNum>
     </>
   );
+};
+
+export const useDebouncedCallback = (func, wait) => {
+  const timeout = useRef();
+
+  return useCallback(
+    (...args) => {
+      const later = () => {
+        clearTimeout(timeout.current);
+        func(...args);
+      };
+
+      clearTimeout(timeout.current);
+      timeout.current = setTimeout(later, wait);
+    },
+    [func, wait]
+  );
+};
+
+export const getLanguageConfiguration = (language) => {
+  return LANGUAGES.find((item) => item.id === language).iso86;
+};
+
+export const translate = (translations, language) => {
+  let translatedTexts = translations[language];
+  if (!translatedTexts) {
+    return translations[getLanguageConfiguration(DEF_LANG)];
+  }
+  return translatedTexts;
 };

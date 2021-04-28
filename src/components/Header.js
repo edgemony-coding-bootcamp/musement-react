@@ -1,6 +1,9 @@
 import { useDispatch, useSelector } from 'react-redux';
 import React, { useEffect, useState } from 'react';
 import { fetchCategories } from '../redux/categories/categoryActions';
+import SearchBar from '../components/SearchBar';
+import { ReactComponent as SearchIcon } from '../assets/img/search-icon.svg';
+import { ReactComponent as CloseIcon } from '../assets/img/close-x.svg';
 
 import {
   HeaderWrapper,
@@ -12,45 +15,38 @@ import {
   HeaderHamburgerWrapper,
   useMediaQuery,
   useScrolling,
-  ModalHeaderOverlay,
+  ModalOverlay,
   device,
   ModalHeaderBody,
   H3,
   FlexRowWrap,
   FlexColumnWrap,
   P,
+  ModalOverlayMobile,
+  Div,
 } from '../styles';
 import CategoriesNav from './CategoriesNav';
+import { useParams } from 'react-router';
 
-function Header() {
+function Header({ path }) {
+  let { lang } = useParams();
   const dispatch = useDispatch();
   const categoryState = useSelector((state) => state.categories);
-
   const { categories } = categoryState;
+  const { userLang } = useSelector((state) => state.languages);
+  const { translatedTexts } = useSelector((state) => state.translations);
 
   useEffect(() => {
     setTimeout(() => {
       dispatch(fetchCategories());
     }, 1);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [userLang]);
 
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [modalSrc, setModalSrc] = useState([{ name: 'Explore' }]);
+  const [showCategories, setShowCategories] = useState(false);
   const [modalTitle, setModalTitle] = useState('Menu');
-
-  function ModalHeaderF(e) {
-    const a = e.target;
-    const b = a.textContent;
-    if (b === 'Back') {
-      setModalTitle('Menu');
-      setModalSrc([{ name: 'Explore' }]);
-    } else if (b === 'Explore') {
-      setModalSrc(categories);
-      setModalTitle('Back');
-      return <P>{categories.map((cat) => cat.name)}</P>;
-    }
-  }
+  const [isModalSearchOpen, setIsModalSearchOpen] = useState(false);
 
   let scrolling = useScrolling(133);
   let scrollInitial = useScrolling(1);
@@ -60,14 +56,28 @@ function Header() {
   return (
     <>
       <HeaderWrapper scrollInitial={scrollInitial} scrolling={scrolling}>
-        {/* in this div we will put the search button */}
-        <div style={{ width: '3rem' }}></div>
         {isDesktop ? (
-          <LinkPages to='/'>
-            <HeaderLogoDesktop />
-          </LinkPages>
+          <>
+            <SearchBar
+              placeholder={`${translatedTexts.searchplaceholderheader}`}
+            />
+            <LinkPages to='/'>
+              <HeaderLogoDesktop />
+            </LinkPages>
+            <p></p>
+          </>
         ) : (
           <>
+            <SearchIcon onClick={() => setIsModalSearchOpen(true)} />
+            {isModalSearchOpen && (
+              <ModalOverlayMobile>
+                <FlexRowWrap>
+                  <Div>Search for experiences and places</Div>
+                  <CloseIcon onClick={() => setIsModalSearchOpen(false)} />
+                </FlexRowWrap>
+                <SearchBar />
+              </ModalOverlayMobile>
+            )}
             <LinkPages to='/'>
               <HeaderLogoMobile />
             </LinkPages>
@@ -81,15 +91,23 @@ function Header() {
       <CategoriesNav />
       {isModalOpen && (
         <ModalHeaderBody scrolling={scrolling}>
-          <ModalHeaderOverlay onClick={() => setIsModalOpen(false)} />
+          <ModalOverlay onClick={() => setIsModalOpen(false)} />
           <FlexColumnWrap>
             <FlexRowWrap>
-              <H3 onClick={(e) => ModalHeaderF(e)}>{modalTitle}</H3>
-            </FlexRowWrap>{' '}
+              <H3>{modalTitle}</H3>
+            </FlexRowWrap>
             <FlexColumnWrap>
-              {modalSrc.map((i) => (
-                <P onClick={(e) => ModalHeaderF(e)}>{i.name}</P>
-              ))}
+              <P onClick={() => setShowCategories(!showCategories)}>
+                {showCategories ? 'Back' : 'Explore'}
+              </P>
+              {showCategories &&
+                categories.map((cat) => (
+                  <LinkPages to={`/${lang}/${cat.slug}`}>
+                    <P onClick={() => setIsModalOpen(!isModalOpen)}>
+                      {cat.name}
+                    </P>
+                  </LinkPages>
+                ))}
             </FlexColumnWrap>
           </FlexColumnWrap>
         </ModalHeaderBody>

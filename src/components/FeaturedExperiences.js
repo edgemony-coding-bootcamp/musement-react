@@ -6,6 +6,8 @@ import Card from './Card';
 function FeaturedExperiences() {
   const dispatch = useDispatch();
   const experiencesState = useSelector((state) => state.experiences);
+  const { userLang } = useSelector((state) => state.languages);
+  const { userCurrency } = useSelector((state) => state.currencies);
   const { experiences } = experiencesState;
 
   useEffect(() => {
@@ -13,7 +15,7 @@ function FeaturedExperiences() {
       dispatch(fetchExperiences());
     }, 1);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [userLang, userCurrency]);
   return (
     <>
       {experiences.length > 0
