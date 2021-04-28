@@ -13,6 +13,7 @@ export const activityReducer = (state = {}, action) => {
       return {
         ...state,
         loading: true,
+        activity: [],
       };
 
     case FETCH_ACTIVITY_SUCCESS:

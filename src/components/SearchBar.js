@@ -17,9 +17,12 @@ import {
   Spinner,
   H4,
   H2,
+  LinkPages,
 } from '../styles';
+import { useRouteMatch } from 'react-router';
 
 function SearchBar({ onHero, mobile, placeholder }) {
+  let { path } = useRouteMatch();
   const searchState = useSelector((state) => state.searchResults);
   const { loading, error } = searchState;
   const dispatch = useDispatch();
@@ -94,11 +97,16 @@ function SearchBar({ onHero, mobile, placeholder }) {
               <FlexColumnWrap>
                 <FlexColumnWrap>
                   {results?.items.map((i) => (
-                    <P key={i.id} onClick={() => setIsModalOpen(false)}>
-                      {i.title}
-                      <br />
-                      <Span>{i.hint}</Span>
-                    </P>
+                    <LinkPages
+                      to={`${path}/activities/${i.id}`}
+                      onClick={() => setIsModalOpen(false)}
+                    >
+                      <P key={i.id}>
+                        {i.title}
+                        <br />
+                        <Span>{i.hint}</Span>
+                      </P>
+                    </LinkPages>
                   ))}
                 </FlexColumnWrap>
               </FlexColumnWrap>
