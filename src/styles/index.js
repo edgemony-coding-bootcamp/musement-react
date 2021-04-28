@@ -788,9 +788,13 @@ export const Arrow = styled(ArrowSvg)`
 // `;
 
 export const CarouselContainer = styled.div`
-  padding: 0 80px 0 0;
   display: flex;
   align-items: center;
+  justify-content: flex-start;
+  @media ${device.tablet} {
+    padding: 0 80px 0 0;
+    justify-content: center;
+  }
 `;
 
 export const MediaArrow = styled(ArrowSvg)`
@@ -893,6 +897,7 @@ export const CardWrapper = styled.div`
 
 export const CarouselCardWrapper = styled.div`
   padding: 10px 0;
+  margin-right: -40px;
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
@@ -1413,7 +1418,7 @@ export const IndexSlider = styled.div`
   transition: opacity 0.3s;
   -webkit-transform: translateZ(0);
   transform: translateZ(0);
-  z-index: 10;
+  z-index: 1;
 `;
 export const IndexSliderCounter = styled.span`
   margin: 0 4px;
