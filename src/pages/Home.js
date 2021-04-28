@@ -56,7 +56,6 @@ function Home() {
         </Route>
         <Route exact path={`/${lang}`}>
           <Main>
-            <CategoriesNav />
             <Hero />
             <CarouselSection>
               <CarouselTitle title={'Featured Experiences'} />
