@@ -20,6 +20,7 @@ import {
   FlexColumnWrap,
   P,
 } from '../styles';
+import CategoriesNav from './CategoriesNav';
 
 function Header() {
   const dispatch = useDispatch();
@@ -75,6 +76,7 @@ function Header() {
         )}
       </HeaderWrapper>
       <HeaderGoDown />
+      <CategoriesNav />
       {isModalOpen && (
         <ModalHeaderBody scrolling={scrolling}>
           <ModalHeaderOverlay onClick={() => setIsModalOpen(false)} />
