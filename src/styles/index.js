@@ -877,12 +877,23 @@ export const CategoryName = styled.span`
   text-transform: capitalize;
 `;
 
+export const PopularExperiencesTitle = styled(CarouselTitleContainer)`
+  color: black;
+  display: flex;
+  min-height: 62px;
+`;
+
 export const CategoryPopularExperiences = styled.div`
   width: 100%;
+  height: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: space-evenly;
+  flex-basis: 20%;
+  justify-content: space-between;
   align-items: center;
+  & > ${CardWrapper} {
+    margin-top: 35px;
+  }
   @media (min-width: 760px) {
     flex-direction: row;
     flex-wrap: wrap;

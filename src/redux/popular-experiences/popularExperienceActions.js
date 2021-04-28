@@ -5,12 +5,12 @@ import {
   FETCH_POPULAR_EXPERIENCES_SUCCESS,
 } from './popularExperienceConstants';
 
-export const fetchPopularExperiences = () => {
+export const fetchPopularExperiences = (idCategory) => {
   return async (dispatch) => {
     dispatch({ type: FETCH_POPULAR_EXPERIENCES_REQUEST });
     try {
       const { data: popularExperiences } = await axios.get(
-        '/events?vertical_in=1&vertical_in=2&vertical_in=3&vertical_in=4&vertical_in=5&vertical_in=6&vertical_in=7&limit=100&offset=0&sort_by=-relevance'
+        `/events?vertical_in=${idCategory}&limit=12&offset=0&sort_by=-relevance`
       );
       dispatch({
         type: FETCH_POPULAR_EXPERIENCES_SUCCESS,
