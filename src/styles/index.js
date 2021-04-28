@@ -1154,6 +1154,66 @@ export const PriceSecondNum = styled(PriceFirstNum)`
   color: #fa6c50;
 `;
 
+// section SIMPLE CARD
+
+export const SimpleCardWrapper = styled.div`
+  min-width: 290px;
+  height: 245px;
+  position: relative;
+  box-sizing: content-box;
+
+  @media (min-width: 1350px) {
+    min-width: 335px;
+  }
+`;
+
+export const SimpleCardImg = styled.img`
+  width: 100%;
+  height: 100%;
+`;
+
+export const SimpleCardDescript = styled.div`
+  max-width: 217px;
+  height: fit-content;
+  position: absolute;
+  bottom: 12px;
+  left: 12px;
+  display: flex;
+  flex-direction: column;
+
+  @media (min-width: 1350px) {
+    width: 250px;
+  }
+`;
+
+export const SimpleCardTitleWrapper = styled.div`
+  margin: auto;
+  padding: 2px 0;
+  line-height: 1.3;
+  border-left: 12px solid ${color.secondary};
+`;
+
+export const SimpleCardTitleTop = styled.span`
+  margin: 0;
+  padding: 4px 0;
+  display: inline;
+  color: ${color.primary};
+  background-color: ${color.secondary};
+`;
+
+export const SimpleCardTitleBottom = styled.span`
+  position: relative;
+  left: -6px;
+`;
+
+export const SimpleCardExperiences = styled.div`
+  width: fit-content;
+  padding: 4px 5px;
+  font-size: 0.85rem;
+  vertical-align: middle;
+  background-color: ${color.primary};
+`;
+
 // Section ACTIVITY PAGE
 
 export const SectionWrapper = styled.section`

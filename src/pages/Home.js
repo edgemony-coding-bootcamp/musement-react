@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import { setUserLang } from '../redux/languages/languageActions';
 import { translateTexts } from '../redux/translations/translationActions';
+import { fetchInspirations } from '../redux/inspirations/inspirationActions';
 
 import {
   Route,
@@ -22,9 +23,11 @@ import CarouselTitle from '../components/CarouselTitle';
 import Footer from '../components/Footer';
 import Activities from './Activities';
 import { Category } from './Category';
+import { SimpleCard } from '../components/SimpleCard';
 
 function Home() {
   const { userLang } = useSelector((state) => state.languages);
+  const { inspirations } = useSelector((state) => state.inspirations);
 
   const dispatch = useDispatch();
   let { path } = useRouteMatch();
@@ -40,6 +43,7 @@ function Home() {
     }
     dispatch(setUserLang(lang));
     dispatch(translateTexts(userLang));
+    dispatch(fetchInspirations());
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [lang, userLang]);
 
@@ -66,6 +70,16 @@ function Home() {
               <CarouselTitle title={'Featured Experiences'} />
               <Carousel>
                 <FeaturedExperiences />
+              </Carousel>
+            </CarouselSection>
+            <CarouselTitle title={'Find your inspiration'} />
+            <CarouselSection>
+              <Carousel>
+                {inspirations.length > 0
+                  ? inspirations.map((inspiration, key) => (
+                      <SimpleCard item={inspiration} key={key} />
+                    ))
+                  : null}
               </Carousel>
             </CarouselSection>
           </Main>
