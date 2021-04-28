@@ -56,6 +56,7 @@ function Home() {
         <Route path={`/${lang}`}>
           <Main>
             <Hero />
+
             <CarouselSection>
               <CarouselTitle title={'Featured Experiences'} />
               <Carousel>
