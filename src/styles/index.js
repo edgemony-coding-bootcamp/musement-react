@@ -1,67 +1,68 @@
-import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import styled from 'styled-components';
+import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
+import styled from "styled-components";
 
-import { ReactComponent as CancellationSvg } from '../assets/img/free_cancellation_banner.svg';
-import { ReactComponent as SafetySvg } from '../assets/img/safety-measures.svg';
-import { ReactComponent as LogoTablet } from '../assets/img/logo-musement-tablet.svg';
-import { ReactComponent as LogoMobile } from '../assets/img/logo-musement-mobile.svg';
-import { ReactComponent as Hamburger } from '../assets/img/hamburger-icon.svg';
-import { ReactComponent as NightLifeSvg } from '../assets/img/nightlife.svg';
-import { ReactComponent as ToursAttractionsSvg } from '../assets/img/tours-attractions.svg';
-import { ReactComponent as MuseumsArtSvg } from '../assets/img/Museums-art.svg';
-import { ReactComponent as PerformancesSvg } from '../assets/img/performances.svg';
-import { ReactComponent as FoodWineSvg } from '../assets/img/food-wine.svg';
-import { ReactComponent as SportSvg } from '../assets/img/sport.svg';
-import { ReactComponent as ActiveAdventureSvg } from '../assets/img/active-adventure.svg';
-import { ReactComponent as ArrowSvg } from '../assets/img/arrow.svg';
+import { ReactComponent as CancellationSvg } from "../assets/img/free_cancellation_banner.svg";
+import { ReactComponent as SafetySvg } from "../assets/img/safety-measures.svg";
+import { ReactComponent as LogoTablet } from "../assets/img/logo-musement-tablet.svg";
+import { ReactComponent as LogoMobile } from "../assets/img/logo-musement-mobile.svg";
+import { ReactComponent as Hamburger } from "../assets/img/hamburger-icon.svg";
+import { ReactComponent as NightLifeSvg } from "../assets/img/nightlife.svg";
+import { ReactComponent as ToursAttractionsSvg } from "../assets/img/tours-attractions.svg";
+import { ReactComponent as MuseumsArtSvg } from "../assets/img/Museums-art.svg";
+import { ReactComponent as PerformancesSvg } from "../assets/img/performances.svg";
+import { ReactComponent as FoodWineSvg } from "../assets/img/food-wine.svg";
+import { ReactComponent as SportSvg } from "../assets/img/sport.svg";
+import { ReactComponent as ActiveAdventureSvg } from "../assets/img/active-adventure.svg";
+import { ReactComponent as ArrowSvg } from "../assets/img/arrow.svg";
 
-import colosseoImg from '../assets/img/cover_hero_home_desktop_colosseo.png';
-import { keyframes } from 'styled-components';
+import colosseoImg from "../assets/img/cover_hero_home_desktop_colosseo.png";
+import { keyframes } from "styled-components";
 
 // THEME
 
 export const color = {
-  primary: '#fff',
-  primaryb: '#333333',
-  secondary: '#fc6c4f',
-  alternative: '#9E9E9E',
-  alternativeb: '#bac5c3',
-  alternativec: '#edf1f2',
-  success: '#bac5c3',
-  error: '#edf1f2',
+  primary: "#fff",
+  primaryb: "#333333",
+  secondary: "#fc6c4f",
+  alternative: "#9E9E9E",
+  alternativeb: "#bac5c3",
+  alternativec: "#edf1f2",
+  success: "#bac5c3",
+  error: "#edf1f2",
 };
 
 export const bgColor = {
-  primary: '#fff',
-  primaryb: '#f2f5f6',
-  secondary: '#9E9E9E',
-  alternative: '#9E9E9E',
-  success: '#00B74A',
-  error: '#F93154',
-  info: '#39C0ED',
+  primary: "#fff",
+  primaryb: "#f2f5f6",
+  secondary: "#9E9E9E",
+  alternative: "#9E9E9E",
+  success: "#00B74A",
+  error: "#F93154",
+  info: "#39C0ED",
 };
 
 export const svgColor = {
-  primary: '#9E9E9E',
-  secondary: '#fc6c4f',
-  alternative: '#fff',
+  primary: "#9E9E9E",
+  secondary: "#fc6c4f",
+  alternative: "#fff",
 };
 
 export const stylesVar = {
-  colorWhite: '#fff',
-  colorOrange: '#fc6c4f',
-  colorGray: '#9E9E9E',
-  colorLightGray: '#bac5c3',
-  colorSuperLightGray: '#edf1f2',
-  colorBlack: '#333333',
+  colorWhite: "#fff",
+  colorOrange: "#fc6c4f",
+  colorGray: "#9E9E9E",
+  colorLightGray: "#bac5c3",
+  colorSuperLightGray: "#edf1f2",
+  colorBlack: "#333333",
   // TODO
-  boxShadowLight: '0 2px 6px 0 rgb(0 0 0 / 10%)',
+  boxShadowLight: "0 2px 6px 0 rgb(0 0 0 / 10%)",
   // TODO
 };
 
 // mediaQuery
-const size = { sm: '760px', md: '1024px', lg: '1350px' };
+export const cardSize = { sm: 290, md: 310, lg: 335 };
+const size = { sm: "760px", md: "1024px", lg: "1350px" };
 export const device = {
   tablet: `(min-width: ${size.sm})`,
   laptop: `(min-width: ${size.md})`,
@@ -91,8 +92,10 @@ export const Main = styled.main`
 `;
 
 export const CarouselSection = styled.section`
-  background-color: #f2f5f6;
-  padding: 0 40px;
+  background-color: #fff;
+  @media ${device.desktop} {
+    padding: 0 40px;
+  }
 `;
 
 export const FlexRowWrap = styled(Div)`
@@ -150,8 +153,8 @@ export function useMediaQuery(query) {
     const listener = () => {
       setMatches(media.matches);
     };
-    media.addEventListener('change', listener);
-    return () => media.removeEventListener('change', listener);
+    media.addEventListener("change", listener);
+    return () => media.removeEventListener("change", listener);
   }, [matches, query]);
 
   return matches;
@@ -165,9 +168,9 @@ export function useScrolling(scrollPx) {
       setScrollTop(e.target.documentElement.scrollTop);
       setScrolling(e.target.documentElement.scrollTop > scrollPx);
     };
-    window.addEventListener('scroll', onScroll);
+    window.addEventListener("scroll", onScroll);
 
-    return () => window.removeEventListener('scroll', onScroll);
+    return () => window.removeEventListener("scroll", onScroll);
   }, [scrollTop]);
 
   return scrolling;
@@ -210,7 +213,7 @@ export const HeaderWrapper = styled.header`
   }
 
   @media ${device.desktop} {
-    height: ${({ scrolling }) => (scrolling ? '70px' : '110px')};
+    height: ${({ scrolling }) => (scrolling ? "70px" : "110px")};
     justify-content: space-between;
     box-shadow: ${({ scrolling }) =>
       scrolling && `${stylesVar.boxShadowLight}`};
@@ -223,7 +226,7 @@ export const HeaderGoDown = styled(Div)`
   width: 100%;
   height: 70px;
   @media ${device.desktop} {
-    height: ${({ scrolling }) => (scrolling ? '70px' : '110px')};
+    height: ${({ scrolling }) => (scrolling ? "70px" : "110px")};
   }
 `;
 
@@ -297,7 +300,7 @@ export const ModalHeaderBody = styled(Div)`
     border-bottom: 1px solid ${color.alternativec};
   }
   @media ${device.desktop} {
-    margin-top: ${({ scrolling }) => (scrolling ? '70px' : '110px')};
+    margin-top: ${({ scrolling }) => (scrolling ? "70px" : "110px")};
   }
 `;
 
@@ -307,7 +310,7 @@ export const SearchInput = styled.input`
   width: 100%;
   height: 100%;
   box-sizing: border-box;
-  padding-left: ${({ mobile }) => mobile && '1rem'};
+  padding-left: ${({ mobile }) => mobile && "1rem"};
   font-size: 1rem;
   margin: auto;
   border: none;
@@ -325,13 +328,13 @@ export const SearchInput = styled.input`
 export const SearchBarContainer = styled(FlexRowWrap)`
   position: relative;
   min-width: ${({ mobile, onHero }) =>
-    mobile ? '91%' : onHero ? '700px' : '290px'};
-  max-width: ${({ onHero, mobile }) => (mobile || onHero ? '91%' : '800px')};
+    mobile ? "91%" : onHero ? "700px" : "290px"};
+  max-width: ${({ onHero, mobile }) => (mobile || onHero ? "91%" : "800px")};
   height: ${({ onHero, mobile }) =>
-    onHero ? '72px' : mobile ? '50px' : '35px'};
+    onHero ? "72px" : mobile ? "50px" : "35px"};
   border: 1px solid ${color.alternativec};
   margin: ${({ mobile, onHero }) =>
-    mobile ? '20px ' : onHero ? '20px 0 0' : '0 10px'};
+    mobile ? "20px " : onHero ? "20px 0 0" : "0 10px"};
   border-radius: 6px;
   background: ${({ mobile, changeBackground, onHero }) =>
     mobile
@@ -341,14 +344,14 @@ export const SearchBarContainer = styled(FlexRowWrap)`
       : onHero
       ? bgColor.primary
       : color.alternativec};
-  box-shadow: ${({ onHero }) => onHero && '0 2px 8px 0 rgb(0 0 0 / 10%)'};
+  box-shadow: ${({ onHero }) => onHero && "0 2px 8px 0 rgb(0 0 0 / 10%)"};
   & > svg {
     fill: ${({ mobile }) => mobile && color.primary};
-    min-width: ${({ onHero, mobile }) => (onHero || mobile ? '20px' : '17px')};
-    height: ${({ onHero, mobile }) => (onHero || mobile ? '20px' : '17px')};
+    min-width: ${({ onHero, mobile }) => (onHero || mobile ? "20px" : "17px")};
+    height: ${({ onHero, mobile }) => (onHero || mobile ? "20px" : "17px")};
     /* margin: auto 2px; */
     margin: ${({ onHero, mobile }) =>
-      onHero || mobile ? 'auto 13px' : 'auto 8px'};
+      onHero || mobile ? "auto 13px" : "auto 8px"};
   }
   ${SearchInput} {
     background: ${({ onHero, mobile, changeBackground }) =>
@@ -474,7 +477,7 @@ export const CategoryLinkWrap = styled(Link)`
   color: ${color.primaryb};
   text-decoration: none;
   ${({ pathIncludes }) =>
-    pathIncludes ? `box-shadow: inset 0 -6px 0 ${color.secondary};` : ''};
+    pathIncludes ? `box-shadow: inset 0 -6px 0 ${color.secondary};` : ""};
   &:first-child > div {
     border-left: none;
   }
@@ -568,31 +571,31 @@ export const HeroTitle = styled(Div)`
 export const HeroSpan = styled.span((p) =>
   p.foo
     ? {
-        '@media (max-width: 759px)': {
+        "@media (max-width: 759px)": {
           color: `${color.secondary}`,
         },
-        '@media (min-width: 760px)': {
+        "@media (min-width: 760px)": {
           color: `${color.primary}`,
           background: `${color.secondary}`,
-          paddingRight: '5px',
-          boxShadow: ' 0 8px 20px 0 rgb(51 51 51 / 20%)',
+          paddingRight: "5px",
+          boxShadow: " 0 8px 20px 0 rgb(51 51 51 / 20%)",
         },
       }
     : p.bar
     ? {
-        '@media (min-width: 760px)': {
+        "@media (min-width: 760px)": {
           color: `${color.primaryb}`,
           background: `${color.primary}`,
-          padding: '0 5px',
-          marginTop: '10px',
-          boxShadow: ' 0 8px 20px 0 rgb(51 51 51 / 20%)',
+          padding: "0 5px",
+          marginTop: "10px",
+          boxShadow: " 0 8px 20px 0 rgb(51 51 51 / 20%)",
         },
       }
     : {
-        '@media (min-width: 760px)': {
+        "@media (min-width: 760px)": {
           color: `${color.primary}`,
           background: `${color.secondary}`,
-          paddingLeft: '5px',
+          paddingLeft: "5px",
         },
       }
 );
@@ -664,17 +667,17 @@ export const SafetySvgIcon = styled(SafetySvg)`
 
 // section CAROUSEL
 
-export const CarouselTitleContainer = styled.div`
-  color: black;
+export const CarouselWrapperArrow = styled.div`
+  height: 100%;
+  min-width: 40px;
   display: flex;
-  min-height: 62px;
-  ${H2} {
-    font-size: 1.75rem;
-    margin-left: 7.5px;
-  }
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
 `;
 
-export const CarouselCardWrapper = styled.div`
+export const CarouselTitleContainer = styled.div`
+  color: black;
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
@@ -704,29 +707,11 @@ export const Arrow = styled(ArrowSvg)`
   cursor: pointer;
 `;
 
-export const ArrowRight = styled(Arrow)`
-  right: calc(50% - 750px);
-
-  :hover {
-    transform: translateX(3px);
-  }
-
-  ${({ current, cardlength }) =>
-    current === cardlength - 4 ? `display: none` : `display: block`}
+export const CarouselContainer = styled.div`
+  padding: 0 80px 0 0;
+  display: flex;
+  align-items: center;
 `;
-
-export const ArrowLeft = styled(Arrow)`
-  transform: rotate(-180deg);
-  left: calc(50% - 750px);
-
-  :hover {
-    transform: rotate(-180deg) translateX(3px);
-  }
-
-  ${({ current }) => !current && `display: none`}
-`;
-
-// section CARD
 
 export const CardWrapper = styled.div`
   background-color: ${bgColor.primary};
@@ -766,6 +751,90 @@ export const CardWrapper = styled.div`
     height: 100%;
     display: flex;
     flex-direction: column;
+  }
+`;
+
+export const CarouselCardWrapper = styled.div`
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  scroll-snap-type: x mandatory;
+  overflow-x: scroll;
+  overflow-y: hidden;
+  scroll-behavior: smooth;
+
+  @media ${device.tablet} {
+    overflow-x: hidden;
+    min-width: 100%;
+    ${CardWrapper} {
+      ${({ current }) =>
+        current
+          ? `transform: translatex(-${current}px); 
+  transition-duration: 300ms;`
+          : ""}
+    }
+  }
+
+  @media ${device.laptop} {
+    overflow-x: hidden;
+    min-width: 100%;
+    /* max-width: ${cardSize.md * 2}px; */
+    ${CardWrapper} {
+      ${({ current }) =>
+        current
+          ? `transform: translatex(-${current}px); 
+  transition-duration: 300ms;`
+          : ""}
+    }
+  }
+
+  @media ${device.desktop} {
+    min-width: 100%;
+    /* max-width: ${cardSize.lg * 3}px; */
+    ${CardWrapper} {
+      ${({ current }) =>
+        current
+          ? `transform: translatex(-${current}px); 
+  transition-duration: 300ms;`
+          : ""}
+    }
+  }
+`;
+
+export const Arrow = styled(ArrowSvg)`
+  width: 24px;
+  height: 24px;
+  color: black;
+  cursor: pointer;
+`;
+
+export const ArrowRight = styled(Arrow)`
+  margin-left: auto;
+  display: none;
+  @media ${device.tablet} {
+    display: block;
+    ${({ current, cardsnumber, maxWidth }) =>
+      (cardsnumber < 4 && `display: none`) ||
+      (current >= maxWidth && `display: none`)}
+  }
+  :hover {
+    transform: translateX(3px);
+  }
+`;
+
+export const ArrowLeft = styled(Arrow)`
+  margin-right: auto;
+  transform: rotate(-180deg);
+  display: none;
+  @media ${device.tablet} {
+    display: block;
+
+    ${({ current, cardsnumber }) =>
+      (cardsnumber < 4 && `display: none`) || (current <= 0 && `display: none`)}
+  }
+
+  :hover {
+    transform: rotate(-180deg) translateX(3px);
   }
 `;
 
@@ -870,7 +939,7 @@ export const CardDescription = styled.p`
     padding-top: 5px;
   }
   &:after {
-    content: '';
+    content: "";
     position: absolute;
     top: 30px;
     right: 0;
@@ -903,7 +972,7 @@ export const CardCancellation = styled.div`
   color: #72ca74;
   fill: #72ca74;
 
-  ${({ cancellation }) => (cancellation ? '' : `display: none;`)}
+  ${({ cancellation }) => (cancellation ? "" : `display: none;`)}
 `;
 
 export const CardPriceWrapper = styled.div`
