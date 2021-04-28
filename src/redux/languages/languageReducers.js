@@ -1,16 +1,16 @@
 import { SET_USER_LANGUAGE } from './languageConstants';
-import { SUPPORTED_LANGUAGES } from '../../config.json';
+import { LANGUAGES, DEF_LANG } from '../../config.json';
+import { getLanguageConfiguration } from '../../utilities';
 
 export const languageReducer = (state = {}, action) => {
   const lang = action.payload;
 
-  // finding the match between the landing url and the supported languages
-  const matched = SUPPORTED_LANGUAGES[lang];
+  const matched = LANGUAGES.find((item) => item.id === lang);
 
   switch (action.type) {
     case SET_USER_LANGUAGE:
       return {
-        userLang: matched,
+        userLang: matched?.iso86 || getLanguageConfiguration(DEF_LANG),
       };
 
     default:
