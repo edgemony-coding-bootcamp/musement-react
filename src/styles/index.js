@@ -154,6 +154,18 @@ export const Spinner = styled.div`
   border-radius: 50%;
 `;
 
+const pulse = keyframes`
+    0% {
+      background-color: ${color.alternativec};
+    }
+    50% {
+      background-color: ${color.alternativeb};
+    }
+    100% {
+      background-color: ${color.alternativec};
+    }
+`;
+
 // CUSTOM HOOKS
 
 export function useMediaQuery(query) {
@@ -522,16 +534,7 @@ export const CategoryLinkLoader = styled(Div)`
   height: 42px;
   border-left: solid ${color.alternativeb} 1px;
   background-color: ${color.alternativec};
-  animation: pulse 1s infinite;
-
-  @keyframes pulse {
-    0% {
-      background-color: ${color.alternativec};
-    }
-    100% {
-      background-color: ${color.alternativeb};
-    }
-  }
+  animation: ${pulse} 1s infinite;
 `;
 
 export const CategoryLinkError = styled(CategoryLink)``;
@@ -602,7 +605,6 @@ export const HeroSpan = styled.span((p) =>
           color: `${color.primary}`,
           background: `${color.secondary}`,
           paddingRight: '5px',
-          boxShadow: ' 0 8px 20px 0 rgb(51 51 51 / 20%)',
         },
       }
     : p.bar
@@ -821,6 +823,32 @@ export const MediaArrowLeft = styled(MediaArrow)`
 `;
 
 // section CARD
+
+export const DummyCardWrapper = styled.div`
+  background-color: ${bgColor.primary};
+  height: 365px;
+  width: 290px;
+  display: flex;
+  flex-direction: column;
+  border-radius: 6px;
+  box-shadow: 0 3px 10px -8px;
+`;
+
+export const DummyCardImg = styled.div`
+  height: 135px;
+  width: 100%;
+  background-color: ${color.alternativeb};
+  margin-bottom: 10px;
+  animation: ${pulse} 2s ease-in-out infinite;
+`;
+
+export const DummyCardContent = styled.div`
+  height: 40px;
+  width: 80%;
+  margin: 10px;
+  background-color: ${color.alternativeb};
+  animation: ${pulse} 2s ease-in-out infinite;
+`;
 
 export const CardWrapper = styled.div`
   background-color: ${bgColor.primary};

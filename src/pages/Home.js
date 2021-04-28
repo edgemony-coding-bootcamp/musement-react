@@ -1,6 +1,12 @@
 import Hero from '../components/Hero';
 import Header from '../components/Header';
-import { CarouselSection, Main } from '../styles';
+import {
+  CarouselSection,
+  DummyCardContent,
+  DummyCardImg,
+  DummyCardWrapper,
+  Main,
+} from '../styles';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import { setUserLang } from '../redux/languages/languageActions';
@@ -17,14 +23,18 @@ import {
 import { DEF_LANG, LANGUAGES } from '../config.json';
 import { setLangHeader } from '../services/axiosConfig';
 import Carousel from '../components/Carousel';
-import FeaturedExperiences from '../components/FeaturedExperiences';
 import CarouselTitle from '../components/CarouselTitle';
 import Footer from '../components/Footer';
 import Activities from './Activities';
 import { Category } from './Category';
+import Card from '../components/Card';
+import { fetchExperiences } from '../redux/experiences/experienceActions';
 
 function Home() {
   const { userLang } = useSelector((state) => state.languages);
+  const { userCurrency } = useSelector((state) => state.currencies);
+  const experiencesState = useSelector((state) => state.experiences);
+  const { experiences, loading: experienceLoading } = experiencesState;
 
   const dispatch = useDispatch();
   let { path } = useRouteMatch();
@@ -40,8 +50,11 @@ function Home() {
     }
     dispatch(setUserLang(lang));
     dispatch(translateTexts(userLang));
+    setTimeout(() => {
+      dispatch(fetchExperiences());
+    }, 1);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [lang, userLang]);
+  }, [lang, userLang, userCurrency]);
 
   setLangHeader(userLang);
 
@@ -61,7 +74,17 @@ function Home() {
             <CarouselSection>
               <CarouselTitle title={'Featured Experiences'} />
               <Carousel>
-                <FeaturedExperiences />
+                {experienceLoading ? (
+                  <DummyCardWrapper>
+                    <DummyCardImg></DummyCardImg>
+                    <DummyCardContent></DummyCardContent>
+                    <DummyCardContent></DummyCardContent>
+                  </DummyCardWrapper>
+                ) : (
+                  experiences.map((experience, key) => (
+                    <Card key={key} content={experience} />
+                  ))
+                )}
               </Carousel>
             </CarouselSection>
           </Route>
