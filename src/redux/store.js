@@ -6,6 +6,7 @@ import { inspirationListReducer } from './inspirations/inspirationReducers';
 import { experienceListReducer } from './experiences/experienceReducers';
 import { popularExperienceListReducer } from './popular-experiences/popularExperienceReducers';
 import { languageReducer } from './languages/languageReducers';
+import { autocompleteListReducer } from './autocomplete/autocompleteReducer';
 import { currencyReducer } from './currencies/currencyReducers';
 import { translationReducer } from './translations/translationReducers';
 
@@ -16,6 +17,7 @@ import {
   TRANSLATIONS,
 } from '../config.json';
 import { getLanguageConfiguration } from '../utilities';
+import { activityReducer } from './activities/activityReducers';
 
 const defaultCurrency = CURRENCIES.find(
   (item) => item.code === DEFAULT_CURRENCY
@@ -28,9 +30,11 @@ const reducer = combineReducers({
   currencies: currencyReducer,
   translations: translationReducer,
   categories: categoryListReducer,
+  activity: activityReducer,
   inspirations: inspirationListReducer,
   experiences: experienceListReducer,
   popularExperiences: popularExperienceListReducer,
+  searchResults: autocompleteListReducer,
 });
 
 const defaultStore = {
@@ -48,6 +52,12 @@ const defaultStore = {
     error: null,
     loading: false,
   },
+  activity: {
+    activity: [],
+    media: [],
+    error: null,
+    loading: false,
+  },
   inspirations: {
     inspirations: [],
     error: null,
@@ -62,6 +72,10 @@ const defaultStore = {
     popularExperiences: [],
     error: null,
     loading: false,
+  },
+  searchResults: {
+    searchResults: [],
+    inputToSearch: '',
   },
 };
 

@@ -1,6 +1,9 @@
 import { useDispatch, useSelector } from 'react-redux';
 import React, { useEffect, useState } from 'react';
 import { fetchCategories } from '../redux/categories/categoryActions';
+import SearchBar from '../components/SearchBar';
+import { ReactComponent as SearchIcon } from '../assets/img/search-icon.svg';
+import { ReactComponent as CloseIcon } from '../assets/img/close-x.svg';
 
 import {
   HeaderWrapper,
@@ -12,13 +15,15 @@ import {
   HeaderHamburgerWrapper,
   useMediaQuery,
   useScrolling,
-  ModalHeaderOverlay,
+  ModalOverlay,
   device,
   ModalHeaderBody,
   H3,
   FlexRowWrap,
   FlexColumnWrap,
   P,
+  ModalOverlayMobile,
+  Div,
 } from '../styles';
 import CategoriesNav from './CategoriesNav';
 import { useParams } from 'react-router';
@@ -29,6 +34,7 @@ function Header({ path }) {
   const categoryState = useSelector((state) => state.categories);
   const { categories } = categoryState;
   const { userLang } = useSelector((state) => state.languages);
+  const { translatedTexts } = useSelector((state) => state.translations);
 
   useEffect(() => {
     setTimeout(() => {
@@ -39,7 +45,7 @@ function Header({ path }) {
 
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [showCategories, setShowCategories] = useState(false);
-  const [modalTitle, setModalTitle] = useState('Menu');
+  const [isModalSearchOpen, setIsModalSearchOpen] = useState(false);
 
   let scrolling = useScrolling(133);
   let scrollInitial = useScrolling(1);
@@ -49,14 +55,28 @@ function Header({ path }) {
   return (
     <>
       <HeaderWrapper scrollInitial={scrollInitial} scrolling={scrolling}>
-        {/* in this div we will put the search button */}
-        <div style={{ width: '3rem' }}></div>
         {isDesktop ? (
-          <LinkPages to='/'>
-            <HeaderLogoDesktop />
-          </LinkPages>
+          <>
+            <SearchBar
+              placeholder={`${translatedTexts.searchplaceholderheader}`}
+            />
+            <LinkPages to='/'>
+              <HeaderLogoDesktop />
+            </LinkPages>
+            <p></p>
+          </>
         ) : (
           <>
+            <SearchIcon onClick={() => setIsModalSearchOpen(true)} />
+            {isModalSearchOpen && (
+              <ModalOverlayMobile>
+                <FlexRowWrap>
+                  <Div>Search for experiences and places</Div>
+                  <CloseIcon onClick={() => setIsModalSearchOpen(false)} />
+                </FlexRowWrap>
+                <SearchBar setIsModalSearchOpen={setIsModalSearchOpen} />
+              </ModalOverlayMobile>
+            )}
             <LinkPages to='/'>
               <HeaderLogoMobile />
             </LinkPages>
@@ -70,10 +90,10 @@ function Header({ path }) {
       <CategoriesNav />
       {isModalOpen && (
         <ModalHeaderBody scrolling={scrolling}>
-          <ModalHeaderOverlay onClick={() => setIsModalOpen(false)} />
+          <ModalOverlay onClick={() => setIsModalOpen(false)} />
           <FlexColumnWrap>
             <FlexRowWrap>
-              <H3>{modalTitle}</H3>
+              <H3>Menu</H3>
             </FlexRowWrap>
             <FlexColumnWrap>
               <P onClick={() => setShowCategories(!showCategories)}>

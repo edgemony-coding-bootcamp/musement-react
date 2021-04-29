@@ -48,7 +48,43 @@ function CategoriesNav() {
   return (
     <CategoryWrap>
       {loading ? (
-        <CategoryLinkLoader />
+        <>
+          <CategoryLinkWrap>
+            <CategoryLinkContainer>
+              <CategoryLinkLoader />
+            </CategoryLinkContainer>
+          </CategoryLinkWrap>
+          <CategoryLinkWrap>
+            <CategoryLinkContainer>
+              <CategoryLinkLoader />
+            </CategoryLinkContainer>
+          </CategoryLinkWrap>
+          <CategoryLinkWrap>
+            <CategoryLinkContainer>
+              <CategoryLinkLoader />
+            </CategoryLinkContainer>
+          </CategoryLinkWrap>
+          <CategoryLinkWrap>
+            <CategoryLinkContainer>
+              <CategoryLinkLoader />
+            </CategoryLinkContainer>
+          </CategoryLinkWrap>
+          <CategoryLinkWrap>
+            <CategoryLinkContainer>
+              <CategoryLinkLoader />
+            </CategoryLinkContainer>
+          </CategoryLinkWrap>
+          <CategoryLinkWrap>
+            <CategoryLinkContainer>
+              <CategoryLinkLoader />
+            </CategoryLinkContainer>
+          </CategoryLinkWrap>
+          <CategoryLinkWrap>
+            <CategoryLinkContainer>
+              <CategoryLinkLoader />
+            </CategoryLinkContainer>
+          </CategoryLinkWrap>
+        </>
       ) : error ? (
         // make a new styled component for error
         <CategoryLinkWrap>
