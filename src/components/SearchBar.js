@@ -102,7 +102,7 @@ function SearchBar({ onHero, mobile, placeholder, setIsModalSearchOpen }) {
                       to={`${path}/activities/${i.id}`}
                       onClick={() => {
                         setIsModalOpen(false);
-                        setIsModalSearchOpen(false);
+                        setIsModalSearchOpen && setIsModalSearchOpen(false);
                       }}
                     >
                       <P key={i.id}>
