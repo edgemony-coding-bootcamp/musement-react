@@ -1,15 +1,16 @@
 import { useSelector } from 'react-redux';
 import {
   CarouselSection,
-  CarouselTitleContainer,
   CategoryPopularExperiences,
-  PopularExperiencesTitle,
+  DummyCardContent,
+  DummyCardImg,
+  DummyCardWrapper,
 } from '../styles';
 import CarouselTitle from './CarouselTitle';
 import Card from './Card';
 
 export const PopularExperiences = () => {
-  const { popularExperiences } = useSelector(
+  const { popularExperiences, loading } = useSelector(
     (state) => state.popularExperiences
   );
 
@@ -18,9 +19,29 @@ export const PopularExperiences = () => {
       <CarouselSection>
         <CarouselTitle title={`Popular Experiences`} />
         <CategoryPopularExperiences>
-          {popularExperiences?.map((item) => (
-            <Card popular content={item} key={item.uuid}></Card>
-          ))}
+          {loading ? (
+            <>
+              <DummyCardWrapper>
+                <DummyCardImg></DummyCardImg>
+                <DummyCardContent></DummyCardContent>
+                <DummyCardContent></DummyCardContent>
+              </DummyCardWrapper>
+              <DummyCardWrapper>
+                <DummyCardImg></DummyCardImg>
+                <DummyCardContent></DummyCardContent>
+                <DummyCardContent></DummyCardContent>
+              </DummyCardWrapper>
+              <DummyCardWrapper>
+                <DummyCardImg></DummyCardImg>
+                <DummyCardContent></DummyCardContent>
+                <DummyCardContent></DummyCardContent>
+              </DummyCardWrapper>
+            </>
+          ) : (
+            popularExperiences?.map((item) => (
+              <Card popular content={item} key={item.uuid}></Card>
+            ))
+          )}
         </CategoryPopularExperiences>
       </CarouselSection>
     </>

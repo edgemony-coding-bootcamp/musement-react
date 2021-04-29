@@ -82,11 +82,23 @@ function Home() {
               <CarouselTitle title={'Featured Experiences'} />
               <Carousel>
                 {experienceLoading ? (
-                  <DummyCardWrapper>
-                    <DummyCardImg></DummyCardImg>
-                    <DummyCardContent></DummyCardContent>
-                    <DummyCardContent></DummyCardContent>
-                  </DummyCardWrapper>
+                  <>
+                    <DummyCardWrapper>
+                      <DummyCardImg></DummyCardImg>
+                      <DummyCardContent></DummyCardContent>
+                      <DummyCardContent></DummyCardContent>
+                    </DummyCardWrapper>
+                    <DummyCardWrapper>
+                      <DummyCardImg></DummyCardImg>
+                      <DummyCardContent></DummyCardContent>
+                      <DummyCardContent></DummyCardContent>
+                    </DummyCardWrapper>
+                    <DummyCardWrapper>
+                      <DummyCardImg></DummyCardImg>
+                      <DummyCardContent></DummyCardContent>
+                      <DummyCardContent></DummyCardContent>
+                    </DummyCardWrapper>
+                  </>
                 ) : (
                   experiences.map((experience, key) => (
                     <Card key={key} content={experience} />
