@@ -28,13 +28,20 @@ import { ReactComponent as DurationIcon } from '../assets/img/duration.svg';
 import { useRouteMatch } from 'react-router';
 import { useSelector } from 'react-redux';
 
-const Card = ({ content }) => {
+const Card = ({ content, popular }) => {
   let { path } = useRouteMatch();
   const { translatedTexts } = useSelector((state) => state.translations);
+
   return (
     <>
       {content ? (
-        <LinkPages to={`${path}/activities/${content.uuid}`}>
+        <LinkPages
+          to={
+            popular
+              ? `activities/${content.uuid}`
+              : `${path}/activities/${content.uuid}`
+          }
+        >
           <CardWrapper>
             <CardImg src={content.cover_image_url} alt='image'></CardImg>
             <CardContentWrapper>
@@ -78,7 +85,8 @@ const Card = ({ content }) => {
                     <Rating
                       value={content.reviews_avg}
                       // eslint-disable-next-line prettier/prettier
-                      numReviews={content.reviews_number}></Rating>
+                      numReviews={content.reviews_number}
+                    ></Rating>
                   </CardStarWrapper>
                 </CardDivRowFooter>
                 <CardPriceWrapper>

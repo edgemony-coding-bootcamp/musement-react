@@ -51,10 +51,12 @@ function Activities() {
   const { media } = useSelector((state) => state.activity);
   const { translatedTexts } = useSelector((state) => state.translations);
   const { userLang } = useSelector((state) => state.languages);
+
   window.scrollTo({
     top: 0,
     behavior: 'smooth',
   });
+
   useEffect(() => {
     dispatch(getActivityById(id));
     dispatch(getMediaById(id));
