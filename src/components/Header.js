@@ -1,6 +1,5 @@
-import { useDispatch, useSelector } from 'react-redux';
-import React, { useEffect, useState } from 'react';
-import { fetchCategories } from '../redux/categories/categoryActions';
+import { useSelector } from 'react-redux';
+import React, { useState } from 'react';
 import SearchBar from '../components/SearchBar';
 import { ReactComponent as SearchIcon } from '../assets/img/search-icon.svg';
 import { ReactComponent as CloseIcon } from '../assets/img/close-x.svg';
@@ -28,21 +27,11 @@ import {
 import CategoriesNav from './CategoriesNav';
 import { useParams } from 'react-router';
 
-function Header({ path }) {
+function Header() {
   let { lang } = useParams();
-  const dispatch = useDispatch();
   const categoryState = useSelector((state) => state.categories);
   const { categories } = categoryState;
-  const { userLang } = useSelector((state) => state.languages);
   const { translatedTexts } = useSelector((state) => state.translations);
-
-  useEffect(() => {
-    setTimeout(() => {
-      dispatch(fetchCategories());
-    }, 1);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [userLang]);
-
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [showCategories, setShowCategories] = useState(false);
   const [isModalSearchOpen, setIsModalSearchOpen] = useState(false);
@@ -54,7 +43,7 @@ function Header({ path }) {
 
   return (
     <>
-      <HeaderWrapper scrollInitial={scrollInitial} scrolling={scrolling}>
+      <HeaderWrapper scrollInitial={scrollInitial} $scrolling={scrolling}>
         {isDesktop ? (
           <>
             <SearchBar

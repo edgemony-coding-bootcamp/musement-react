@@ -49,12 +49,12 @@ function SearchBar({ onHero, mobile, placeholder, setIsModalSearchOpen }) {
   return (
     <SearchBarContainer
       changeBackground={searchQuery.length > 0 ? true : false}
-      onHero={onHero}
-      mobile={mobile}
-    >
+      $onHero={onHero}
+      // eslint-disable-next-line prettier/prettier
+      mobile={mobile}>
       <SearchIcon />
       <SearchInput
-        onHero={onHero}
+        $onHero={onHero}
         mobile={mobile}
         placeholder={placeholder}
         type='text'
@@ -104,8 +104,8 @@ function SearchBar({ onHero, mobile, placeholder, setIsModalSearchOpen }) {
                       onClick={() => {
                         setIsModalOpen(false);
                         setIsModalSearchOpen && setIsModalSearchOpen(false);
-                      }}
-                    >
+                        // eslint-disable-next-line prettier/prettier
+                      }}>
                       <P key={i.id}>
                         {i.title}
                         <br />

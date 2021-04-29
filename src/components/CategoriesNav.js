@@ -1,6 +1,12 @@
-import React from 'react';
+/* eslint-disable prettier/prettier */
+import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
-import { useLocation, useParams, useRouteMatch } from 'react-router';
+import {
+  useHistory,
+  useLocation,
+  useParams,
+  useRouteMatch,
+} from 'react-router';
 import {
   CategoryLinkLoader,
   CategoryLinkWrap,
@@ -17,10 +23,11 @@ function CategoriesNav() {
   let { lang } = useParams();
   const categoryState = useSelector((state) => state.categories);
   const { categories, loading, error } = categoryState;
+  const [activeCategory, setActiveCategory] = useState(null);
 
   let location = useLocation();
   let match = useRouteMatch();
-
+  let history = useHistory();
   const pathIncludes = (category) => {
     const path = match.url + category;
     if (location.pathname === path) {
@@ -29,13 +36,30 @@ function CategoriesNav() {
       return false;
     }
   };
+  const redirectToActiveCategory = () => {
+    const newPath = categories?.find((cat) => cat?.id === activeCategory?.id);
+    if (newPath) {
+      history.push(`/${lang}/${newPath?.slug}`);
+    }
+  };
+
+  useEffect(() => {
+    if (categories.length > 0) {
+      setTimeout(() => {
+        let categoryPath = location.pathname.replace(`/${lang}/`, '');
+        let activeCat = categories?.find((cat) => cat?.slug === categoryPath);
+        setActiveCategory(activeCat);
+        redirectToActiveCategory(activeCat);
+      }, 1);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [lang, categories]);
 
   const ShowCategories = categories.map((cat) => (
     <CategoryLinkWrap
       to={`/${lang}/${cat.slug}`}
       key={cat.id}
-      pathIncludes={pathIncludes(`/${cat.slug}`)}
-    >
+      $pathincludes={pathIncludes(`/${cat.slug}`)}>
       <CategoryLinkContainer>
         <CategoryLink>
           <CategoriesSvgIcon>{categoriesSvgIcons[cat.id]}</CategoriesSvgIcon>

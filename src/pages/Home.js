@@ -31,6 +31,7 @@ import { Category } from './Category';
 import Card from '../components/Card';
 import { fetchExperiences } from '../redux/experiences/experienceActions';
 import { SimpleCard } from '../components/SimpleCard';
+import { fetchCategories } from '../redux/categories/categoryActions';
 
 function Home() {
   const { userLang } = useSelector((state) => state.languages);
@@ -54,6 +55,7 @@ function Home() {
     dispatch(setUserLang(lang));
     dispatch(translateTexts(userLang));
     setTimeout(() => {
+      dispatch(fetchCategories());
       dispatch(fetchExperiences());
       dispatch(fetchInspirations());
     }, 1);
