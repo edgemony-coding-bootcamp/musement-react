@@ -245,9 +245,9 @@ export const HeaderWrapper = styled.header`
     height: ${({ scrolling }) => (scrolling ? '70px' : '110px')};
     justify-content: space-between;
     box-shadow: ${({ scrolling }) =>
-    scrolling && `${stylesVar.boxShadowLight}`};
+      scrolling && `${stylesVar.boxShadowLight}`};
     border-bottom: ${({ scrollInitial }) =>
-    scrollInitial || `solid ${bgColor.primaryb} 1px`};
+      scrollInitial || `solid ${bgColor.primaryb} 1px`};
   }
 `;
 
@@ -369,10 +369,10 @@ export const SearchBarContainer = styled(FlexRowWrap)`
     mobile
       ? color.secondary
       : changeBackground
-        ? bgColor.primary
-        : onHero
-          ? bgColor.primary
-          : color.alternativec};
+      ? bgColor.primary
+      : onHero
+      ? bgColor.primary
+      : color.alternativec};
   box-shadow: ${({ onHero }) => onHero && '0 2px 8px 0 rgb(0 0 0 / 10%)'};
   & > svg {
     fill: ${({ mobile }) => mobile && color.primary};
@@ -380,13 +380,13 @@ export const SearchBarContainer = styled(FlexRowWrap)`
     height: ${({ onHero, mobile }) => (onHero || mobile ? '20px' : '17px')};
     /* margin: auto 2px; */
     margin: ${({ onHero, mobile }) =>
-    onHero || mobile ? 'auto 13px' : 'auto 8px'};
+      onHero || mobile ? 'auto 13px' : 'auto 8px'};
   }
   ${SearchInput} {
     background: ${({ onHero, mobile, changeBackground }) =>
-    onHero || mobile
-      ? bgColor.primary
-      : changeBackground
+      onHero || mobile
+        ? bgColor.primary
+        : changeBackground
         ? bgColor.primary
         : color.alternativec};
   }
@@ -601,17 +601,17 @@ export const HeroTitle = styled(Div)`
 export const HeroSpan = styled.span((p) =>
   p.foo
     ? {
-      '@media (max-width: 759px)': {
-        color: `${color.secondary}`,
-      },
-      '@media (min-width: 760px)': {
-        color: `${color.primary}`,
-        background: `${color.secondary}`,
-        paddingRight: '5px',
-      },
-    }
+        '@media (max-width: 759px)': {
+          color: `${color.secondary}`,
+        },
+        '@media (min-width: 760px)': {
+          color: `${color.primary}`,
+          background: `${color.secondary}`,
+          paddingRight: '5px',
+        },
+      }
     : p.bar
-      ? {
+    ? {
         '@media (min-width: 760px)': {
           color: `${color.primaryb}`,
           background: `${color.primary}`,
@@ -620,7 +620,7 @@ export const HeroSpan = styled.span((p) =>
           boxShadow: ' 0 8px 20px 0 rgb(51 51 51 / 20%)',
         },
       }
-      : {
+    : {
         '@media (min-width: 760px)': {
           color: `${color.primary}`,
           background: `${color.secondary}`,
@@ -896,8 +896,8 @@ export const ArrowRight = styled(Arrow)`
   @media ${device.tablet} {
     display: block;
     ${({ current, cardsnumber, maxwidth }) =>
-    (cardsnumber < 4 && `display: none`) ||
-    (current >= maxwidth && `display: none`)}
+      (cardsnumber < 4 && `display: none`) ||
+      (current >= maxwidth && `display: none`)}
   }
   :hover {
     transform: translateX(3px);
@@ -912,7 +912,7 @@ export const ArrowLeft = styled(Arrow)`
     display: block;
 
     ${({ current, cardsnumber }) =>
-    (cardsnumber < 4 && `display: none`) || (current <= 0 && `display: none`)}
+      (cardsnumber < 4 && `display: none`) || (current <= 0 && `display: none`)}
   }
 
   :hover {
@@ -1230,10 +1230,10 @@ export const CarouselCardWrapper = styled.div`
     min-width: 100%;
     ${(CardWrapper, SimpleCardWrapper)} {
       ${({ current }) =>
-    current
-      ? `transform: translatex(-${current}px); 
+        current
+          ? `transform: translatex(-${current}px); 
   transition-duration: 300ms;`
-      : ''}
+          : ''}
     }
   }
 
@@ -1243,10 +1243,10 @@ export const CarouselCardWrapper = styled.div`
     /* max-width: ${cardSize.md * 2}px; */
     ${(CardWrapper, SimpleCardWrapper)} {
       ${({ current }) =>
-    current
-      ? `transform: translatex(-${current}px); 
+        current
+          ? `transform: translatex(-${current}px); 
   transition-duration: 300ms;`
-      : ''}
+          : ''}
     }
   }
 
@@ -1255,10 +1255,10 @@ export const CarouselCardWrapper = styled.div`
     /* max-width: ${cardSize.lg * 3}px; */
     ${(CardWrapper, SimpleCardWrapper)} {
       ${({ current }) =>
-    current
-      ? `transform: translatex(-${current}px); 
+        current
+          ? `transform: translatex(-${current}px); 
   transition-duration: 300ms;`
-      : ''}
+          : ''}
     }
   }
 `;
@@ -1670,6 +1670,31 @@ export const CategoryGoHome = styled(Link)`
 export const CategoryName = styled.span`
   margin-left: 8px;
   text-transform: capitalize;
+`;
+
+export const PopularExperiencesTitle = styled(CarouselTitleContainer)`
+  color: black;
+  display: flex;
+  min-height: 62px;
+`;
+
+export const CategoryPopularExperiences = styled.div`
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  flex-basis: 20%;
+  justify-content: space-between;
+  align-items: center;
+  & > ${CardWrapper} {
+    margin-top: 35px;
+  }
+  @media (min-width: 760px) {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    align-items: stretch;
+  }
 `;
 
 // Section FOOTER

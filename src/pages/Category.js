@@ -1,5 +1,8 @@
-import { useSelector } from 'react-redux';
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
+import { PopularExperiences } from '../components/PopularExperiences';
+import { fetchPopularExperiences } from '../redux/popular-experiences/popularExperienceActions';
 import {
   CategoryGoHome,
   CategoryImg,
@@ -11,10 +14,17 @@ import {
 } from '../styles';
 
 export const Category = () => {
+  const dispatch = useDispatch();
   let { idCateg } = useParams();
   const categoryState = useSelector((state) => state.categories);
   const { categories } = categoryState;
   const selectedCategory = categories.find((categ) => categ.slug === idCateg);
+
+  useEffect(() => {
+    if (selectedCategory) {
+      dispatch(fetchPopularExperiences(selectedCategory.id));
+    }
+  }, [dispatch, selectedCategory]);
 
   return (
     <>
@@ -34,6 +44,7 @@ export const Category = () => {
       </CategoryImgWrapper>
       <CategoryGoHome to=''>Home</CategoryGoHome>
       <CategoryName>{`› ${selectedCategory?.name}`}</CategoryName>
+      <PopularExperiences />
     </>
   );
 };
