@@ -1,7 +1,13 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
-
+  "short_name": "Musement",
+  "name": "Musement React",
+  "icons": [
+    {
+      "src": "favicon.ico",
+      "sizes": "57x57",
+      "type": "image/x-icon"
+    }
+  ],
   "start_url": ".",
   "display": "standalone",
   "theme_color": "#000000",
