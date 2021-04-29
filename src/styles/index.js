@@ -378,7 +378,6 @@ export const SearchBarContainer = styled(FlexRowWrap)`
     fill: ${({ mobile }) => mobile && color.primary};
     min-width: ${({ onHero, mobile }) => (onHero || mobile ? '20px' : '17px')};
     height: ${({ onHero, mobile }) => (onHero || mobile ? '20px' : '17px')};
-    /* margin: auto 2px; */
     margin: ${({ onHero, mobile }) =>
       onHero || mobile ? 'auto 13px' : 'auto 8px'};
   }
@@ -580,7 +579,6 @@ export const HeroTitle = styled(Div)`
   padding: 0.5rem 0;
   text-align: center;
   font-size: 0.875rem;
-  font-weight: bold;
 
   @media ${device.tablet} {
     background: ${color.primary};
