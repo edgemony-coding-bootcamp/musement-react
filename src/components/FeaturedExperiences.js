@@ -12,7 +12,6 @@ function FeaturedExperiences() {
 
   useEffect(() => {
     dispatch(fetchExperiences());
-
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [userLang, userCurrency]);
   return (

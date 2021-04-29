@@ -1,4 +1,3 @@
-/* eslint-disable prettier/prettier */
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import {
@@ -57,7 +56,8 @@ function CategoriesNav() {
     <CategoryLinkWrap
       to={`/${lang}/${cat.slug}`}
       key={cat.id}
-      $pathincludes={pathIncludes(`/${cat.slug}`)}>
+      $pathincludes={pathIncludes(`/${cat.slug}`)}
+    >
       <CategoryLinkContainer>
         <CategoryLink>
           <CategoriesSvgIcon>{categoriesSvgIcons[cat.id]}</CategoriesSvgIcon>
@@ -108,7 +108,6 @@ function CategoriesNav() {
           </CategoryLinkWrap>
         </>
       ) : error ? (
-        // make a new styled component for error
         <CategoryLinkWrap>
           <CategoryLinkContainer>
             <CategoryLinkError>Categories not found</CategoryLinkError>
