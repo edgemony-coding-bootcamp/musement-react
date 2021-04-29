@@ -155,16 +155,22 @@ function Activities() {
                   </IconDiv>
                   {`${translatedTexts.safetymeasuresapplied}`}
                 </FeaturesDiv>
-                <GrayFeaturesDiv>
-                  <IconDiv lg>
-                    <IstantActivityIcon />
-                  </IconDiv>
-                  <span>{activity?.features[0]?.name}</span>
-                  <IconDiv lg>
-                    <SkipActivityIcon />
-                  </IconDiv>
-                  <span>{activity?.features[1]?.name}</span>
-                </GrayFeaturesDiv>
+                {activity?.features.length > 0 && (
+                  <GrayFeaturesDiv>
+                    <IconDiv lg>
+                      <IstantActivityIcon />
+                    </IconDiv>
+                    <span>{activity?.features[0]?.name}</span>
+                    {activity?.features[1] && (
+                      <>
+                        <IconDiv lg>
+                          <SkipActivityIcon />
+                        </IconDiv>
+                        <span>{activity?.features[1]?.name}</span>
+                      </>
+                    )}
+                  </GrayFeaturesDiv>
+                )}
               </ContentFeaturesSection>
               <ContentSectionBody>
                 <ContentHighlights>{`${translatedTexts.highlitsheader}`}</ContentHighlights>

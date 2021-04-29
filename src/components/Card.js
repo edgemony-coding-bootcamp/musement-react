@@ -81,7 +81,7 @@ const Card = ({ content, popular }) => {
               </CardSectionBody>
               <CardSectionFooter>
                 <CardDivRowFooter>
-                  <CardStarWrapper>
+                  <CardStarWrapper avg={content.reviews_avg}>
                     <Rating
                       value={content.reviews_avg}
                       numReviews={content.reviews_number}

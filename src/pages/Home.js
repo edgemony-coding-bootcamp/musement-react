@@ -1,5 +1,6 @@
 import Hero from '../components/Hero';
 import Header from '../components/Header';
+import NotFound from './NotFound';
 import {
   CarouselSection,
   DummyCardContent,
@@ -103,7 +104,7 @@ function Home() {
             </CarouselSection>
           </Route>
           <Route path={`${path}/*`}>
-            <h1>404</h1>
+            <NotFound />
           </Route>
         </Switch>
       </Main>

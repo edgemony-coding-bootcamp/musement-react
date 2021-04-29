@@ -1,5 +1,11 @@
 import { useSelector } from 'react-redux';
-import { CategoryPopularExperiences, PopularExperiencesTitle } from '../styles';
+import {
+  CarouselSection,
+  CarouselTitleContainer,
+  CategoryPopularExperiences,
+  PopularExperiencesTitle,
+} from '../styles';
+import CarouselTitle from './CarouselTitle';
 import Card from './Card';
 
 export const PopularExperiences = () => {
@@ -9,12 +15,14 @@ export const PopularExperiences = () => {
 
   return (
     <>
-      <PopularExperiencesTitle title={`Popular Experiences`} />
-      <CategoryPopularExperiences>
-        {popularExperiences?.map((item) => (
-          <Card popular content={item} key={item.uuid}></Card>
-        ))}
-      </CategoryPopularExperiences>
+      <CarouselSection>
+        <CarouselTitle title={`Popular Experiences`} />
+        <CategoryPopularExperiences>
+          {popularExperiences?.map((item) => (
+            <Card popular content={item} key={item.uuid}></Card>
+          ))}
+        </CategoryPopularExperiences>
+      </CarouselSection>
     </>
   );
 };
