@@ -414,10 +414,10 @@ export const ModalOverlayMobile = styled(Div)`
     height: 16px;
   }
   ${SearchBarContainer} {
-    padding: 8px;
     background-color: ${bgColor.primary};
     border: 1px solid ${color.alternativec};
     ${SearchInput} {
+      padding: 8px;
       background-color: ${bgColor.primary};
     }
     & svg {

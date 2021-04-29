@@ -24,18 +24,10 @@ function Footer({ lang }) {
     history.push(
       `/${value}${window.location.pathname.replace(`/${lang}`, '')}`
     );
-    window.scrollTo({
-      top: 0,
-      behavior: 'smooth',
-    });
   };
   const setCurrency = (value) => {
     dispatch(setUserCurrency(value));
     setCurrencyHeader(value);
-    window.scrollTo({
-      top: 0,
-      behavior: 'smooth',
-    });
   };
 
   return (
@@ -46,7 +38,8 @@ function Footer({ lang }) {
           <LabelDropdown htmlFor='language'></LabelDropdown>
           <DropdownSelect
             defaultValue={lang}
-            onChange={(e) => setLang(e.target.value)}>
+            onChange={(e) => setLang(e.target.value)}
+          >
             {LANGUAGES.map((item) => (
               <DropdownOption key={item.id} value={item.id}>
                 {item.label}
@@ -59,7 +52,8 @@ function Footer({ lang }) {
           <DropdownSelect
             defaultValue={DEFAULT_CURRENCY}
             id='currency'
-            onChange={(e) => setCurrency(e.target.value)}>
+            onChange={(e) => setCurrency(e.target.value)}
+          >
             {CURRENCIES.map((item) => (
               <DropdownOption key={item.code} value={item.code}>
                 {item.symbol} {item.name}

@@ -13,7 +13,7 @@ export const PopularExperiences = () => {
       <CategoryPopularExperiences>
         {popularExperiences?.map((item) => (
           <>
-            <Card content={item} key={item.city.name}></Card>
+            <Card popular content={item} key={item.city.name}></Card>
           </>
         ))}
       </CategoryPopularExperiences>

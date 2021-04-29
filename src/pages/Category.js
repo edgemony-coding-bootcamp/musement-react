@@ -18,13 +18,22 @@ export const Category = () => {
   let { idCateg } = useParams();
   const categoryState = useSelector((state) => state.categories);
   const { categories } = categoryState;
-  const selectedCategory = categories.find((categ) => categ.slug === idCateg);
+  const { userLang } = useSelector((state) => state.languages);
+  const { userCurrency } = useSelector((state) => state.currencies);
+  const selectedCategory = categories?.find((categ) => categ.slug === idCateg);
+
+  window.scrollTo({
+    top: 0,
+    behavior: 'smooth',
+  });
 
   useEffect(() => {
     if (selectedCategory) {
-      dispatch(fetchPopularExperiences(selectedCategory.id));
+      setTimeout(() => {
+        dispatch(fetchPopularExperiences(selectedCategory.id));
+      }, 1);
     }
-  }, [dispatch, selectedCategory]);
+  }, [dispatch, selectedCategory, userLang, userCurrency]);
 
   return (
     <>

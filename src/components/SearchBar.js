@@ -99,10 +99,11 @@ function SearchBar({ onHero, mobile, placeholder, setIsModalSearchOpen }) {
                 <FlexColumnWrap>
                   {results?.items.map((i) => (
                     <LinkPages
+                      key={i.id}
                       to={`${path}/activities/${i.id}`}
                       onClick={() => {
                         setIsModalOpen(false);
-                        setIsModalSearchOpen(false);
+                        setIsModalSearchOpen && setIsModalSearchOpen(false);
                       }}
                     >
                       <P key={i.id}>
