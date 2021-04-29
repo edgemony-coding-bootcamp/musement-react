@@ -1,5 +1,6 @@
 import Hero from '../components/Hero';
 import Header from '../components/Header';
+import NotFound from './NotFound';
 import {
   CarouselSection,
   DummyCardContent,
@@ -81,11 +82,23 @@ function Home() {
               <CarouselTitle title={'Featured Experiences'} />
               <Carousel>
                 {experienceLoading ? (
-                  <DummyCardWrapper>
-                    <DummyCardImg></DummyCardImg>
-                    <DummyCardContent></DummyCardContent>
-                    <DummyCardContent></DummyCardContent>
-                  </DummyCardWrapper>
+                  <>
+                    <DummyCardWrapper>
+                      <DummyCardImg></DummyCardImg>
+                      <DummyCardContent></DummyCardContent>
+                      <DummyCardContent></DummyCardContent>
+                    </DummyCardWrapper>
+                    <DummyCardWrapper>
+                      <DummyCardImg></DummyCardImg>
+                      <DummyCardContent></DummyCardContent>
+                      <DummyCardContent></DummyCardContent>
+                    </DummyCardWrapper>
+                    <DummyCardWrapper>
+                      <DummyCardImg></DummyCardImg>
+                      <DummyCardContent></DummyCardContent>
+                      <DummyCardContent></DummyCardContent>
+                    </DummyCardWrapper>
+                  </>
                 ) : (
                   experiences.map((experience, key) => (
                     <Card key={key} content={experience} />
@@ -103,7 +116,7 @@ function Home() {
             </CarouselSection>
           </Route>
           <Route path={`${path}/*`}>
-            <h1>404</h1>
+            <NotFound />
           </Route>
         </Switch>
       </Main>

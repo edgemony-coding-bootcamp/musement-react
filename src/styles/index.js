@@ -60,16 +60,8 @@ export const svgColor = {
   alternative: '#fff',
 };
 
-export const stylesVar = {
-  colorWhite: '#fff',
-  colorOrange: '#fc6c4f',
-  colorGray: '#9E9E9E',
-  colorLightGray: '#bac5c3',
-  colorSuperLightGray: '#edf1f2',
-  colorBlack: '#333333',
-  // TODO
+export const boxShadow = {
   boxShadowLight: '0 2px 6px 0 rgb(0 0 0 / 10%)',
-  // TODO
 };
 
 // mediaQuery
@@ -83,10 +75,14 @@ export const device = {
 
 // section UTILITIES
 
-export const Div = styled.div``;
-
 export const P = styled.p`
   ${({ bold }) => bold && `font-weight: 700; margin:0 5px;`}
+`;
+
+export const Div = styled.div`
+  & > ${P} {
+    padding: 0 15px;
+  }
 `;
 
 export const H2 = styled.h2``;
@@ -108,9 +104,11 @@ export const Main = styled.main`
 `;
 
 export const CarouselSection = styled.section`
+  margin-top: 30px;
+  padding-bottom: 40px;
   background-color: ${color.alternativec};
-  @media ${device.desktop} {
-    padding: 0 40px;
+  @media ${device.tablet} {
+    padding: 0 40px 40px 40px;
   }
 `;
 
@@ -245,7 +243,7 @@ export const HeaderWrapper = styled.header`
     height: ${({ $scrolling }) => ($scrolling ? '70px' : '110px')};
     justify-content: space-between;
     box-shadow: ${({ $scrolling }) =>
-      $scrolling && `${stylesVar.boxShadowLight}`};
+      $scrolling && `${boxShadow.boxShadowLight}`};
     border-bottom: ${({ scrollInitial }) =>
       scrollInitial || `solid ${bgColor.primaryb} 1px`};
   }
@@ -649,10 +647,10 @@ export const InfoBanner = styled(Div)`
   display: flex;
   flex-direction: column;
   flex-shrink: 1;
-
   background: ${bgColor.primary};
   border-radius: 0.3rem;
-  box-shadow: ${stylesVar.boxShadowLight};
+  box-shadow: ${boxShadow.boxShadowLight};
+
   & > ${FlexRowWrap} {
     align-items: center;
   }
@@ -761,7 +759,7 @@ export const CarouselTitleContainer = styled.div`
   scroll-snap-type: x mandatory;
   overflow-x: scroll;
   scroll-behavior: smooth;
-  padding: 10px 0;
+  padding: 10px 0 10px 40px;
   &::-webkit-scrollbar {
     display: none;
     -ms-overflow-style: none; /* IE and Edge */
@@ -771,6 +769,7 @@ export const CarouselTitleContainer = styled.div`
   @media ${device.tablet} {
     min-width: 760px;
     max-width: 100vw;
+    padding: 10px 0;
   }
 `;
 
@@ -853,10 +852,13 @@ export const CardWrapper = styled.div`
   min-width: 290px;
   max-width: 290px;
   min-height: 365px;
+  max-height: 365px;
+  display: flex;
+  flex-direction: column;
   border-radius: 6px;
   box-sizing: content-box;
   box-shadow: 0 3px 10px -8px;
-  margin: 0 10px;
+  margin: 0 10px 0 0;
   scroll-snap-align: start;
   transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
 
@@ -867,25 +869,24 @@ export const CardWrapper = styled.div`
   }
 
   @media ${device.tablet} {
+    min-width: 310px;
     max-width: 310px;
     min-height: 380px;
-    display: flex;
-    flex-direction: column;
+    max-height: 380px;
   }
 
   @media ${device.laptop} {
+    min-width: 310px;
     max-width: 310px;
-    min-height: 380px;
-    display: flex;
-    flex-direction: column;
+    min-height: 430px;
+    max-height: 430px;
   }
 
   @media ${device.desktop} {
+    min-width: 335px;
     max-width: 335px;
     min-height: 430px;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
+    max-height: 430px;
   }
 `;
 
@@ -933,16 +934,24 @@ export const CardImg = styled.img`
 
 export const CardContentWrapper = styled.div`
   min-height: calc(365px - 155px);
+  max-height: calc(365px - 155px);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
 
   @media ${device.tablet} {
     min-height: calc(380px - 155px);
+    max-height: calc(380px - 155px);
+  }
+
+  @media ${device.laptop} {
+    min-height: calc(430px - 155px);
+    max-height: calc(430px - 155px);
   }
 
   @media ${device.desktop} {
     min-height: calc(430px - 155px);
+    max-height: calc(430px - 155px);
   }
 `;
 
@@ -950,17 +959,18 @@ export const CardSectionHeader = styled.section`
   height: fit-content;
   margin: 0 10px;
   margin-top: 5px;
+  padding: 0;
   display: flex;
-  text-align: left;
   flex-direction: column;
-  min-height: 157px;
+  justify-content: space-between;
+  text-align: left;
 `;
 
 export const CardSectionBody = styled.section`
   margin: 3px 10px 0 10px;
   display: flex;
-  text-align: left;
   flex-direction: column;
+  text-align: left;
 
   @media ${device.laptop} {
     margin-top: 0px;
@@ -968,7 +978,7 @@ export const CardSectionBody = styled.section`
 `;
 
 export const CardSectionFooter = styled.section`
-  margin: 10px 10px 0 10px;
+  margin: 0 10px;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -990,11 +1000,11 @@ export const CardCategoryLabel = styled.span`
 `;
 
 export const CardTitle = styled.h3`
-  color: ${color.primaryb};
   font-size: 16px;
-  line-height: 1.22;
+  line-height: 1.15;
   text-decoration: none;
   font-weight: 500;
+  color: ${color.primaryb};
   cursor: pointer;
 
   &:hover {
@@ -1128,6 +1138,8 @@ export const CardStarWrapper = styled.div`
   align-items: center;
   margin-left: auto;
   color: #ffb743;
+
+  ${({ avg }) => avg < 3.5 && `display: none;`}
 `;
 
 export const PriceFirstNum = styled.span`
@@ -1147,6 +1159,7 @@ export const SimpleCardWrapper = styled.div`
   min-height: 245px;
   margin-right: 20px;
   position: relative;
+  scroll-snap-align: start;
 
   @media ${device.tablet} {
     min-width: 290px;
@@ -1169,7 +1182,8 @@ export const SimpleCardWrapper = styled.div`
 
 export const SimpleCardImg = styled.img`
   width: 100%;
-  height: 100%;
+  height: 245px;
+  object-fit: cover;
 `;
 
 export const SimpleCardDescript = styled.div`
@@ -1216,6 +1230,7 @@ export const SimpleCardExperiences = styled.div`
 `;
 
 export const CarouselCardWrapper = styled.div`
+  padding: 10px 0;
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
@@ -1239,7 +1254,6 @@ export const CarouselCardWrapper = styled.div`
   @media ${device.laptop} {
     overflow-x: hidden;
     min-width: 100%;
-    /* max-width: ${cardSize.md * 2}px; */
     ${(CardWrapper, SimpleCardWrapper)} {
       ${({ current }) =>
         current
@@ -1251,7 +1265,6 @@ export const CarouselCardWrapper = styled.div`
 
   @media ${device.desktop} {
     min-width: 100%;
-    /* max-width: ${cardSize.lg * 3}px; */
     ${(CardWrapper, SimpleCardWrapper)} {
       ${({ current }) =>
         current
@@ -1671,12 +1684,6 @@ export const CategoryName = styled.span`
   text-transform: capitalize;
 `;
 
-export const PopularExperiencesTitle = styled(CarouselTitleContainer)`
-  color: black;
-  display: flex;
-  min-height: 62px;
-`;
-
 export const CategoryPopularExperiences = styled.div`
   width: 100%;
   height: 100%;
@@ -1685,8 +1692,8 @@ export const CategoryPopularExperiences = styled.div`
   flex-basis: 20%;
   justify-content: space-between;
   align-items: center;
-  & > ${CardWrapper} {
-    margin-top: 35px;
+  & > ${LinkPages} {
+    margin: 35px auto;
   }
   @media (min-width: 760px) {
     flex-direction: row;
@@ -1784,4 +1791,51 @@ export const LoaderBar = styled.div`
       background-position: -100%;
     }
   }
+`;
+
+// section PAGENOTFOUND
+
+export const PageNotFoundWrapper = styled.div`
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+`;
+
+export const NotFoundWrapper = styled.div`
+  margin: auto;
+  padding: 30px;
+  width: min-content;
+  height: min-content;
+  display: flex;
+  align-items: center;
+  background-color: rgb(35, 189, 130);
+`;
+
+export const Msg404 = styled.span`
+  font-size: 4rem;
+  font-weight: 1000;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  padding-right: 10px;
+  border-right: 4px solid white;
+  color: white;
+`;
+
+export const NotFnd = styled.span`
+  font-size: 3rem;
+  font-weight: 300;
+  padding-left: 15px;
+  text-align: left;
+  color: white;
+`;
+
+export const Return = styled.div`
+  margin: auto;
+  font-size: 1.2rem;
+  cursor: pointer;
+  text-decoration: none;
+  color: black;
 `;
