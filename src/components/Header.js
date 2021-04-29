@@ -47,6 +47,7 @@ function Header() {
         {isDesktop ? (
           <>
             <SearchBar
+              isOnHero={false}
               placeholder={`${translatedTexts.searchplaceholderheader}`}
             />
             <LinkPages to='/'>

@@ -45,12 +45,10 @@ function CategoriesNav() {
 
   useEffect(() => {
     if (categories.length > 0) {
-      setTimeout(() => {
-        let categoryPath = location.pathname.replace(`/${lang}/`, '');
-        let activeCat = categories?.find((cat) => cat?.slug === categoryPath);
-        setActiveCategory(activeCat);
-        redirectToActiveCategory(activeCat);
-      }, 1);
+      let categoryPath = location.pathname.replace(`/${lang}/`, '');
+      let activeCat = categories?.find((cat) => cat?.slug === categoryPath);
+      setActiveCategory(activeCat);
+      redirectToActiveCategory(activeCat);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [lang, categories]);

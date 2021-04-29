@@ -33,7 +33,7 @@ function Hero() {
           {isTablet && (
             <SearchBar
               placeholder={`${translatedTexts.searchplaceholderhero}`}
-              $onHero={true}
+              isOnHero={true}
             />
           )}
         </HeroTitle>

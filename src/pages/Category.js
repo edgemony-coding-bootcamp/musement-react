@@ -29,9 +29,7 @@ export const Category = () => {
 
   useEffect(() => {
     if (selectedCategory) {
-      setTimeout(() => {
-        dispatch(fetchPopularExperiences(selectedCategory.id));
-      }, 1);
+      dispatch(fetchPopularExperiences(selectedCategory.id));
     }
   }, [dispatch, selectedCategory, userLang, userCurrency]);
 

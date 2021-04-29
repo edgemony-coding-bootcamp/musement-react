@@ -54,11 +54,11 @@ function Home() {
     }
     dispatch(setUserLang(lang));
     dispatch(translateTexts(userLang));
-    setTimeout(() => {
-      dispatch(fetchCategories());
-      dispatch(fetchExperiences());
-      dispatch(fetchInspirations());
-    }, 1);
+
+    dispatch(fetchCategories());
+    dispatch(fetchExperiences());
+    dispatch(fetchInspirations());
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [lang, userLang, userCurrency]);
 
