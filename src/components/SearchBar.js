@@ -21,7 +21,7 @@ import {
 } from '../styles';
 import { useRouteMatch } from 'react-router';
 
-function SearchBar({ onHero, mobile, placeholder, setIsModalSearchOpen }) {
+function SearchBar({ isOnHero, mobile, placeholder, setIsModalSearchOpen }) {
   let { path } = useRouteMatch();
   const searchState = useSelector((state) => state.searchResults);
   const { loading, error } = searchState;
@@ -49,19 +49,19 @@ function SearchBar({ onHero, mobile, placeholder, setIsModalSearchOpen }) {
   return (
     <SearchBarContainer
       changeBackground={searchQuery.length > 0 ? true : false}
-      onHero={onHero}
+      $onhero={isOnHero}
       mobile={mobile}
     >
       <SearchIcon />
       <SearchInput
-        onHero={onHero}
+        $onhero={isOnHero}
         mobile={mobile}
         placeholder={placeholder}
         type='text'
         value={searchQuery}
         onChange={(e) => setSearchQuery(e.target.value)}
         onClick={() => {
-          onHero && setIsModalOpen(true);
+          isOnHero && setIsModalOpen(true);
         }}
       />
       {isModalOpen && (

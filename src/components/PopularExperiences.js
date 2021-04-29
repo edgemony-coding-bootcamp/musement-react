@@ -12,9 +12,7 @@ export const PopularExperiences = () => {
       <PopularExperiencesTitle title={`Popular Experiences`} />
       <CategoryPopularExperiences>
         {popularExperiences?.map((item) => (
-          <>
-            <Card popular content={item} key={item.city.name}></Card>
-          </>
+          <Card popular content={item} key={item.uuid}></Card>
         ))}
       </CategoryPopularExperiences>
     </>

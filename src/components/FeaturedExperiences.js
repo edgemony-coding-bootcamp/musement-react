@@ -11,9 +11,7 @@ function FeaturedExperiences() {
   const { experiences } = experiencesState;
 
   useEffect(() => {
-    setTimeout(() => {
-      dispatch(fetchExperiences());
-    }, 1);
+    dispatch(fetchExperiences());
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [userLang, userCurrency]);
   return (

@@ -1,4 +1,3 @@
-/* eslint-disable prettier/prettier */
 import React, { useRef, useState } from 'react';
 import { useSelector } from 'react-redux';
 import {
@@ -16,7 +15,6 @@ function MobileMediaSlideshow() {
   const handleActiveSlide = () => {
     const scrollPosition = ref.current.scrollLeft;
     let active = scrollPosition / ref.current.offsetWidth;
-    // Here i'm parsing the value cause i noticed that is faster than waiting for the integer value
     setCurrent(parseInt(active));
   };
 

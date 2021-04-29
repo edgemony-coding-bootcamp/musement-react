@@ -84,7 +84,6 @@ const Card = ({ content, popular }) => {
                   <CardStarWrapper>
                     <Rating
                       value={content.reviews_avg}
-                      // eslint-disable-next-line prettier/prettier
                       numReviews={content.reviews_number}
                     ></Rating>
                   </CardStarWrapper>

@@ -242,10 +242,10 @@ export const HeaderWrapper = styled.header`
   }
 
   @media ${device.desktop} {
-    height: ${({ scrolling }) => (scrolling ? '70px' : '110px')};
+    height: ${({ $scrolling }) => ($scrolling ? '70px' : '110px')};
     justify-content: space-between;
-    box-shadow: ${({ scrolling }) =>
-      scrolling && `${stylesVar.boxShadowLight}`};
+    box-shadow: ${({ $scrolling }) =>
+      $scrolling && `${stylesVar.boxShadowLight}`};
     border-bottom: ${({ scrollInitial }) =>
       scrollInitial || `solid ${bgColor.primaryb} 1px`};
   }
@@ -356,34 +356,35 @@ export const SearchInput = styled.input`
 
 export const SearchBarContainer = styled(FlexRowWrap)`
   position: relative;
-  min-width: ${({ mobile, onHero }) =>
-    mobile ? '91%' : onHero ? '700px' : '290px'};
-  max-width: ${({ onHero, mobile }) => (mobile || onHero ? '91%' : '800px')};
-  height: ${({ onHero, mobile }) =>
-    onHero ? '72px' : mobile ? '50px' : '35px'};
+  min-width: ${({ mobile, $onhero }) =>
+    mobile ? '91%' : $onhero ? '700px' : '290px'};
+  max-width: ${({ $onhero, mobile }) => (mobile || $onhero ? '91%' : '800px')};
+  height: ${({ $onhero, mobile }) =>
+    $onhero ? '72px' : mobile ? '50px' : '35px'};
   border: 1px solid ${color.alternativec};
-  margin: ${({ mobile, onHero }) =>
-    mobile ? '20px ' : onHero ? '20px 0 0' : '0 10px'};
+  margin: ${({ mobile, $onhero }) =>
+    mobile ? '20px ' : $onhero ? '20px 0 0' : '0 10px'};
   border-radius: 6px;
-  background: ${({ mobile, changeBackground, onHero }) =>
+  background: ${({ mobile, changeBackground, $onhero }) =>
     mobile
       ? color.secondary
       : changeBackground
       ? bgColor.primary
-      : onHero
+      : $onhero
       ? bgColor.primary
       : color.alternativec};
-  box-shadow: ${({ onHero }) => onHero && '0 2px 8px 0 rgb(0 0 0 / 10%)'};
+  box-shadow: ${({ $onhero }) => $onhero && '0 2px 8px 0 rgb(0 0 0 / 10%)'};
   & > svg {
     fill: ${({ mobile }) => mobile && color.primary};
-    min-width: ${({ onHero, mobile }) => (onHero || mobile ? '20px' : '17px')};
-    height: ${({ onHero, mobile }) => (onHero || mobile ? '20px' : '17px')};
-    margin: ${({ onHero, mobile }) =>
-      onHero || mobile ? 'auto 13px' : 'auto 8px'};
+    min-width: ${({ $onhero, mobile }) =>
+      $onhero || mobile ? '20px' : '17px'};
+    height: ${({ $onhero, mobile }) => ($onhero || mobile ? '20px' : '17px')};
+    margin: ${({ $onhero, mobile }) =>
+      $onhero || mobile ? 'auto 13px' : 'auto 8px'};
   }
   ${SearchInput} {
-    background: ${({ onHero, mobile, changeBackground }) =>
-      onHero || mobile
+    background: ${({ $onhero, mobile, changeBackground }) =>
+      $onhero || mobile
         ? bgColor.primary
         : changeBackground
         ? bgColor.primary
@@ -504,8 +505,8 @@ export const CategoryLinkWrap = styled(Link)`
   flex-shrink: 0;
   color: ${color.primaryb};
   text-decoration: none;
-  ${({ pathincludes }) =>
-    pathincludes ? `box-shadow: inset 0 -6px 0 ${color.secondary};` : ''};
+  ${({ $pathincludes }) =>
+    $pathincludes ? `box-shadow: inset 0 -6px 0 ${color.secondary};` : ''};
   &:first-child > div {
     border-left: none;
   }
@@ -806,8 +807,8 @@ export const MediaArrowRight = styled(MediaArrow)`
   :hover {
     transform: translateX(3px);
   }
-  ${({ current, mediaLength }) =>
-    current === mediaLength - 1 ? `display: none` : `display: block`}
+  ${({ current, $mediaLength }) =>
+    current === $mediaLength - 1 ? `display: none` : `display: block`}
 `;
 
 export const MediaArrowLeft = styled(MediaArrow)`

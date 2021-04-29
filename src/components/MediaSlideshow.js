@@ -36,7 +36,7 @@ function MediaSlideshow({ onClose }) {
           <GalleryCarousel>
             <MediaArrowLeft current={current} onClick={prevLeft} />
             {media.map((item, index) => (
-              <SlideContainer isMoving={isMoving}>
+              <SlideContainer key={item.id} isMoving={isMoving}>
                 <SlideImageContainer>
                   <SlideImage src={item.url}></SlideImage>
                   <SlideText>{`${index + 1}/${media.length}`}</SlideText>
@@ -45,7 +45,7 @@ function MediaSlideshow({ onClose }) {
             ))}
             <MediaArrowRight
               current={current}
-              mediaLength={media.length}
+              $mediaLength={media.length}
               onClick={nextRight}
             />
           </GalleryCarousel>

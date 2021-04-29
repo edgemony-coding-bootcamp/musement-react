@@ -31,6 +31,7 @@ import { Category } from './Category';
 import Card from '../components/Card';
 import { fetchExperiences } from '../redux/experiences/experienceActions';
 import { SimpleCard } from '../components/SimpleCard';
+import { fetchCategories } from '../redux/categories/categoryActions';
 
 function Home() {
   const { userLang } = useSelector((state) => state.languages);
@@ -53,10 +54,11 @@ function Home() {
     }
     dispatch(setUserLang(lang));
     dispatch(translateTexts(userLang));
-    setTimeout(() => {
-      dispatch(fetchExperiences());
-      dispatch(fetchInspirations());
-    }, 1);
+
+    dispatch(fetchCategories());
+    dispatch(fetchExperiences());
+    dispatch(fetchInspirations());
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [lang, userLang, userCurrency]);
 
