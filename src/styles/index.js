@@ -245,9 +245,9 @@ export const HeaderWrapper = styled.header`
     height: ${({ scrolling }) => (scrolling ? '70px' : '110px')};
     justify-content: space-between;
     box-shadow: ${({ scrolling }) =>
-      scrolling && `${stylesVar.boxShadowLight}`};
+    scrolling && `${stylesVar.boxShadowLight}`};
     border-bottom: ${({ scrollInitial }) =>
-      scrollInitial || `solid ${bgColor.primaryb} 1px`};
+    scrollInitial || `solid ${bgColor.primaryb} 1px`};
   }
 `;
 
@@ -369,10 +369,10 @@ export const SearchBarContainer = styled(FlexRowWrap)`
     mobile
       ? color.secondary
       : changeBackground
-      ? bgColor.primary
-      : onHero
-      ? bgColor.primary
-      : color.alternativec};
+        ? bgColor.primary
+        : onHero
+          ? bgColor.primary
+          : color.alternativec};
   box-shadow: ${({ onHero }) => onHero && '0 2px 8px 0 rgb(0 0 0 / 10%)'};
   & > svg {
     fill: ${({ mobile }) => mobile && color.primary};
@@ -380,13 +380,13 @@ export const SearchBarContainer = styled(FlexRowWrap)`
     height: ${({ onHero, mobile }) => (onHero || mobile ? '20px' : '17px')};
     /* margin: auto 2px; */
     margin: ${({ onHero, mobile }) =>
-      onHero || mobile ? 'auto 13px' : 'auto 8px'};
+    onHero || mobile ? 'auto 13px' : 'auto 8px'};
   }
   ${SearchInput} {
     background: ${({ onHero, mobile, changeBackground }) =>
-      onHero || mobile
-        ? bgColor.primary
-        : changeBackground
+    onHero || mobile
+      ? bgColor.primary
+      : changeBackground
         ? bgColor.primary
         : color.alternativec};
   }
@@ -601,17 +601,17 @@ export const HeroTitle = styled(Div)`
 export const HeroSpan = styled.span((p) =>
   p.foo
     ? {
-        '@media (max-width: 759px)': {
-          color: `${color.secondary}`,
-        },
-        '@media (min-width: 760px)': {
-          color: `${color.primary}`,
-          background: `${color.secondary}`,
-          paddingRight: '5px',
-        },
-      }
+      '@media (max-width: 759px)': {
+        color: `${color.secondary}`,
+      },
+      '@media (min-width: 760px)': {
+        color: `${color.primary}`,
+        background: `${color.secondary}`,
+        paddingRight: '5px',
+      },
+    }
     : p.bar
-    ? {
+      ? {
         '@media (min-width: 760px)': {
           color: `${color.primaryb}`,
           background: `${color.primary}`,
@@ -620,7 +620,7 @@ export const HeroSpan = styled.span((p) =>
           boxShadow: ' 0 8px 20px 0 rgb(51 51 51 / 20%)',
         },
       }
-    : {
+      : {
         '@media (min-width: 760px)': {
           color: `${color.primary}`,
           background: `${color.secondary}`,
@@ -776,19 +776,11 @@ export const CarouselTitleContainer = styled.div`
 `;
 
 export const Arrow = styled(ArrowSvg)`
-  width: 25px;
-  height: 25px;
-  position: absolute;
-  bottom: calc(50% - 62px);
+  width: 24px;
+  height: 24px;
+  color: black;
   cursor: pointer;
 `;
-
-// export const Arrow = styled(ArrowSvg)`
-//   width: 24px;
-//   height: 24px;
-//   color: black;
-//   cursor: pointer;
-// `;
 
 export const CarouselContainer = styled.div`
   display: flex;
@@ -898,63 +890,14 @@ export const CardWrapper = styled.div`
   }
 `;
 
-export const CarouselCardWrapper = styled.div`
-  padding: 10px 0;
-  margin-right: -40px;
-  display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
-  scroll-snap-type: x mandatory;
-  overflow-x: scroll;
-  overflow-y: hidden;
-  scroll-behavior: smooth;
-
-  @media ${device.tablet} {
-    overflow-x: hidden;
-    min-width: 100%;
-    ${CardWrapper} {
-      ${({ current }) =>
-        current
-          ? `transform: translatex(-${current}px); 
-  transition-duration: 300ms;`
-          : ''}
-    }
-  }
-
-  @media ${device.laptop} {
-    overflow-x: hidden;
-    min-width: 100%;
-    /* max-width: ${cardSize.md * 2}px; */
-    ${CardWrapper} {
-      ${({ current }) =>
-        current
-          ? `transform: translatex(-${current}px); 
-  transition-duration: 300ms;`
-          : ''}
-    }
-  }
-
-  @media ${device.desktop} {
-    min-width: 100%;
-    /* max-width: ${cardSize.lg * 3}px; */
-    ${CardWrapper} {
-      ${({ current }) =>
-        current
-          ? `transform: translatex(-${current}px); 
-  transition-duration: 300ms;`
-          : ''}
-    }
-  }
-`;
-
 export const ArrowRight = styled(Arrow)`
   margin-left: auto;
   display: none;
   @media ${device.tablet} {
     display: block;
     ${({ current, cardsnumber, maxwidth }) =>
-      (cardsnumber < 4 && `display: none`) ||
-      (current >= maxwidth && `display: none`)}
+    (cardsnumber < 4 && `display: none`) ||
+    (current >= maxwidth && `display: none`)}
   }
   :hover {
     transform: translateX(3px);
@@ -969,7 +912,7 @@ export const ArrowLeft = styled(Arrow)`
     display: block;
 
     ${({ current, cardsnumber }) =>
-      (cardsnumber < 4 && `display: none`) || (current <= 0 && `display: none`)}
+    (cardsnumber < 4 && `display: none`) || (current <= 0 && `display: none`)}
   }
 
   :hover {
@@ -1196,6 +1139,128 @@ export const PriceFirstNum = styled.span`
 export const PriceSecondNum = styled(PriceFirstNum)`
   font-size: 0.75rem;
   color: #fa6c50;
+`;
+
+// section SIMPLE CARD
+
+export const SimpleCardWrapper = styled.div`
+  min-width: 290px;
+  min-height: 245px;
+  margin-right: 20px;
+  position: relative;
+
+  @media ${device.tablet} {
+    min-width: 290px;
+    max-width: 290px;
+    min-height: 245px;
+  }
+
+  @media ${device.laptop} {
+    min-width: 290px;
+    max-width: 290px;
+    min-height: 245px;
+  }
+
+  @media ${device.desktop} {
+    min-width: 335px;
+    max-width: 335px;
+    min-height: 245px;
+  }
+`;
+
+export const SimpleCardImg = styled.img`
+  width: 100%;
+  height: 100%;
+`;
+
+export const SimpleCardDescript = styled.div`
+  max-width: 217px;
+  height: fit-content;
+  position: absolute;
+  bottom: 12px;
+  left: 12px;
+  display: flex;
+  flex-direction: column;
+
+  @media ${device.desktop} {
+    width: 250px;
+  }
+`;
+
+export const SimpleCardTitleWrapper = styled.div`
+  margin: auto;
+  padding: 2px 0;
+  line-height: 1.3;
+  border-left: 12px solid ${color.secondary};
+`;
+
+export const SimpleCardTitleTop = styled.span`
+  margin: 0;
+  padding: 4px 0;
+  display: inline;
+  color: ${color.primary};
+  background-color: ${color.secondary};
+`;
+
+export const SimpleCardTitleBottom = styled.span`
+  position: relative;
+  left: -6px;
+  font-weight: bold;
+`;
+
+export const SimpleCardExperiences = styled.div`
+  width: fit-content;
+  padding: 4px 5px;
+  font-size: 0.85rem;
+  vertical-align: middle;
+  background-color: ${color.primary};
+`;
+
+export const CarouselCardWrapper = styled.div`
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  scroll-snap-type: x mandatory;
+  overflow-x: scroll;
+  overflow-y: hidden;
+  scroll-behavior: smooth;
+
+  @media ${device.tablet} {
+    overflow-x: hidden;
+    min-width: 100%;
+    ${(CardWrapper, SimpleCardWrapper)} {
+      ${({ current }) =>
+    current
+      ? `transform: translatex(-${current}px); 
+  transition-duration: 300ms;`
+      : ''}
+    }
+  }
+
+  @media ${device.laptop} {
+    overflow-x: hidden;
+    min-width: 100%;
+    /* max-width: ${cardSize.md * 2}px; */
+    ${(CardWrapper, SimpleCardWrapper)} {
+      ${({ current }) =>
+    current
+      ? `transform: translatex(-${current}px); 
+  transition-duration: 300ms;`
+      : ''}
+    }
+  }
+
+  @media ${device.desktop} {
+    min-width: 100%;
+    /* max-width: ${cardSize.lg * 3}px; */
+    ${(CardWrapper, SimpleCardWrapper)} {
+      ${({ current }) =>
+    current
+      ? `transform: translatex(-${current}px); 
+  transition-duration: 300ms;`
+      : ''}
+    }
+  }
 `;
 
 // Section ACTIVITY PAGE

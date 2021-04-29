@@ -11,6 +11,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import { setUserLang } from '../redux/languages/languageActions';
 import { translateTexts } from '../redux/translations/translationActions';
+import { fetchInspirations } from '../redux/inspirations/inspirationActions';
 
 import {
   Route,
@@ -29,12 +30,14 @@ import Activities from './Activities';
 import { Category } from './Category';
 import Card from '../components/Card';
 import { fetchExperiences } from '../redux/experiences/experienceActions';
+import { SimpleCard } from '../components/SimpleCard';
 
 function Home() {
   const { userLang } = useSelector((state) => state.languages);
   const { userCurrency } = useSelector((state) => state.currencies);
   const experiencesState = useSelector((state) => state.experiences);
   const { experiences, loading: experienceLoading } = experiencesState;
+  const { inspirations } = useSelector((state) => state.inspirations);
 
   const dispatch = useDispatch();
   let { path } = useRouteMatch();
@@ -52,6 +55,7 @@ function Home() {
     dispatch(translateTexts(userLang));
     setTimeout(() => {
       dispatch(fetchExperiences());
+      dispatch(fetchInspirations());
     }, 1);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [lang, userLang, userCurrency]);
@@ -85,6 +89,14 @@ function Home() {
                     <Card key={key} content={experience} />
                   ))
                 )}
+              </Carousel>
+              <CarouselTitle title={'Find your inspiration'} />
+              <Carousel>
+                {inspirations.length > 0
+                  ? inspirations.map((inspiration, key) => (
+                      <SimpleCard item={inspiration} key={key} />
+                    ))
+                  : null}
               </Carousel>
             </CarouselSection>
           </Route>
