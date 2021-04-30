@@ -15,7 +15,7 @@ import {
 
 export const Category = () => {
   const dispatch = useDispatch();
-  let { idCateg } = useParams();
+  let { lang, idCateg } = useParams();
   const categoryState = useSelector((state) => state.categories);
   const { categories } = categoryState;
   const { userLang } = useSelector((state) => state.languages);
@@ -49,7 +49,7 @@ export const Category = () => {
           />
         </CategoryImgHover>
       </CategoryImgWrapper>
-      <CategoryGoHome to=''>Home</CategoryGoHome>
+      <CategoryGoHome to={`/${lang}`}>Home</CategoryGoHome>
       <CategoryName>{`› ${selectedCategory?.name}`}</CategoryName>
       <PopularExperiences />
     </>

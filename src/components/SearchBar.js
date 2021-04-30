@@ -50,8 +50,8 @@ function SearchBar({ isOnHero, mobile, placeholder, setIsModalSearchOpen }) {
     <SearchBarContainer
       changeBackground={searchQuery.length > 0 ? true : false}
       $onhero={isOnHero}
-      mobile={mobile}
-    >
+      // eslint-disable-next-line prettier/prettier
+      mobile={mobile}>
       <SearchIcon />
       <SearchInput
         $onhero={isOnHero}
@@ -65,7 +65,7 @@ function SearchBar({ isOnHero, mobile, placeholder, setIsModalSearchOpen }) {
         }}
       />
       {isModalOpen && (
-        <ModalSearchBody>
+        <ModalSearchBody $suggested={searchQuery.length}>
           {searchQuery.length < 3 ? (
             <>
               <ModalOverlay onClick={() => setIsModalOpen(false)} />

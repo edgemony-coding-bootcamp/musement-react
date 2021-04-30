@@ -13,8 +13,8 @@ const Carousel = ({ children }) => {
   const [current, setCurrent] = useState(0);
   const [maxwidth, setMaxwidth] = useState(0);
   const [cardsnumber, setCardsnumber] = useState(0);
-  const prevLeft = () => setCurrent(current - cardSize.md);
-  const nextRight = () => setCurrent(current + cardSize.md);
+  const prevLeft = () => setCurrent(current - cardSize.lg);
+  const nextRight = () => setCurrent(current + cardSize.lg);
 
   useEffect(() => {
     children?.length > 0 && setCardsnumber(children.length);
