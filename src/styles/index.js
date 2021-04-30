@@ -824,11 +824,12 @@ export const MediaArrowLeft = styled(MediaArrow)`
 export const DummyCardWrapper = styled.div`
   background-color: ${bgColor.primary};
   height: 365px;
-  width: 290px;
+  min-width: 290px;
   display: flex;
   flex-direction: column;
   border-radius: 6px;
   box-shadow: 0 3px 10px -8px;
+  margin: 0 10px 0 0;
 `;
 
 export const DummyCardImg = styled.div`
