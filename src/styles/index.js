@@ -65,7 +65,7 @@ export const boxShadow = {
 };
 
 // mediaQuery
-export const cardSize = { sm: 290, md: 310, lg: 335 };
+export const cardSize = { sm: 290, md: 310, lg: 345 };
 const size = { sm: '760px', md: '1024px', lg: '1350px' };
 export const device = {
   tablet: `(min-width: ${size.sm})`,
@@ -79,11 +79,7 @@ export const P = styled.p`
   ${({ bold }) => bold && `font-weight: 700; margin:0 5px;`}
 `;
 
-export const Div = styled.div`
-  & > ${P} {
-    padding: 0 15px;
-  }
-`;
+export const Div = styled.div``;
 
 export const H2 = styled.h2``;
 
@@ -114,6 +110,9 @@ export const CarouselSection = styled.section`
 
 export const FlexRowWrap = styled(Div)`
   display: flex;
+  & > ${H3} {
+    padding: 0 15px;
+  }
 `;
 
 export const FlexColumnWrap = styled(Div)`
@@ -578,6 +577,7 @@ export const HeroTitle = styled(Div)`
   padding: 0.5rem 0;
   text-align: center;
   font-size: 0.875rem;
+  font-weight: bold;
 
   @media ${device.tablet} {
     background: ${color.primary};
@@ -650,9 +650,9 @@ export const InfoBanner = styled(Div)`
   background: ${bgColor.primary};
   border-radius: 0.3rem;
   box-shadow: ${boxShadow.boxShadowLight};
-
-  & > ${FlexRowWrap} {
-    align-items: center;
+  justify-content: center;
+  & > ${P} {
+    padding: 0 15px;
   }
 
   @media ${device.tablet} {
@@ -1157,7 +1157,7 @@ export const PriceSecondNum = styled(PriceFirstNum)`
 export const SimpleCardWrapper = styled.div`
   min-width: 290px;
   min-height: 245px;
-  margin-right: 20px;
+  margin-right: 10px;
   position: relative;
   scroll-snap-align: start;
 
@@ -1201,7 +1201,7 @@ export const SimpleCardDescript = styled.div`
 `;
 
 export const SimpleCardTitleWrapper = styled.div`
-  margin: auto;
+  margin: 0;
   padding: 2px 0;
   line-height: 1.3;
   border-left: 12px solid ${color.secondary};
@@ -1209,7 +1209,7 @@ export const SimpleCardTitleWrapper = styled.div`
 
 export const SimpleCardTitleTop = styled.span`
   margin: 0;
-  padding: 4px 0;
+  padding: 2px 0;
   display: inline;
   color: ${color.primary};
   background-color: ${color.secondary};
