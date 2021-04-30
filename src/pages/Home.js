@@ -33,6 +33,7 @@ import Card from '../components/Card';
 import { fetchExperiences } from '../redux/experiences/experienceActions';
 import { SimpleCard } from '../components/SimpleCard';
 import { fetchCategories } from '../redux/categories/categoryActions';
+import { fetchPopularExperiences } from '../redux/popular-experiences/popularExperienceActions';
 
 function Home() {
   const { userLang } = useSelector((state) => state.languages);
@@ -40,6 +41,9 @@ function Home() {
   const experiencesState = useSelector((state) => state.experiences);
   const { experiences, loading: experienceLoading } = experiencesState;
   const { inspirations } = useSelector((state) => state.inspirations);
+  const { popularExperiences, loading: popularExperienceLoading } = useSelector(
+    (state) => state.popularExperiences
+  );
 
   const dispatch = useDispatch();
   let { path } = useRouteMatch();
@@ -59,6 +63,7 @@ function Home() {
     dispatch(fetchCategories());
     dispatch(fetchExperiences());
     dispatch(fetchInspirations());
+    dispatch(fetchPopularExperiences(7));
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [lang, userLang, userCurrency]);
@@ -112,6 +117,32 @@ function Home() {
                       <SimpleCard item={inspiration} key={key} />
                     ))
                   : null}
+              </Carousel>
+              <CarouselTitle title={'Discover the night'} />
+              <Carousel>
+                {popularExperienceLoading ? (
+                  <>
+                    <DummyCardWrapper>
+                      <DummyCardImg></DummyCardImg>
+                      <DummyCardContent></DummyCardContent>
+                      <DummyCardContent></DummyCardContent>
+                    </DummyCardWrapper>
+                    <DummyCardWrapper>
+                      <DummyCardImg></DummyCardImg>
+                      <DummyCardContent></DummyCardContent>
+                      <DummyCardContent></DummyCardContent>
+                    </DummyCardWrapper>
+                    <DummyCardWrapper>
+                      <DummyCardImg></DummyCardImg>
+                      <DummyCardContent></DummyCardContent>
+                      <DummyCardContent></DummyCardContent>
+                    </DummyCardWrapper>
+                  </>
+                ) : (
+                  popularExperiences.map((experience, key) => (
+                    <Card key={key} content={experience} />
+                  ))
+                )}
               </Carousel>
             </CarouselSection>
           </Route>

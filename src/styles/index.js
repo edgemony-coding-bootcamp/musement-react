@@ -104,7 +104,7 @@ export const CarouselSection = styled.section`
   padding-bottom: 40px;
   background-color: ${color.alternativec};
   @media ${device.tablet} {
-    padding: 0 40px 40px 40px;
+    padding: 0 40px 40px 100px;
   }
 `;
 
@@ -481,6 +481,7 @@ export const ModalSearchBody = styled(Div)`
   ${Span} {
     color: ${color.alternative};
   }
+  ${({ $suggested }) => $suggested < 3 && `overflow-y: hidden;`}
 `;
 // section CATEGORIES NAV
 
@@ -754,7 +755,6 @@ export const CarouselTitleContainer = styled.div`
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
-  min-width: 350px;
   max-width: 100%;
   scroll-snap-type: x mandatory;
   overflow-x: scroll;
@@ -1725,7 +1725,9 @@ export const FooterWrapper = styled.footer`
 `;
 
 export const FooterDropdownWrapper = styled.div`
-  margin-right: 150px;
+  @media ${device.laptop} {
+    margin-right: 150px;
+  }
 `;
 
 export const FooterDropdown = styled.div`
