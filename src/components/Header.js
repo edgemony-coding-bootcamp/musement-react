@@ -50,7 +50,7 @@ function Header() {
               isOnHero={false}
               placeholder={`${translatedTexts.searchplaceholderheader}`}
             />
-            <LinkPages to='/'>
+            <LinkPages to={`/${lang}`}>
               <HeaderLogoDesktop />
             </LinkPages>
             <p></p>
@@ -67,7 +67,7 @@ function Header() {
                 <SearchBar setIsModalSearchOpen={setIsModalSearchOpen} />
               </ModalOverlayMobile>
             )}
-            <LinkPages to='/'>
+            <LinkPages to={`/${lang}`}>
               <HeaderLogoMobile />
             </LinkPages>
             <HeaderHamburgerWrapper>

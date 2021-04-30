@@ -40,12 +40,13 @@ import {
   ContentHighlightsElements,
   device,
   useMediaQuery,
+  LinkPages,
 } from '../styles';
 import { parseISODuration } from '../utilities';
 
 function Activities() {
   const [modalIsOpen, setModalIsOpen] = useState(false);
-  let { id } = useParams();
+  let { lang, id } = useParams();
   const dispatch = useDispatch();
   const { activity, loading, error } = useSelector((state) => state.activity);
   const { media } = useSelector((state) => state.activity);
@@ -100,8 +101,14 @@ function Activities() {
                     : `${translatedTexts.attractionandguidetour}`}
                 </CardCategoryLabel>
                 <ContentTitle>{activity?.title}</ContentTitle>
-                {isTablet && (
+                {/* {isTablet && (
                   <ContentUrl>{` Home > ${activity?.city['name']} > ${activity?.title}`}</ContentUrl>
+                )} */}
+                {isTablet && (
+                  <ContentUrl>
+                    <LinkPages to={`/${lang}`}>{'Home'}</LinkPages>
+                    {` > ${activity?.city['name']} > ${activity?.title}`}
+                  </ContentUrl>
                 )}
               </ContentSectionHeader>
               <ContentFeaturesSection>

@@ -1242,7 +1242,7 @@ export const CarouselCardWrapper = styled.div`
   @media ${device.tablet} {
     overflow-x: hidden;
     min-width: 100%;
-    ${(CardWrapper, SimpleCardWrapper)} {
+    ${LinkPages},${SimpleCardWrapper} {
       ${({ current }) =>
         current
           ? `transform: translatex(-${current}px); 
@@ -1254,7 +1254,7 @@ export const CarouselCardWrapper = styled.div`
   @media ${device.laptop} {
     overflow-x: hidden;
     min-width: 100%;
-    ${(CardWrapper, SimpleCardWrapper)} {
+    ${LinkPages},${SimpleCardWrapper} {
       ${({ current }) =>
         current
           ? `transform: translatex(-${current}px); 
@@ -1265,7 +1265,7 @@ export const CarouselCardWrapper = styled.div`
 
   @media ${device.desktop} {
     min-width: 100%;
-    ${(CardWrapper, SimpleCardWrapper)} {
+    ${LinkPages},${SimpleCardWrapper} {
       ${({ current }) =>
         current
           ? `transform: translatex(-${current}px); 
@@ -1362,7 +1362,11 @@ export const ContentTitle = styled.h2`
   font-size: 2rem;
 `;
 
-export const ContentUrl = styled.span``;
+export const ContentUrl = styled.span`
+  ${LinkPages} {
+    text-decoration: underline;
+  }
+`;
 
 export const ContentFeaturesSection = styled.div`
   width: 100%;
