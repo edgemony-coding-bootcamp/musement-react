@@ -4,8 +4,8 @@ import styled from 'styled-components';
 
 import { ReactComponent as CancellationSvg } from '../assets/img/free_cancellation_banner.svg';
 import { ReactComponent as SafetySvg } from '../assets/img/safety-measures.svg';
-import { ReactComponent as LogoTablet } from '../assets/img/logo-musement-tablet.svg';
-import { ReactComponent as LogoMobile } from '../assets/img/logo-musement-mobile.svg';
+import { ReactComponent as LogoTablet } from '../assets/img/logo-t.svg';
+import { ReactComponent as LogoMobile } from '../assets/img/logo-m.svg';
 import { ReactComponent as Hamburger } from '../assets/img/hamburger-icon.svg';
 import { ReactComponent as NightLifeSvg } from '../assets/img/nightlife.svg';
 import { ReactComponent as ToursAttractionsSvg } from '../assets/img/tours-attractions.svg';
@@ -267,20 +267,13 @@ export const HeaderHamburger = styled(Hamburger)`
 `;
 
 export const HeaderLogoDesktop = styled(LogoTablet)`
-  width: 200px;
-  height: 38px;
+  width: 40px;
+  height: 40px;
 `;
 
 export const HeaderLogoMobile = styled(LogoMobile)`
-  width: 80px;
-  height: 80px;
-
-  & g {
-    fill: ${color.alternative};
-  }
-  & g #Group-3 {
-    fill: ${color.secondary};
-  }
+  width: 40px;
+  height: 40px;
 `;
 
 // section MODAL HEADER
